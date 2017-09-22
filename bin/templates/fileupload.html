@@ -1,10 +1,16 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8"/>
 </head>
 <body>
-<input type="file" id="file">
+<form action="#" th:action="@{/}" method="POST" enctype="multipart/form-data">
+  <input type="file" id="file" name="file"/>
+  <input type="submit" value="Upload"/>
+</form>
+<span th:text="${fileinfo.id}" ></span>
+<span th:text="${fileinfo.name}" ></span>
+<span th:text="${fileinfo.expireTime}" ></span>
 <script type="text/javascript">
   var fileUploader = document.getElementById("file");
   fileUploader.addEventListener("change", function (event) {
@@ -13,11 +19,10 @@
     console.log("Size: " + file.size + " bytes");
     if (file.size > 375000) {
       var p = document.createElement("p");
-      p.textContent = "3MB 이하로 파일을 올려주세요";
+      p.textContent = "3MB 초과하셨음";
       document.body.appendChild(p);
     }
   }, false);
 </script>
-
 </body>
 </html>

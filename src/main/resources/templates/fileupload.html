@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+</head>
+<body>
+<form action="#" th:action="@{/}" method="POST" enctype="multipart/form-data">
+  <input type="file" id="file" name="file"/>
+  <input type="submit" value="Upload"/>
+</form>
+<span th:text="${fileinfo.id}" ></span>
+<span th:text="${fileinfo.name}" ></span>
+<span th:text="${fileinfo.expireTime}" ></span>
+<script type="text/javascript">
+  var fileUploader = document.getElementById("file");
+  fileUploader.addEventListener("change", function (event) {
+    var file = fileUploader.files[0];
+    console.log("Filename: " + file.name);
+    console.log("Size: " + file.size + " bytes");
+    if (file.size > 375000) {
+      var p = document.createElement("p");
+      p.textContent = "3MB 초과하셨음";
+      document.body.appendChild(p);
+    }
+  }, false);
+</script>
+</body>
+</html>
