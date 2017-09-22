@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+<form method="POST" enctype="multipart/form-data" action="/">
+  <input type="file" id="file" name="file"/>
+  <input type="submit" value="Upload"/>
+</form>
+<script type="text/javascript">
+  var fileUploader = document.getElementById("file");
+  fileUploader.addEventListener("change", function (event) {
+    var file = fileUploader.files[0];
+    console.log("Filename: " + file.name);
+    console.log("Size: " + file.size + " bytes");
+    if (file.size > 375000) {
+      var p = document.createElement("p");
+      p.textContent = "3MB 이하로 파일을 올려주세요";
+      document.body.appendChild(p);
+    }
+  }, false);
+</script>
+
+</body>
+</html>
