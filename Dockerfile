@@ -1,5 +1,7 @@
 FROM java:8
+ARG PACKAGE_NAME
+ARG PACKAGE_VERSION
 RUN mkdir /app
-COPY build/libs/Website*.jar /app
+COPY build/libs/${PROJECT_NAME}-${PROJECT_VERSION}.jar /app
 EXPOSE 80
-CMD ["java", "-jar", "/app/Website*.jar" ]
+CMD ["java", "-jar", "/app/${PROJECT_NAME}-${PROJECT_VERSION}.jar" ]
