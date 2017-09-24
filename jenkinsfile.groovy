@@ -5,7 +5,7 @@ node {
 		gradle = tool 'gradle'
 		packageName = sh script: "${gradle}/bin/gradle properties | grep name | awk '{print \$2}'", returnStdout: true
 		packageVersion = sh script: "${gradle}/bin/gradle properties | grep version | awk '{print \$2}'", returnStdout: true
-		echo '${packageName}, ${packageVersion}'
+		echo "${packageName}, ${packageVersion}"
 	}
 
 	stage("Checkout") {
@@ -50,7 +50,7 @@ node {
 			sh "ls -al build/libs"
 			imageName = "tmpdir/${packageName}}:${packageVersion}"
 			containerName = "tmpdir-${packageName}-${packageVersion}"
-			echo '${imageName}, ${containerName}'
+			echo "${imageName}, ${containerName}"
 			image = docker.build("${imageName}", "--build-arg PACKAGE_NAME=${packageName}", "--build-arg PACKAGE_VERSION=${packageVersion}")
 			sh "docker rm -f ${containerName}"
 			sh "docker run -d -p 80:80 --name ${containerName} ${imageName}"
