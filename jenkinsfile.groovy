@@ -3,10 +3,7 @@ node {
 		developBranchName = "develop"
 		releaseBranchName = "master"
 		gradle = tool 'gradle'
-		sh 'env > env.txt' 
-		for (String i : readFile('env.txt').split("\r?\n")) {
-			println i
-		}
+		sh 'echo honstname' 
 	}
 
 	stage("Checkout") {
