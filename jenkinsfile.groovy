@@ -3,7 +3,6 @@ node {
 		developBranchName = "develop"
 		releaseBranchName = "master"
 		gradle = tool 'gradle'
-		sh 'pwd' 
 	}
 
 	stage("Checkout") {
