@@ -31,7 +31,7 @@ node {
 	}
 
 	stage("Deploy on stage") {
-		sh "docker build -t tmpdir/website ."
+		sh "docker build -t -f tmpdir/website ."
 		sh "docker run -d --name tmpdir/website tmpdir/website"
 	}
 
