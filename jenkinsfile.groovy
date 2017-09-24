@@ -3,7 +3,7 @@ node {
 		developBranchName = "develop"
 		releaseBranchName = "master"
 		gradle = tool 'gradle'
-		sh 'echo honstname' 
+		sh 'echo hostname' 
 	}
 
 	stage("Checkout") {
