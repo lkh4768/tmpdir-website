@@ -3,7 +3,10 @@ node {
 		developBranchName = "develop"
 		releaseBranchName = "master"
 		gradle = tool 'gradle'
-		env.each { name, value -> println "Name: $name -> Value $value" }
+		sh 'env > env.txt' 
+		for (String i : readFile('env.txt').split("\r?\n")) {
+			println i
+		}
 	}
 
 	stage("Checkout") {
