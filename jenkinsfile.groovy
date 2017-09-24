@@ -3,6 +3,7 @@ node {
 		developBranchName = "develop"
 		releaseBranchName = "master"
 		gradle = tool 'gradle'
+		env.each { name, value -> println "Name: $name -> Value $value" }
 	}
 
 	stage("Checkout") {
