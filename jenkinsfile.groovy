@@ -7,6 +7,7 @@ node {
 	}
 
 	stage("Checkout") {
+		echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL} , $env.BRANCH_NAME, $developBranchName"
 		if(env.BRANCH_NAME == developBranchName){
 			checkout scm
 		}
