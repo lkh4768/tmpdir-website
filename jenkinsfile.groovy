@@ -13,7 +13,7 @@ node {
 
 	stage("Build") {
 		if(env.BRANCH_NAME == developBranchName){
-			sh "${gradle}/bin/gradle jar"
+			sh "${gradle}/bin/gradle build"
 		}
 	}
 
@@ -55,6 +55,16 @@ node {
 	}
 
 	stage("Performance testing") {
+		if(env.BRANCH_NAME == developBranchName){
+		}
+	}
+
+	stage("Merge on Release Branch"){ 
+		if(env.BRANCH_NAME == developBranchName){
+		}
+	}
+
+	stage("Push docker registry"){ 
 		if(env.BRANCH_NAME == developBranchName){
 		}
 	}
