@@ -3,11 +3,9 @@ node {
 		developBranchName = "develop"
 		releaseBranchName = "master"
 		gradle = tool 'gradle'
-		echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL} , $env.BRANCH_NAME"
 	}
 
 	stage("Checkout") {
-		echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL} , $env.BRANCH_NAME, $developBranchName"
 		if(env.BRANCH_NAME == developBranchName){
 			checkout scm
 		}
