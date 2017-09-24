@@ -52,13 +52,11 @@ public class WebsiteController {
 
 		HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<MultiValueMap<String, Object>>(parts,
 				headers);
-		System.out.println(requestEntity.toString());
 		ResponseEntity<FileInfo> response = fileUploadClient.postForEntity("http://127.0.0.1:6000/", requestEntity,
 				FileInfo.class);
 		if (response != null && response.getBody() != null) {
 			System.out.println("fileinfo id: " + response.getBody().getId());
 			model.addAttribute("fileinfo", response.getBody());
-			//return "redirect:/";
 			return "fileupload";
 		}
 		return "error";
