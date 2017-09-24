@@ -44,6 +44,7 @@ node {
 	
 	stage("Deploy on stage") {
 		if(env.BRANCH_NAME == developBranchName){
+			sh "ls -al build/libs"
 			sh "docker build -t tmpdir/website ."
 			sh "docker run -d -p 80:80 --name tmpdir/website tmpdir/website"
 		}
