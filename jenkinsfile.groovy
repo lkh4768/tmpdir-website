@@ -3,11 +3,11 @@ node {
 		developBranchName = "develop"
 		releaseBranchName = "master"
 		gradle = tool 'gradle'
-		echo '$evn.BRANCH_NAME $BRANCH_NAME $developBranchName'
+		echo '$env.BRANCH_NAME $BRANCH_NAME $developBranchName'
 	}
 
 	stage("Checkout") {
-		echo '$evn.BRANCH_NAME $BRANCH_NAME $developBranchName'
+		echo '$env.BRANCH_NAME $BRANCH_NAME $developBranchName'
 		if(env.BRANCH_NAME == developBranchName){
 			checkout scm
 		}
