@@ -3,7 +3,7 @@ node {
 		developBranchName = "develop"
 		releaseBranchName = "master"
 		gradle = tool 'gradle'
-		echo env.BRANCH_NAME developBranchName
+		echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL} , $env.BRANCH_NAME"
 	}
 
 	stage("Checkout") {
