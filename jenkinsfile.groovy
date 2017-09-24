@@ -32,7 +32,7 @@ node {
 
 	stage("Deploy on stage") {
 		sh "docker build -t tmpdir/website ."
-		sh "docker run -d --name tmpdir/website tmpdir/website"
+		sh "docker run -d -p 80:80 --name tmpdir/website tmpdir/website"
 	}
 
 	stage("Integration testing") {
