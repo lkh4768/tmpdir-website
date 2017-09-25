@@ -49,7 +49,6 @@ node {
 	
 	stage("Deploy on stage") {
 		if(env.BRANCH_NAME == developBranchName){
-			sh "ls -al build/libs"
 			image = docker.build("${imageName}", "--build-arg PACKAGE_NAME=${packageName}", "--build-arg PACKAGE_VERSION=${packageVersion}")
 			sh "docker rm -f ${containerName}"
 			image.withRun("-p 80:80 --name ${containerName}")
