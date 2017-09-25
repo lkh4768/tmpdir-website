@@ -2,6 +2,7 @@ package xyz.swwarehouse.tmpdir;
 
 import java.io.IOException;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -19,7 +20,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class WebsiteController {
-
+	@Value("${tmpdir.file-upload-service.host}")
+	private static String FILE_UPLOAD_SERVICE_HOST;
 	RestTemplate fileUploadClient = new RestTemplate();
 
 	@GetMapping("/")
@@ -52,10 +54,9 @@ public class WebsiteController {
 
 		HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<MultiValueMap<String, Object>>(parts,
 				headers);
-		ResponseEntity<FileInfo> response = fileUploadClient.postForEntity("http://127.0.0.1:6000/", requestEntity,
+		ResponseEntity<FileInfo> response = fileUploadClient.postForEntity(FILE_UPLOAD_SERVICE_HOST + "/", requestEntity,
 				FileInfo.class);
 		if (response != null && response.getBody() != null) {
-			System.out.println("fileinfo id: " + response.getBody().getId());
 			model.addAttribute("fileinfo", response.getBody());
 			return "fileupload";
 		}
