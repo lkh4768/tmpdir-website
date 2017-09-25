@@ -12,14 +12,21 @@
 <span th:text="${fileinfo.name}" ></span>
 <span th:text="${fileinfo.expireTime}" ></span>
 <script type="text/javascript">
+  var MAX_FILE_MAME_LEN = 255;
+  var MAX_FILE_SIZE = 375000;
   var fileUploader = document.getElementById("file");
   fileUploader.addEventListener("change", function (event) {
     var file = fileUploader.files[0];
     console.log("Filename: " + file.name);
     console.log("Size: " + file.size + " bytes");
-    if (file.size > 375000) {
+    if (file.size > MAX_FILE_SIZE) {
       var p = document.createElement("p");
       p.textContent = "3MB 초과하셨음";
+      document.body.appendChild(p);
+    }
+    if(file.name.length > MAX_FILE_MAME_LEN){
+      var p = document.createElement("p");
+      p.textContent = "file 길이 255 초과하셨음";
       document.body.appendChild(p);
     }
   }, false);
