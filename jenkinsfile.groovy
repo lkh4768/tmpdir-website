@@ -50,7 +50,7 @@ node {
 	stage("Deploy on stage") {
 		if(env.BRANCH_NAME == developBranchName){
 			image = docker.build("${imageName}", "--build-arg PACKAGE_NAME=${packageName} --build-arg PACKAGE_VERSION=${packageVersion} .")
-			container = image.run("-p 80:80 --name ${containerName} --rm")
+			container = image.run("-p 80:80 --rm --name ${containerName}")
 		}
 	}
 
