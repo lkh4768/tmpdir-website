@@ -7,6 +7,7 @@ node {
 		packageVersion = sh script: "${gradle}/bin/gradle properties | grep version | awk '{print \$2}' | tr -d '\\n'", returnStdout: true
 		imageName = "tmpdir-${packageName.toLowerCase()}:${packageVersion}"
 		containerName = "tmpdir-${packageName.toLowerCase()}-${packageVersion}"
+		port = "80"
 		echo "${packageName}, ${packageVersion}, ${imageName}, ${containerName}"
 	}
 
@@ -50,7 +51,7 @@ node {
 	stage("Deploy on stage") {
 		if(env.BRANCH_NAME == developBranchName){
 			image = docker.build("${imageName}", "--build-arg PACKAGE_NAME=${packageName} --build-arg PACKAGE_VERSION=${packageVersion} .")
-			container = image.run("-p 80:80 --name ${containerName}")
+			container = image.run("-p ${port}:${port} --name ${containerName}")
 		}
 	}
 
