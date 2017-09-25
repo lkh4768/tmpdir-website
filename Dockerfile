@@ -8,4 +8,4 @@ COPY build/libs/${PACKAGE_NAME}-${PACKAGE_VERSION}.jar /app
 RUN ls -al /app
 RUN whereis java
 EXPOSE 80
-CMD "/usr/bin/java -jar /app/${PACKAGE_NAME}-${PACKAGE_VERSION}.jar" ]
+CMD /usr/bin/java -jar /app/${PACKAGE_NAME}-${PACKAGE_VERSION}.jar
