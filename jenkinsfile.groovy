@@ -71,6 +71,8 @@ node {
 
 	stage("Push docker registry"){ 
 		if(env.BRANCH_NAME == developBranchName){
+			sh "docker rm -f ${container.id}"
+			sh "docker rmi ${image.id}"
 		}
 	}
 
