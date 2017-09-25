@@ -48,7 +48,7 @@ node {
 	stage("Deploy on stage") {
 		if(env.BRANCH_NAME == developBranchName){
 			sh "ls -al build/libs"
-			imageName = "tmpdir/${packageName}}:${packageVersion}"
+			imageName = "tmpdir/${packageName}:${packageVersion}"
 			containerName = "tmpdir-${packageName}-${packageVersion}"
 			echo "${imageName}, ${containerName}"
 			image = docker.build("${imageName}", "--build-arg PACKAGE_NAME=${packageName}", "--build-arg PACKAGE_VERSION=${packageVersion}")
