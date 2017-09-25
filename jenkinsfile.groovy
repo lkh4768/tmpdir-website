@@ -3,7 +3,7 @@ node {
 		developBranchName = "develop"
 		releaseBranchName = "master"
 		gradle = tool 'gradle'
-		packageName = sh script: "${gradle}/bin/gradle properties | grep name | awk '{print \$2}' | tr '\n' ''", returnStdout: true
+		packageName = sh script: "${gradle}/bin/gradle properties | grep name | awk '{print \$2}' | tr -d '\\n'", returnStdout: true
 		packageVersion = sh script: "${gradle}/bin/gradle properties | grep version | awk '{print \$2}'", returnStdout: true
 		echo "${packageName}, ${packageVersion}"
 	}
