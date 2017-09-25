@@ -2,6 +2,6 @@ FROM java:8
 ARG PACKAGE_NAME
 ARG PACKAGE_VERSION
 RUN mkdir /app
-COPY build/libs/${PROJECT_NAME}-${PROJECT_VERSION}.jar /app
+COPY build/libs/${PACKAGE_NAME}-${PACKAGE_VERSION}.jar /app
 EXPOSE 80
-CMD ["java", "-jar", "/app/${PROJECT_NAME}-${PROJECT_VERSION}.jar" ]
+CMD ["java", "-jar", "/app/${PACKAGE_NAME}-${PACKAGE_VERSION}.jar" ]
