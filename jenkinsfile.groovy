@@ -5,8 +5,8 @@ node {
 		gradle = tool 'gradle'
 		packageName = sh script: "${gradle}/bin/gradle properties | grep name | awk '{print \$2}' | tr -d '\\n'", returnStdout: true
 		packageVersion = sh script: "${gradle}/bin/gradle properties | grep version | awk '{print \$2}' | tr -d '\\n'", returnStdout: true
-		imageName = "tmpdir-${packageName[0].toLowerCase()}:${packageVersion}"
-		containerName = "tmpdir-${packageName[0].toLowerCase()}-${packageVersion}"
+		imageName = "tmpdir-${packageName.toLowerCase()}:${packageVersion}"
+		containerName = "tmpdir-${packageName.toLowerCase()}-${packageVersion}"
 		echo "${packageName}, ${packageVersion}, ${imageName}, ${containerName}"
 	}
 
