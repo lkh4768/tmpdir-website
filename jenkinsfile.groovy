@@ -5,7 +5,9 @@ node {
 		gradle = tool 'gradle'
 		packageName = sh script: "${gradle}/bin/gradle properties | grep name | awk '{print \$2}' | tr -d '\\n'", returnStdout: true
 		packageVersion = sh script: "${gradle}/bin/gradle properties | grep version | awk '{print \$2}' | tr -d '\\n'", returnStdout: true
-		echo "${packageName}, ${packageVersion}"
+		imageName = "tmpdir/${packageName}:${packageVersion}"
+		containerName = "tmpdir-${packageName}-${packageVersion}"
+		echo "${packageName}, ${packageVersion}, ${imageName}, ${containerName}"
 	}
 
 	stage("Checkout") {
@@ -48,12 +50,9 @@ node {
 	stage("Deploy on stage") {
 		if(env.BRANCH_NAME == developBranchName){
 			sh "ls -al build/libs"
-			imageName = "tmpdir/${packageName}:${packageVersion}"
-			containerName = "tmpdir-${packageName}-${packageVersion}"
-			echo "${imageName}, ${containerName}"
 			image = docker.build("${imageName}", "--build-arg PACKAGE_NAME=${packageName}", "--build-arg PACKAGE_VERSION=${packageVersion}")
 			sh "docker rm -f ${containerName}"
-			sh "docker run -d -p 80:80 --name ${containerName} ${imageName}"
+			image.withRun("-p 80:80 --name ${containerName}")
 		}
 	}
 
