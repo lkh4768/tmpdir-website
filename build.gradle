@@ -4,18 +4,24 @@ buildscript {
 	}
 	repositories {
 		mavenCentral()
+		maven {
+			url "https://plugins.gradle.org/m2/"
+		}
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+			classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.2.1"
 	}
 }
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
+apply plugin: 'org.sonarqube'
+apply plugin: 'jacoco'
 
-group = 'xyz.sw-warehouse.tmp-dir'
-version = '0.0.2'
+group = 'xyz.sw-warehouse.tmpdir'
+version = '0.0.1'
 sourceCompatibility = 1.8
 
 repositories {
@@ -29,19 +35,13 @@ dependencies {
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
-/* sonarqube */
-buildscript {
-    repositories {
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
-    }
-    dependencies {
-        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.2.1"
+jacocoTestReport {
+    reports {
+        xml.enabled false 
+        html.enabled true 
     }
 }
-
-apply plugin: 'org.sonarqube'
+check.dependsOn jacocoTestReport
 
 sonarqube {
     properties {
@@ -50,5 +50,6 @@ sonarqube {
         property "sonar.sources", "src/main"
         property "sonar.tests", "src/test"
         property "sonar.sourceEncoding", "UTF-8"
+        property "sonar.jacoco.reportPaths", "build/jacoco/test.exec"
     }
 }
