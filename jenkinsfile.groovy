@@ -17,6 +17,12 @@ node {
 		}
 	}
 
+	stage("Unit testing") {
+		if(env.BRANCH_NAME == developBranchName){
+			sh "${gradle}/bin/gradle check --debug"
+		}
+	}
+	
 	stage("Build") {
 		if(env.BRANCH_NAME == developBranchName){
 			sh "${gradle}/bin/gradle build"
