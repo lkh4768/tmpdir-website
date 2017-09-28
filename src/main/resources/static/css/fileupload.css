@@ -1,0 +1,117 @@
+.navbar {
+  height: 60px;
+}
+
+.navbar-brand {
+  color: #ffffff;
+}
+
+.navbar-brand > span {
+  padding-left: 10px;
+}
+
+.social-btns {
+  width: 100%;
+}
+
+.social-btn, .social-btns {
+  display: inline-block;
+  float: right;
+}
+
+.social-btns * {
+  vertical-align: middle;
+}
+
+.social-btn {
+  padding-left: 5px;
+}
+
+.container-fluid {
+  bottom: 60px;
+  top: 60px;
+  height: calc(100% - 120px);
+  min-height: calc(100% - 120px);
+}
+
+.explorer-tree {
+  background-color: #f2f2f2;
+  padding-top: 20px;
+}
+
+.explorer-tree-item {
+  padding: 10px;
+  display: block;
+}
+
+.explorer-tree-item > div > p {
+  color: #000000;
+  margin: 0px;
+  font-size: small;
+}
+
+.explorer-tree-time-img {
+  height: 100%;
+  width: 100%;
+  max-height: 80px;
+  max-width: 80px;
+}
+
+.pre-scrollable {
+  max-height: 100% !important;
+}
+
+.explorer-main {
+  height: 100%;
+  min-height: 100%;
+  padding: 20px;
+}
+
+.explorer-main > .dropzone {
+  width: 100%;
+  border: 0px;
+}
+
+.explorer-main > .dropzone > * {
+  vertical-align: middle;
+}
+
+.dropzone > .dz-preview {
+  margin: 40px;
+}
+
+.upload {
+  cursor: pointer;
+  position: fixed;
+  bottom: 110px;
+  right: 50px;
+  color: white !important;
+}
+
+.footer {
+  height: 60px;
+  width: 100%;
+  position: absolute;
+  text-align: center;
+  bottom: 0px;
+}
+
+.footer > .container {
+  height: 100%;
+  display: table;
+}
+
+.footer > .container > div {
+  display: table-cell;
+  vertical-align: middle;
+  color: white;
+}
+
+.footer > .container > div > a {
+  padding-left: 15px;
+  color: white;
+}
+
+.glyphicon {
+  font-size: 10px
+}
