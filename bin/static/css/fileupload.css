@@ -1,5 +1,42 @@
+.navbar {
+  height: 60px;
+}
+
+.navbar-brand {
+  color: #ffffff;
+}
+
+.navbar-brand > span {
+  padding-left: 10px;
+}
+
+.social-btns {
+  width: 100%;
+}
+
+.social-btn, .social-btns {
+  display: inline-block;
+  float: right;
+  color: white;
+}
+
+.social-btns * {
+  vertical-align: middle;
+}
+
+.social-btn {
+  padding-left: 5px;
+}
+
+.container-fluid {
+  bottom: 60px;
+  top: 60px;
+  height: calc(100% - 120px);
+  min-height: calc(100% - 120px);
+}
+
 .explorer-tree {
-  border-right: solid #a0a0a0 2px;
+  background-color: #f2f2f2;
   padding-top: 20px;
 }
 
@@ -8,8 +45,10 @@
   display: block;
 }
 
-.explorer-tree-item > span {
+.explorer-tree-item > div > p {
   color: #000000;
+  margin: 0px;
+  font-size: small;
 }
 
 .explorer-tree-time-img {
@@ -19,28 +58,105 @@
   max-width: 80px;
 }
 
+.pre-scrollable {
+  max-height: 100% !important;
+}
+
 .explorer-main {
   height: 100%;
+  min-height: 100%;
   padding: 20px;
 }
 
 .explorer-main > .dropzone {
-  height: 100%;
   width: 100%;
-  display: table;
   border: 0px;
 }
 
 .explorer-main > .dropzone > * {
+  vertical-align: middle;
+}
+
+.dropzone > .dz-preview {
+  margin: 40px;
+}
+
+.upload {
+  display: none;
+  cursor: pointer;
+  position: fixed;
+  bottom: 110px;
+  right: 50px;
+  color: white !important;
+}
+
+.footer {
+  height: 60px;
+  width: 100%;
+  position: absolute;
+  text-align: center;
+  bottom: 0px;
+}
+
+.footer > .container {
+  height: 100%;
+  display: table;
+}
+
+.footer > .container > div {
+  display: table-cell;
+  vertical-align: middle;
+  color: white;
+}
+
+.footer > .container > div > a {
+  padding-left: 15px;
+  color: white;
+}
+
+.glyphicon {
+  font-size: 10px
+}
+
+.overlay {
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: none;
+  z-index: 600;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+}
+
+.result {
   display: table-cell;
   vertical-align: middle;
 }
 
-.upload {
+.result-item {
+  padding-bottom: 20px;
+}
+
+#download-url {
+  font-size: x-large;
+  font-weight: bold;
+}
+
+#copy-btn {
   cursor: pointer;
-  position: fixed;
-  bottom: 50px;
-  right: 50px;
-  background-color: seagreen;
-  color: white !important;
+}
+
+.share-social-btns {
+  text-align: center;
+}
+
+.share-social-btns > a {
+  cursor: pointer;
+  padding-left: 20px;
+  color: #ecf0f1;
+}
+
+.share-social-btns > a:hover {
+  color: #95a5a6;
 }

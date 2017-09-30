@@ -2,36 +2,90 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8"/>
+  <meta property="og:url"
+        content="https://tmpdir.sw-warehouse.xyz"/>
+  <title>tmpdir</title>
+  <link rel="shortcut icon" href="images/favicon.ico"/>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
         integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous"/>
-  <link rel="stylesheet" href="../static/css/common.css"/>
-  <link rel="stylesheet" href="../static/css/fileupload.css"/>
-  <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
+  <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css"/>
+  <link rel="stylesheet" href="css/common.css"/>
+  <link rel="stylesheet" href="css/fileupload.css"/>
+  <link rel="stylesheet" href="css/font-awesome.min.css"/>
 </head>
 <body>
-<div class="container-fluid fill">
+<div class="navbar navbar-expand main-color">
+  <a id="reset-btn" class="navbar-brand" href="">
+    <img src="images/logo.png" width="30" height="30" class="d-inline-block align-top" alt=""/>
+    <span><strong>tmpdir</strong></span>
+  </a>
+  <div class="social-btns">
+    <div class="fb-like social-btn" data-href="https://tmpdir.sw-warehouse.xyz" data-layout="standard"
+         data-action="like"
+         data-size="small" data-show-faces="false" data-share="true"></div>
+    <div class="social-btn">
+      <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
   <div class="row fill">
     <nav class="col-sm-3 col-md-2 d-none d-sm-block sidebar explorer-tree">
-      <a href="#" class="d-flex justify-content-between explorer-tree-item">
-        <img src="../static/images/temp.png" alt="logo" class="align-self-center explorer-tree-time-img"/>
-        <span class="align-self-center">Tmpdir</span>
-      </a>
+      <div class="d-flex justify-content-between explorer-tree-item">
+        <img src="images/directory.png" alt="dir" class="align-self-center explorer-tree-time-img"/>
+        <div class="align-self-center">
+          <p>최대 용량 10MB</p>
+          <p>보관 기간 1일</p>
+        </div>
+      </div>
     </nav>
-    <div class="col-sm-9 ml-sm-auto col-md-10 explorer-main">
-      <form action="/upload-target" class="dropzone dz-clickable">
+    <div class="col-sm-9 ml-sm-auto col-md-10 explorer-main pre-scrollable">
+      <form action="/" class="dropzone fill" dropzone="" id="dropzone">
       </form>
     </div>
-    <button type="button" class="btn btn-lg upload"><strong>Upload</strong></button>
+  </div>
+  <button type="button" class="btn btn-lg upload main-color" id="upload-all"><strong>Upload</strong></button>
+</div>
+<footer class="footer main-color">
+  <div class="container">
+    <div>
+      <strong>contact us</strong>
+      <a href="mailto:lkh5510@gmail.com"><i class=" fa fa-envelope-o"></i></a>
+      <a href="http://sw-warehouse.xyz"><i class="fa fa-bold"></i></a>
+    </div>
+  </div>
+</footer>
+<div class="container-fluid overlay">
+  <div class="result" th:remove="none">
+    <div class="row justify-content-md-center result-item">
+      <div class="col col-lg-6">
+        <div class="input-group">
+          <input type="text" id="download-url" class="form-control input-lg" readonly="readonly"/>
+          <span class="input-group-btn">
+            <button data-clipboard-target="#download-url" id="copy-btn" class="btn btn-secondary main-color btn-lg"
+                    type="button">
+              <i class="fa fa-clipboard" aria-hidden="true"></i>
+            </button>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-md-center result-item">
+      <h3><strong id="expire-time"></strong></h3>
+    </div>
+    <div class="row justify-content-md-center result-item">
+      <div class="col share-social-btns col-lg-3">
+        <a id="facebook-share-btn" target="_blank"><i class="fa fa-facebook-square fa-5x" aria-hidden="true"></i></a>
+        <a id="twitter-share-btn" target="_blank"><i class="fa fa-twitter-square fa-5x" aria-hidden="true"></i></a>
+        <a id="google-plus-share-btn" target="_blank"><i class="fa fa-google-plus-square fa-5x" aria-hidden="true"></i></a>
+        <a id="tumblr-share-btn" target="_blank"><i class="fa fa-tumblr-square fa-5x" aria-hidden="true"></i></a>
+      </div>
+    </div>
   </div>
 </div>
 <input type="file" multiple="multiple" class="dz-hidden-input"
-       style="visibility: hidden; position: absolute; top: 0px; left: 0px; height: 0px; width: 0px;">
-<!--
-<form action="#" th:action="@{/}" method="POST" enctype="multipart/form-data">
-  <input type="file" id="file" name="file"/>
-  <input type="submit" value="Upload"/>
-</form>
--->
+       style="visibility: hidden; position: absolute; top: 0px; left: 0px; height: 0px; width: 0px;"/>
+<div id="fb-root"></div>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
@@ -42,25 +96,7 @@
         integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
         crossorigin="anonymous"></script>
 <script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
-<script type="text/javascript">
-  var MAX_FILE_MAME_LEN = 255;
-  var MAX_FILE_SIZE = 375000;
-  var fileUploader = document.getElementById("file");
-  fileUploader.addEventListener("change", function (event) {
-    var file = fileUploader.files[0];
-    console.log("Filename: " + file.name);
-    console.log("Size: " + file.size + " bytes");
-    if (file.size > MAX_FILE_SIZE) {
-      var p = document.createElement("p");
-      p.textContent = "3MB 초과하셨음";
-      document.body.appendChild(p);
-    }
-    if (file.name.length > MAX_FILE_MAME_LEN) {
-      var p = document.createElement("p");
-      p.textContent = "file 길이 255 초과하셨음";
-      document.body.appendChild(p);
-    }
-  }, false);
-</script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+<script src="js/fileUpload.js"></script>
 </body>
 </html>
