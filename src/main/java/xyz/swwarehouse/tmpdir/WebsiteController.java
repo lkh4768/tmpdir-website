@@ -1,6 +1,8 @@
 package xyz.swwarehouse.tmpdir;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.Iterator;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -46,7 +48,12 @@ public class WebsiteController {
 
 					@Override
 					public String getFilename() {
-						return file.getOriginalFilename();
+						try {
+							return URLEncoder.encode(file.getOriginalFilename(), "utf-8");
+						} catch (UnsupportedEncodingException e) {
+							e.printStackTrace();
+						}
+						return "";
 					}
 				};
 				files.add("file" + i, fileResource);
@@ -54,7 +61,6 @@ public class WebsiteController {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-
 		}
 
 		HttpHeaders headers = new HttpHeaders();
@@ -65,13 +71,15 @@ public class WebsiteController {
 		ResponseEntity<FileInfo> response = fileUploadClient.postForEntity("http://127.0.0.1:6000/", requestEntity,
 				FileInfo.class);
 
-		if (response != null && response.getBody() != null) {
+		if (response.getStatusCode().equals(HttpStatus.OK) && response != null && response.getBody() != null) {
 			FileInfo fileInfo = response.getBody();
 			model.addAttribute("fileinfo", fileInfo);
 			System.out.println("fileinfo{ id: " + fileInfo.getId() + ", submissiontime: " + fileInfo.getSubmissionTime()
 					+ ", expiretime:" + fileInfo.getExpireTime() + " }");
 			return new ResponseEntity<FileInfo>(fileInfo, HttpStatus.OK);
 		}
-		return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+
+		System.out.println("Http Status Code: " + response.getStatusCodeValue());
+		return response;
 	}
 }
