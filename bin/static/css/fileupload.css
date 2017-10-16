@@ -81,6 +81,10 @@
   margin: 40px;
 }
 
+.dropzone .dz-preview .dz-error-message {
+  top: 150px!important;
+}
+
 .upload {
   display: none;
   cursor: pointer;
