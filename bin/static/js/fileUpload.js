@@ -29,7 +29,7 @@
 
 $(document).ready(
   Dropzone.options.dropzone = {
-    maxFilesize: 1,
+    maxFilesize: $("#max-file-size").text(),
     dictDefaultMessage: "파일을 드랍하거나 클릭해주세요",
     autoProcessQueue: false,
     uploadMultiple: true,

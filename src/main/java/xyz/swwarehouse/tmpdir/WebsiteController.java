@@ -5,6 +5,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Iterator;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpEntity;
@@ -28,13 +29,17 @@ public class WebsiteController {
 	private String FILE_UPLOAD_SERVICE_HOST;
 	RestTemplate fileUploadClient = new RestTemplate();
 
+	@Autowired
+	Config config = new Config();
+
 	@GetMapping("/")
 	public String fileUploadForm(Model model) {
+		model.addAttribute("config", config);
 		return "fileupload";
 	}
 
 	@PostMapping("/")
-	public ResponseEntity<FileInfo> uploadFile(MultipartHttpServletRequest request, Model model) {
+	public ResponseEntity<FileInfo> uploadFile(MultipartHttpServletRequest request) {
 
 		Iterator<String> itr = request.getFileNames();
 
@@ -73,7 +78,6 @@ public class WebsiteController {
 
 		if (response.getStatusCode().equals(HttpStatus.OK) && response != null && response.getBody() != null) {
 			FileInfo fileInfo = response.getBody();
-			model.addAttribute("fileinfo", fileInfo);
 			System.out.println("fileinfo{ id: " + fileInfo.getId() + ", submissiontime: " + fileInfo.getSubmissionTime()
 					+ ", expiretime:" + fileInfo.getExpireTime() + " }");
 			return new ResponseEntity<FileInfo>(fileInfo, HttpStatus.OK);
