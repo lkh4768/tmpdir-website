@@ -34,8 +34,8 @@
       <div class="d-flex justify-content-between explorer-tree-item">
         <img src="images/directory.png" alt="dir" class="align-self-center explorer-tree-time-img"/>
         <div class="align-self-center">
-          <p>최대 용량 10MB</p>
-          <p>보관 기간 1일</p>
+          <p>최대 용량 <span id="max-file-size" th:text="${config.maxFileSize}"></span>MB</p>
+          <p>보관 기간 <span id="file-expire-term" th:text="${config.fileExpireTerm}"></span>일</p>
         </div>
       </div>
     </nav>
