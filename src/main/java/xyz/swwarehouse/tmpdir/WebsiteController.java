@@ -3,6 +3,8 @@ package xyz.swwarehouse.tmpdir;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Iterator;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +20,10 @@ import org.springframework.ui.Model;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -32,10 +37,25 @@ public class WebsiteController {
 	@Autowired
 	Config config = new Config();
 
-	@GetMapping("/")
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String fileUploadForm(Model model) {
 		model.addAttribute("config", config);
 		return "fileupload";
+	}
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public String fileDownloadForm(@PathVariable String id, Model model) {
+		FileInfo fileInfo = new FileInfo();
+		fileInfo.setId(id);
+		/* tmp */
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		cal.add(Calendar.DATE, 1);
+		cal.add(Calendar.HOUR, 1);
+		cal.add(Calendar.MINUTE, 28);
+		fileInfo.setExpireTime(cal.getTime());
+		model.addAttribute("fileinfo", fileInfo);
+		return "filedownload";
 	}
 
 	@PostMapping("/")

@@ -11,3 +11,68 @@ html, body {
 .main-color {
   background-color: #009688;
 }
+
+.glyphicon {
+  font-size: 10px
+}
+
+.navbar {
+  height: 60px;
+}
+
+.navbar-brand {
+  color: #ffffff;
+}
+
+.navbar-brand > span {
+  padding-left: 10px;
+}
+
+.social-btns {
+  width: 100%;
+}
+
+.social-btn, .social-btns {
+  display: inline-block;
+  float: right;
+  color: white;
+}
+
+.social-btns * {
+  vertical-align: middle;
+}
+
+.social-btn {
+  padding-left: 5px;
+}
+
+.container-fluid {
+  bottom: 60px;
+  top: 60px;
+  height: calc(100% - 120px);
+  min-height: calc(100% - 120px);
+}
+
+.footer {
+  height: 60px;
+  width: 100%;
+  position: absolute;
+  text-align: center;
+  bottom: 0px;
+}
+
+.footer > .container {
+  height: 100%;
+  display: table;
+}
+
+.footer > .container > div {
+  display: table-cell;
+  vertical-align: middle;
+  color: white;
+}
+
+.footer > .container > div > a {
+  padding-left: 15px;
+  color: white;
+}
