@@ -76,7 +76,7 @@ public class WebsiteController {
 		ResponseEntity<FileInfo> response = fileUploadClient.postForEntity("http://127.0.0.1:6000/", requestEntity,
 				FileInfo.class);
 
-		if (response.getStatusCode().equals(HttpStatus.OK) && response != null && response.getBody() != null) {
+		if (response.getStatusCode() == HttpStatus.OK && response != null && response.getBody() != null) {
 			FileInfo fileInfo = response.getBody();
 			System.out.println("fileinfo{ id: " + fileInfo.getId() + ", submissiontime: " + fileInfo.getSubmissionTime()
 					+ ", expiretime:" + fileInfo.getExpireTime() + " }");
