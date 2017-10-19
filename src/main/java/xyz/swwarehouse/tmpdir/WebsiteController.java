@@ -47,14 +47,13 @@ public class WebsiteController {
 	public String fileDownloadForm(@PathVariable String id, Model model) {
 		FileInfo fileInfo = new FileInfo();
 		fileInfo.setId(id);
-		/* tmp */
+		/* start tmp */
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(new Date());
-		cal.add(Calendar.DATE, 1);
-		cal.add(Calendar.HOUR, 1);
-		cal.add(Calendar.MINUTE, 28);
+		cal.add(Calendar.DATE, 2);
 		fileInfo.setExpireTime(cal.getTime());
 		model.addAttribute("fileinfo", fileInfo);
+		/* end tmp */
 		return "filedownload";
 	}
 

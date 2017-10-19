@@ -29,17 +29,23 @@ $(document).ready(
       });
 
       self.on("successmultiple", function (file, response) {
-        var expireTime = new Date(response.expireTime);
         $(".overlay").css("display", "table");
         $(".upload").css("display", "none");
         $("#download-url").val("http://tmpdir.sw-warehouse.xyz/" + response.id);
-        $("#expire-time").text(expireTime.toLocaleString([], {
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit',
-            hour: '2-digit',
-            minute: '2-digit'
-          }) + " 에 만료됩니다.");
+        var expireTime = new Date(response.expireTime);
+        var tmpExpireTimeStr = expireTime.toLocaleString([], {
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: 'numeric',
+          minute: '2-digit',
+          hour12: false
+        });
+        var expireTimeStr = tmpExpireTimeStr.substring(0, 4) + "-";
+        expireTimeStr += tmpExpireTimeStr.substring(6, 8) + "-";
+        expireTimeStr += tmpExpireTimeStr.substring(10, 12);
+        expireTimeStr += tmpExpireTimeStr.substring(13, 19);
+        $("#expire-time").text(expireTimeStr + " 에 만료됩니다.");
         var link = $("#download-url").val();
         $("#facebook-share-btn").attr("href", "https://www.facebook.com/sharer/sharer.php?u=" + link);
         $("#twitter-share-btn").attr("href", "https://twitter.com/home?status=" + link);
