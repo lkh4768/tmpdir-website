@@ -23,21 +23,29 @@
          data-action="like"
          data-size="small" data-show-faces="false" data-share="true"></div>
     <div class="social-btn">
-      <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://tmpdir.sw-warehouse.xyz/">Tweet</a>
+      <a href="https://twitter.com/share" class="twitter-share-button"
+         data-url="http://tmpdir.sw-warehouse.xyz/">Tweet</a>
     </div>
   </div>
 </div>
 <div class="container-fluid content">
   <div class="content-items">
     <div class="row justify-content-md-center content-item">
-      <div><h2><strong><span th:text="${fileinfo.expireTime}"></span><span> 만료됩니다. ()</span></strong></h2></div>
+      <div>
+        <h1>
+          <strong>
+            <span id="expire-time" th:text="${#dates.formatISO(fileinfo.expireTime)}"></span>
+            <span> 만료됩니다. ( <span id="remain-time"></span> ) </span>
+          </strong>
+        </h1>
+      </div>
     </div>
     <div class="row justify-content-md-center content-item">
       <div class="col share-social-btns col-lg-3">
-        <a id="facebook-share-btn" target="_blank"><i class="fa fa-facebook-square fa-3x" aria-hidden="true"></i></a>
-        <a id="twitter-share-btn" target="_blank"><i class="fa fa-twitter-square fa-3x" aria-hidden="true"></i></a>
-        <a id="google-plus-share-btn" target="_blank"><i class="fa fa-google-plus-square fa-3x" aria-hidden="true"></i></a>
-        <a id="tumblr-share-btn" target="_blank"><i class="fa fa-tumblr-square fa-3x" aria-hidden="true"></i></a>
+        <a id="facebook-share-btn" target="_blank"><i class="fa fa-facebook-square fa-4x" aria-hidden="true"></i></a>
+        <a id="twitter-share-btn" target="_blank"><i class="fa fa-twitter-square fa-4x" aria-hidden="true"></i></a>
+        <a id="google-plus-share-btn" target="_blank"><i class="fa fa-google-plus-square fa-4x" aria-hidden="true"></i></a>
+        <a id="tumblr-share-btn" target="_blank"><i class="fa fa-tumblr-square fa-4x" aria-hidden="true"></i></a>
       </div>
     </div>
   </div>
@@ -63,6 +71,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
         integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
         crossorigin="anonymous"></script>
+<script src="js/jquery.countdown.min.js"></script>
 <script src="js/common.js"></script>
+<script src="js/fileDownload.js"></script>
 </body>
 </html>
