@@ -3,13 +3,13 @@ package xyz.swwarehouse.tmpdir;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.Calendar;
-import java.util.Date;
+import java.nio.charset.StandardCharsets;
 import java.util.Iterator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -19,7 +19,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,8 +30,12 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 @Controller
 public class WebsiteController {
 	@Value("${tmpdir.file-upload-service.host}")
-	private String FILE_UPLOAD_SERVICE_HOST;
+	private String fileUploadServiceHost;
+	@Value("${tmpdir.file-download-service.host}")
+	private String fileDownloadServiceHost;
+
 	RestTemplate fileUploadClient = new RestTemplate();
+	RestTemplate fileDownloadClient = new RestTemplate();
 
 	@Autowired
 	Config config = new Config();
@@ -45,15 +48,20 @@ public class WebsiteController {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public String fileDownloadForm(@PathVariable String id, Model model) {
-		FileInfo fileInfo = new FileInfo();
-		fileInfo.setId(id);
-		/* start tmp */
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(new Date());
-		cal.add(Calendar.DATE, 2);
-		fileInfo.setExpireTime(cal.getTime());
+		FileInfo fileInfo = fileDownloadClient.getForObject(fileDownloadServiceHost + "file-info/" + id, FileInfo.class);
 		model.addAttribute("fileinfo", fileInfo);
-		/* end tmp */
+		return "filedownload";
+	}
+
+	@RequestMapping(value = "/file/{id}", method = RequestMethod.GET)
+	public String downloadFile(@PathVariable String id) {
+		ResponseEntity<Resource> response = fileDownloadClient.getForEntity(fileDownloadServiceHost + "file/" + id,
+				Resource.class);
+		HttpHeaders headers = response.getHeaders();
+		String filename = headers.getFirst(HttpHeaders.CONTENT_DISPOSITION).split("=")[1];
+		String filecontent = response.getBody().toString();
+		System.out.println(filename);
+		System.out.println(filecontent);
 		return "filedownload";
 	}
 
@@ -73,7 +81,7 @@ public class WebsiteController {
 					@Override
 					public String getFilename() {
 						try {
-							return URLEncoder.encode(file.getOriginalFilename(), "utf-8");
+							return URLEncoder.encode(file.getOriginalFilename(), StandardCharsets.UTF_8.name());
 						} catch (UnsupportedEncodingException e) {
 							e.printStackTrace();
 						}
@@ -92,7 +100,7 @@ public class WebsiteController {
 
 		HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<MultiValueMap<String, Object>>(files,
 				headers);
-		ResponseEntity<FileInfo> response = fileUploadClient.postForEntity("http://127.0.0.1:6000/", requestEntity,
+		ResponseEntity<FileInfo> response = fileUploadClient.postForEntity(fileUploadServiceHost, requestEntity,
 				FileInfo.class);
 
 		if (response.getStatusCode() == HttpStatus.OK && response != null && response.getBody() != null) {
