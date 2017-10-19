@@ -31,4 +31,16 @@ $(function () {
         event.strftime('%I:%M:%S')
       );
     });
+
+  $.ajax({
+    type: "GET",
+    url: window.location.origin + "/file" + window.location.pathname,
+    success: function (data) {
+      console.log(data);
+    },
+    error: function () {
+      console.log("error");
+    }
+  })
+  ;
 });
