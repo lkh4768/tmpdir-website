@@ -51,7 +51,6 @@ deploy_staging:
   - apt-get update
   - apt-get install -y docker-ce
   - /usr/bin/dockerd -H unix:///var/run/docker.sock &
-  - ./gradlew build
   - ls -al .
   - ls -al ./build/
   - ls -al ./build/libs
