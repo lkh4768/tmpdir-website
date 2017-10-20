@@ -32,15 +32,5 @@ $(function () {
       );
     });
 
-  $.ajax({
-    type: "GET",
-    url: window.location.origin + "/file" + window.location.pathname,
-    success: function (data) {
-      console.log(data);
-    },
-    error: function () {
-      console.log("error");
-    }
-  })
-  ;
+  location.href="file"+window.location.pathname;
 });
