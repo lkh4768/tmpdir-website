@@ -8,6 +8,7 @@ RUN mkdir -p /app/bin \
 	&& mkdir -p /app/config
 COPY build/libs/${PACKAGE_NAME}-${PACKAGE_VERSION}.jar /app/bin/
 COPY script/docker-entrypoint.sh /
+RUN chmod +x /docker-entrypoint.sh
 
 VOLUME ["/app/config"]
 EXPOSE 80

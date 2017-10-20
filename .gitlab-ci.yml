@@ -11,6 +11,7 @@ before_script:
 stages:
  - build
  - test
+ - build-docker
  - deploy-staging
 
 build:
@@ -36,8 +37,8 @@ sonarqube:
  only:
   - develop
 
-push_docker_image:
- stage: deploy-staging
+build_docker_image:
+ stage: build-docker
  variables: 
   PORT: 80
   REGISTRY_HOST: dev.sw-warehouse.xyz:1450
@@ -58,3 +59,15 @@ push_docker_image:
   - docker push $REGISTRY_HOST/$IMAGE_NAME
  only:
   - develop
+
+deploy_staging:
+ stage: deploy-staging
+ variables:
+  SSH_PORT: 22000
+  SSH_USER: user
+  SSH_PASS: 0)8*WESdbwj
+  REGISTRY_HOST: dev.sw-warehouse.xyz:1450
+  REGISTRY_USER: root
+  REGISTRY_PASSWORD: 10WESfpwltmxmfl
+ script:
+  - sshpass -p '$SSH_PASS' ssh -t -p $SSH_PORT $SSH_USER@dev.sw-warehouse.xyz "docker login -u $REGISTRY_USER -p $REGISTRY_PASSWORD $REGISTRY_HOST && docker pull $REGISTRY_HOST/$IMAGE_NAME && docker run -p 80:80 -e PORT=80 -e FILE_UPLOAD_SERVICE_URL='http://tmpdir-fileupload:6000/' -e FILE_DOWNLOAD_SERVICE_URL='http://tmpdir-filedownload:6001/' -e FILE_EXPIRE_TERM_DAY='1' -e FILE_MAX_SIZE='30' -v /app/tmpdir-website/config:/app/config"
