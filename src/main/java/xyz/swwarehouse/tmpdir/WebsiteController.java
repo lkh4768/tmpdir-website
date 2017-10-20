@@ -30,9 +30,9 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 @Controller
 public class WebsiteController {
-	@Value("${tmpdir.file-upload-service.host}")
+	@Value("${tmpdir.file.upload-service.url}")
 	private String fileUploadServiceHost;
-	@Value("${tmpdir.file-download-service.host}")
+	@Value("${tmpdir.file.download-service.url}")
 	private String fileDownloadServiceHost;
 
 	RestTemplate fileUploadClient = new RestTemplate();

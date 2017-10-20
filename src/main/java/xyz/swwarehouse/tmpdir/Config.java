@@ -6,10 +6,10 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Config {
-	@Value("${tmpdir.file-max-size-mb}")
+	@Value("${tmpdir.file.max-size-mb}")
 	private String maxFileSize;
 
-	@Value("${tmpdir.file-expire-term-day}")
+	@Value("${tmpdir.file.expire-term-day}")
 	private String fileExpireTerm;
 
 	public String getMaxFileSize() {
