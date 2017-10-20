@@ -36,7 +36,7 @@ sonarqube:
  only:
   - develop
 
-deploy_staging:
+push_docker_image:
  stage: deploy-staging
  variables: 
   PORT: 80
