@@ -6,9 +6,12 @@ ENV PACKAGE_VERSION ${PACKAGE_VERSION}
 
 RUN mkdir -p /app/bin \
 	&& mkdir -p /app/config
-COPY src/main/resources/application.properties /app/config/
 COPY build/libs/${PACKAGE_NAME}-${PACKAGE_VERSION}.jar /app/bin/
+COPY script/docker-entrypoint.sh /
 
 VOLUME ["/app/config"]
 EXPOSE 80
+
+ENTRYPOINT ["/docker-entrypoint.sh"]
+
 CMD /usr/bin/java -jar /app/bin/${PACKAGE_NAME}-${PACKAGE_VERSION}.jar --spring.config.location=file:../config/application.properties
