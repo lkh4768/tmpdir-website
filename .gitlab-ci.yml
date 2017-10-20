@@ -1,0 +1,54 @@
+image: java:8
+
+before_script:
+ - chmod +x gradlew
+ - export PACKAGE_NAME=$(./gradlew properties | grep name | awk '{print $2}' | tr -d '\n' | sed -e 's/./\L\0/g')
+ - export PACKAGE_VERSION=$(./gradlew properties | grep version | awk '{print $2}' | tr -d '\n')
+ - export IMAGE_NAME=tmpdir-$PACKAGE_NAME-$PACKAGE_VERSION
+ - export STAGE_CONTAINER_NAME=$IMAGE_NAME-stage
+
+stages:
+ - build
+ - test
+ - deploy-staging
+
+build:
+ stage: build
+ script:
+  - ./gradlew build
+ only:
+  - develop
+
+sonarqube_preview:
+ stage: test
+ script:
+  - ./gradlew check
+  - ./gradlew --info sonarqube -Dsonar.gitlab.commit_sha=$CI_COMMIT_SHA -Dsonar.gitlab.ref_name=$CI_COMMIT_REF_NAME -Dsonar.gitlab.project_id=$CI_PROJECT_ID
+ only:
+  - develop
+
+sonarqube:
+ stage: test
+ script:
+  - ./gradlew check
+  - ./gradlew sonarqube
+ only:
+  - develop
+
+deploy_staging:
+ stage: deploy-staging
+ variables: 
+  PORT: 80
+ script:
+  - apt-get update
+  - apt-get install -y apt-transport-https ca-certificates curl gnupg2 software-properties-common
+  - curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg | apt-key add -
+  - apt-key fingerprint 0EBFCD88
+  - add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") $(lsb_release -cs) stable"
+  - apt-get update
+  - apt-get install -y docker-ce
+  - /usr/bin/dockerd &
+  - docker build -t $IMAGE_NAME --build-arg PACKAGE_NAME=$PACKAGE_NAME --build-arg PACKAGE_VERSION=$PACKAGE_VERSION .
+  - docker run -p $PORT:$PORT -v /app/tmpdir-$PACKAGE_NAME/config:/app/config --network=tmpdir-net --name $STAGE_CONTAINER_NAME $IMAGE_NAME
+ only:
+  - develop
