@@ -47,7 +47,7 @@ deploy_staging:
   - add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") $(lsb_release -cs) stable"
   - apt-get update
   - apt-get install -y docker-ce
-  - /usr/bin/dockerd &
+  - /usr/bin/dockerd -H unix:///var/run/docker.sock &
   - docker build -t $IMAGE_NAME --build-arg PACKAGE_NAME=$PACKAGE_NAME --build-arg PACKAGE_VERSION=$PACKAGE_VERSION .
   - docker run -p $PORT:$PORT -v /app/tmpdir-$PACKAGE_NAME/config:/app/config --network=tmpdir-net --name $STAGE_CONTAINER_NAME $IMAGE_NAME
  only:
