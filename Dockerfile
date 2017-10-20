@@ -11,4 +11,4 @@ COPY build/libs/${PACKAGE_NAME}-${PACKAGE_VERSION}.jar /app/bin/
 
 VOLUME ["/app/config"]
 EXPOSE 80
-CMD /usr/bin/java -jar /app/bin/${PACKAGE_NAME}-${PACKAGE_VERSION}.jar
+CMD /usr/bin/java -jar /app/bin/${PACKAGE_NAME}-${PACKAGE_VERSION}.jar --spring.config.location=file:../config/application.properties
