@@ -45,13 +45,15 @@ check.dependsOn jacocoTestReport
 
 sonarqube {
     properties {
+        property "sonar.host.url", "https://dev.sw-warehouse.xyz:1590/"
+        property "sonar.analysis.mode", "preview"
         property "sonar.projectName", "tmpdir/website"
         property "sonar.projectKey", "tmpdir-website"
         property "sonar.sources", "src/main"
         property "sonar.tests", "src/test"
         property "sonar.sourceEncoding", "UTF-8"
         property "sonar.jacoco.reportPaths", "build/jacoco/test.exec"
-	property "sonar.gitlab.url", "https://dev.sw-warehouse.xyz:1744/"
+				property "sonar.gitlab.url", "https://dev.sw-warehouse.xyz:1744/"
         property "sonar.gitlab.user_token", "jxHen5hae8mGtiSJunBW"
     }
 }
