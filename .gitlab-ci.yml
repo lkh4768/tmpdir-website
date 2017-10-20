@@ -39,6 +39,9 @@ deploy_staging:
  stage: deploy-staging
  variables: 
   PORT: 80
+  REGISTRY_HOST: dev.sw-warehouse.xyz:1450
+  REGISTRY_USER: root
+  REGISTRY_PASSWORD: 10WESfpwltmxmfl
  script:
   - apt-get update
   - apt-get install -y apt-transport-https ca-certificates curl gnupg2 software-properties-common
@@ -49,8 +52,11 @@ deploy_staging:
   - apt-get install -y docker-ce
   - /usr/bin/dockerd -H unix:///var/run/docker.sock &
   - ./gradlew build
-  - sleep 5
-  - docker build -t $IMAGE_NAME --build-arg PACKAGE_NAME=$PACKAGE_NAME --build-arg PACKAGE_VERSION=$PACKAGE_VERSION .
-  - docker run -d -p $PORT:$PORT -v /app/tmpdir-$PACKAGE_NAME/config:/app/config --network=tmpdir-net --name $STAGE_CONTAINER_NAME $IMAGE_NAME
+  - ls -al .
+  - ls -al ./build/
+  - ls -al ./build/libs
+  - docker build -t $REGISTRY_HOST/$IMAGE_NAME --build-arg PACKAGE_NAME=$PACKAGE_NAME --build-arg PACKAGE_VERSION=$PACKAGE_VERSION .
+  - docker login -u $REGISTRY_USER -p $REGISTRY_PASSWORD $REGISTRY_HOST
+  - docker push $REGISTRY_HOST/$IMAGE_NAME
  only:
   - develop
