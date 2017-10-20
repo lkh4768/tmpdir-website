@@ -29,9 +29,10 @@ $(document).ready(
       });
 
       self.on("successmultiple", function (file, response) {
+        var curUrl = window.location.origin;
         $(".overlay").css("display", "table");
         $(".upload").css("display", "none");
-        $("#download-url").val("http://tmpdir.sw-warehouse.xyz/" + response.id);
+        $("#download-url").val(curUrl + "/" + response.id);
         var expireTime = new Date(response.expireTime);
         var tmpExpireTimeStr = expireTime.toLocaleString([], {
           year: 'numeric',

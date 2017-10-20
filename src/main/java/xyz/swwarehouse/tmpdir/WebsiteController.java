@@ -2,6 +2,7 @@ package xyz.swwarehouse.tmpdir;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Iterator;
@@ -54,15 +55,10 @@ public class WebsiteController {
 	}
 
 	@RequestMapping(value = "/file/{id}", method = RequestMethod.GET)
-	public String downloadFile(@PathVariable String id) {
+	public ResponseEntity<Resource> downloadFile(@PathVariable String id) throws IOException {
 		ResponseEntity<Resource> response = fileDownloadClient.getForEntity(fileDownloadServiceHost + "file/" + id,
 				Resource.class);
-		HttpHeaders headers = response.getHeaders();
-		String filename = headers.getFirst(HttpHeaders.CONTENT_DISPOSITION).split("=")[1];
-		String filecontent = response.getBody().toString();
-		System.out.println(filename);
-		System.out.println(filecontent);
-		return "filedownload";
+		return response;
 	}
 
 	@PostMapping("/")
