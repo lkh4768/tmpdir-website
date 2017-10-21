@@ -63,8 +63,8 @@ deploy_stage:
  stage: deploy-stage
  variables:
   SSH_PORT: 22000
-  SSH_USER: user
-  SSH_PASS: 0)8*WESdbwj
+  SSH_USER: docker
+  SSH_PASS: 0)8*WESehzj
   REGISTRY_HOST: dev.sw-warehouse.xyz:1450
   REGISTRY_USER: root
   REGISTRY_PASSWORD: 10WESfpwltmxmfl
