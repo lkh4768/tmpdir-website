@@ -57,14 +57,14 @@ fi
 
 # creat application.properties
 echo "Setting application.properties"
-echo "  - File upload service url: $FILE_UPLAOD_SERVICE_URL"
+echo "  - File upload service url: $FILE_UPLOAD_SERVICE_URL"
 echo "  - File download service url: $FILE_DOWNLOAD_SERVICE_URL"
 echo "  - File expire term day: $FILE_EXPIRE_TERM_DAY"
 echo "  - File max size(mb): $FILE_MAX_SIZE"
 
 rm -f /app/config/application.properties
 echo "server.port=$PORT" > /app/config/application.properties
-echo "tmpdir.file.upload-service.host=$FILE_UPLAOD_SERVICE_URL" >> /app/config/application.properties
+echo "tmpdir.file.upload-service.host=$FILE_UPLOAD_SERVICE_URL" >> /app/config/application.properties
 echo "tmpdir.file.download-service.host=$FILE_DOWNLOAD_SERVICE_URL" >> /app/config/application.properties
 echo "tmpdir.file.expire-term-day=$FILE_EXPIRE_TERM_DAY" >> /app/config/application.properties
 echo "tmpdir.file.max-size-mb=$FILE_MAX_SIZE" >> /app/config/application.properties
