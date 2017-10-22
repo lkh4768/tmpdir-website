@@ -62,13 +62,16 @@ build_docker_image:
 deploy_stage:
  stage: deploy-stage
  variables:
-  SSH_PORT: 22000
-  SSH_USER: docker
-  SSH_PASS: 0)8*WESehzj
-  REGISTRY_HOST: dev.sw-warehouse.xyz:1450
-  REGISTRY_USER: root
-  REGISTRY_PASSWORD: 10WESfpwltmxmfl
+  SSH_PORT: "22000"
+  SSH_USER: "docker"
+  SSH_PASS: "0)8*WESehzj"
+  REGISTRY_HOST: "dev.sw-warehouse.xyz:1450"
+  REGISTRY_USER: "root"
+  REGISTRY_PASSWORD: "10WESfpwltmxmfl"
  script:
   - apt-get update && apt-get install sshpass
+  - echo $SSH_PORT
+  - echo $SSH_USER
+  - echo $SSH_PASS
   - sshpass -p '$SSH_PASS' ssh -T -oStrictHostKeyChecking=no -p $SSH_PORT $SSH_USER@dev.sw-warehouse.xyz "docker login -u $REGISTRY_USER -p $REGISTRY_PASSWORD $REGISTRY_HOST"
   #- sshpass -p '$SSH_PASS' ssh -T -oStrictHostKeyChecking=no -p $SSH_PORT $SSH_USER@dev.sw-warehouse.xyz "docker login -u $REGISTRY_USER -p $REGISTRY_PASSWORD $REGISTRY_HOST && docker pull $REGISTRY_HOST/$IMAGE_NAME && docker run -d --network=tmpdir-stage-net -p 80:80 -e PORT=80 -e FILE_UPLOAD_SERVICE_URL='http://tmpdir-fileupload:6000/' -e FILE_DOWNLOAD_SERVICE_URL='http://tmpdir-filedownload:6001/' -e FILE_EXPIRE_TERM_DAY='1' -e FILE_MAX_SIZE='30' -v /app/tmpdir-website/config:/app/config --name $STAGE_CONTAINER_NAME $REGISTRY_HOST/$IMAGE_NAME"
