@@ -6,6 +6,8 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Iterator;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ByteArrayResource;
@@ -29,6 +31,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 @Controller
 public class WebsiteController {
+	private static final Logger LOGGER = LoggerFactory.getLogger(WebsiteController.class);
 	@Value("${tmpdir.file.upload-service.url}")
 	private String fileUploadServiceHost;
 	@Value("${tmpdir.file.download-service.url}")
@@ -42,6 +45,7 @@ public class WebsiteController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String fileUploadForm(Model model) {
+		LOGGER.info("View fileupload Page config: {}", config);
 		model.addAttribute("config", config);
 		return "fileupload";
 	}
@@ -49,6 +53,7 @@ public class WebsiteController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public String fileDownloadForm(@PathVariable String id, Model model) {
 		FileInfo fileInfo = fileDownloadClient.getForObject(fileDownloadServiceHost + "file-info/" + id, FileInfo.class);
+		LOGGER.info("View filedownload Page fileInfo: {}", fileInfo);
 		model.addAttribute("fileinfo", fileInfo);
 		return "filedownload";
 	}
@@ -57,14 +62,13 @@ public class WebsiteController {
 	public ResponseEntity<Resource> downloadFile(@PathVariable String id) throws IOException {
 		ResponseEntity<Resource> response = fileDownloadClient.getForEntity(fileDownloadServiceHost + "file/" + id,
 				Resource.class);
+		LOGGER.info("Download file");
 		return response;
 	}
 
 	@PostMapping("/")
 	public ResponseEntity<FileInfo> uploadFile(MultipartHttpServletRequest request) {
-
 		Iterator<String> itr = request.getFileNames();
-
 		MultiValueMap<String, Object> files = new LinkedMultiValueMap<String, Object>();
 		int i = 0;
 		while (itr.hasNext()) {
@@ -72,21 +76,21 @@ public class WebsiteController {
 			MultipartFile file = request.getFile(uploadedFile);
 			try {
 				ByteArrayResource fileResource = new ByteArrayResource(file.getBytes()) {
-
 					@Override
 					public String getFilename() {
 						try {
 							return URLEncoder.encode(file.getOriginalFilename(), StandardCharsets.UTF_8.name());
 						} catch (UnsupportedEncodingException e) {
-							e.printStackTrace();
+							LOGGER.error("Failed encoding original filename", e);
 						}
 						return "";
 					}
 				};
 				files.add("file" + i, fileResource);
+				LOGGER.debug("Added uploding File {}", file.getOriginalFilename());
 				i++;
 			} catch (IOException e) {
-				e.printStackTrace();
+				LOGGER.error("Failed parsing to fileResource from file", e);
 			}
 		}
 
@@ -95,17 +99,17 @@ public class WebsiteController {
 
 		HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<MultiValueMap<String, Object>>(files,
 				headers);
+		LOGGER.info("Send Request {} to FileUploadService", requestEntity);
 		ResponseEntity<FileInfo> response = fileUploadClient.postForEntity(fileUploadServiceHost, requestEntity,
 				FileInfo.class);
 
 		if (response.getStatusCode() == HttpStatus.OK) {
+			//LOGGER.info("Success Sending to FileUploadService, Response code {}, fileInfo {}", response.getStatusCode(), response.getBody());
+			LOGGER.info("Success Sending to FileUploadService, Response {}}", response);
 			FileInfo fileInfo = response.getBody();
-			System.out.println("fileinfo{ id: " + fileInfo.getId() + ", submissiontime: " + fileInfo.getSubmissionTime()
-					+ ", expiretime:" + fileInfo.getExpireTime() + " }");
 			return new ResponseEntity<FileInfo>(fileInfo, HttpStatus.OK);
 		}
-
-		System.out.println("Http Status Code: " + response.getStatusCodeValue());
+		LOGGER.info("Failed Sending to FileUploadService, Response {}", response);
 		return response;
 	}
 }

@@ -1,6 +1,5 @@
 package xyz.swwarehouse.tmpdir;
 
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -18,5 +17,10 @@ public class Config {
 
 	public String getFileExpireTerm() {
 		return fileExpireTerm;
+	}
+
+	@Override
+	public String toString() {
+		return "maxFileSize: " + maxFileSize + ", fileExpireTerm: " + fileExpireTerm;
 	}
 }
