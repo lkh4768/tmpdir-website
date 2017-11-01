@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" style="height: 100%;">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta charset="UTF-8"/>
+  <meta property="og:url"
+        content="https://tmpdir.sw-warehouse.xyz"/>
+  <title>tmpdir</title>
+  <link rel="shortcut icon" href="images/favicon.ico"/>
+</head>
+<body style="height: 100%; width: 100%; display: table; margin: 0px; text-align: center;">
+<div style="display: table-cell; width: 100%; height: 100%; vertical-align: middle;">
+  <a href="https://tmpdir.sw-warehouse.xyz/">
+    <img width="150"
+         src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWCAYAAAFLBkF0AAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4QoCADUUSZ6kZgAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAADWElEQVR42u3dUXabMBBGYfDxZtMNNEugGyDLpW89OU5jDTA4I/juc+KMr36NJIPJOMzTMkT49T62f2ielhbDPC2RP3qLFLW8/Q4Vfx/W0Kgu/GKt6saPP7G3GSX1xe6t0te83VvL0+dfbnmr68yLJeds7UQv/jb/N222MIbadqhlB9p2tGWHnP0bycALjsM8LZGhj3jVtg9o29+1cM3x8m072rK17R2EW3ywsDWD1mwwCcWlFZY5jOtPFIlTpfXmUtNfdlq+fAO6J09bh/d8xj6beLSXMQmEX2EKO027yG4PhjJtKDP3UvW21knb6pLDmLKlzt7n55tKiENKUV8s7yys5IkodfiyOv09O1IZE6ZkS1CUoi5xqjZ8XR/xDZ+iFKUoRSlKUT3vEo447xk+RV1z9lX6MLb2Z57lSPqk+RqyCkr7IuuI61ShQp71gCLCysjqQVq5Rvp0sH64ZZRLVjhlknXsaaDEEeeswh6TfRtwjmlIFlnX4OUNPns78MoFQLLIIut6Peu7HtPqZRV285JFFllkkUUWyCKLLLLIIgtkraDMpbBq1wgliyyyyDpdg69254pkdUrNe0oL3nxbN1lFbwquOw0LCtOz9vSsnzh29HBbd5lkVb5DueQ07EGYntWrrOrp8g2L3lbD1SukZOlZx0xHsuoL892dFX1Tz9LgySKLLLJAFllkkdUTLz3uHPGxi2+ymoZkkQWyyDrt1uHZMu8L5aYhWSCLLLLIIosskEUWWWSRRRbIIossssgiC2SRRRZZZJGFAB5jJ1lkkUUWWSCLLLLIIusqxx0PdZUsssgqzFj1abNlKfooY7Owd0xEwRIuS6Gl8WrB6uHyVKqQLedi4bIUttg0keZp0fkF65hw2XtZCg9fGi2POpbupWPpXoIlXDbvWL00mmyCVW/vJVjQvbZzp0D3OmKvqWPBUgjBgmABggXBgmABggXBgmABmZz6kk4Pt7ic9XKQjgXBgmBBsADBglNhnyeuvSdJd5TqWBAsCBYgWBAsCBYgWBAsCBYECxAsCBYECxAsCBYECxAsCBYECxAsCBYECxAsCBYECxAsCBYEC9iL//71gId66FgQLAgWIFgQLAgWIFgQLAgWIFioR/OSTg//QQs6FgQLECwU4y/UUmB7CT+CfwAAAABJRU5ErkJggg=="
+         style="margin-bottom: 10px;"/>
+  </a>
+  <div th:text="${status}" style="font-size: 4.5em;font-weight: bold;"></div>
+  <div th:text="${error}" style="font-size: 2em;"></div>
+</div>
+</body>
+</html>
