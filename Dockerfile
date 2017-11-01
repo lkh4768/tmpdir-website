@@ -9,7 +9,7 @@ RUN mkdir -p /app/bin \
 	&& mkdir -p /applog
 COPY build/libs/${PACKAGE_NAME}-${PACKAGE_VERSION}.jar /app/bin/
 COPY src/main/resources/*.properties /
-COPY src/main/resources/logback.xml /
+COPY src/main/resources/logback-spring.xml /
 COPY script/docker-entrypoint.sh /
 RUN chmod +x /docker-entrypoint.sh
 
