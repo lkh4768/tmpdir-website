@@ -25,51 +25,20 @@ file_env() {
 
 # set env
 echo "Setting env"
-file_env 'PORT'
-if [ ! "$PORT" ]
+file_env 'ENV_PHASE'
+if [ ! "$ENV_PHASE" ]
 then
-	PORT="80"
+	ENV_PHASE="prd"
 fi
 
-file_env 'FILE_UPLOAD_SERVICE_URL'
-if [ ! "$FILE_UPLOAD_SERVICE_URL" ]
-then
-	FILE_UPLOAD_SERVICE_URL="http://localhost:6000/"
-fi
+# create properties and setting env phase
+echo "Create application.properties and copy application-$ENV_PHASH.propertise"
+rm -f /application.properties
+echo "spring.profiles.active=$ENV_PHASE" > /app/config/application.properties
+cp -f /application-$ENV_PHASE.properties /app/config/application-$ENV_PHASE.properties
 
-file_env 'FILE_DOWNLOAD_SERVICE_URL'
-if [ ! "$FILE_DOWNLOAD_SERVICE_URL" ]
-then
-	FILE_DOWNLOAD_SERVICE_URL="http://localhost:6001/"
-fi
-
-file_env 'FILE_EXPIRE_TERM_DAY'
-if [ ! "$FILE_EXPIRE_TERM_DAY" ]
-then
-	FILE_DOWNLOAD_SERVICE_URL="1"
-fi
-
-file_env 'FILE_MAX_SIZE'
-if [ ! "$FILE_MAX_SIZE" ]
-then
-	FILE_MAX_SIZE="30"
-fi
-
-# creat application.properties
-echo "Setting application.properties"
-echo "  - File upload service url: $FILE_UPLOAD_SERVICE_URL"
-echo "  - File download service url: $FILE_DOWNLOAD_SERVICE_URL"
-echo "  - File expire term day: $FILE_EXPIRE_TERM_DAY"
-echo "  - File max size(mb): $FILE_MAX_SIZE"
-
-rm -f /app/config/application.properties
-echo "server.port=$PORT" > /app/config/application.properties
-echo "tmpdir.file.upload-service.host=$FILE_UPLOAD_SERVICE_URL" >> /app/config/application.properties
-echo "tmpdir.file.download-service.host=$FILE_DOWNLOAD_SERVICE_URL" >> /app/config/application.properties
-echo "tmpdir.file.expire-term-day=$FILE_EXPIRE_TERM_DAY" >> /app/config/application.properties
-echo "tmpdir.file.max-size-mb=$FILE_MAX_SIZE" >> /app/config/application.properties
-echo "spring.http.multipart.max-file-size=\${tmpdir.file-max-size-mb}MB" >> /app/config/application.properties
-echo "spring.http.multipart.max-request-size=\${spring.http.multipart.max-file-size}" >> /app/config/application.properties
-echo "spring.thymeleaf.mode=HTML5" >> /app/config/application.properties
+# copy logback.xml
+echo "Copy logback.xml"
+cp -f /logback.xml /app/config/logback.xml
 
 exec "$@"

@@ -6,7 +6,6 @@ before_script:
  - export PACKAGE_NAME_LOW=$(./gradlew properties | grep name | awk '{print $2}' | tr -d '\n' | sed -e 's/./\L\0/g')
  - export PACKAGE_VERSION=$(./gradlew properties | grep version | awk '{print $2}' | tr -d '\n')
  - export IMAGE_NAME=tmpdir-$PACKAGE_NAME_LOW-$PACKAGE_VERSION
- - export STAGE_CONTAINER_NAME=$IMAGE_NAME-stage
 
 stages:
  - build
@@ -65,6 +64,7 @@ deploy_stage:
   REGISTRY_HOST: "dev.sw-warehouse.xyz:1450"
   REGISTRY_USER: "root"
   REGISTRY_PASSWORD: "10WESfpwltmxmfl"
+  ENV_PHASE: "stage"
  script:
   - apt-get update && apt-get install sshpass
-  - sshpass -p '0)8*WESehzj' ssh -T -oStrictHostKeyChecking=no -p 22000 docker@dev.sw-warehouse.xyz "docker login -u $REGISTRY_USER -p $REGISTRY_PASSWORD $REGISTRY_HOST && docker pull $REGISTRY_HOST/$IMAGE_NAME && docker run -d --network=tmpdir-stage-net -p 80:80 -e PORT=80 -e FILE_UPLOAD_SERVICE_URL='http://tmpdir-fileupload:6000/' -e FILE_DOWNLOAD_SERVICE_URL='http://tmpdir-filedownload:6001/' -e FILE_EXPIRE_TERM_DAY='1' -e FILE_MAX_SIZE='30' -v /app/tmpdir-website/config:/app/config --name $STAGE_CONTAINER_NAME $REGISTRY_HOST/$IMAGE_NAME"
+  - sshpass -p '0)8*WESehzj' ssh -T -oStrictHostKeyChecking=no -p 22000 docker@dev.sw-warehouse.xyz "docker login -u $REGISTRY_USER -p $REGISTRY_PASSWORD $REGISTRY_HOST && docker pull $REGISTRY_HOST/$IMAGE_NAME && docker run -d --network=tmpdir-$ENV_PHASE-net -p 80:80 -e ENV_PHASE='$ENV_PHASE' -v /app/tmpdir-website/config:/app/config --name $IMAGE_NAME-$ENV_PHASE $REGISTRY_HOST/$IMAGE_NAME"

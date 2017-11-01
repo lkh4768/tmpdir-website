@@ -5,8 +5,11 @@ ENV PACKAGE_NAME ${PACKAGE_NAME}
 ENV PACKAGE_VERSION ${PACKAGE_VERSION}
 
 RUN mkdir -p /app/bin \
-	&& mkdir -p /app/config
+	&& mkdir -p /app/config \
+	&& mkdir -p /applog
 COPY build/libs/${PACKAGE_NAME}-${PACKAGE_VERSION}.jar /app/bin/
+COPY src/main/resources/*.properties /
+COPY src/main/resources/logback.xml /
 COPY script/docker-entrypoint.sh /
 RUN chmod +x /docker-entrypoint.sh
 
