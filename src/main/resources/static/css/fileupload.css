@@ -1,11 +1,13 @@
 .explorer-tree {
   background-color: #f2f2f2;
-  padding-top: 20px;
+  padding: 15px;
+  height: 20%;
 }
 
 .explorer-tree-item {
   padding: 10px;
   display: block;
+  height: 100%;
 }
 
 .explorer-tree-item > div > p {
@@ -17,18 +19,18 @@
 .explorer-tree-time-img {
   height: 100%;
   width: 100%;
-  max-height: 80px;
-  max-width: 80px;
-}
-
-.pre-scrollable {
-  max-height: 100% !important;
+  max-height: 50px;
+  max-width: 60px;
 }
 
 .explorer-main {
-  height: 100%;
-  min-height: 100%;
+  height: 80%;
+  min-height: 80%;
   padding: 20px;
+}
+
+.pre-scrollable{
+  max-height: 100%;
 }
 
 .explorer-main > .dropzone {
@@ -40,20 +42,24 @@
   vertical-align: middle;
 }
 
+.dropzone {
+  padding: 9px;
+}
+
 .dropzone > .dz-preview {
-  margin: 40px;
+  margin: 15px;
 }
 
 .dropzone .dz-preview .dz-error-message {
-  top: 150px!important;
+  top: 150px !important;
 }
 
 .upload {
   display: none;
   cursor: pointer;
   position: fixed;
-  bottom: 110px;
-  right: 50px;
+  bottom: 80px;
+  right: 40px;
   color: white !important;
 }
 
@@ -98,4 +104,24 @@
 
 .share-social-btns > a:hover {
   color: #95a5a6;
+}
+
+@media only screen
+and (min-device-width: 768px) {
+  .dropzone > .dz-preview {
+    margin: 30px;
+  }
+
+  .explorer-tree {
+    height: 100%;
+  }
+
+  .explorer-tree-item{
+    height: auto;
+  }
+
+  .explorer-main {
+    height: 100%;
+    min-height: 100%;
+  }
 }
