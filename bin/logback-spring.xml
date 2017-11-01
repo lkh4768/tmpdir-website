@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 	<include resource="org/springframework/boot/logging/logback/defaults.xml" />
-	<include
-		resource="org/springframework/boot/logging/logback/console-appender.xml" />
-	<property name="LOG_DIR" value="logs" />
-	<property name="LOG_PATH_NAME" value="${LOG_DIR}/tmpdir-Website.log" />
+	<include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+	<property name="LOG_PATH_NAME" value="${LOG_PATH}${LOG_FILE}" />
 	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<file>${LOG_PATH_NAME}</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
@@ -20,14 +18,7 @@
 			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{36}.%M - %msg%n</pattern>
 		</layout>
 	</appender>
-	<springProfile name="dev">
-		<root level="debug">
-			<appender-ref ref="STDOUT" />
-			<appender-ref ref="FILE" />
-		</root>
-		<logger name="org.springframework.web" level="debug" />
-	</springProfile>
-	<springProfile name="stage">
+	<springProfile name="dev, stage">
 		<root level="debug">
 			<appender-ref ref="STDOUT" />
 			<appender-ref ref="FILE" />
