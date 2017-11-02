@@ -41,12 +41,12 @@ public class WebsiteController {
 	RestTemplate fileDownloadClient = new RestTemplate();
 
 	@Autowired
-	Config config = new Config();
+	FileConfig fileConfig = new FileConfig();
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String fileUploadForm(Model model) {
-		LOGGER.info("View fileupload Page config: {}", config);
-		model.addAttribute("config", config);
+		LOGGER.info("View fileupload Page config: {}", fileConfig);
+		model.addAttribute("fileConfig", fileConfig);
 		return "fileupload";
 	}
 
