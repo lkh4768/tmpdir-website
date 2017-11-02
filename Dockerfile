@@ -4,16 +4,16 @@ ARG PACKAGE_VERSION
 ENV PACKAGE_NAME ${PACKAGE_NAME}
 ENV PACKAGE_VERSION ${PACKAGE_VERSION}
 
-RUN mkdir -p /app/bin \
-	&& mkdir -p /app/config \
-	&& mkdir -p /applog
-COPY build/libs/${PACKAGE_NAME}-${PACKAGE_VERSION}.jar /app/bin/
+
+COPY build/libs/${PACKAGE_NAME}-${PACKAGE_VERSION}.jar /
 COPY src/main/resources/*.properties /
 COPY src/main/resources/logback-spring.xml /
 COPY script/docker-entrypoint.sh /
-RUN chmod +x /docker-entrypoint.sh
+RUN mkdir -p /app/bin /app/config /app/certs /applog \
+	&& mv /${PACKAGE_NAME}-${PACKAGE_VERSION}.jar /app/bin/ \
+	&& chmod +x /docker-entrypoint.sh
 
-VOLUME ["/app/config"]
+VOLUME ["/app/config", "/app/certs"]
 EXPOSE 80
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
