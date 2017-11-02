@@ -4,23 +4,23 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Config {
+public class FileConfig {
 	@Value("${tmpdir.file.max-size-mb}")
-	private String maxFileSize;
+	private String maxSize;
 
 	@Value("${tmpdir.file.expire-term-day}")
-	private String fileExpireTerm;
+	private String expireTerm;
 
-	public String getMaxFileSize() {
-		return maxFileSize;
+	public String getMaxSize() {
+		return maxSize;
 	}
 
-	public String getFileExpireTerm() {
-		return fileExpireTerm;
+	public String getExpireTerm() {
+		return expireTerm;
 	}
 
 	@Override
 	public String toString() {
-		return "maxFileSize: " + maxFileSize + ", fileExpireTerm: " + fileExpireTerm;
+		return "maxFileSize: " + maxSize + ", fileExpireTerm: " + expireTerm;
 	}
 }

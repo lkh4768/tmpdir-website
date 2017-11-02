@@ -34,8 +34,9 @@
       <div>
         <h1>
           <strong>
-            <span id="expire-time" th:text="${#dates.formatISO(fileinfo.expireTime)}"></span>
-            <span> 만료됩니다. ( <span id="remain-time"></span> ) </span>
+            <span th:text="#{expireMessageBefore}"></span>
+             <span id="expire-time" th:text="${#dates.formatISO(fileinfo.expireTime)}"></span>
+             <span th:text="#{expireMessageAfter}"></span> <span>( <span id="remain-time"></span> ) </span>
           </strong>
         </h1>
       </div>

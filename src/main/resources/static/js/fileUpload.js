@@ -8,7 +8,6 @@
 $(document).ready(
   Dropzone.options.dropzone = {
     maxFilesize: $("#max-file-size").text(),
-    dictDefaultMessage: "파일을 드랍하거나 클릭해주세요",
     autoProcessQueue: false,
     uploadMultiple: true,
     parallelUploads: 10000,
@@ -23,8 +22,6 @@ $(document).ready(
         if (totalFilesize < self.options.maxFilesize * 1024 * 1024) {
           $(".dz-progress").show();
           self.processQueue();
-        } else {
-          console.log("파일 크기 초과");
         }
       });
 
@@ -46,7 +43,7 @@ $(document).ready(
         expireTimeStr += tmpExpireTimeStr.substring(6, 8) + "-";
         expireTimeStr += tmpExpireTimeStr.substring(10, 12);
         expireTimeStr += tmpExpireTimeStr.substring(13, 19);
-        $("#expire-time").text(expireTimeStr + " 에 만료됩니다.");
+        $("#expire-time").text(expireTimeStr);
         var link = $("#download-url").val();
         $("#facebook-share-btn").attr("href", "https://www.facebook.com/sharer/sharer.php?u=" + link);
         $("#twitter-share-btn").attr("href", "https://twitter.com/home?status=" + link);
