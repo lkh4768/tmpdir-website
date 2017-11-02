@@ -36,8 +36,4 @@ echo "Create application.properties and copy application-$ENV_PHASH.propertise"
 echo "spring.profiles.active=$ENV_PHASE" > /app/config/application.properties
 cp -f /application-$ENV_PHASE.properties /app/config/application-$ENV_PHASE.properties
 
-# copy logback.xml
-echo "Copy logback"
-cp -f /logback-spring.xml /app/config/logback-spring.xml
-
 exec "$@"

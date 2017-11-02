@@ -4,10 +4,8 @@ ARG PACKAGE_VERSION
 ENV PACKAGE_NAME ${PACKAGE_NAME}
 ENV PACKAGE_VERSION ${PACKAGE_VERSION}
 
-
 COPY build/libs/${PACKAGE_NAME}-${PACKAGE_VERSION}.jar /
 COPY src/main/resources/*.properties /
-COPY src/main/resources/logback-spring.xml /
 COPY script/docker-entrypoint.sh /
 RUN mkdir -p /app/bin /app/config /app/certs /applog \
 	&& mv /${PACKAGE_NAME}-${PACKAGE_VERSION}.jar /app/bin/ \
