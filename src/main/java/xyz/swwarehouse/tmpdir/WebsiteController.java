@@ -104,8 +104,6 @@ public class WebsiteController {
 				FileInfo.class);
 
 		if (response.getStatusCode() == HttpStatus.OK) {
-			// LOGGER.info("Success Sending to FileUploadService, Response code {}, fileInfo
-			// {}", response.getStatusCode(), response.getBody());
 			LOGGER.info("Success Sending to FileUploadService, Response {}}", response);
 			FileInfo fileInfo = response.getBody();
 			return new ResponseEntity<FileInfo>(fileInfo, HttpStatus.OK);
