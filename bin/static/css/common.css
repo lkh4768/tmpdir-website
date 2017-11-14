@@ -1,78 +1,42 @@
-html, body {
-  min-height: 100%;
-  height: 100%;
-}
-
 .fill {
   min-height: 100%;
   height: 100%;
 }
 
-.main-color {
-  background-color: #009688;
-}
-
-.glyphicon {
-  font-size: 10px
-}
-
-.navbar {
-  height: 60px;
-}
-
-.navbar-brand {
-  color: #ffffff;
-}
-
-.navbar-brand > span {
-  padding-left: 10px;
-}
-
-.social-btns {
-  width: 100%;
-}
-
-.social-btn, .social-btns {
-  display: inline-block;
-  float: right;
-  color: white;
-}
-
-.social-btns * {
-  vertical-align: middle;
-}
-
-.social-btn {
-  padding-left: 5px;
-}
-
 .container-fluid {
-  bottom: 60px;
-  top: 60px;
-  height: calc(100% - 120px);
-  min-height: calc(100% - 120px);
+  display: table;
+  text-align: center;
+  bottom: 30px;
+  height: calc(100% - 30px);
+  min-height: calc(100% - 30px);
+}
+
+.container-fluid > * {
+  display: table-cell;
+  vertical-align: middle;
 }
 
 .footer {
-  height: 60px;
+  height: 30px;
   width: 100%;
   position: absolute;
   text-align: center;
-  bottom: 0px;
+  font-family: 'Exo', sans-serif;
 }
 
-.footer > .container {
-  height: 100%;
-  display: table;
+.contents > .row {
+  padding-bottom: 10px;
 }
 
-.footer > .container > div {
-  display: table-cell;
-  vertical-align: middle;
-  color: white;
+.my-auto {
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
-.footer > .container > div > a {
-  padding-left: 15px;
-  color: white;
+.ellipsis {
+  text-align: left;
+  width: 150px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
