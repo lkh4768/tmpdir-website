@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
-<head lang="en">
+<html xmlns:th="http://www.thymeleaf.org" class="fill">
+<head>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta charset="UTF-8"/>
   <meta property="og:url"
@@ -9,60 +9,84 @@
   <link rel="shortcut icon" href="images/favicon.ico"/>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
         integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous"/>
-  <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css"/>
+  <link href="https://fonts.googleapis.com/css?family=Exo" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet"/>
   <link rel="stylesheet" href="css/common.css"/>
   <link rel="stylesheet" href="css/fileupload.css"/>
   <link rel="stylesheet" href="css/font-awesome.min.css"/>
 </head>
-<body>
-<div class="navbar navbar-expand main-color">
-  <a id="reset-btn" class="navbar-brand" href="">
-    <img src="images/logo.png" width="30" height="30" class="d-inline-block align-top" alt=""/>
-    <span><strong>tmpdir</strong></span>
-  </a>
-  <div class="social-btns">
-    <div class="fb-like social-btn" data-href="https://tmpdir.sw-warehouse.xyz/" data-layout="button" data-action="like"
-         data-size="small" data-show-faces="false" data-share="true"></div>
-    <div class="social-btn">
-      <a href="https://twitter.com/share" class="twitter-share-button"
-         data-url="https://tmpdir.sw-warehouse.xyz/">Tweet</a>
-    </div>
-  </div>
-</div>
+<body class="fill">
 <div class="container-fluid">
-  <div class="row fill">
-    <nav class="col-md-4 col-xl-2 sidebar explorer-tree">
-      <div class="d-flex justify-content-between explorer-tree-item">
-        <img src="images/directory.png" alt="dir" class="align-self-center explorer-tree-time-img"/>
-        <div class="align-self-center">
-          <p>
-            <span th:text="#{file.maxSize}"></span>
-             <span id="max-file-size" th:text="${fileConfig.maxSize}"></span>
-             <span th:text="#{file.maxSizeUnit}"></span>
-          </p>
-          <p>
-            <span th:text="#{file.expireTerm}"></span>
-             <span id="file-expire-term" th:text="${fileConfig.expireTerm}"></span>
-             <span th:text="#{file.expireTermUnit}"></span>
-          </p>
+  <div class="row">
+    <div class="col">
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 col-xs-12 contents">
+          <div class="row">
+            <div class="col"><img src="images/logo_72w.png"/><span class="logo">tmpdir</span></div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="social-btns">
+                <div class="fb-like social-btn" data-href="https://tmpdir.sw-warehouse.xyz/" data-layout="button"
+                     data-action="like"
+                     data-size="small" data-show-faces="false" data-share="true"></div>
+                <div class="social-btn">
+                  <a href="https://twitter.com/share" class="twitter-share-button"
+                     data-url="https://tmpdir.sw-warehouse.xyz/">Tweet</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 col-xs-12 my-auto file-explorer-col">
+              <div class="card file-explorer">
+                <div class="card-body file-explorer-body">
+                  <form action="/" class="fill scrollable dropzone" id="dropzone" enctype="multipart/form-data">
+                    <div class="dz-message"><span th:text="#{uploadOfWayMessage}"></span></div>
+                  </form>
+                </div>
+                <div class="card-footer file-explorer-footer">
+                  <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                      <span><span id="total-file-cnt">0</span> <span>개</span></span>
+                      <span><span id="total-file-size" value="0">0</span><a id="reset-btn"><span>&nbsp;&nbsp;&nbsp;</span><i class="fa fa-times" aria-hidden="true"></i></a></span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-xs-12 my-auto">
+              <div class="row">
+                <div class="col upload-btn-col">
+                  <button type="button" id="upload-btn" class="btn btn-lg btn-primary">Upload</button>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <span th:text="#{file.expireTerm}"></span>
+                  <span id="file-expire-term" th:text="${fileConfig.expireTerm}"></span>
+                  <span th:text="#{file.expireTermUnit}"></span>
+                  <span>, </span>
+                  <span th:text="#{file.maxSize}"></span>
+                  <span id="max-file-size" th:text="${fileConfig.maxSize}"></span>
+                  <span th:text="#{file.maxSizeUnit}"></span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+        <div class="col-md-3"></div>
       </div>
-    </nav>
-    <div class="col-md-8 col-xl-10 explorer-main pre-scrollable">
-      <form action="/" class="dropzone fill" dropzone="" id="dropzone" enctype="multipart/form-data">
-        <div class="dz-default dz-message"><span th:text="#{uploadOfWayMessage}"></span></div>
-      </form>
     </div>
   </div>
-  <button type="button" class="btn btn-lg upload main-color" id="upload-all"><strong>Upload</strong></button>
 </div>
-<footer class="footer main-color">
-  <div class="container">
-    <div>
-      <strong>contact us</strong>
-      <a href="mailto:lkh5510@gmail.com"><i class=" fa fa-envelope-o"></i></a>
-      <a href="http://sw-warehouse.xyz"><i class="fa fa-bold"></i></a>
-    </div>
+<footer class="footer">
+  <div>
+    <span><i class="fa fa-copyright" aria-hidden="true"></i></span>
+    <span>2017 kihyeon lee.</span>
+    <span> Mail: <a href="mailto:lkh5510@gmail.com">lkh5510@gmail.com</a></span>
+    <span> Blog: <a href="http://sw-warehouse.xyz">http://sw-warehouse.xyz</a></span>
   </div>
 </footer>
 <div class="container-fluid overlay">
@@ -81,7 +105,8 @@
       </div>
     </div>
     <div class="row justify-content-md-center result-item">
-      <h3><strong><span th:text="#{expireMessageBefore}"></span> <span id="expire-time"></span> <span th:text="#{expireMessageAfter}"></span></strong></h3>
+      <h3><strong><span th:text="#{expireMessageBefore}"></span> <span id="expire-time"></span> <span
+          th:text="#{expireMessageAfter}"></span></strong></h3>
     </div>
     <div class="row justify-content-md-center result-item">
       <div class="col share-social-btns col-lg-3">
@@ -93,9 +118,6 @@
     </div>
   </div>
 </div>
-<input type="file" multiple="multiple" class="dz-hidden-input"
-       style="visibility: hidden; position: absolute; top: 0px; left: 0px; height: 0px; width: 0px;"/>
-<div id="fb-root"></div>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
@@ -105,8 +127,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
         integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
         crossorigin="anonymous"></script>
-<script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+<script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
 <script src="js/common.js"></script>
 <script src="js/fileUpload.js"></script>
 </body>

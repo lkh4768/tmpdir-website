@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" class="fill">
 <head>
   <meta charset="UTF-8"/>
   <meta property="og:url"
@@ -8,28 +8,18 @@
   <link rel="shortcut icon" href="images/favicon.ico"/>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
         integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous"/>
+  <link href="https://fonts.googleapis.com/css?family=Exo" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet"/>
   <link rel="stylesheet" href="css/common.css"/>
   <link rel="stylesheet" href="css/filedownload.css"/>
   <link rel="stylesheet" href="css/font-awesome.min.css"/>
 </head>
-<body>
-<div class="navbar navbar-expand main-color">
-  <a id="reset-btn" class="navbar-brand" href="">
-    <img src="images/logo.png" width="30" height="30" class="d-inline-block align-top" alt=""/>
-    <span><strong>tmpdir</strong></span>
-  </a>
-  <div class="social-btns">
-    <div class="fb-like social-btn" data-href="https://tmpdir.sw-warehouse.xyz" data-width="370" data-layout="standard"
-         data-action="like"
-         data-size="small" data-show-faces="false" data-share="true"></div>
-    <div class="social-btn">
-      <a href="https://twitter.com/share" class="twitter-share-button"
-         data-url="http://tmpdir.sw-warehouse.xyz/">Tweet</a>
-    </div>
-  </div>
-</div>
+<body class="fill">
 <div class="container-fluid content">
   <div class="content-items">
+    <div class="row justify-content-md-center content-item">
+      <a href="https://tmpdir-sw.warehouse.xyz"><img class="rotate-animation" src="images/logo_96w.png"/></a>
+    </div>
     <div class="row justify-content-md-center content-item">
       <div>
         <h1>
@@ -51,17 +41,14 @@
     </div>
   </div>
 </div>
-<footer class="footer main-color">
-  <div class="container">
-    <div>
-      <strong>contact us</strong>
-      <a href="mailto:lkh5510@gmail.com"><i class=" fa fa-envelope-o"></i></a>
-      <a href="http://sw-warehouse.xyz"><i class="fa fa-bold"></i></a>
-    </div>
+<footer class="footer">
+  <div>
+    <span><i class="fa fa-copyright" aria-hidden="true"></i></span>
+    <span>2017 kihyeon lee.</span>
+    <span> Mail: <a href="mailto:lkh5510@gmail.com">lkh5510@gmail.com</a></span>
+    <span> Blog: <a href="http://sw-warehouse.xyz">http://sw-warehouse.xyz</a></span>
   </div>
 </footer>
-<input type="file" multiple="multiple" class="dz-hidden-input"
-       style="visibility: hidden; position: absolute; top: 0px; left: 0px; height: 0px; width: 0px;"/>
 <div id="fb-root"></div>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
