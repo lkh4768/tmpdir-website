@@ -22,7 +22,7 @@ build:
 
 sonarqube_preview:
  stage: test
- retry: 5
+ retry: 2
  script:
   - ./gradlew check
   - ./gradlew --info sonarqube -Dsonar.gitlab.commit_sha=$CI_COMMIT_SHA -Dsonar.gitlab.ref_name=$CI_COMMIT_REF_NAME -Dsonar.gitlab.project_id=$CI_PROJECT_ID
@@ -31,7 +31,7 @@ sonarqube_preview:
 
 sonarqube:
  stage: test
- retry: 5
+ retry: 2
  script:
   - ./gradlew check
   - ./gradlew sonarqube
@@ -40,7 +40,7 @@ sonarqube:
 
 build_docker_image:
  stage: build-docker
- retry: 5
+ retry: 2
  variables: 
   PORT: 80
   REGISTRY_HOST: dev.sw-warehouse.xyz:1450
@@ -63,7 +63,7 @@ build_docker_image:
 
 deploy_stage:
  stage: deploy-stage
- retry: 5
+ retry: 2
  variables:
   REGISTRY_HOST: "dev.sw-warehouse.xyz:1450"
   REGISTRY_USER: "root"
