@@ -6,8 +6,9 @@
 }
 
 .version{
-  font-family: 'Lobster', cursive;
-  vertical-align: middle;
+  font-family: 'Russo One', sans-serif;
+  font-size: 2em;
+  vertical-align: bottom;
 }
 
 .social-btn, .social-btns {
