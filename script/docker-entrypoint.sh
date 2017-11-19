@@ -32,7 +32,7 @@ then
 fi
 
 # create properties and setting env phase
-echo "Create application.properties and copy application-$ENV_PHASH.propertise"
+echo "Create application.properties and copy application-$ENV_PHASE.propertise"
 if [ ! -f /app/config/application.properties ]; then
 	echo "spring.profiles.active=$ENV_PHASE" > /app/config/application.properties
 fi
