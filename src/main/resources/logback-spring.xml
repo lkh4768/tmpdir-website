@@ -19,11 +19,11 @@
 		</layout>
 	</appender>
 	<springProfile name="dev, stage">
-		<root level="debug">
+		<root level="info">
 			<appender-ref ref="STDOUT" />
 			<appender-ref ref="FILE" />
 		</root>
-		<logger name="org.springframework.web" level="debug" />
+		<logger name="org.springframework.web" level="info" />
 	</springProfile>
 	<springProfile name="prd">
 		<root level="info">
