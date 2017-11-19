@@ -11,7 +11,7 @@ RUN mkdir -p /app/bin /app/config /app/certs /applog \
 	&& mv /${PACKAGE_NAME}-${PACKAGE_VERSION}.jar /app/bin/ \
 	&& chmod +x /docker-entrypoint.sh
 
-VOLUME ["/app/config", "/app/certs"]
+VOLUME ["/app/config", "/app/certs", "/applog"]
 EXPOSE 443
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
