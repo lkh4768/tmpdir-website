@@ -16,4 +16,4 @@ EXPOSE 443
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
-CMD /usr/bin/java -jar /app/bin/${PACKAGE_NAME}-${PACKAGE_VERSION}.jar --spring.config.location=classpath:/app/config/,file:config/
+CMD /usr/bin/java -jar /app/bin/${PACKAGE_NAME}-${PACKAGE_VERSION}.jar --spring.config.location=file:/app/config/
