@@ -1,4 +1,4 @@
-package xyz.swwarehouse.tmpdir;
+package xyz.swwarehouse.tmpdir.entity;
 
 import java.util.Date;
 
