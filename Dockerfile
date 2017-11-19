@@ -12,7 +12,7 @@ RUN mkdir -p /app/bin /app/config /app/certs /applog \
 	&& chmod +x /docker-entrypoint.sh
 
 VOLUME ["/app/config", "/app/certs"]
-EXPOSE 80
+EXPOSE 443
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
