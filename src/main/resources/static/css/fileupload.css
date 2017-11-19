@@ -5,6 +5,12 @@
   vertical-align: middle;
 }
 
+.version{
+  font-family: 'Russo One', sans-serif;
+  font-size: 2em;
+  vertical-align: bottom;
+}
+
 .social-btn, .social-btns {
   display: inline-block;
   float: right;

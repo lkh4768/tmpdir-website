@@ -5,6 +5,11 @@
   vertical-align: middle;
 }
 
+.version{
+  font-family: 'Lobster', cursive;
+  vertical-align: middle;
+}
+
 .social-btn, .social-btns {
   display: inline-block;
   float: right;
