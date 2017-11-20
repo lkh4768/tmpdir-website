@@ -4,8 +4,8 @@ import java.util.Date;
 
 public class FileInfo {
 	private String id;
-	private Date submissionTime;
-	private Date expireTime;
+	private long submissionTime;
+	private long expireTime;
 
 	public String getId() {
 		return id;
@@ -15,19 +15,19 @@ public class FileInfo {
 		this.id = id;
 	}
 
-	public Date getSubmissionTime() {
+	public long getSubmissionTime() {
 		return submissionTime;
 	}
 
-	public void setSubmissionTime(Date submissionTime) {
+	public void setSubmissionTime(long submissionTime) {
 		this.submissionTime = submissionTime;
 	}
 
-	public Date getExpireTime() {
+	public long getExpireTime() {
 		return expireTime;
 	}
 
-	public void setExpireTime(Date date) {
-		this.expireTime = date;
+	public void setExpireTime(long expireTime) {
+		this.expireTime = expireTime;
 	}
 }
