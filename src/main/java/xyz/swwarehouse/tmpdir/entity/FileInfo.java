@@ -1,7 +1,5 @@
 package xyz.swwarehouse.tmpdir.entity;
 
-import java.util.Date;
-
 public class FileInfo {
 	private String id;
 	private long submissionTime;
