@@ -47,7 +47,8 @@ sonarqube {
     properties {
         property "sonar.host.url", "https://dev.sw-warehouse.xyz:1590/"
         property "sonar.analysis.mode", "preview"
-        property "sonar.login", "5f27a1e3b20d8ebb016066942339d28568c0750d"
+        property "sonar.login", "1c4ad720084612a326e14591d828a31b06a7dc3d"
+        //property "sonar.login", "5f27a1e3b20d8ebb016066942339d28568c0750d"
         property "sonar.projectName", "tmpdir/website"
         property "sonar.projectKey", "tmpdir-website"
         property "sonar.sources", "src/main"
