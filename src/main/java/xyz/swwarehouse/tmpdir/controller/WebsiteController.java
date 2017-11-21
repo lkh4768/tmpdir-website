@@ -51,35 +51,35 @@ public class WebsiteController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String fileUploadForm(HttpServletRequest req, Model model) {
-		LOGGER.info("{}", Util.RequestInfoToString(req));
+		LOGGER.info("{}", Util.requestInfoToString(req));
 		model.addAttribute("fileConfig", fileConfig);
-		LOGGER.info("Response ({}->{}), View fileupload Page config({})", Util.GetLocalInfo(req), Util.GetClientInfo(req),
+		LOGGER.info("Response ({}->{}), View fileupload Page config({})", Util.getLocalInfo(req), Util.getClientInfo(req),
 				fileConfig);
 		return "fileupload";
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public String fileDownloadForm(HttpServletRequest req, @PathVariable String id, Model model) {
-		LOGGER.info("{}", Util.RequestInfoToString(req));
+		LOGGER.info("{}", Util.requestInfoToString(req));
 		FileInfo fileInfo = fileDownloadClient.getForObject(fileDownloadServiceHost + "file-info/" + id, FileInfo.class);
-		LOGGER.info("Response ({}->{}), View filedownload Page fileInfo: {}", Util.GetLocalInfo(req),
-				Util.GetClientInfo(req), fileInfo);
+		LOGGER.info("Response ({}->{}), View filedownload Page fileInfo: {}", Util.getLocalInfo(req),
+				Util.getClientInfo(req), fileInfo);
 		model.addAttribute("fileinfo", fileInfo);
 		return "filedownload";
 	}
 
 	@RequestMapping(value = "/file/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Resource> downloadFile(HttpServletRequest req, @PathVariable String id) throws IOException {
-		LOGGER.info("{}", Util.RequestInfoToString(req));
+		LOGGER.info("{}", Util.requestInfoToString(req));
 		ResponseEntity<Resource> response = fileDownloadClient.getForEntity(fileDownloadServiceHost + "file/" + id,
 				Resource.class);
-		LOGGER.info("Response ({}->{}), Download file{}", Util.GetLocalInfo(req), Util.GetClientInfo(req), id);
+		LOGGER.info("Response ({}->{}), Download file{}", Util.getLocalInfo(req), Util.getClientInfo(req), id);
 		return response;
 	}
 
 	@PostMapping("/")
 	public ResponseEntity<FileInfo> uploadFile(MultipartHttpServletRequest req) {
-		LOGGER.info("{}", Util.RequestInfoToString(req));
+		LOGGER.info("{}", Util.requestInfoToString(req));
 		Iterator<String> itr = req.getFileNames();
 		MultiValueMap<String, Object> files = new LinkedMultiValueMap<String, Object>();
 		int i = 0;
@@ -111,18 +111,18 @@ public class WebsiteController {
 
 		HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<MultiValueMap<String, Object>>(files,
 				headers);
-		LOGGER.info("Request POST ({}->{}), Sending to FileUploadService({})", Util.GetLocalInfo(req),
+		LOGGER.info("Request POST ({}->{}), Sending to FileUploadService({})", Util.getLocalInfo(req),
 				fileUploadServiceHost, requestEntity);
 		ResponseEntity<FileInfo> response = fileUploadClient.postForEntity(fileUploadServiceHost, requestEntity,
 				FileInfo.class);
 		if (response.getStatusCode() == HttpStatus.OK) {
-			LOGGER.info("Response ({}->{}), Success Sending to FileUploadService({})", Util.GetLocalInfo(req),
-					Util.GetClientInfo(req), response);
+			LOGGER.info("Response ({}->{}), Success Sending to FileUploadService({})", Util.getLocalInfo(req),
+					Util.getClientInfo(req), response);
 			FileInfo fileInfo = response.getBody();
 			return new ResponseEntity<FileInfo>(fileInfo, HttpStatus.OK);
 		}
-		LOGGER.error("Response ({}->{}), Failed Sending to FileUploadService({})", Util.GetLocalInfo(req),
-				Util.GetClientInfo(req), response);
+		LOGGER.error("Response ({}->{}), Failed Sending to FileUploadService({})", Util.getLocalInfo(req),
+				Util.getClientInfo(req), response);
 		return response;
 	}
 }
