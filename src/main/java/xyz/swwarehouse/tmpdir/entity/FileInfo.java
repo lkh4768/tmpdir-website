@@ -1,5 +1,7 @@
 package xyz.swwarehouse.tmpdir.entity;
 
+import java.util.Date;
+
 public class FileInfo {
 	private String id;
 	private long submissionTime;
@@ -27,5 +29,10 @@ public class FileInfo {
 
 	public void setExpireTime(long expireTime) {
 		this.expireTime = expireTime;
+	}
+
+	@Override
+	public String toString() {
+		return "id: " + this.id + ", submisstionTime: " + new Date(this.submissionTime) + ", expireTime: " + new Date(this.expireTime);
 	}
 }
