@@ -52,7 +52,7 @@ build_docker_image:
   - apt-key fingerprint 0EBFCD88
   - add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") $(lsb_release -cs) stable"
   - apt-get update && apt-get install -y docker-ce
-  - dockerd -H unix:///var/run/docker.sock &
+  - /usr/bin/dockerd -H unix:///var/run/docker.sock &
   - sleep 10
   - ./gradlew build
   - docker build -t $REGISTRY_HOST/$IMAGE_NAME --build-arg PACKAGE_NAME=$PACKAGE_NAME --build-arg PACKAGE_VERSION=$PACKAGE_VERSION .
