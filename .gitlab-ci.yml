@@ -39,7 +39,7 @@ sonarqube:
 build_docker_image:
  stage: build-docker
  retry: 2
- variables: 
+ variables:
   REGISTRY_HOST: dev.sw-warehouse.xyz:1450
   REGISTRY_USER: root
   REGISTRY_PASSWORD: 10WESfpwltmxmfl
