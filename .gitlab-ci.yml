@@ -34,7 +34,7 @@ sonarqube:
  retry: 2
  script:
   - ./gradlew check
-  - ./gradlew sonarqube
+  - ./gradlew --info sonarqube
  only:
   - develop
 
