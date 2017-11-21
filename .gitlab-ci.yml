@@ -70,6 +70,6 @@ deploy_stage:
   ENV_PHASE: "stage"
  script:
   - apt-get update && apt-get install sshpass
-  - sshpass -p '0)8*WESehzj' ssh -T -oStrictHostKeyChecking=no -p 22000 docker@dev.sw-warehouse.xyz "docker rm -f $IMAGE_NAME-$ENV_PHASE 2>&1 > /dev/null && docker login -u $REGISTRY_USER -p $REGISTRY_PASSWORD $REGISTRY_HOST && docker pull $REGISTRY_HOST/$IMAGE_NAME && docker run -d --network=tmpdir-$ENV_PHASE-net -p 6443:443 -e ENV_PHASE='$ENV_PHASE' -v /app/tmpdir-website/config:/app/config -v /etc/letsencrypt:/app/certs -v /applog/tmpdir-website-$ENV_PHASE:/applog --name $IMAGE_NAME-$ENV_PHASE $REGISTRY_HOST/$IMAGE_NAME"
+  - sshpass -p '0)8*WESehzj' ssh -T -oStrictHostKeyChecking=no -p 22000 docker@dev.sw-warehouse.xyz "docker rm -f $IMAGE_NAME-$ENV_PHASE 2> /dev/null | ehco ok && docker login -u $REGISTRY_USER -p $REGISTRY_PASSWORD $REGISTRY_HOST && docker pull $REGISTRY_HOST/$IMAGE_NAME && docker run -d --network=tmpdir-$ENV_PHASE-net -p 6443:443 -e ENV_PHASE='$ENV_PHASE' -v /app/tmpdir-website/config:/app/config -v /etc/letsencrypt:/app/certs -v /applog/tmpdir-website-$ENV_PHASE:/applog --name $IMAGE_NAME-$ENV_PHASE $REGISTRY_HOST/$IMAGE_NAME"
  only:
   - develop
