@@ -56,5 +56,6 @@ sonarqube {
         property "sonar.jacoco.reportPaths", "build/jacoco/test.exec"
 				property "sonar.gitlab.url", "https://dev.sw-warehouse.xyz:1744/"
         property "sonar.gitlab.user_token", "jxHen5hae8mGtiSJunBW"
+        property " sonar.gitlab.project_id", "45"
     }
 }
