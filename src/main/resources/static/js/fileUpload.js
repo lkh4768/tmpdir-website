@@ -20,7 +20,7 @@ Dropzone.autoDiscover = false;
   $("#upload-btn").click(function () {
     $(".dz-success").hide();
     var totalFileSize = parseInt($("#total-file-size").attr("value"));
-    cnosole.log(totalFileSize);
+    console.log(totalFileSize);
     if (totalFileSize < dropzone.options.maxFilesize * 1024 * 1024) {
       $(".dz-progress").show();
       dropzone.processQueue();
