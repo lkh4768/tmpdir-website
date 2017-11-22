@@ -61,10 +61,12 @@ public class WebsiteController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public String fileDownloadForm(HttpServletRequest req, @PathVariable String id, Model model) {
 		LOGGER.info("{}", Util.requestInfoToString(req));
+
 		FileInfo fileInfo = fileDownloadClient.getForObject(fileDownloadServiceHost + "file-info/" + id, FileInfo.class);
+		model.addAttribute("fileinfo", fileInfo);
+
 		LOGGER.info("Response ({}->{}), View filedownload Page fileInfo: {}", Util.getLocalInfo(req),
 				Util.getClientInfo(req), fileInfo);
-		model.addAttribute("fileinfo", fileInfo);
 		return "filedownload";
 	}
 
