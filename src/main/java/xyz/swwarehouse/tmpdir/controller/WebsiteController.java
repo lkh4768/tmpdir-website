@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -61,8 +62,8 @@ public class WebsiteController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public String fileDownloadForm(HttpServletRequest req, @PathVariable String id, Model model) {
 		LOGGER.info("{}", Util.requestInfoToString(req));
-
-		FileInfo fileInfo = fileDownloadClient.getForObject(fileDownloadServiceHost + "file-info/" + id, FileInfo.class);
+		FileInfo fileInfo = null;
+		fileInfo = fileDownloadClient.getForObject(fileDownloadServiceHost + "file-info/" + id, FileInfo.class);
 		model.addAttribute("fileinfo", fileInfo);
 
 		LOGGER.info("Response ({}->{}), View filedownload Page fileInfo: {}", Util.getLocalInfo(req),
