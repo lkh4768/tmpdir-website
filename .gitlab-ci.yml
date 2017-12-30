@@ -12,14 +12,6 @@ stages:
  - build-docker
  - deploy-stage
 
-   #sonarqub-preview:
-   #stage: test
-   #retry: 2
-   #script:
-   #- ./gradlew check sonarqube -Dsonar.gitlab.commit_sha=$CI_COMMIT_SHA -Dsonar.gitlab.ref_name=$CI_COMMIT_REF_NAME -Dsonar.gitlab.project_id=$CI_PROJECT_ID -Dsonar.analysis.mode=preview
-   #only:
-   #- develop
-
 sonarqube:
  stage: test
  retry: 2
