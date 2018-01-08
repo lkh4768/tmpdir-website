@@ -1,12 +1,20 @@
 .logo {
   font-family: 'Russo One', sans-serif;
+  color: #000;
+}
+
+.logo:hover{
+  text-decoration: none;
+  color: #000;
+}
+
+.title {
   font-size: 5em;
   padding-left: 20px;
   vertical-align: middle;
 }
 
 .version{
-  font-family: 'Russo One', sans-serif;
   font-size: 2em;
   vertical-align: bottom;
 }
