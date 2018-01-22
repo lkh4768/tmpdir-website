@@ -11,6 +11,7 @@ stages:
  - test
  - build-docker
  - deploy-stage
+ - deploy-prd
 
 sonarqube:
  stage: test
