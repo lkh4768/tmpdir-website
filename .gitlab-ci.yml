@@ -1,0 +1,72 @@
+image: java:8
+
+before_script:
+ - chmod +x gradlew
+ - export PACKAGE_NAME=$(./gradlew properties | grep name | awk '{print $2}' | tr -d '\n')
+ - export PACKAGE_NAME_LOW=$(./gradlew properties | grep name | awk '{print $2}' | tr -d '\n' | sed -e 's/./\L\0/g')
+ - export PACKAGE_VERSION=$(./gradlew properties | grep version | awk '{print $2}' | tr -d '\n')
+ - export IMAGE_NAME=tmpdir-$PACKAGE_NAME_LOW-$PACKAGE_VERSION
+
+stages:
+ - test
+ - build-docker
+ - deploy-stage
+ - deploy-prd
+
+sonarqube:
+ stage: test
+ retry: 2
+ script:
+  - ./gradlew check sonarqube -Dsonar.gitlab.commit_sha=$CI_COMMIT_SHA -Dsonar.gitlab.ref_name=$CI_COMMIT_REF_NAME -Dsonar.gitlab.project_id=$CI_PROJECT_ID
+ only:
+  - develop
+
+build_docker_image:
+ stage: build-docker
+ retry: 2
+ variables:
+  REGISTRY_HOST: dev.sw-warehouse.xyz:1450
+  REGISTRY_USER: root
+  REGISTRY_PASSWORD: 10WESfpwltmxmfl
+ script:
+  - apt-get update
+  - apt-get install -y apt-transport-https ca-certificates curl gnupg2 software-properties-common
+  - curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg | apt-key add -
+  - apt-key fingerprint 0EBFCD88
+  - add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") $(lsb_release -cs) stable"
+  - apt-get update && apt-get install -y docker-ce
+  - service docker start
+  - ./gradlew build
+  - docker build -t $REGISTRY_HOST/$IMAGE_NAME --build-arg PACKAGE_NAME=$PACKAGE_NAME --build-arg PACKAGE_VERSION=$PACKAGE_VERSION .
+  - docker login -u $REGISTRY_USER -p $REGISTRY_PASSWORD $REGISTRY_HOST
+  - docker push $REGISTRY_HOST/$IMAGE_NAME
+ only:
+  - develop
+
+deploy_stage:
+ stage: deploy-stage
+ retry: 2
+ variables:
+  REGISTRY_HOST: "dev.sw-warehouse.xyz:1450"
+  REGISTRY_USER: "root"
+  REGISTRY_PASSWORD: "10WESfpwltmxmfl"
+  ENV_PHASE: "stage"
+ script:
+  - apt-get update && apt-get install sshpass
+  - sshpass -p '0)8*WESehzj' ssh -T -oStrictHostKeyChecking=no -p 22000 docker@dev.sw-warehouse.xyz "docker rm -f $IMAGE_NAME-$ENV_PHASE 2> /dev/null | echo ok && docker login -u $REGISTRY_USER -p $REGISTRY_PASSWORD $REGISTRY_HOST && docker pull $REGISTRY_HOST/$IMAGE_NAME && docker run -d --network=tmpdir-$ENV_PHASE-net -p 6443:443 -e ENV_PHASE='$ENV_PHASE' -v /app/tmpdir-website/config:/app/config -v /etc/letsencrypt:/app/certs -v /applog/tmpdir-website-$ENV_PHASE:/applog --name $IMAGE_NAME-$ENV_PHASE $REGISTRY_HOST/$IMAGE_NAME"
+ only:
+  - develop
+
+deploy_prd:
+ stage: deploy-prd
+ retry: 2
+ variables:
+  REGISTRY_HOST: "dev.sw-warehouse.xyz:1450"
+  REGISTRY_USER: "root"
+  REGISTRY_PASSWORD: "10WESfpwltmxmfl"
+  ENV_PHASE: "prd"
+ script:
+  - apt-get update && apt-get install sshpass
+  - sshpass -p '0)8*WESehzj' ssh -T -oStrictHostKeyChecking=no -p 22000 docker@dev.sw-warehouse.xyz "docker rm -f $IMAGE_NAME-$ENV_PHASE 2> /dev/null | echo ok && docker login -u $REGISTRY_USER -p $REGISTRY_PASSWORD $REGISTRY_HOST && docker pull $REGISTRY_HOST/$IMAGE_NAME && docker run -d --network=tmpdir-$ENV_PHASE-net -p 6443:443 -e ENV_PHASE='$ENV_PHASE' -v /app/tmpdir-website/config:/app/config -v /etc/letsencrypt:/app/certs -v /applog/tmpdir-website-$ENV_PHASE:/applog --name $IMAGE_NAME-$ENV_PHASE $REGISTRY_HOST/$IMAGE_NAME"
+ only:
+  - master
