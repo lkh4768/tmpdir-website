@@ -23,28 +23,6 @@ node {
 		}
 
 		if(env.BRANCH_NAME == DEVELOP_BRANCH){
-			stage "Unit testing"
-			gitlabCommitStatus("Unit testing") {
-				STAGE = "Unit testing"
-				sh "./gradlew clean check"
-				junit "build/test-results/test/TEST-*.xml"
-			}
-
-			stage "Sonarqube"
-			gitlabCommitStatus("Sonarqube") {
-				STAGE = "Sonarqube"
-				withSonarQubeEnv("sonarqube") {
-					sh "./gradlew --info sonarqube"
-				}
-				sleep 30
-				timeout(time: 1, unit: "MINUTES") {
-					def qg = waitForQualityGate()
-						if (qg.status != "OK") {
-							error "Pipeline aborted due to quality gate failure: ${qg.status}"
-						}
-				}
-			}
-
 			stage "Publish image"
 			gitlabCommitStatus("Publish image") {
 				STAGE = "Publish image"
