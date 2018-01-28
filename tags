@@ -1,0 +1,6 @@
+!_TAG_FILE_SORTED	2	/0=unsorted, 1=sorted, 2=foldcase/
+app	/mnt/d/data/workspace/Website/app.js	/^var app = express();$/;"	v	language:JavaScript
+entry	/mnt/d/data/workspace/Website/webpack.config.js	/^module.exports = {$/;"	p	language:JavaScript	class:module.exports
+env	/mnt/d/data/workspace/Website/.eslintrc.js	/^module.exports = {$/;"	p	language:JavaScript	class:module.exports
+express	/mnt/d/data/workspace/Website/app.js	/^var express = require('express');$/;"	v	language:JavaScript
+output	/mnt/d/data/workspace/Website/webpack.config.js	/^	entry: '.\/src\/index.js',$/;"	p	language:JavaScript	class:module.exports
