@@ -1,26 +1,23 @@
 import React from 'react';
 
 class Blog extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
-    const html = (
+    const title = 'blog: ';
+    const ele = (
       <span>
-        {this.props.title}
+        {title}
         <a href={this.props.blogUrl}>
           {this.props.blogUrl}
         </a>
       </span>
     );
 
-    return html;
+    return ele;
   }
 }
 
-Blog.defaultProps = {
-  title: 'Blog: ',
+Blog.propTypes = {
+  blogUrl: React.PropTypes.string.isRequired,
 };
 
 export default Blog;
