@@ -1,12 +1,9 @@
 import React from 'react';
-import Copyright from './Copyright.jsx';
-import Mail from './Mail.jsx';
-import Blog from './Blog.jsx';
+import Copyright from './Copyright';
+import Mail from './Mail';
+import Blog from './Blog';
 
 class Footer extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     const node = (
       <React.Fragment>
@@ -18,5 +15,10 @@ class Footer extends React.Component {
     return node;
   }
 }
+
+Footer.propTypes = {
+  mailAddr: React.PropTypes.string.isRequired,
+  blogUrl: React.PropTypes.string.isRequired,
+};
 
 export default Footer;

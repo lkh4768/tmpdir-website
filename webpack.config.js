@@ -26,6 +26,11 @@ module.exports = {
       'process.env.NODE_ENV': JSON.stringify('development')
     })
   ],
+  resolve: {
+    extensions: [
+      '.js','.jsx'
+    ]
+  },
 	module: {
 		rules:[
 			{
@@ -38,25 +43,24 @@ module.exports = {
 					}
 				}
 			},
-			{
-				test: /\.jsx$/,
-				enforce: 'pre',
-				loader: 'eslint-loader',
-				exclude: /(node_modules|bower_components)/
-			},
 			{ 
 				test: /\.sass$/, 
 				loader: 'style!css!sass'
 			},
 			{
 				test: /\.jsx?$/,
-				loader: 'babel-loader',
 				exclude: /(node_modules|bower_components)/,
+				loader: 'babel-loader',
 				query: {
 					cacheDirectory: true,
 					presets: ['es2015', 'react']
 				}
-			},
+      },
+      {
+        test: /\.jsx$/,
+        exclude: /node_modules/,
+        loader: ['eslint-loader']
+      }
 		]
 	}
 };

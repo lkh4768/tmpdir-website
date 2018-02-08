@@ -1,13 +1,15 @@
 !_TAG_FILE_SORTED	2	/0=unsorted, 1=sorted, 2=foldcase/
-devtool	/mnt/d/data/workspace/Website/webpack.config.js	/^module.exports = {$/;"	p	language:JavaScript	class:module.exports
-entry	/mnt/d/data/workspace/Website/webpack.config.js	/^  devtool: 'eval-source-map',$/;"	p	language:JavaScript	class:module.exports
-entry	/mnt/d/data/workspace/Website/webpack.production.config.js	/^module.exports = {$/;"	p	language:JavaScript	class:module.exports
-extends	/mnt/d/data/workspace/Website/.eslintrc.js	/^module.exports = {$/;"	p	language:JavaScript	class:module.exports
-ExtractTextPlugin	/mnt/d/data/workspace/Website/webpack.production.config.js	/^var ExtractTextPlugin = require('extract-text-webpack-plugin');$/;"	v	language:JavaScript
-HtmlWebpackPlugin	/mnt/d/data/workspace/Website/webpack.config.js	/^var HtmlWebpackPlugin = require('html-webpack-plugin');$/;"	v	language:JavaScript
-HtmlWebpackPlugin	/mnt/d/data/workspace/Website/webpack.production.config.js	/^var HtmlWebpackPlugin = require('html-webpack-plugin');$/;"	v	language:JavaScript
-path	/mnt/d/data/workspace/Website/webpack.config.js	/^var path = require('path');$/;"	v	language:JavaScript
-path	/mnt/d/data/workspace/Website/webpack.production.config.js	/^var path = require('path');$/;"	v	language:JavaScript
-StatsPlugin	/mnt/d/data/workspace/Website/webpack.production.config.js	/^var StatsPlugin = require('stats-webpack-plugin');$/;"	v	language:JavaScript
-webpack	/mnt/d/data/workspace/Website/webpack.config.js	/^var webpack = require('webpack');$/;"	v	language:JavaScript
-webpack	/mnt/d/data/workspace/Website/webpack.production.config.js	/^var webpack = require('webpack');$/;"	v	language:JavaScript
+devtool	/mnt/d/data/workspace/tmpdir/Website/webpack.config.js	/^module.exports = {$/;"	p	language:JavaScript	class:module.exports
+devtool	/mnt/d/data/workspace/tmpdir/Website/webpack.production.config.js	/^module.exports = {$/;"	p	language:JavaScript	class:module.exports
+entry	/mnt/d/data/workspace/tmpdir/Website/webpack.config.js	/^  devtool: 'eval-source-map',$/;"	p	language:JavaScript	class:module.exports
+entry	/mnt/d/data/workspace/tmpdir/Website/webpack.production.config.js	/^  devtool: 'eval-source-map',$/;"	p	language:JavaScript	class:module.exports
+extends	/mnt/d/data/workspace/tmpdir/Website/.eslintrc.js	/^  'parser': 'babel-eslint',$/;"	p	language:JavaScript	class:module.exports
+ExtractTextPlugin	/mnt/d/data/workspace/tmpdir/Website/webpack.production.config.js	/^var ExtractTextPlugin = require('extract-text-webpack-plugin');$/;"	v	language:JavaScript
+HtmlWebpackPlugin	/mnt/d/data/workspace/tmpdir/Website/webpack.config.js	/^var HtmlWebpackPlugin = require('html-webpack-plugin');$/;"	v	language:JavaScript
+HtmlWebpackPlugin	/mnt/d/data/workspace/tmpdir/Website/webpack.production.config.js	/^var HtmlWebpackPlugin = require('html-webpack-plugin');$/;"	v	language:JavaScript
+parser	/mnt/d/data/workspace/tmpdir/Website/.eslintrc.js	/^module.exports = {$/;"	p	language:JavaScript	class:module.exports
+path	/mnt/d/data/workspace/tmpdir/Website/webpack.config.js	/^var path = require('path');$/;"	v	language:JavaScript
+path	/mnt/d/data/workspace/tmpdir/Website/webpack.production.config.js	/^var path = require('path');$/;"	v	language:JavaScript
+StatsPlugin	/mnt/d/data/workspace/tmpdir/Website/webpack.production.config.js	/^var StatsPlugin = require('stats-webpack-plugin');$/;"	v	language:JavaScript
+webpack	/mnt/d/data/workspace/tmpdir/Website/webpack.config.js	/^var webpack = require('webpack');$/;"	v	language:JavaScript
+webpack	/mnt/d/data/workspace/tmpdir/Website/webpack.production.config.js	/^var webpack = require('webpack');$/;"	v	language:JavaScript

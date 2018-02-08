@@ -2,19 +2,16 @@ import React from 'react';
 
 class Copyright extends React.Component {
   render() {
-    const html = (
+    const releaseYear = '2017';
+    const owner = 'Kihyeon Lee.';
+    const ele = (
       <span>
         <i className="fa fa-copyright" />
-        {this.props.releaseYear} {this.props.owner}
+        {releaseYear} {owner}
       </span>
     );
-    return html;
+    return ele;
   }
 }
-
-Copyright.defaultProps = {
-  releaseYear: '2017',
-  owner: 'Kihyeon Lee.',
-};
 
 export default Copyright;

@@ -1,6 +1,6 @@
 import React from 'react';
-import Footer from './components/Footer/Footer.jsx';
-import Body from './containers/Body/Body.jsx';
+import Footer from './components/Footer/Footer';
+import Body from './containers/Body/Body';
 
 class App extends React.Component {
   render() {

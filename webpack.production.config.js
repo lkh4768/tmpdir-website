@@ -7,6 +7,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var StatsPlugin = require('stats-webpack-plugin');
 
 module.exports = {
+  devtool: 'eval-source-map',
   entry: [
     path.join(__dirname, '/src/public/index.js')
   ],
@@ -17,10 +18,6 @@ module.exports = {
   },
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
-    new HtmlWebpackPlugin({
-      template: 'src/public/pages/index.ejs',
-      filename: 'index.html'
-    }),
     new ExtractTextPlugin('[name]-[hash].min.css'),
     new webpack.optimize.UglifyJsPlugin({
       compressor: {
@@ -48,24 +45,23 @@ module.exports = {
 					}
 				}
 			},
-			{
-				test: /\.jsx$/,
-				enforce: 'pre',
-				loader: 'eslint-loader',
-				exclude: /(node_modules|bower_components)/
-			},
 			{ 
 				test: /\.sass$/, 
 				loader: 'style!css!sass'
 			},
-			{
-				test: /\.jsx?$/,
+      {
+				test: /\.(js|jsx)$/,
 				loader: 'babel-loader',
-				exclude: /(node_modules|bower_components)/,
+				exclude: /node_modules/,
 				query: {
 					cacheDirectory: true,
 					presets: ['es2015', 'react']
 				}
+			},
+      {
+				test: /\.jsx?$/,
+				loader: ['eslint-loader', 'babel-loader'],
+				exclude: /bower_components/
 			},
 		]
   }
