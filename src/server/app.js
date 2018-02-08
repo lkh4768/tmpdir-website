@@ -8,5 +8,5 @@ app.use('/', Express.static(__dirname + '/../public'));
 app.use('/', IndexRoute);
 
 const server = app.listen(port, ()=>{
-	console.log('Express listening on port', port);
+  console.log('Express listening on port', port);
 });
