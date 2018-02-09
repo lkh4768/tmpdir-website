@@ -8,19 +8,25 @@ module.exports = {
   ],
   'rules': {
     'react/require-default-props': [
-      2,
+      'error',
       { 
         'forbidDefaultForRequired': true 
       }
     ],
     'react/jsx-filename-extension': [
-      2,
+      'error',
       {
         'extensions': [
           '.js',
           '.jsx'
         ]
       } 
+    ],
+    'import/no-extraneous-dependencies': [
+      'error',
+      {
+        'devDependencies': true
+      }
     ]
   },
   'plugins': [
