@@ -33,6 +33,26 @@ module.exports = {
   },
 	module: {
 		rules:[
+      {
+        enforce: 'pre',
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        loader: 'eslint-loader',
+        options: {
+          configFile: path.join(__dirname, ".eslintrc-jsx.js")
+        }
+      },
+      /*
+      {
+        enforce: 'pre',
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'eslint-loader',
+        options: {
+          configFile: path.join(__dirname, ".eslintrc-es6.js")
+        }
+      },
+      */
 			{
 				test: /\.ejs$/,
 				loader: 'ejs-compiled-loader',
@@ -56,11 +76,6 @@ module.exports = {
 					presets: ['es2015', 'react']
 				}
       },
-      {
-        test: /\.jsx$/,
-        exclude: /node_modules/,
-        loader: ['eslint-loader']
-      }
-		]
+    ]
 	}
 };

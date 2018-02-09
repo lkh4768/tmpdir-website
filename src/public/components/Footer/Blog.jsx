@@ -1,11 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Blog extends React.Component {
   render() {
-    const title = 'blog: ';
     const ele = (
       <span>
-        {title}
+        {this.props.title}
         <a href={this.props.blogUrl}>
           {this.props.blogUrl}
         </a>
@@ -16,8 +16,13 @@ class Blog extends React.Component {
   }
 }
 
+Blog.defaultProps = {
+  title: 'blog: ',
+};
+
 Blog.propTypes = {
-  blogUrl: React.PropTypes.string.isRequired,
+  title: PropTypes.string,
+  blogUrl: PropTypes.string.isRequired,
 };
 
 export default Blog;
