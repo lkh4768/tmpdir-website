@@ -1,17 +1,26 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 class Copyright extends React.Component {
   render() {
-    const releaseYear = '2017';
-    const owner = 'Kihyeon Lee.';
     const ele = (
       <span>
         <i className="fa fa-copyright" />
-        {releaseYear} {owner}
+        {this.props.releaseYear} {this.props.owner}
       </span>
     );
     return ele;
   }
 }
+
+Copyright.defaultProps = {
+  releaseYear: 2017,
+  owner: 'Kihyeon Lee.',
+};
+
+Copyright.propTypes = {
+  releaseYear: PropTypes.number,
+  owner: PropTypes.string,
+};
 
 export default Copyright;

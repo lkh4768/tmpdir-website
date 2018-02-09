@@ -1,13 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Mail extends React.Component {
   render() {
-    const title = 'Mail';
-    const mailToSchema = 'mailto:';
     const ele = (
       <span>
-        {title}
-        <a href={mailToSchema + this.props.mailAddr}>
+        {this.props.title}
+        <a href={this.props.mailToSchema + this.props.mailAddr}>
           {this.props.mailAddr}
         </a>
       </span>
@@ -16,8 +15,15 @@ class Mail extends React.Component {
   }
 }
 
+Mail.defaultProps = {
+  title: 'Mail',
+  mailToSchema: 'mailto:',
+};
+
 Mail.propTypes = {
-  mailAddr: React.PropTypes.string.isRequired,
+  title: PropTypes.string,
+  mailToSchema: PropTypes.string,
+  mailAddr: PropTypes.string.isRequired,
 };
 
 export default Mail;

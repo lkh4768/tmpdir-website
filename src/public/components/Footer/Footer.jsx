@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import Copyright from './Copyright';
 import Mail from './Mail';
@@ -17,8 +18,8 @@ class Footer extends React.Component {
 }
 
 Footer.propTypes = {
-  mailAddr: React.PropTypes.string.isRequired,
-  blogUrl: React.PropTypes.string.isRequired,
+  mailAddr: PropTypes.string.isRequired,
+  blogUrl: PropTypes.string.isRequired,
 };
 
 export default Footer;
