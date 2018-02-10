@@ -4,14 +4,29 @@ import Body from './containers/Body/Body';
 
 class App extends React.Component {
   render() {
-    const html = (
+    const ownarEmail = 'lkh5510@gmail.com';
+    const copyright = {
+      icon: <i className="fa fa-copyright" />,
+      text: '2017 Kihyeon Lee.',
+    };
+    const email = {
+      title: 'Mail: ',
+      text: ownarEmail,
+      url: ['mailto:', ownarEmail].join(''),
+    };
+    const blog = {
+      title: 'Blog: ',
+      text: 'http://sw-warehouse.xyz',
+      url: 'http://sw-warehouse.xyz',
+    };
+    const ele = (
       <React.Fragment>
         <Body />
-        <Footer mailAddr="lkh5510@gmail.com" blogUrl="http://sw-warehouse.xyz" />
+        <Footer labels={[copyright]} links={[email, blog]} />
       </React.Fragment>
     );
 
-    return html;
+    return ele;
   }
 }
 
