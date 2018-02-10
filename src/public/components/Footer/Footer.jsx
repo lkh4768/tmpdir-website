@@ -1,25 +1,50 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import Copyright from './Copyright';
-import Mail from './Mail';
-import Blog from './Blog';
+import FooterLabel from './FooterLabel';
+import FooterLink from './FooterLink';
 
 class Footer extends React.Component {
   render() {
-    const node = (
-      <React.Fragment>
-        <Copyright />
-        <Mail mailAddr={this.props.mailAddr} />
-        <Blog blogUrl={this.props.blogUrl} />
-      </React.Fragment>
+    const footerLinks = this.props.links.map(link => (
+      <FooterLink
+        key={link.title}
+        title={link.title}
+        url={link.url}
+        text={link.text}
+      />
+    ));
+    const footerLabels = this.props.labels.map(label => (
+      <FooterLabel
+        key={label.text}
+        icon={label.icon}
+        text={label.text}
+      />
+    ));
+    const ele = (
+      <footer>
+        {footerLabels}
+        {footerLinks}
+      </footer>
     );
-    return node;
+    return ele;
   }
 }
 
 Footer.propTypes = {
-  mailAddr: PropTypes.string.isRequired,
-  blogUrl: PropTypes.string.isRequired,
+  links: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
+  })),
+  labels: PropTypes.arrayOf(PropTypes.shape({
+    icon: PropTypes.node,
+    text: PropTypes.string.isRequired,
+  })),
+};
+
+Footer.defaultProps = {
+  links: null,
+  labels: null,
 };
 
 export default Footer;
