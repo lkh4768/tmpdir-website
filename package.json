@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "",
-    "start": "node src/server/app",
-    "build": "rm -rf build && cross-env NODE_ENV=production webpack --config ./webpack.production.config.js --progress --profile --colors",
-    "dev": "webpack-dev-server"
+    "prd": "node src/server/app",
+    "build": "rm -rf build && cross-env NODE_ENV=production webpack --config ./webpack.config.prd.js --progress --profile --colors",
+    "dev": "webpack-dev-server --config ./webpack.config.dev.js"
   },
   "repository": {
     "type": "git",
@@ -24,6 +24,7 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "cross-env": "^5.1.3",
+    "css-loader": "^0.28.9",
     "ejs-compiled-loader": "^1.1.0",
     "eslint": "^4.16.0",
     "eslint-config-airbnb": "^16.1.0",

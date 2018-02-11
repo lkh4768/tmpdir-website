@@ -1,5 +1,5 @@
 import React from 'react';
-import Footer from './components/Footer/Footer';
+import Footer from './containers/Footer/Footer';
 import Body from './containers/Body/Body';
 
 class App extends React.Component {

@@ -1,69 +1,68 @@
 properties([gitLabConnection('gitlab')])
 
 node {
-	try {
-        notifyBuild('STARTED')
+  try {
+    notifyBuild('STARTED')
 
-		stage "Init"
-		gitlabCommitStatus("Init") {
-			STAGE = "Init"
-			checkout scm
-			DEVELOP_BRANCH = "develop"
-			MASTER_BRANCH = "master"
-			sh "chmod +x gradlew"
-			PACKAGE_NAME = sh script: "./gradlew properties | grep name | awk '{print \$2}' | tr -d '\\n'", returnStdout: true
-			PACKAGE_NAME_LOW = sh script: "./gradlew properties | grep name | awk '{print \$2}' | tr -d '\\n' | sed -e 's/./\\L\\0/g'", returnStdout: true
-			PACKAGE_VERSION = sh script: "./gradlew properties | grep version | awk '{print \$2}' | tr -d '\\n'", returnStdout: true 
-			IMAGE_NAME = "tmpdir-${PACKAGE_NAME_LOW}-${PACKAGE_VERSION}"
-			REGISTRY_HOST = "dev.sw-warehouse.xyz:1450"
-			REGISTRY_USER = "root"
-			REGISTRY_PASSWORD = "10WESfpwltmxmfl"
-			if(env.BRANCH_NAME == DEVELOP_BRANCH) ENV_PHASE = "stage"
-			else ENV_PHASE = "prd"
-		}
+    stage "Init"
+    gitlabCommitStatus("Init") {
+      STAGE = "Init"
+      checkout scm
+      DEVELOP_BRANCH = "develop"
+      MASTER_BRANCH = "master"
+      sh "chmod +x gradlew"
+      PACKAGE_NAME = sh script: "./gradlew properties | grep name | awk '{print \$2}' | tr -d '\\n'", returnStdout: true
+      PACKAGE_NAME_LOW = sh script: "./gradlew properties | grep name | awk '{print \$2}' | tr -d '\\n' | sed -e 's/./\\L\\0/g'", returnStdout: true
+      PACKAGE_VERSION = sh script: "./gradlew properties | grep version | awk '{print \$2}' | tr -d '\\n'", returnStdout: true 
+      IMAGE_NAME = "tmpdir-${PACKAGE_NAME_LOW}-${PACKAGE_VERSION}"
+      REGISTRY_HOST = "dev.sw-warehouse.xyz:1450"
+      REGISTRY_USER = "root"
+      REGISTRY_PASSWORD = "10WESfpwltmxmfl"
+      if(env.BRANCH_NAME == DEVELOP_BRANCH) ENV_PHASE = "stage"
+      else ENV_PHASE = "prd"
+    }
 
-		if(env.BRANCH_NAME == DEVELOP_BRANCH){
-			stage "Publish image"
-			gitlabCommitStatus("Publish image") {
-				STAGE = "Publish image"
-				sh "./gradlew build"
-				withDockerRegistry([credentialsId: 'registry', url: 'https://dev.sw-warehouse.xyz:1450']) {
-					def image = docker.build("$REGISTRY_HOST/$IMAGE_NAME", "--build-arg PACKAGE_NAME=${PACKAGE_NAME} --build-arg PACKAGE_VERSION=${PACKAGE_VERSION} .")
-					image.push()
-				}
-			}
+    if(env.BRANCH_NAME == DEVELOP_BRANCH){
+      stage "Publish image"
+      gitlabCommitStatus("Publish image") {
+        STAGE = "Publish image"
+        sh "./gradlew build"
+        withDockerRegistry([credentialsId: 'registry', url: 'https://dev.sw-warehouse.xyz:1450']) {
+          def image = docker.build("$REGISTRY_HOST/$IMAGE_NAME", "--build-arg PACKAGE_NAME=${PACKAGE_NAME} --build-arg PACKAGE_VERSION=${PACKAGE_VERSION} .")
+          image.push()
+        }
+      }
 
-			stage "Deploy on stage"
-			gitlabCommitStatus("Deploy on stage") {
-				STAGE = "Deploy on stage"
-				sh "sshpass -p '0)8*WESehzj' ssh -T -oStrictHostKeyChecking=no -p 22000 docker@dev.sw-warehouse.xyz \"docker rm -f ${IMAGE_NAME}-${ENV_PHASE} 2> /dev/null | echo ok && docker login -u ${REGISTRY_USER} -p ${REGISTRY_PASSWORD} ${REGISTRY_HOST} && docker pull ${REGISTRY_HOST}/${IMAGE_NAME} && docker run -d --network=tmpdir-${ENV_PHASE}-net -p 6443:443 -e ENV_PHASE='${ENV_PHASE}' -v /app/tmpdir-website-${ENV_PHASE}/config:/app/config -v /etc/letsencrypt:/app/certs -v /applog/tmpdir-website-${ENV_PHASE}:/applog -v /db/tmpdir-${ENV_PHASE}/storage:/storage --name ${IMAGE_NAME}-${ENV_PHASE} ${REGISTRY_HOST}/${IMAGE_NAME}\""
-			}
+      stage "Deploy on stage"
+      gitlabCommitStatus("Deploy on stage") {
+        STAGE = "Deploy on stage"
+        sh "sshpass -p '0)8*WESehzj' ssh -T -oStrictHostKeyChecking=no -p 22000 docker@dev.sw-warehouse.xyz \"docker rm -f ${IMAGE_NAME}-${ENV_PHASE} 2> /dev/null | echo ok && docker login -u ${REGISTRY_USER} -p ${REGISTRY_PASSWORD} ${REGISTRY_HOST} && docker pull ${REGISTRY_HOST}/${IMAGE_NAME} && docker run -d --network=tmpdir-${ENV_PHASE}-net -p 6443:443 -e ENV_PHASE='${ENV_PHASE}' -v /app/tmpdir-website-${ENV_PHASE}/config:/app/config -v /etc/letsencrypt:/app/certs -v /applog/tmpdir-website-${ENV_PHASE}:/applog -v /db/tmpdir-${ENV_PHASE}/storage:/storage --name ${IMAGE_NAME}-${ENV_PHASE} ${REGISTRY_HOST}/${IMAGE_NAME}\""
+      }
 
-			stage "UI testing"
-			gitlabCommitStatus("UI testing") {
-				STAGE = "UI testing"
-			}
+      stage "UI testing"
+      gitlabCommitStatus("UI testing") {
+        STAGE = "UI testing"
+      }
 
-			stage "Performance testing"
-			gitlabCommitStatus("Performance testing") {
-				STAGE = "Performance testing"
-			}
-			
-		}
+      stage "Performance testing"
+      gitlabCommitStatus("Performance testing") {
+        STAGE = "Performance testing"
+      }
+    }
 
-		if(env.BRANCH_NAME == MASTER_BRANCH){
-			stage "Deploy on product"
-			gitlabCommitStatus("Deploy on product") {
-				STAGE = "Deploy on product"
-				sh "sshpass -p '0)8*WESehzj' ssh -T -oStrictHostKeyChecking=no -p 22000 docker@dev.sw-warehouse.xyz \"docker rm -f ${IMAGE_NAME}-${ENV_PHASE} 2> /dev/null | echo ok && docker login -u ${REGISTRY_USER} -p ${REGISTRY_PASSWORD} ${REGISTRY_HOST} && docker pull ${REGISTRY_HOST}/${IMAGE_NAME} && docker run -d --network=tmpdir-${ENV_PHASE}-net -p 443:443 -e ENV_PHASE='${ENV_PHASE}' -v /app/tmpdir-website-${ENV_PHASE}/config:/app/config -v /etc/letsencrypt:/app/certs -v /applog/tmpdir-website-${ENV_PHASE}:/applog -v /db/tmpdir-${ENV_PHASE}/storage:/storage --name ${IMAGE_NAME}-${ENV_PHASE} ${REGISTRY_HOST}/${IMAGE_NAME}\""
-			}
-		}
-	} catch (e) {
-		currentBuild.result = "FAILED"
-		throw e
-	} finally {
-		notifyBuild(currentBuild.result, STAGE)
-	}
+    if(env.BRANCH_NAME == MASTER_BRANCH){
+      stage "Deploy on product"
+      gitlabCommitStatus("Deploy on product") {
+        STAGE = "Deploy on product"
+        sh "sshpass -p '0)8*WESehzj' ssh -T -oStrictHostKeyChecking=no -p 22000 docker@dev.sw-warehouse.xyz \"docker rm -f ${IMAGE_NAME}-${ENV_PHASE} 2> /dev/null | echo ok && docker login -u ${REGISTRY_USER} -p ${REGISTRY_PASSWORD} ${REGISTRY_HOST} && docker pull ${REGISTRY_HOST}/${IMAGE_NAME} && docker run -d --network=tmpdir-${ENV_PHASE}-net -p 443:443 -e ENV_PHASE='${ENV_PHASE}' -v /app/tmpdir-website-${ENV_PHASE}/config:/app/config -v /etc/letsencrypt:/app/certs -v /applog/tmpdir-website-${ENV_PHASE}:/applog -v /db/tmpdir-${ENV_PHASE}/storage:/storage --name ${IMAGE_NAME}-${ENV_PHASE} ${REGISTRY_HOST}/${IMAGE_NAME}\""
+      }
+    }
+  } catch (e) {
+    currentBuild.result = "FAILED"
+      throw e
+  } finally {
+    notifyBuild(currentBuild.result, STAGE)
+  }
 }
 
 def notifyBuild(String buildStatus = 'STARTED', String stage = '') {
@@ -77,13 +76,13 @@ def notifyBuild(String buildStatus = 'STARTED', String stage = '') {
 
   if (buildStatus == 'STARTED') {
     color = 'YELLOW'
-    colorCode = '#FFFF00'
+      colorCode = '#FFFF00'
   } else if (buildStatus == 'SUCCESSFUL') {
     color = 'GREEN'
-    colorCode = '#00FF00'
+      colorCode = '#00FF00'
   } else {
     color = 'RED'
-    colorCode = '#FF0000'
+      colorCode = '#FF0000'
   }
 
   slackSend (color: colorCode, message: summary)
