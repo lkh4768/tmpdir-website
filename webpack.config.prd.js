@@ -9,7 +9,8 @@ var StatsPlugin = require('stats-webpack-plugin');
 module.exports = {
   devtool: 'eval-source-map',
   entry: [
-    path.join(__dirname, '/src/public/index.js')
+		path.join(__dirname, '/src/public/index.js'),
+		path.join(__dirname, '/src/public/index.scss')
   ],
   output: {
     path: path.join(__dirname, '/build/'),
@@ -18,7 +19,6 @@ module.exports = {
   },
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
-    new ExtractTextPlugin('[name]-[hash].min.css'),
     new webpack.optimize.UglifyJsPlugin({
       compressor: {
         warnings: false,
@@ -31,10 +31,28 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+    }),
+    new ExtractTextPlugin({
+      filename: 'build/[name]-[hash].min..css',
+      allChunks: true
     })
   ],
+  resolve: {
+    extensions: [
+      '.js','.jsx'
+    ]
+  },
   module: {
 		rules:[
+      {
+        enforce: 'pre',
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        loader: 'eslint-loader',
+        options: {
+          configFile: path.join(__dirname, ".eslintrc-jsx.js")
+        }
+      },
 			{
 				test: /\.ejs$/,
 				loader: 'ejs-compiled-loader',
@@ -45,24 +63,27 @@ module.exports = {
 					}
 				}
 			},
-			{ 
-				test: /\.sass$/, 
-				loader: 'style!css!sass'
-			},
       {
-				test: /\.(js|jsx)$/,
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract({
+          use: [ 'css-loader?importLoaders=1' ]
+        }),
+      },
+      {
+        test: /\.(sass|scss)$/,
+        loader: ExtractTextPlugin.extract({
+          use: ['css-loader', 'sass-loader']
+        })
+      },
+      {
+        test: /\.jsx?$/,
+				exclude: /(node_modules|bower_components)/,
 				loader: 'babel-loader',
-				exclude: /node_modules/,
 				query: {
 					cacheDirectory: true,
 					presets: ['es2015', 'react']
 				}
-			},
-      {
-				test: /\.jsx?$/,
-				loader: ['eslint-loader', 'babel-loader'],
-				exclude: /bower_components/
-			},
+      },
 		]
   }
 };

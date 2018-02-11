@@ -3,18 +3,20 @@
 var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   devtool: 'eval-source-map',
 	entry: [
-		path.join(__dirname, '/src/public/index.js')
+		path.join(__dirname, '/src/public/index.js'),
+		path.join(__dirname, '/src/public/index.scss')
 	],
 	output: {
 		path: path.join(__dirname + '/build/'),
-		filename: '[name].js',
+		filename: '[name]-[hash].min.js',
 		publicPath: '/'
 	},
-	plugins: [
+  plugins: [
     new HtmlWebpackPlugin({
       template: 'src/public/pages/index.ejs',
       filename: 'index.html'
@@ -22,8 +24,18 @@ module.exports = {
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      compressor: {
+        warnings: false,
+        screw_ie8: true
+      }
+    }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development')
+    }),
+    new ExtractTextPlugin({
+      filename: 'build/[name]-[hash].min..css',
+      allChunks: true
     })
   ],
   resolve: {
@@ -59,16 +71,24 @@ module.exports = {
 				options: {
 					htmlmin: true,
 					htmlminOptions:{
-						removeCommnets: true
-					}
-				}
-			},
-			{ 
-				test: /\.sass$/, 
-				loader: 'style!css!sass'
-			},
-			{
-				test: /\.jsx?$/,
+            removeCommnets: true
+          }
+        }
+      },
+      {
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract({
+          use: [ 'css-loader?importLoaders=1' ]
+        }),
+      },
+      {
+        test: /\.(sass|scss)$/,
+        loader: ExtractTextPlugin.extract({
+          use: ['css-loader', 'sass-loader']
+        })
+      },
+      {
+        test: /\.jsx?$/,
 				exclude: /(node_modules|bower_components)/,
 				loader: 'babel-loader',
 				query: {
