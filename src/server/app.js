@@ -4,7 +4,7 @@ import IndexRoute from '.routes/index';
 
 const app = Express(), port = 3000;
 
-app.use('/', Express.static(__dirname + '/../public'));
+app.use('/', Express.static(__dirname + '/../../build'));
 app.use('/', IndexRoute);
 
 const server = app.listen(port, ()=>{

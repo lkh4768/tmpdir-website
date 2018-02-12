@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "",
-    "prd": "node src/server/app",
-    "build": "rm -rf build && cross-env NODE_ENV=production webpack --config ./webpack.config.prd.js --progress --profile --colors",
-    "dev": "webpack-dev-server --config ./webpack.config.dev.js"
+    "start": "NODE_ENV=production node src/server/app",
+    "clean": "rm -rf build",
+    "build": "cross-env NODE_ENV=production webpack --config ./webpack.config.prd.js --progress --profile --colors",
+    "dev": "NODE_ENV=development node src/server/app"
   },
   "repository": {
     "type": "git",

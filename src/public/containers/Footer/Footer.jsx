@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import FooterLabel from '../../components/Footer/FooterLabel';
-import FooterLink from '../../components/Footer/FooterLink';
+import FooterLabel from '../../components/Footer/Label';
+import FooterLink from '../../components/Footer/Link';
 
 class Footer extends React.Component {
   render() {

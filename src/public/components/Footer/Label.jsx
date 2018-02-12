@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-class FooterLabel extends React.Component {
+class Label extends React.Component {
   render() {
     const ele = (
       <span>
@@ -14,9 +14,9 @@ class FooterLabel extends React.Component {
   }
 }
 
-FooterLabel.propTypes = {
+Label.propTypes = {
   text: PropTypes.string.isRequired,
   icon: PropTypes.element.isRequired,
 };
 
-export default FooterLabel;
+export default Label;

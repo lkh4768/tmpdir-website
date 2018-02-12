@@ -18,6 +18,10 @@ module.exports = {
     publicPath: '/'
   },
   plugins: [
+    new HtmlWebpackPlugin({
+      template: 'src/public/pages/index.ejs',
+      filename: 'index.html'
+    }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compressor: {
@@ -33,7 +37,7 @@ module.exports = {
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
     }),
     new ExtractTextPlugin({
-      filename: 'build/[name]-[hash].min..css',
+      filename: '[name]-[hash].min.css',
       allChunks: true
     })
   ],
