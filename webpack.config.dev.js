@@ -9,21 +9,34 @@ module.exports = {
   devtool: 'eval-source-map',
 	entry: [
 		path.join(__dirname, '/src/public/index.js'),
-		path.join(__dirname, '/src/public/index.scss')
+		path.join(__dirname, '/src/public/index.scss'),
+    path.join(__dirname, '/webpack-dev-server/client?http://0.0.0.0:3001'),
+    path.join(__dirname, '/webpack/hot/only-dev-server'),
 	],
 	output: {
-		path: path.join(__dirname + '/build/'),
-		filename: '[name]-[hash].min.js',
-		publicPath: '/'
-	},
+    path: '/',
+    filename: '[name]-[hash].min.js',
+  },
+  devServer: {
+    hot: true,
+    filename: '[name]-[hash].min.js',
+    publicPath: '/',
+    historyApiFallback: true,
+    contentBase: './public',
+    proxy: {
+      "**": "http://localhost:3000"
+    }
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: 'src/public/pages/index.ejs',
       filename: 'index.html'
     }),
+    /* for hmr */
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
+    /* //for hmr */
     new webpack.optimize.UglifyJsPlugin({
       compressor: {
         warnings: false,
@@ -89,11 +102,12 @@ module.exports = {
       },
       {
         test: /\.jsx?$/,
-				exclude: /(node_modules|bower_components)/,
+				exclude: /node_modules/,
 				loader: 'babel-loader',
 				query: {
 					cacheDirectory: true,
-					presets: ['es2015', 'react']
+					presets: ['es2015', 'react'],
+          plugins: ["react-hot-loader/babel"]
 				}
       },
     ]

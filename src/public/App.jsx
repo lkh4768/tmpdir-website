@@ -1,31 +1,32 @@
 import React from 'react';
-import Footer from './containers/Footer/Footer';
 import Body from './containers/Body/Body';
+import Footer from './containers/Footer/Footer';
+import FooterLabelEntity from './entity/Footer/Label';
+import FooterLinkEntity from './entity/Footer/Link';
 
 class App extends React.Component {
+  static makeFooterLabels() {
+    return [
+      new FooterLabelEntity('2017 Kihyeon Lee.', <i className="fa fa-copyright" />),
+    ];
+  }
+  static makeFooterLinks() {
+    const emailAddr = 'lkh5510@gmail.com';
+    const blogUrl = 'http://sw-warehouse.xyz';
+    return [
+      new FooterLinkEntity('Mail: ', emailAddr, ['mailto:', emailAddr].join('')),
+      new FooterLinkEntity('Blog: ', blogUrl, blogUrl),
+    ];
+  }
   render() {
-    const ownarEmail = 'lkh5510@gmail.com';
-    const copyright = {
-      icon: <i className="fa fa-copyright" />,
-      text: '2017 Kihyeon Lee.',
-    };
-    const email = {
-      title: 'Mail: ',
-      text: ownarEmail,
-      url: ['mailto:', ownarEmail].join(''),
-    };
-    const blog = {
-      title: 'Blog: ',
-      text: 'http://sw-warehouse.xyz',
-      url: 'http://sw-warehouse.xyz',
-    };
+    const footerLabels = App.makeFooterLabels();
+    const footerLinks = App.makeFooterLinks();
     const ele = (
       <React.Fragment>
         <Body />
-        <Footer labels={[copyright]} links={[email, blog]} />
+        <Footer labels={footerLabels} links={footerLinks} />
       </React.Fragment>
     );
-
     return ele;
   }
 }
