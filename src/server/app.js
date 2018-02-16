@@ -5,7 +5,7 @@ import webpackState from '../../build/webpack.stats.json';
 import devConfig from './config/Config.dev';
 import prdConfig from './config/Config.prd';
 
-import serverSideRender from './modules/server-side-render';
+import render from './modules/render/Render';
 
 const app = express();
 let Config;
@@ -34,7 +34,7 @@ if (process.env.NODE_ENV !== 'prd') {
 
 app.use('/', express.static(path.resolve(__dirname, '../../build')));
 
-serverSideRender.filenames = webpackState.assetsByChunkName.main;
-app.get('/', (req, res) => res.end(serverSideRender.render()));
+render.filenames = webpackState.assetsByChunkName.main;
+app.get('/', (req, res) => res.end(render.render()));
 
 app.listen(Config.server.port);
