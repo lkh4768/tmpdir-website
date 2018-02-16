@@ -1,6 +1,6 @@
 const Config = {
   server: {
-    port: 6001,
+    port: 3001,
   },
 };
 
