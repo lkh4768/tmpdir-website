@@ -7,7 +7,6 @@ const config = {
   name: 'client',
   devtool: 'eval-source-map',
   entry: [
-    'react-hot-loader/patch',
     'webpack-hot-middleware/client',
     './src/public/index.js',
     './src/public/index.scss',
