@@ -4,11 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "",
-    "start": "NODE_ENV=production node src/server/app",
+    "start": "NODE_ENV=prd node build/app.js",
     "clean": "rm -rf build",
-    "build": "cross-env NODE_ENV=production webpack --config ./webpack.config.prd.js --progress --profile --colors",
-    "dev": "NODE_ENV=development node src/server/app"
+    "start:dev": "npm run clean && webpack --config webpack.config.dev.js --progress --profile --colors && webpack --config webpack.config.server.js --progress --profile --colors && NODE_ENV=dev node ./build/app.js",
+    "start:prd": "npm run clean && webpack --config webpack.config.client.js --progress --profile --colors && webpack --config webpack.config.server.js --progress --profile --colors && NODE_ENV=prd node ./build/app.js"
   },
   "repository": {
     "type": "git",
@@ -41,10 +40,7 @@
     "react-popper": "^0.8.2",
     "sass-loader": "^6.0.6",
     "stats-webpack-plugin": "^0.6.2",
-    "webpack": "^3.10.0",
-    "webpack-dev-middleware": "^2.0.4",
-    "webpack-dev-server": "^2.11.1",
-    "webpack-hot-middleware": "^2.21.0"
+    "webpack-node-externals": "^1.6.0"
   },
   "dependencies": {
     "express": "^4.16.2",
@@ -52,6 +48,10 @@
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",
     "reactstrap": "^5.0.0-alpha.4",
-    "redux": "^3.7.2"
+    "redux": "^3.7.2",
+    "webpack": "^3.10.0",
+    "webpack-dev-middleware": "^2.0.5",
+    "webpack-hot-middleware": "^2.21.0",
+    "webpack-hot-server-middleware": "^0.4.0"
   }
 }

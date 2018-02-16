@@ -6,7 +6,7 @@ class Link extends React.Component {
     const ele = (
       <span>
         {this.props.title}
-        <a href={this.props.url}>
+        <a href={this.props.url} target="__blank">
           {this.props.text}
         </a>
         {' '}

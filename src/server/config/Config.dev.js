@@ -1,7 +1,7 @@
 const Config = {
   server: {
-    port: 3001
-  }
+    port: 6001,
+  },
 };
 
 export default Config;
