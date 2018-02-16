@@ -7,14 +7,12 @@ const config = {
   name: 'client',
   devtool: 'eval-source-map',
   entry: [
-    'react-hot-loader/patch',
-    'webpack-hot-middleware/client',
     './src/public/index.js',
     './src/public/index.scss',
   ],
   output: {
-    path: path.resolve(__dirname, 'build/'),
-    filename: '[name].min.js',
+    path: path.join(__dirname, 'build/'),
+    filename: '[name]-[hash].min.js',
     publicPath: '/',
   },
   target: 'web',
@@ -71,12 +69,9 @@ const config = {
       modules: false,
     }),
     new ExtractTextPlugin({
-      filename: '[name].min.css',
+      filename: '[name]-[hash].min.css',
       allChunks: true,
     }),
-    new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
   ],
 };
 
