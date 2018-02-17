@@ -42,6 +42,14 @@ const config = {
           presets: ['es2015'],
         },
       },
+      {
+        test: /\.(png|ico)$/,
+        loader: 'file-loader',
+        options: {
+          name: '[name]-[hash].[ext]',
+          outputPath: 'images/',
+        },
+      },
     ],
   },
 };

@@ -55,6 +55,14 @@ const config = {
         exclude: /node_modules/,
         loader: 'babel-loader',
       },
+      {
+        test: /\.(png|ico)$/,
+        loader: 'file-loader',
+        options: {
+          outputPath: 'images/',
+          name: '[name].[ext]?[hash]',
+        },
+      },
     ],
   },
   plugins: [
