@@ -53,7 +53,10 @@ const config = {
           use: [
             {
               loader: 'css-loader',
-              options: { importLoaders: 1 },
+              options: {
+                importLoaders: 1,
+                minimize: true,
+              },
             },
             {
               loader: 'postcss-loader',
