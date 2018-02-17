@@ -1,8 +1,8 @@
 import React from 'react';
 import Body from './containers/Body/Body';
 import Footer from './containers/Footer/Footer';
-import FooterLabelEntity from './entity/Footer/Label';
-import FooterLinkEntity from './entity/Footer/Link';
+import FooterLabelEntity from './entities/Footer/Label';
+import FooterLinkEntity from './entities/Footer/Link';
 
 class App extends React.Component {
   static makeFooterLabels() {

@@ -21,10 +21,10 @@ class Footer extends React.Component {
       />
     ));
     const ele = (
-      <footer>
+      <div className="footer">
         {footerLabels}
         {footerLinks}
-      </footer>
+      </div>
     );
     return ele;
   }

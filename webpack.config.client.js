@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const StatsPlugin = require('stats-webpack-plugin');
+const autoprefixer = require('autoprefixer');
 
 const config = {
   name: 'client',
@@ -34,26 +35,34 @@ const config = {
         },
       },
       {
+        enforce: 'pre',
         test: /\.(sass|scss)$/,
-        loader: ExtractTextPlugin.extract({
-          use: [
-            'css-loader',
-            'sass-loader',
-          ],
-        }),
-      },
-      {
-        test: /\.css$/,
-        loader: ExtractTextPlugin.extract({
-          use: [
-            'css-loader?importLoaders=1',
-          ],
-        }),
+        exclude: /node_modules/,
+        loader: 'sasslint-loader',
       },
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
+      },
+      {
+        test: /\.(sass|scss)$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              options: { importLoaders: 1 },
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                plugins: () => [autoprefixer()],
+              },
+            },
+            'sass-loader',
+          ],
+        }),
       },
       {
         test: /\.(png|ico)$/,
