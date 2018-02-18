@@ -1,0 +1,19 @@
+@import '../../utils/mixin.scss';
+
+@import '../../components/Title/Name';
+@import '../../components/Title/Version';
+
+.title {
+  [class*='__']{
+    @include padding-between(8)
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+
+    font-family: 'Russo One', sans-serif;
+  }
+}

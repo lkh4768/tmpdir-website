@@ -1,0 +1,4 @@
+@mixin padding-between($n){
+  padding-left: ($n + 0px);
+  padding-right: ($n + 0px);
+}
