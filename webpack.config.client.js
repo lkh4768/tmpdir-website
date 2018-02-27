@@ -81,10 +81,7 @@ const config = {
         screw_ie8: true,
       },
     }),
-    new StatsPlugin('webpack.stats.json', {
-      source: false,
-      modules: false,
-    }),
+    new ManifestPlugin(),
     new ExtractTextPlugin({
       filename: '[name]-[hash].min.css',
       allChunks: true,
