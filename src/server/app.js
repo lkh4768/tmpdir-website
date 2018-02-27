@@ -1,7 +1,7 @@
 import express from 'express';
 import path from 'path';
 
-import webpackState from '../../build/webpack.stats.json';
+import manifest from '../../build/manifest.json';
 import devConfig from './config/Config.dev';
 import prdConfig from './config/Config.prd';
 
@@ -34,7 +34,7 @@ if (process.env.NODE_ENV !== 'prd') {
 
 app.use('/', express.static(path.resolve(__dirname, '../../build')));
 
-render.filenames = webpackState.assetsByChunkName.main;
+render.filenames = Object.values(manifest).filter(filename => /\.(js|css)$/.exec(filename));
 app.get('/', (req, res) => res.end(render.render()));
 
 app.listen(Config.server.port);

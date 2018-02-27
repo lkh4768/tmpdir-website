@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const StatsPlugin = require('stats-webpack-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
 const autoprefixer = require('autoprefixer');
 
 const config = {
@@ -86,10 +86,7 @@ const config = {
         screw_ie8: true,
       },
     }),
-    new StatsPlugin('webpack.stats.json', {
-      source: false,
-      modules: false,
-    }),
+    new ManifestPlugin(),
     new ExtractTextPlugin({
       filename: '[name].min.css',
       allChunks: true,
