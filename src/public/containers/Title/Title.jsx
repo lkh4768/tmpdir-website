@@ -6,7 +6,7 @@ import Version from '../../components/Title/Version';
 
 class Title extends React.Component {
   render() {
-    const node = (
+    const ele = (
       <Row className="title">
         <Col>
           <a href="/">
@@ -18,7 +18,7 @@ class Title extends React.Component {
       </Row>
     );
 
-    return node;
+    return ele;
   }
 }
 
