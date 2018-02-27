@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Container } from 'reactstrap';
 import Title from '../Title/Title';
@@ -7,18 +8,23 @@ import Upload from '../Upload/Upload';
 
 class Body extends React.Component {
   render() {
-    const node = (
+    const ele = (
       <div className="body">
         <Container fluid>
           <Title />
-          <Sns />
+          <Sns title={this.props.tmpdirName} shareUrl={this.props.tmpdirUrl} />
           <FileExplorer />
           <Upload />
         </Container>
       </div>
     );
-    return node;
+    return ele;
   }
 }
+
+Body.propTypes = {
+  tmpdirName: PropTypes.string.isRequired,
+  tmpdirUrl: PropTypes.string.isRequired,
+};
 
 export default Body;

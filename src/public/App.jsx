@@ -21,9 +21,13 @@ class App extends React.Component {
   render() {
     const footerLabels = App.makeFooterLabels();
     const footerLinks = App.makeFooterLinks();
+    const tmpdir = {
+      name: 'tmpdir',
+      url: 'https://tmpdir.sw-warehouse.xyz',
+    };
     const ele = (
       <React.Fragment>
-        <Body />
+        <Body tmpdirName={tmpdir.name} shareUrl={tmpdir.url} />
         <Footer labels={footerLabels} links={footerLinks} />
       </React.Fragment>
     );

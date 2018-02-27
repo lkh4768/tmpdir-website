@@ -3,13 +3,13 @@ import { Row, Col } from 'reactstrap';
 
 class FileExplorer extends React.Component {
   render() {
-    const node = (
-      <Row>
+    const ele = (
+      <Row className="file-explorer">
         <Col />
       </Row>
     );
 
-    return node;
+    return ele;
   }
 }
 
