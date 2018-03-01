@@ -11,8 +11,8 @@ class Body extends React.Component {
     const ele = (
       <div className="body">
         <Container fluid>
-          <Title />
-          <Sns title={this.props.tmpdirName} shareUrl={this.props.tmpdirUrl} />
+          <Title appInfo={this.props.appInfo} />
+          <Sns shareList={this.props.shareList} />
           <FileExplorer />
           <Upload />
         </Container>
@@ -23,8 +23,21 @@ class Body extends React.Component {
 }
 
 Body.propTypes = {
-  tmpdirName: PropTypes.string.isRequired,
-  tmpdirUrl: PropTypes.string.isRequired,
+  appInfo: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+    logo: PropTypes.node.isRequired,
+    version: PropTypes.string,
+  }).isRequired,
+  shareList: PropTypes.arrayOf(PropTypes.shape({
+    vender: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+  })),
+};
+
+Body.defaultProps = {
+  shareList: null,
 };
 
 export default Body;

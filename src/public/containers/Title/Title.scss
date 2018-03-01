@@ -4,10 +4,6 @@
 @import '../../components/Title/Version';
 
 .title {
-  [class*='__']{
-    @include padding-between(8)
-  }
-
   a {
     display: flex;
     align-items: center;
