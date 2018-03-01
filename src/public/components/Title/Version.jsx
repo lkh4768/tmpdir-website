@@ -1,14 +1,23 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 class Version extends React.Component {
   render() {
-    const node = (
+    const ele = (
       <div className="title__version">
-        Beta
+        {this.props.version}
       </div>
     );
-    return node;
+    return ele;
   }
 }
+
+Version.propTypes = {
+  version: PropTypes.string,
+};
+
+Version.defaultProps = {
+  version: '',
+};
 
 export default Version;

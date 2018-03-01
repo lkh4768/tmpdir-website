@@ -1,25 +1,33 @@
+import PropTypes from 'prop-types';
 import React from 'react';
-import { Row, Col } from 'reactstrap';
+import BodyRow from '../Body/BodyRow';
 import Logo from '../../components/Title/Logo';
 import Name from '../../components/Title/Name';
 import Version from '../../components/Title/Version';
 
 class Title extends React.Component {
   render() {
+    const className = 'title';
     const ele = (
-      <Row className="title">
-        <Col>
-          <a href="/">
-            <Logo />
-            <Name />
-            <Version />
-          </a>
-        </Col>
-      </Row>
+      <BodyRow className={className}>
+        <a href={this.props.appInfo.url}>
+          <Logo logo={this.props.appInfo.logo} />
+          <Name name={this.props.appInfo.name} />
+          <Version version={this.props.appInfo.version} />
+        </a>
+      </BodyRow>
     );
-
     return ele;
   }
 }
+
+Title.propTypes = {
+  appInfo: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+    logo: PropTypes.string.isRequired,
+    version: PropTypes.string,
+  }).isRequired,
+};
 
 export default Title;
