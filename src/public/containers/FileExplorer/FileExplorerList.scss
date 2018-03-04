@@ -1,0 +1,9 @@
+@import '../../components/FileExplorer/Row';
+@import '../../utils/mixin.scss';
+
+.file-explorer__list {
+  height: 350px;
+  background-color: hsl(192, 15%, 94%);
+
+  @include default-ul();
+}

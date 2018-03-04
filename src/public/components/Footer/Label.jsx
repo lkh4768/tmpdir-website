@@ -4,15 +4,18 @@ import React from 'react';
 class Label extends React.Component {
   render() {
     const ele = (
-      <span>
+      <span className={Label.CLASS_NAME}>
         {this.props.icon}
-        {this.props.text}
-        {' '}
+        <span>
+          {this.props.text}
+        </span>
       </span>
     );
     return ele;
   }
 }
+
+Label.CLASS_NAME = 'footer__label';
 
 Label.propTypes = {
   text: PropTypes.string.isRequired,

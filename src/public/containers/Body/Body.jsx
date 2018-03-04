@@ -36,7 +36,7 @@ Body.propTypes = {
   })),
   files: PropTypes.arrayOf(PropTypes.shape({
     path: PropTypes.string.isRequired,
-    size: PropTypes.string.isRequired,
+    size: PropTypes.number.isRequired,
   })),
 };
 

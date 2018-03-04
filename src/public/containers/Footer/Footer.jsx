@@ -25,7 +25,7 @@ class Footer extends React.Component {
   }
   render() {
     const links = this.makeLinks();
-    const labels = this.makeLinks();
+    const labels = this.makeLabels();
     const ele = (
       <div className="footer">
         {labels}
