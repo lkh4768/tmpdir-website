@@ -1,4 +1,12 @@
-@mixin padding-between($n){
-  padding-left: ($n + 0px);
-  padding-right: ($n + 0px);
+@mixin margin-between($n) {
+  margin-left: ($n + 0px);
+  margin-right: ($n + 0px);
+}
+
+@mixin not-deco-link() {
+  text-decoration: none;
+  color: $default-color;
+  &:hover {
+    color: $default-color;
+  }
 }

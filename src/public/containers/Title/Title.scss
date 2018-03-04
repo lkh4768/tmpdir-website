@@ -1,15 +1,6 @@
-@import '../../utils/mixin.scss';
-
 @import '../../components/Title/Name';
 @import '../../components/Title/Version';
 
 .title {
-  a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-
-    font-family: 'Russo One', sans-serif;
-  }
+  font-family: 'Russo One', sans-serif;
 }
