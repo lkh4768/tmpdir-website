@@ -6,7 +6,7 @@ import ShareButton from '../../components/ShareButton/ShareButton';
 class Sns extends React.Component {
   render() {
     const ele = (
-      <BodyRow>
+      <BodyRow align={BodyRow.ALIGN.right}>
         {this.props.shareList.map(share => <ShareButton key={share.vender} share={share} />)}
       </BodyRow>
     );

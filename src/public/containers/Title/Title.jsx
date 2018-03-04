@@ -9,12 +9,14 @@ class Title extends React.Component {
   render() {
     const className = 'title';
     const ele = (
-      <BodyRow className={className}>
+      <BodyRow align={BodyRow.ALIGN.center} className={className}>
         <a href={this.props.appInfo.url}>
           <Logo logo={this.props.appInfo.logo} />
-          <Name name={this.props.appInfo.name} />
-          <Version version={this.props.appInfo.version} />
         </a>
+        <a href={this.props.appInfo.url}>
+          <Name name={this.props.appInfo.name} />
+        </a>
+        <Version version={this.props.appInfo.version} />
       </BodyRow>
     );
     return ele;

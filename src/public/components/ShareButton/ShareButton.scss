@@ -1,6 +1,7 @@
 .share-button {
   display: inline-block;
   &:hover {
+    cursor: pointer;
     opacity: 0.7;
   }
 }

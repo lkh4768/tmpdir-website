@@ -1,4 +1,8 @@
-@import './base/Common';
+@import './utils/variables';
+@import './utils/mixin';
+
+@import './base/common';
+
 @import './containers/Body/Body';
 @import './containers/Footer/Footer';
 @import './containers/Title/Title';
