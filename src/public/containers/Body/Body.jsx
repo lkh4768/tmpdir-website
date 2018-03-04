@@ -13,7 +13,7 @@ class Body extends React.Component {
         <Container fluid>
           <Title appInfo={this.props.appInfo} />
           <Sns shareList={this.props.shareList} />
-          <FileExplorer />
+          <FileExplorer files={this.props.files} />
           <Upload />
         </Container>
       </div>
@@ -34,10 +34,15 @@ Body.propTypes = {
     title: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
   })),
+  files: PropTypes.arrayOf(PropTypes.shape({
+    path: PropTypes.string.isRequired,
+    size: PropTypes.string.isRequired,
+  })),
 };
 
 Body.defaultProps = {
   shareList: null,
+  files: null,
 };
 
 export default Body;

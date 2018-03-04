@@ -4,8 +4,8 @@ import FooterLabel from '../../components/Footer/Label';
 import FooterLink from '../../components/Footer/Link';
 
 class Footer extends React.Component {
-  render() {
-    const footerLinks = this.props.links.map(link => (
+  makeLinks() {
+    return this.props.links.map(link => (
       <FooterLink
         key={link.title}
         title={link.title}
@@ -13,17 +13,23 @@ class Footer extends React.Component {
         text={link.text}
       />
     ));
-    const footerLabels = this.props.labels.map(label => (
+  }
+  makeLabels() {
+    return this.props.labels.map(label => (
       <FooterLabel
         key={label.text}
         icon={label.icon}
         text={label.text}
       />
     ));
+  }
+  render() {
+    const links = this.makeLinks();
+    const labels = this.makeLinks();
     const ele = (
       <div className="footer">
-        {footerLabels}
-        {footerLinks}
+        {labels}
+        {links}
       </div>
     );
     return ele;

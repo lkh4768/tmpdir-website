@@ -11,7 +11,7 @@ class BodyRow extends React.Component {
     const className = this.getClassName();
     const ele = (
       <Row>
-        <Col className={className}>
+        <Col xs="12" md={{ size: 8, offset: 2 }} className={className}>
           {this.props.children}
         </Col>
       </Row>
