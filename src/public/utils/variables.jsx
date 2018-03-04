@@ -7,6 +7,8 @@ import FileEntity from '../entities/File';
 
 import LogoImg from '../static/images/logo_72w.png';
 
+import FaCopyright from '../../../node_modules/react-icons/lib/fa/copyright';
+
 const tmpdir = {
   name: 'tmpdir',
   url: 'https://tmpdir.sw-warehouse.xyz',
@@ -49,15 +51,15 @@ const Variables = {
     ),
   ],
   LABELS: [
-    new FooterLabelEntity('2017 Kihyeon Lee.', <i className="fa fa-copyright" />),
+    new FooterLabelEntity('2017 Kihyeon Lee.', <FaCopyright size="16" />),
   ],
   LINKS: [
     new FooterLinkEntity('Mail: ', owner.email, ['mailto:', owner.email].join('')),
     new FooterLinkEntity('Blog: ', owner.blog, owner.blog),
   ],
   FACK_FILES: [
-    new FileEntity('path/to/one', '1MB'),
-    new FileEntity('path/to/two', '2MB'),
+    new FileEntity('path/to/one', 1),
+    new FileEntity('path/to/two', 2),
   ],
 };
 

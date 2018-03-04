@@ -1,18 +1,26 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import BodyRow from '../Body/BodyRow';
-import File from '../../components/File/File';
+import FileExplorerList from './FileExplorerList';
+import FileExplorerResult from './FileExplorerResult';
 
 class FileExplorer extends React.Component {
-  makeFiles() {
-    return this.props.files.map(file => <File key={file.path} path={file.path} size={file.size} />);
+  getFileTotalSize() {
+    return this.props.files.reduce((file, totalSize) => file.size + totalSize, 0);
   }
   render() {
-    const files = this.makeFiles();
     const ele = (
-      <BodyRow className={FileExplorer.CLASS_NAME}>
+      <BodyRow>
         <ul>
-          { files }
+          <li>
+            <FileExplorerList files={this.props.files} />
+          </li>
+          <li>
+            <FileExplorerResult
+              fileCount={this.props.files.length}
+              fileSize={this.getFileTotalSize()}
+            />
+          </li>
         </ul>
       </BodyRow>
     );
@@ -20,12 +28,10 @@ class FileExplorer extends React.Component {
   }
 }
 
-FileExplorer.CLASS_NAME = 'file-explorer';
-
 FileExplorer.propTypes = {
   files: PropTypes.arrayOf(PropTypes.shape({
     path: PropTypes.string.isRequired,
-    size: PropTypes.string.isRequired,
+    size: PropTypes.number.isRequired,
   })),
 };
 

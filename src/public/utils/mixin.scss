@@ -10,3 +10,17 @@
     color: $default-color;
   }
 }
+
+@mixin default-ul() {
+  width: 100%;
+  padding: 0;
+  list-style-type: none;
+}
+
+@mixin ellipsis($width) {
+  text-align: left;
+  width: ($width + 0px);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}

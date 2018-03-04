@@ -1,3 +1,5 @@
+@import '../../components/Footer/Label.scss';
+
 .footer {
   position: fixed;
   display: flex;
@@ -5,4 +7,8 @@
   height: 60px;
   align-items: center;
   justify-content: center;
+
+  & > * {
+    @include margin-between(8);
+  }
 }

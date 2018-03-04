@@ -1,13 +1,11 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
+import Row from './Row';
 
 class File extends React.Component {
   render() {
     const ele = (
-      <li>
-        {this.props.path}
-        {this.props.size}
-      </li>
+      <Row leftItemText={this.props.path} rightItemText={this.props.size} />
     );
     return ele;
   }
@@ -15,7 +13,7 @@ class File extends React.Component {
 
 File.propTypes = {
   path: PropTypes.string.isRequired,
-  size: PropTypes.string.isRequired,
+  size: PropTypes.number.isRequired,
 };
 
 export default File;
