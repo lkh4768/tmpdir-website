@@ -68,7 +68,6 @@ const config = {
           ],
         }),
       },
-
       {
         test: /\.(png|ico)$/,
         loader: 'file-loader',

@@ -7,9 +7,8 @@ import Version from '../../components/Title/Version';
 
 class Title extends React.Component {
   render() {
-    const className = 'title';
     const ele = (
-      <BodyRow align={BodyRow.ALIGN.center} className={className}>
+      <BodyRow align={BodyRow.ALIGN.center} className={Title.CLASS_NAME}>
         <a href={this.props.appInfo.url}>
           <Logo logo={this.props.appInfo.logo} />
         </a>
@@ -22,6 +21,8 @@ class Title extends React.Component {
     return ele;
   }
 }
+
+Title.CLASS_NAME = 'title';
 
 Title.propTypes = {
   appInfo: PropTypes.shape({
