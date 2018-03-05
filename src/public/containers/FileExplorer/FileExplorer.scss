@@ -1,2 +1,7 @@
 @import './FileExplorerList.scss';
 @import './FileExplorerResult.scss';
+
+.file-explorer {
+  width: 100%;
+  @include default-ul();
+}

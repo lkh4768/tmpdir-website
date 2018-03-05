@@ -9,10 +9,6 @@
     align-items: center;
   }
 
-  &:last-child {
-    border-bottom: none;
-  }
-
   .file-explorer__row__left-item__text {
     @include ellipsis(240)
   }
