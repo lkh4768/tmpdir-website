@@ -1,6 +1,5 @@
 @import '../../components/FileExplorer/Row';
 .file-explorer__result {
-  height: 350px;
   background-color: hsl(48, 89%, 50%);
 
   @include default-ul();

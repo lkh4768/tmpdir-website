@@ -11,7 +11,7 @@ class FileExplorer extends React.Component {
   render() {
     const ele = (
       <BodyRow>
-        <ul>
+        <ul className={FileExplorer.className}>
           <li>
             <FileExplorerList files={this.props.files} />
           </li>
@@ -27,6 +27,8 @@ class FileExplorer extends React.Component {
     return ele;
   }
 }
+
+FileExplorer.className = 'file-explorer';
 
 FileExplorer.propTypes = {
   files: PropTypes.arrayOf(PropTypes.shape({
