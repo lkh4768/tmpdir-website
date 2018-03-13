@@ -3,7 +3,6 @@ import FooterLabelEntity from '../entities/Label';
 import FooterLinkEntity from '../entities/Link';
 import ShareEntity from '../entities/Share';
 import AppInfoEntity from '../entities/AppInfo';
-import FileEntity from '../entities/File';
 
 import LogoImg from '../static/images/logo_72w.png';
 
@@ -56,10 +55,6 @@ const Variables = {
   LINKS: [
     new FooterLinkEntity('Mail: ', owner.email, ['mailto:', owner.email].join('')),
     new FooterLinkEntity('Blog: ', owner.blog, owner.blog),
-  ],
-  FACK_FILES: [
-    new FileEntity('path/to/one', 1),
-    new FileEntity('path/to/two', 2),
   ],
 };
 

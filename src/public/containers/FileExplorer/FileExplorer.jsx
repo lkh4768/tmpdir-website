@@ -1,23 +1,47 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import BodyRow from '../Body/BodyRow';
 import FileExplorerList from './FileExplorerList';
 import FileExplorerResult from './FileExplorerResult';
 
+import FileEntity from '../../entities/File';
+
 class FileExplorer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      files: [],
+    };
+    this.addFile = this.addFile.bind(this);
+    this.handleKeyDown = this.handleKeyDown.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+  }
   getFileTotalSize() {
-    return this.props.files.reduce((file, totalSize) => file.size + totalSize, 0);
+    return this.state.files.reduce((file, totalSize) => file.size + totalSize, 0);
+  }
+  handleKeyDown(event) {
+    if (event.key === 'Enter') {
+      this.addFile();
+    }
+  }
+  handleClick() {
+    this.addFile();
+  }
+  addFile() {
+    this.setState(this.state.files.concat([new FileEntity('path/to/one', 1)]));
   }
   render() {
     const ele = (
       <BodyRow>
+        <button onClick={this.addFile} onKeyDown={this.handleKeyDown}>
+          {'add'}
+        </button>
         <ul className={FileExplorer.className}>
           <li>
-            <FileExplorerList files={this.props.files} />
+            <FileExplorerList files={this.state.files} />
           </li>
           <li>
             <FileExplorerResult
-              fileCount={this.props.files.length}
+              fileCount={this.state.files.length}
               fileSize={this.getFileTotalSize()}
             />
           </li>
@@ -29,16 +53,5 @@ class FileExplorer extends React.Component {
 }
 
 FileExplorer.className = 'file-explorer';
-
-FileExplorer.propTypes = {
-  files: PropTypes.arrayOf(PropTypes.shape({
-    path: PropTypes.string.isRequired,
-    size: PropTypes.number.isRequired,
-  })),
-};
-
-FileExplorer.defaultProps = {
-  files: null,
-};
 
 export default FileExplorer;
