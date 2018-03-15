@@ -27,7 +27,10 @@ class FileExplorer extends React.Component {
     this.addFile();
   }
   addFile() {
-    this.setState(this.state.files.concat([new FileEntity('path/to/one', 1)]));
+    const timestamp = (new Date()).getTime();
+    this.setState({
+      files: this.state.files.concat([new FileEntity(['path/to/', timestamp].join(''), 1)]),
+    });
   }
   render() {
     const ele = (
