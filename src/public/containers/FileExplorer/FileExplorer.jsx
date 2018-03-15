@@ -15,9 +15,6 @@ class FileExplorer extends React.Component {
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
-  getFileTotalSize() {
-    return this.state.files.reduce((file, totalSize) => file.size + totalSize, 0);
-  }
   handleKeyDown(event) {
     if (event.key === 'Enter') {
       this.addFile();
@@ -44,8 +41,7 @@ class FileExplorer extends React.Component {
           </li>
           <li>
             <FileExplorerResult
-              fileCount={this.state.files.length}
-              fileSize={this.getFileTotalSize()}
+              files={this.state.files}
             />
           </li>
         </ul>
