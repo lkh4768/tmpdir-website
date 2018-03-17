@@ -1,8 +1,8 @@
 import React from 'react';
-import Body from './containers/Body/Body';
-import Footer from './containers/Footer/Footer';
+import Body from '../Body/Body';
+import Footer from '../Footer/Footer';
 
-import Var from './utils/variables';
+import Var from '../../utils/variables';
 
 class App extends React.Component {
   render() {

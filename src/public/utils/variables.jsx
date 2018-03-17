@@ -56,6 +56,10 @@ const Variables = {
     new FooterLinkEntity('Mail: ', owner.email, ['mailto:', owner.email].join('')),
     new FooterLinkEntity('Blog: ', owner.blog, owner.blog),
   ],
+
+  ACTION_TYPE: {
+    ADD_FILE: 'ADD_FILE',
+  },
 };
 
 export default Variables;

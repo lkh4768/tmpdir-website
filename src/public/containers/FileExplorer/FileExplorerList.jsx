@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
 import React from 'react';
+import PropTypes from 'prop-types';
 import File from '../../components/FileExplorer/File';
 
 class FileExplorerList extends React.Component {
