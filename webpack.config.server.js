@@ -20,6 +20,7 @@ const config = {
   resolve: {
     extensions: [
       '.js',
+      '.jsx',
     ],
   },
   module: {
@@ -30,16 +31,16 @@ const config = {
         exclude: /node_modules/,
         loader: 'eslint-loader',
         options: {
-          configFile: path.resolve(__dirname, '.eslintrc-es6.js'),
+          configFile: './.eslintrc-server.js',
         },
       },
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
         query: {
           cacheDirectory: true,
-          presets: ['es2015'],
+          presets: ['es2015', 'react'],
         },
       },
       {

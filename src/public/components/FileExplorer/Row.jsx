@@ -32,8 +32,14 @@ Row.CLASS_NAME = {
 };
 
 Row.propTypes = {
-  leftItemText: PropTypes.node.isRequired,
-  rightItemText: PropTypes.node.isRequired,
+  leftItemText: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]).isRequired,
+  rightItemText: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]).isRequired,
 };
 
 export default Row;
