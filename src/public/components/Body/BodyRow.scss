@@ -6,7 +6,7 @@
   > * {
     @include margin-between(8);
   }
-  
+
   a {
     @include not-deco-link();
   }

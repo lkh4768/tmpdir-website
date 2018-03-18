@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import BodyRow from '../Body/BodyRow';
-import Logo from '../../components/Title/Logo';
-import Name from '../../components/Title/Name';
-import Version from '../../components/Title/Version';
+import Logo from './Logo';
+import Name from './Name';
+import Version from './Version';
 
 class Title extends React.Component {
   render() {

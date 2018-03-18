@@ -1,5 +1,11 @@
 import express from 'express';
 import path from 'path';
+import webpackDevMiddleware from 'webpack-dev-middleware';
+import webpackHotMiddleware from 'webpack-hot-middleware';
+
+import webpack from 'webpack';
+import webpackServerConfig from '../../webpack.config.server';
+import webpackDevConfig from '../../webpack.config.dev';
 
 import manifest from '../../build/manifest.json';
 import devConfig from './config/Config.dev';
@@ -11,11 +17,6 @@ const app = express();
 let Config;
 
 if (process.env.NODE_ENV !== 'prd') {
-  const webpack = require('webpack');
-  const webpackServerConfig = require('../../webpack.config.server');
-  const webpackDevConfig = require('../../webpack.config.dev');
-  const webpackDevMiddleware = require('webpack-dev-middleware');
-  const webpackHotMiddleware = require('webpack-hot-middleware');
   const multiCompiler = webpack([
     webpackServerConfig,
     webpackDevConfig,
