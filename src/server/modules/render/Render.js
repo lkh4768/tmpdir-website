@@ -1,3 +1,9 @@
+import React from 'react';
+import { renderToString } from 'react-dom/server';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import App from '../../../public/components/App/App';
+import reducer from '../../../public/data/reducers/index';
 import logoIco from '../../../public/static/images/favicon.ico';
 import logo152h from '../../../public/static/images/logo_152h.png';
 import logo167h from '../../../public/static/images/logo_167h.png';
@@ -30,6 +36,7 @@ NodeMaker.formet = [
 class Render {
   constructor() {
     this.filenames = [];
+    this.store = createStore(reducer);
   }
   get jsUrls() {
     return this.filenames.filter(filename => /\.js$/.exec(filename));
@@ -44,6 +51,9 @@ class Render {
   get cssNodes() {
     const urls = this.cssUrls;
     return urls.map(url => NodeMaker.makeNode(NodeMaker.type.css, url));
+  }
+  renderJsx() {
+    return renderToString(<Provider store={this.store}><App /></Provider>);
   }
   render() {
     return [
@@ -69,7 +79,11 @@ class Render {
       '</head>',
       '<body>',
       '<div id="root">',
+      this.renderJsx(),
       '</div>',
+      '<script>',
+      `window.INITIAL_STATE = ${JSON.stringify(this.store.getState())};`,
+      '</script>',
       this.jsNodes,
       '</body>',
       '</html>',

@@ -3,7 +3,7 @@ import React from 'react';
 import { Container } from 'reactstrap';
 import Title from '../Title/Title';
 import Sns from '../Sns/Sns';
-import FileExplorer from '../FileExplorer/FileExplorer';
+import FileExplorer from '../../containers/FileExplorer/FileExplorer';
 import Upload from '../Upload/Upload';
 
 class Body extends React.Component {

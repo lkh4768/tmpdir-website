@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import BodyRow from '../Body/BodyRow';
-import ShareButton from '../../components/ShareButton/ShareButton';
+import ShareButton from '../ShareButton/ShareButton';
 
 class Sns extends React.Component {
   render() {

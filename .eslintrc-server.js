@@ -27,7 +27,8 @@ module.exports = {
       {
         'devDependencies': true
       }
-    ]
+    ],
+    'react/react-in-jsx-scope': 'off',
   },
   'plugins': [
     'react'
