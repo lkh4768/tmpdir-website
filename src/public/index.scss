@@ -1,12 +1,12 @@
 @import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
-@import './utils/variables';
+@import './utils/constants';
 @import './utils/mixin';
 
 @import './base/common';
 
-@import './containers/Body/Body';
-@import './containers/Footer/Footer';
-@import './containers/Title/Title';
-@import './containers/Sns/Sns';
-@import './containers/FileExplorer/FileExplorer';
+@import './components/Body/Body';
+@import './components/Footer/Footer';
+@import './components/Title/Title';
+@import './components/Sns/Sns';
+@import './components/FileExplorer/FileExplorer';

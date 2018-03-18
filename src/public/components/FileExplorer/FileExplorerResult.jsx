@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import Result from '../../components/FileExplorer/Result';
+import Result from './Result';
 
 class FileExplorerResult extends React.Component {
   getFileTotalSize() {
@@ -22,11 +22,7 @@ FileExplorerResult.propTypes = {
   files: PropTypes.arrayOf(PropTypes.shape({
     path: PropTypes.string.isRequired,
     size: PropTypes.number.isRequired,
-  })),
-};
-
-FileExplorerResult.defaultProps = {
-  files: null,
+  })).isRequired,
 };
 
 export default FileExplorerResult;

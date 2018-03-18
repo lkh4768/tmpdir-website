@@ -1,10 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import File from '../../components/FileExplorer/File';
+import File from './File';
 
 class FileExplorerList extends React.Component {
   makeFiles() {
-    return this.props.files.map(file => <File key={file.path} path={file.path} size={file.size} />);
+    if (this.props.files.length > 0) {
+      return this.props.files.map(file =>
+        <File key={file.path} path={file.path} size={file.size} />);
+    }
+    return [];
   }
   render() {
     const files = this.makeFiles();
@@ -27,7 +31,7 @@ FileExplorerList.propTypes = {
 };
 
 FileExplorerList.defaultProps = {
-  files: null,
+  files: [],
 };
 
 export default FileExplorerList;
