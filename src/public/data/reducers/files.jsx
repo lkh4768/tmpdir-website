@@ -6,11 +6,11 @@ const initState = {
 
 const files = (state = initState, action) => {
   switch (action.type) {
-    case Constants.ACTION_TYPE.ADD_FILE: {
-      const obj = Object.assign({}, state, {
+    case Constants.ACTION_TYPES.ADD_FILE: {
+      console.log(action);
+      return Object.assign({}, state, {
         files: state.files.concat(action.file),
       });
-      return obj;
     }
     default:
       return state;

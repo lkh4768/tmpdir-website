@@ -1,6 +1,9 @@
 ### VIM ###
 **/*tags
 
+## LINUX ##
+**/*.swp
+
 ### NODEJS ###
 node_modules
 /build/

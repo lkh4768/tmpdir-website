@@ -57,8 +57,9 @@ const Variables = {
     new FooterLinkEntity('Blog: ', owner.blog, owner.blog),
   ],
 
-  ACTION_TYPE: {
+  ACTION_TYPES: {
     ADD_FILE: 'ADD_FILE',
+    UPLOAD_FILE: 'UPLOAD_FILE',
   },
 };
 

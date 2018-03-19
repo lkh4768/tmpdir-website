@@ -9,7 +9,7 @@
     align-items: center;
   }
 
-  .file-explorer__file__left-item__path {
+  .file-explorer__file__left-item__name {
     @include ellipsis(240)
   }
 

@@ -1,6 +1,6 @@
 class File {
-  constructor(path, size) {
-    this.path = path;
+  constructor(name, size) {
+    this.name = name;
     this.size = size;
   }
 }

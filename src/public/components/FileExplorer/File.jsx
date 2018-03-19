@@ -5,14 +5,14 @@ import Row from './Row';
 class File extends React.Component {
   render() {
     const ele = (
-      <Row leftItemText={this.props.path} rightItemText={this.props.size} />
+      <Row leftItemText={this.props.name} rightItemText={this.props.size} />
     );
     return ele;
   }
 }
 
 File.propTypes = {
-  path: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   size: PropTypes.number.isRequired,
 };
 

@@ -6,4 +6,8 @@
 .file-explorer {
   width: 100%;
   @include default-ul();
+
+  &__input-file {
+    display: none;
+  }
 }

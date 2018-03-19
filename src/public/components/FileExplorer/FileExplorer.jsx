@@ -5,19 +5,34 @@ import FileExplorerList from './FileExplorerList';
 import FileExplorerResult from './FileExplorerResult';
 
 class FileExplorer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.inputFile = null;
+    this.showLocalFileExplorer = this.showLocalFileExplorer.bind(this);
+    console.log(props);
+  }
+  showLocalFileExplorer() {
+    this.inputFile.click();
+  }
   render() {
     const ele = (
       <BodyRow>
-        <button onClick={this.props.onClick}>
-          {'add'}
-        </button>
-        <ul className={FileExplorer.className}>
-          <li>
+        <ul className={FileExplorer.className.root}>
+          <li
+            onClick={this.showLocalFileExplorer}
+            role="presentation"
+          >
             <FileExplorerList files={this.props.files} />
           </li>
           <li>
             <FileExplorerResult files={this.props.files} />
           </li>
+          <input
+            className={FileExplorer.className.inputFile}
+            ref={(component) => { this.inputFile = component; }}
+            type="file"
+            onChange={(e) => { this.props.addFile(e.target.files[0]); }}
+          />
         </ul>
       </BodyRow>
     );
@@ -25,14 +40,17 @@ class FileExplorer extends React.Component {
   }
 }
 
-FileExplorer.className = 'file-explorer';
+FileExplorer.className = {
+  root: 'file-explorer',
+  inputFile: 'file-explorer__input-file',
+};
 
 FileExplorer.propTypes = {
   files: PropTypes.arrayOf(PropTypes.shape({
-    path: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
     size: PropTypes.number.isRequired,
   })),
-  onClick: PropTypes.func.isRequired,
+  addFile: PropTypes.func.isRequired,
 };
 
 FileExplorer.defaultProps = {

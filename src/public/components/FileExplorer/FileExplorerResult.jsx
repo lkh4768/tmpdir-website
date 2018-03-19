@@ -20,7 +20,7 @@ FileExplorerResult.CLASS_NAME = 'file-explorer__result';
 
 FileExplorerResult.propTypes = {
   files: PropTypes.arrayOf(PropTypes.shape({
-    path: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
     size: PropTypes.number.isRequired,
   })).isRequired,
 };
