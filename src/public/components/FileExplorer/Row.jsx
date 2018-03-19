@@ -8,7 +8,7 @@ class Row extends React.Component {
     const ele = (
       <li className={Row.CLASS_NAME.row}>
         <div className={Row.CLASS_NAME.leftItem}>
-          <div className={Row.CLASS_NAME.path}>{this.props.leftItemText}</div>
+          <div className={Row.CLASS_NAME.name}>{this.props.leftItemText}</div>
         </div>
         <div className={Row.CLASS_NAME.rightItem}>
           <div className={Row.CLASS_NAME.size}>{this.props.rightItemText}</div>
@@ -26,7 +26,7 @@ Row.CLASS_NAME = {
   row: 'file-explorer__row',
   rightItem: 'file-explorer__row__right-item',
   leftItem: 'file-explorer__row__left-item',
-  path: 'file-explorer__row__left-item__text',
+  name: 'file-explorer__row__left-item__text',
   size: 'file-explorer__row__right-item__text',
   delete: 'file-explorer__row__right-item__delete',
 };

@@ -6,7 +6,7 @@ class FileExplorerList extends React.Component {
   makeFiles() {
     if (this.props.files.length > 0) {
       return this.props.files.map(file =>
-        <File key={file.path} path={file.path} size={file.size} />);
+        <File key={file.name} name={file.name} size={file.size} />);
     }
     return [];
   }
@@ -25,7 +25,7 @@ FileExplorerList.CLASS_NAME = 'file-explorer__list';
 
 FileExplorerList.propTypes = {
   files: PropTypes.arrayOf(PropTypes.shape({
-    path: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
     size: PropTypes.number.isRequired,
   })),
 };
