@@ -1,10 +1,12 @@
 import { connect } from 'react-redux';
 import actions from '../../data/actions';
-import FileExplorer from '../../components/FileExplorer/FileExplorer';
+import FileInput from '../../components/FileExplorer/FileInput';
 
 import FileEntity from '../../entities/File';
 
-const mapStateToProps = state => state.files;
+const mapStateToProps = state => ({
+  is: state.is,
+});
 
 const mapDispatchToProps = dispatch => ({
   addFile: file => dispatch(actions.addFile(new FileEntity(file.name, file.size))),
@@ -13,4 +15,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(FileExplorer);
+)(FileInput);

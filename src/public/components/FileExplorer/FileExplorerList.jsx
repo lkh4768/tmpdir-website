@@ -13,7 +13,12 @@ class FileExplorerList extends React.Component {
   render() {
     const files = this.makeFiles();
     const ele = (
-      <ul className={FileExplorerList.CLASS_NAME}>
+      <ul
+        onClick={() => { this.props.showLocalFileExplorer(true); }}
+        role="presentation"
+        files={this.props.files}
+        className={FileExplorerList.className}
+      >
         { files }
       </ul>
     );
@@ -21,13 +26,14 @@ class FileExplorerList extends React.Component {
   }
 }
 
-FileExplorerList.CLASS_NAME = 'file-explorer__list';
+FileExplorerList.className = 'file-explorer__list';
 
 FileExplorerList.propTypes = {
   files: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
     size: PropTypes.number.isRequired,
   })),
+  showLocalFileExplorer: PropTypes.func.isRequired,
 };
 
 FileExplorerList.defaultProps = {

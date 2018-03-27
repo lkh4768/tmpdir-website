@@ -5,6 +5,12 @@ const addFile = targetFile => ({
   file: targetFile,
 });
 
+const showLocalFileExplorer = is => ({
+  type: Contants.ACTION_TYPES.SHOW_LOCAL_FILE_EXPLORER,
+  show: is,
+});
+
 export default {
   addFile,
+  showLocalFileExplorer,
 };
