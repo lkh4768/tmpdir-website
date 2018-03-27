@@ -1,13 +1,10 @@
 @import './FileExplorerList.scss';
 @import './FileExplorerResult.scss';
+@import './FileInput.scss';
 
 @import './Row';
 
 .file-explorer {
   width: 100%;
   @include default-ul();
-
-  &__input-file {
-    display: none;
-  }
 }

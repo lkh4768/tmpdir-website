@@ -60,6 +60,7 @@ const Variables = {
   ACTION_TYPES: {
     ADD_FILE: 'ADD_FILE',
     UPLOAD_FILE: 'UPLOAD_FILE',
+    SHOW_LOCAL_FILE_EXPLORER: 'SHOW_LOCAL_FILE_EXPLORER',
   },
 };
 
