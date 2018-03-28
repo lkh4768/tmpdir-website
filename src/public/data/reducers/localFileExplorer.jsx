@@ -1,7 +1,7 @@
 import Constants from '../../utils/constants';
 
 const initState = {
-  is: false,
+  isShowLocalFileExplorer: false,
 };
 
 const localFileExplorer = (state = initState, action) => {
@@ -9,7 +9,12 @@ const localFileExplorer = (state = initState, action) => {
   switch (action.type) {
     case Constants.ACTION_TYPES.SHOW_LOCAL_FILE_EXPLORER: {
       return Object.assign({}, state, {
-        is: action.is,
+        isShowLocalFileExplorer: true,
+      });
+    }
+    case Constants.ACTION_TYPES.HIDE_LOCAL_FILE_EXPLORER: {
+      return Object.assign({}, state, {
+        isShowLocalFileExplorer: false,
       });
     }
     default:

@@ -3,16 +3,12 @@ import PropTypes from 'prop-types';
 import BodyRow from '../Body/BodyRow';
 import FileExplorerList from '../../containers/FileExplorer/FileExplorerList';
 import FileExplorerResult from './FileExplorerResult';
-import FileInput from '../../containers/FileExplorer/FileInput';
 
 class FileExplorer extends React.Component {
   render() {
     const ele = (
       <BodyRow>
         <ul className={FileExplorer.className}>
-          <li>
-            <FileInput files={this.props.files} />
-          </li>
           <li>
             <FileExplorerList />
           </li>
