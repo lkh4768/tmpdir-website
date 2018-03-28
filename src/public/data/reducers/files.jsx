@@ -5,7 +5,6 @@ const initState = {
 };
 
 const files = (state = initState, action) => {
-  console.log(action);
   switch (action.type) {
     case Constants.ACTION_TYPES.ADD_FILE: {
       return Object.assign({}, state, {

@@ -2,10 +2,12 @@ import { connect } from 'react-redux';
 import actions from '../../data/actions';
 import FileExplorerList from '../../components/FileExplorer/FileExplorerList';
 
-const mapStateToProps = {};
+const mapStateToProps = state => ({
+  files: state.files
+});
 
 const mapDispatchToProps = dispatch => ({
-  showLocalFileExplorer: show => dispatch(actions.showLocalFileExplorer(show)),
+  showLocalFileExplorer: is => dispatch(actions.showLocalFileExplorer(is)),
 });
 
 export default connect(

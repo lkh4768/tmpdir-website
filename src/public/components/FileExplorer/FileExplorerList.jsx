@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import FileInput from '../../containers/FileExplorer/FileInput';
 import File from './File';
 
 class FileExplorerList extends React.Component {
@@ -14,12 +15,15 @@ class FileExplorerList extends React.Component {
     const files = this.makeFiles();
     const ele = (
       <ul
-        onClick={() => { this.props.showLocalFileExplorer(true); }}
+        onClick={this.props.showLocalFileExplorer}}
         role="presentation"
         files={this.props.files}
         className={FileExplorerList.className}
       >
         { files }
+      <li>
+        <FileInput files={this.props.files} />
+      </li>
       </ul>
     );
     return ele;
@@ -32,12 +36,9 @@ FileExplorerList.propTypes = {
   files: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
     size: PropTypes.number.isRequired,
-  })),
+  })).isRequired,
+  isShowLocalFileExplorer: PropTypes.bool.isRequired,
   showLocalFileExplorer: PropTypes.func.isRequired,
-};
-
-FileExplorerList.defaultProps = {
-  files: [],
 };
 
 export default FileExplorerList;

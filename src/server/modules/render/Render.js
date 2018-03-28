@@ -82,7 +82,7 @@ class Render {
       this.renderJsx(),
       '</div>',
       '<script>',
-      `window.INITIAL_STATE = ${JSON.stringify(this.store.getState())};`,
+      `window.INITIAL_STATE = ${JSON.stringify(this.store.getState()).replace(/</g, '\\x3c')}`,
       '</script>',
       this.jsNodes,
       '</body>',
