@@ -3,14 +3,15 @@ import actions from '../../data/actions';
 import FileInput from '../../components/FileExplorer/FileInput';
 
 const mapStateToProps = state => ({
-  files: state.files
+  isShowLocalFileExplorer: state.localFileExplorer.isShowLocalFileExplorer,
 });
 
 const mapDispatchToProps = dispatch => ({
-  showLocalFileExplorer: is => dispatch(actions.showLocalFileExplorer(is)),
+  addFile: file => dispatch(actions.addFile(file)),
+  hideLocalFileExplorer: () => dispatch(actions.hideLocalFileExplorer()),
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(FileExplorerList);
+)(FileInput);
