@@ -15,15 +15,17 @@ class FileExplorerList extends React.Component {
     const files = this.makeFiles();
     const ele = (
       <ul
-        onClick={this.props.showLocalFileExplorer}}
+        onClick={this.props.showLocalFileExplorer}
         role="presentation"
-        files={this.props.files}
         className={FileExplorerList.className}
       >
         { files }
-      <li>
-        <FileInput files={this.props.files} />
-      </li>
+        <li>
+          <FileInput
+            files={this.props.files}
+            isShowLocalFileExplorer={this.props.isShowLocalFileExplorer}
+          />
+        </li>
       </ul>
     );
     return ele;

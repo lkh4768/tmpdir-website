@@ -5,12 +5,15 @@ class FileInput extends React.Component {
   constructor(props) {
     super(props);
     this.inputFileElement = null;
+  }
+  componentDidMount() {
     this.subscribeIsShowLocalFileExplorer();
   }
   subscribeIsShowLocalFileExplorer() {
-    store.subscribe(() => {
-      console.log(store.getState());
-    });
+    if (this.props.isShowLocalFileExplorer) {
+      this.inputFileElement.click();
+      this.props.hideLocalFileExplorer();
+    }
   }
   render() {
     const ele = (
@@ -29,6 +32,8 @@ FileInput.className = 'input-file';
 
 FileInput.propTypes = {
   addFile: PropTypes.func.isRequired,
+  isShowLocalFileExplorer: PropTypes.bool.isRequired,
+  hideLocalFileExplorer: PropTypes.func.isRequired,
 };
 
 export default FileInput;

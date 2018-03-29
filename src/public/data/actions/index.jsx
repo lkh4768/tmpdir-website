@@ -6,10 +6,15 @@ const addFile = _file => ({
 });
 
 const showLocalFileExplorer = () => ({
-  type: Contants.ACTION_TYPES.SHOW_LOCAL_FILE_EXPLORER
+  type: Contants.ACTION_TYPES.SHOW_LOCAL_FILE_EXPLORER,
+});
+
+const hideLocalFileExplorer = () => ({
+  type: Contants.ACTION_TYPES.HIDE_LOCAL_FILE_EXPLORER,
 });
 
 export default {
   addFile,
   showLocalFileExplorer,
+  hideLocalFileExplorer,
 };
