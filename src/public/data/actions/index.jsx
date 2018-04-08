@@ -5,16 +5,17 @@ const addFile = _file => ({
   file: _file,
 });
 
-const showLocalFileExplorer = () => ({
-  type: Contants.ACTION_TYPES.SHOW_LOCAL_FILE_EXPLORER,
+const delFile = _filename => ({
+  type: Contants.ACTION_TYPES.DEL_FILE,
+  filename: _filename,
 });
 
-const hideLocalFileExplorer = () => ({
-  type: Contants.ACTION_TYPES.HIDE_LOCAL_FILE_EXPLORER,
+const delAllFile = () => ({
+  type: Contants.ACTION_TYPES.DEL_ALL_FILE,
 });
 
 export default {
   addFile,
-  showLocalFileExplorer,
-  hideLocalFileExplorer,
+  delFile,
+  delAllFile,
 };

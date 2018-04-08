@@ -1,15 +1,16 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import Result from './Result';
+import Result from '../../containers/FileExplorer/Result';
 
 class FileExplorerResult extends React.Component {
   getFileTotalSize() {
     return this.props.files.reduce((totalSize, file) => file.size + totalSize, 0);
   }
   render() {
+    const fileCount = (this.props.files.length > 0) ? this.props.files.length : 0;
     const ele = (
       <ul className={FileExplorerResult.CLASS_NAME}>
-        <Result fileCount={this.props.files.length} totalSize={this.getFileTotalSize()} />
+        <Result fileCount={fileCount} totalSize={this.getFileTotalSize()} />
       </ul>
     );
     return ele;
