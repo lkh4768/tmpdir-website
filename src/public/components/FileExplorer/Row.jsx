@@ -12,9 +12,15 @@ class Row extends React.Component {
         </div>
         <div className={Row.CLASS_NAME.rightItem}>
           <div className={Row.CLASS_NAME.size}>{this.props.rightItemText}</div>
-          <a className={Row.CLASS_NAME.delete} href="/">
+          <div
+            role="button"
+            tabIndex="0"
+            className={Row.CLASS_NAME.delete}
+            onClick={this.props.xClickHandler}
+            onKeyPress={this.props.xKeyPressHandler}
+          >
             <FaClose />
-          </a>
+          </div>
         </div>
       </li>
     );
@@ -40,6 +46,13 @@ Row.propTypes = {
     PropTypes.number,
     PropTypes.string,
   ]).isRequired,
+  xClickHandler: PropTypes.func,
+  xKeyPressHandler: PropTypes.func,
+};
+
+Row.defaultProps = {
+  xClickHandler: f => f,
+  xKeyPressHandler: f => f,
 };
 
 export default Row;

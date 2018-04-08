@@ -1,8 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import BodyRow from '../Body/BodyRow';
 import FileExplorerList from '../../containers/FileExplorer/FileExplorerList';
-import FileExplorerResult from './FileExplorerResult';
+import FileExplorerResult from '../../containers/FileExplorer/FileExplorerResult';
 
 class FileExplorer extends React.Component {
   render() {
@@ -13,7 +12,7 @@ class FileExplorer extends React.Component {
             <FileExplorerList />
           </li>
           <li>
-            <FileExplorerResult files={this.props.files} />
+            <FileExplorerResult />
           </li>
         </ul>
       </BodyRow>
@@ -23,16 +22,5 @@ class FileExplorer extends React.Component {
 }
 
 FileExplorer.className = 'file-explorer';
-
-FileExplorer.propTypes = {
-  files: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    size: PropTypes.number.isRequired,
-  })),
-};
-
-FileExplorer.defaultProps = {
-  files: [],
-};
 
 export default FileExplorer;

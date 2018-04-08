@@ -1,46 +1,66 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import FileInput from '../../containers/FileExplorer/FileInput';
-import File from './File';
+import File from '../../containers/FileExplorer/File';
 
 class FileExplorerList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.showLocalFileExplorer = this.showLocalFileExplorer.bind(this);
+  }
   makeFiles() {
     if (this.props.files.length > 0) {
       return this.props.files.map(file =>
-        <File key={file.name} name={file.name} size={file.size} />);
+        <File key={file.name} {...file} />);
     }
     return [];
+  }
+  showLocalFileExplorer() {
+    if (this.inputFileElement) {
+      this.inputFileElement.click();
+    }
   }
   render() {
     const files = this.makeFiles();
     const ele = (
-      <ul
-        onClick={this.props.showLocalFileExplorer}
-        role="presentation"
-        className={FileExplorerList.className}
+      <div
+        role="button"
+        tabIndex="0"
+        className={FileExplorerList.CLASS_NAME.wrapper}
+        onClick={this.showLocalFileExplorer}
+        onKeyPress={f => f}
       >
-        { files }
-        <li>
-          <FileInput
-            files={this.props.files}
-            isShowLocalFileExplorer={this.props.isShowLocalFileExplorer}
+        <ul className={FileExplorerList.CLASS_NAME.list}>
+          { files }
+          <input
+            className={FileExplorerList.CLASS_NAME.inputFile}
+            ref={(component) => { this.inputFileElement = component; }}
+            type="file"
+            onChange={(e) => {
+              if (e.target.files && e.target.files.length > 0) {
+                return this.props.addFile(e.target.files[0]);
+              }
+              return null;
+            }}
           />
-        </li>
-      </ul>
+        </ul>
+      </div>
     );
     return ele;
   }
 }
 
-FileExplorerList.className = 'file-explorer__list';
+FileExplorerList.CLASS_NAME = {
+  wrapper: 'file-explorer__list-wrapper',
+  list: 'file-explorer__list',
+  inputFile: 'file-explorer__list__input-file',
+};
 
 FileExplorerList.propTypes = {
   files: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
     size: PropTypes.number.isRequired,
   })).isRequired,
-  isShowLocalFileExplorer: PropTypes.bool.isRequired,
-  showLocalFileExplorer: PropTypes.func.isRequired,
+  addFile: PropTypes.func.isRequired,
 };
 
 export default FileExplorerList;
