@@ -7,7 +7,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  addFile: _file => dispatch(actions.addFile(_file)),
+  addFile: _files => dispatch(actions.addFile(_files)),
 });
 
 export default connect(

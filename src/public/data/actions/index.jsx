@@ -1,8 +1,8 @@
 import Contants from '../../utils/constants';
 
-const addFile = _file => ({
-  type: Contants.ACTION_TYPES.ADD_FILE,
-  file: _file,
+const addFile = _files => ({
+  type: Contants.ACTION_TYPES.ADD_FILES,
+  files: _files,
 });
 
 const delFile = _filename => ({

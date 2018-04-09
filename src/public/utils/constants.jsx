@@ -58,7 +58,7 @@ const Variables = {
   ],
 
   ACTION_TYPES: {
-    ADD_FILE: 'ADD_FILE',
+    ADD_FILES: 'ADD_FILES',
     DEL_FILE: 'DEL_FILE',
     DEL_ALL_FILE: 'DEL_ALL_FILE',
   },
