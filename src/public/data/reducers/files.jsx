@@ -1,4 +1,4 @@
-import Constants from '../../utils/constants';
+import C from '../../utils/constants';
 import File from '../../entities/File';
 
 const initState = new Set();
@@ -14,16 +14,16 @@ function inputFilesToFileEntities(files) {
 
 const files = (state = initState, action) => {
   switch (action.type) {
-    case Constants.ACTION_TYPES.ADD_FILES: {
+    case C.ACTION_TYPES.ADD_FILES: {
       return new Set([
         ...state,
         ...inputFilesToFileEntities(action.files),
       ]);
     }
-    case Constants.ACTION_TYPES.DEL_FILE: {
+    case C.ACTION_TYPES.DEL_FILE: {
       return new Set([...state].filter(file => file.name !== action.filename));
     }
-    case Constants.ACTION_TYPES.DEL_ALL_FILE: {
+    case C.ACTION_TYPES.DEL_ALL_FILE: {
       return initState;
     }
     default:
