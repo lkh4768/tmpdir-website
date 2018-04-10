@@ -6,6 +6,7 @@ import F from '../../utils/func';
 class FileExplorerList extends React.Component {
   constructor(props) {
     super(props);
+    this.inputFileElement = null;
     this.showLocalFileExplorer = this.showLocalFileExplorer.bind(this);
     this.dropHandler = this.dropHandler.bind(this);
     this.inputChangeHandler = this.inputChangeHandler.bind(this);
