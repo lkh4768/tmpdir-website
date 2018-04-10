@@ -25,6 +25,7 @@ BodyRow.ALIGN = {
   left: 'body__row__col',
   right: 'body__row__col--right',
   center: 'body__row__col--center',
+  between: 'body__row__col--between',
 };
 
 BodyRow.propTypes = {

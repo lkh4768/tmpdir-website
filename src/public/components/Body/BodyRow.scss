@@ -25,3 +25,8 @@
   @include body__row__col();
   justify-content: flex-end;
 }
+
+.body__row__col--between {
+  @include body__row__col();
+  justify-content: space-between;
+}
