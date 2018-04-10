@@ -2,14 +2,14 @@ import React from 'react';
 import Body from '../Body/Body';
 import Footer from '../Footer/Footer';
 
-import Constants from '../../utils/constants';
+import C from '../../utils/constants';
 
 class App extends React.Component {
   render() {
     const ele = (
       <React.Fragment>
-        <Body appInfo={Constants.APP_INFO} shareList={Constants.SHARE_LIST} />
-        <Footer labels={Constants.LABELS} links={Constants.LINKS} />
+        <Body appInfo={C.APP_INFO} shareList={C.SHARE_LIST} />
+        <Footer labels={C.LABELS} links={C.LINKS} />
       </React.Fragment>
     );
     return ele;

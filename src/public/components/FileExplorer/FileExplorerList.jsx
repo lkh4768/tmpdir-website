@@ -1,11 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import File from '../../containers/FileExplorer/File';
+import F from '../../utils/func';
 
 class FileExplorerList extends React.Component {
   constructor(props) {
     super(props);
     this.showLocalFileExplorer = this.showLocalFileExplorer.bind(this);
+    this.dropHandler = this.dropHandler.bind(this);
+    this.inputChangeHandler = this.inputChangeHandler.bind(this);
   }
   makeFiles() {
     const fileElements = [];
@@ -21,6 +24,17 @@ class FileExplorerList extends React.Component {
       this.inputFileElement.click();
     }
   }
+  dropHandler(e) {
+    F.removeEvent(e);
+    if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+      this.props.addFile(e.dataTransfer.files);
+    }
+  }
+  inputChangeHandler(e) {
+    if (e.target.files && e.target.files.length > 0) {
+      this.props.addFile(e.target.files);
+    }
+  }
   render() {
     const files = this.makeFiles();
     const ele = (
@@ -29,7 +43,11 @@ class FileExplorerList extends React.Component {
         tabIndex="0"
         className={FileExplorerList.CLASS_NAME.wrapper}
         onClick={this.showLocalFileExplorer}
-        onKeyPress={f => f}
+        onDragEnter={F.removeEvent}
+        onDragOver={F.removeEvent}
+        onDragLeave={F.removeEvent}
+        onDrop={this.dropHandler}
+        onKeyPress={F.emptyFunc}
       >
         <ul className={FileExplorerList.CLASS_NAME.list}>
           { files }
@@ -37,12 +55,7 @@ class FileExplorerList extends React.Component {
             className={FileExplorerList.CLASS_NAME.inputFile}
             ref={(component) => { this.inputFileElement = component; }}
             type="file"
-            onChange={(e) => {
-              if (e.target.files && e.target.files.length > 0) {
-                return this.props.addFile(e.target.files);
-              }
-              return null;
-            }}
+            onChange={this.inputChangeHandler}
             multiple
           />
         </ul>
