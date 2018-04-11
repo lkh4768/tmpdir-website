@@ -1,23 +1,15 @@
-import PropTypes from 'prop-types';
 import React from 'react';
+import C from '../../utils/constants';
 
 class Version extends React.Component {
   render() {
     const ele = (
       <div className="title__version">
-        {this.props.version}
+        {C.APP_INFO.version}
       </div>
     );
     return ele;
   }
 }
-
-Version.propTypes = {
-  version: PropTypes.string,
-};
-
-Version.defaultProps = {
-  version: '',
-};
 
 export default Version;

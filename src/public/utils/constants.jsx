@@ -56,12 +56,12 @@ const C = {
     new FooterLinkEntity('Mail: ', owner.email, ['mailto:', owner.email].join('')),
     new FooterLinkEntity('Blog: ', owner.blog, owner.blog),
   ],
-
   ACTION_TYPES: {
     ADD_FILES: 'ADD_FILES',
     DEL_FILE: 'DEL_FILE',
     DEL_ALL_FILE: 'DEL_ALL_FILE',
   },
+  GUIDE_TEXT: '파일을 드랍하거나 클릭하세요',
 };
 
 export default C;

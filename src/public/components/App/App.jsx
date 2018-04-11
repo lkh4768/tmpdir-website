@@ -8,7 +8,7 @@ class App extends React.Component {
   render() {
     const ele = (
       <React.Fragment>
-        <Body appInfo={C.APP_INFO} shareList={C.SHARE_LIST} />
+        <Body shareList={C.SHARE_LIST} />
         <Footer labels={C.LABELS} links={C.LINKS} />
       </React.Fragment>
     );
