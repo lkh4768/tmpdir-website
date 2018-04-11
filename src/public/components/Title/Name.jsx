@@ -1,19 +1,15 @@
-import PropTypes from 'prop-types';
 import React from 'react';
+import C from '../../utils/constants';
 
 class Name extends React.Component {
   render() {
     const node = (
       <div className="title__name" href="/">
-        {this.props.name}
+        {C.APP_INFO.name}
       </div>
     );
     return node;
   }
 }
-
-Name.propTypes = {
-  name: PropTypes.string.isRequired,
-};
 
 export default Name;

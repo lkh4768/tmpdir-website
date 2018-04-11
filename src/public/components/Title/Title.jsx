@@ -1,21 +1,21 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import BodyRow from '../Body/BodyRow';
 import Logo from './Logo';
 import Name from './Name';
 import Version from './Version';
+import C from '../../utils/constants';
 
 class Title extends React.Component {
   render() {
     const ele = (
       <BodyRow align={BodyRow.ALIGN.center} className={Title.CLASS_NAME}>
-        <a href={this.props.appInfo.url}>
-          <Logo logo={this.props.appInfo.logo} />
+        <a href={C.APP_INFO.url}>
+          <Logo />
         </a>
-        <a href={this.props.appInfo.url}>
-          <Name name={this.props.appInfo.name} />
+        <a href={C.APP_INFO.url}>
+          <Name />
         </a>
-        <Version version={this.props.appInfo.version} />
+        <Version />
       </BodyRow>
     );
     return ele;
@@ -23,14 +23,5 @@ class Title extends React.Component {
 }
 
 Title.CLASS_NAME = 'title';
-
-Title.propTypes = {
-  appInfo: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    url: PropTypes.string.isRequired,
-    logo: PropTypes.string.isRequired,
-    version: PropTypes.string,
-  }).isRequired,
-};
 
 export default Title;

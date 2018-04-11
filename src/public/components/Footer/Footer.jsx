@@ -1,31 +1,28 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import FooterLabel from './Label';
 import FooterLink from './Link';
+import C from '../../utils/constants';
+
+const makeLinks = () => C.LINKS.map(link => (
+  <FooterLink
+    key={link.title}
+    title={link.title}
+    url={link.url}
+    text={link.text}
+  />
+));
+const makeLabels = () => C.LABELS.map(label => (
+  <FooterLabel
+    key={label.text}
+    icon={label.icon}
+    text={label.text}
+  />
+));
 
 class Footer extends React.Component {
-  makeLinks() {
-    return this.props.links.map(link => (
-      <FooterLink
-        key={link.title}
-        title={link.title}
-        url={link.url}
-        text={link.text}
-      />
-    ));
-  }
-  makeLabels() {
-    return this.props.labels.map(label => (
-      <FooterLabel
-        key={label.text}
-        icon={label.icon}
-        text={label.text}
-      />
-    ));
-  }
   render() {
-    const links = this.makeLinks();
-    const labels = this.makeLabels();
+    const links = makeLinks();
+    const labels = makeLabels();
     const ele = (
       <div className="footer">
         {labels}
@@ -35,22 +32,5 @@ class Footer extends React.Component {
     return ele;
   }
 }
-
-Footer.propTypes = {
-  links: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    url: PropTypes.string.isRequired,
-    text: PropTypes.string.isRequired,
-  })),
-  labels: PropTypes.arrayOf(PropTypes.shape({
-    icon: PropTypes.node,
-    text: PropTypes.string.isRequired,
-  })),
-};
-
-Footer.defaultProps = {
-  links: null,
-  labels: null,
-};
 
 export default Footer;

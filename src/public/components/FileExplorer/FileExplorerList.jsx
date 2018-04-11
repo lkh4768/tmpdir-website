@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import File from '../../containers/FileExplorer/File';
+import UploadGuide from './UploadGuide';
 import F from '../../utils/func';
 
 class FileExplorerList extends React.Component {
@@ -14,9 +15,9 @@ class FileExplorerList extends React.Component {
   makeFiles() {
     const fileElements = [];
     if (this.props.files.size && this.props.files.size > 0) {
-      this.props.files.forEach((file) => {
-        fileElements.push(<File key={file.name} {...file} />);
-      });
+      this.props.files.forEach(file => fileElements.push(<File key={file.name} {...file} />));
+    } else {
+      fileElements.push(<UploadGuide />);
     }
     return fileElements;
   }
@@ -52,14 +53,14 @@ class FileExplorerList extends React.Component {
       >
         <ul className={FileExplorerList.CLASS_NAME.list}>
           { files }
-          <input
-            className={FileExplorerList.CLASS_NAME.inputFile}
-            ref={(component) => { this.inputFileElement = component; }}
-            type="file"
-            onChange={this.inputChangeHandler}
-            multiple
-          />
         </ul>
+        <input
+          className={FileExplorerList.CLASS_NAME.inputFile}
+          ref={(component) => { this.inputFileElement = component; }}
+          type="file"
+          onChange={this.inputChangeHandler}
+          multiple
+        />
       </div>
     );
     return ele;
@@ -68,8 +69,8 @@ class FileExplorerList extends React.Component {
 
 FileExplorerList.CLASS_NAME = {
   wrapper: 'file-explorer__list-wrapper',
-  list: 'file-explorer__list',
-  inputFile: 'file-explorer__list__input-file',
+  list: 'file-explorer__list-wrapper__contents',
+  inputFile: 'file-explorer__list-wrapper__input-file',
 };
 
 FileExplorerList.propTypes = {

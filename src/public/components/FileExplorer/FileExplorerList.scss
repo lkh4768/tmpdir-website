@@ -1,16 +1,16 @@
+@import './UploadGuide';
 .file-explorer__list-wrapper {
   &:focus {
     outline: none;
   }
-  .file-explorer__list {
+  .file-explorer__list-wrapper__contents {
     height: 350px;
     background-color: hsl(192, 15%, 94%);
     overflow-y: auto;
 
     @include default-ul();
-
-    .file-explorer__list__input-file {
-      display: none;
-    }
+  }
+  .file-explorer__list-wrapper__input-file {
+    display: none;
   }
 }
