@@ -17,7 +17,7 @@ class FileExplorerList extends React.Component {
     if (this.props.files.size && this.props.files.size > 0) {
       this.props.files.forEach(file => fileElements.push(<File key={file.name} {...file} />));
     } else {
-      fileElements.push(<UploadGuide />);
+      fileElements.push(<UploadGuide key="uploadGuide" />);
     }
     return fileElements;
   }

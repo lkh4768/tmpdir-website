@@ -1,16 +1,11 @@
-import React from 'react';
-import { Row, Col } from 'reactstrap';
+import { connect } from 'react-redux';
+import Upload from '../../components/Upload/Upload';
 
-class Upload extends React.Component {
-  render() {
-    const node = (
-      <Row>
-        <Col />
-      </Row>
-    );
+const mapStateToProps = state => ({
+  files: state.files,
+});
 
-    return node;
-  }
-}
-
-export default Upload;
+export default connect(
+  mapStateToProps,
+  null,
+)(Upload);
