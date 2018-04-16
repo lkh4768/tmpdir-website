@@ -1,10 +1,12 @@
 import express from 'express';
-import Path from 'path';
+
+import render from '../modules/render';
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-  res.sendFile(Path.resolve(__dirname, '/build/', 'index.html'));
+router.get('/', (req, res) => res.end(render.render()));
+router.post('/files', (req, res) => {
+  res.end('ok');
 });
 
 export default router;
