@@ -13,13 +13,11 @@ class FileExplorerList extends React.Component {
     this.inputChangeHandler = this.inputChangeHandler.bind(this);
   }
   makeFiles() {
-    const fileElements = [];
-    if (this.props.files.size && this.props.files.size > 0) {
-      this.props.files.forEach(file => fileElements.push(<File key={file.name} {...file} />));
-    } else {
-      fileElements.push(<UploadGuide key="uploadGuide" />);
+    if (this.props.files && this.props.files.length > 0) {
+      return this.props.files.map(file =>
+        <File key={file.name} name={file.name} size={file.size} />);
     }
-    return fileElements;
+    return [<UploadGuide key="uploadGuide" />];
   }
   showLocalFileExplorer() {
     if (this.inputFileElement) {
@@ -74,7 +72,7 @@ FileExplorerList.CLASS_NAME = {
 };
 
 FileExplorerList.propTypes = {
-  files: PropTypes.objectOf(PropTypes.shape({
+  files: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
     size: PropTypes.number.isRequired,
   })).isRequired,

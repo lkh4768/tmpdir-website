@@ -27,7 +27,7 @@ class FileExplorerResult extends React.Component {
 FileExplorerResult.CLASS_NAME = 'file-explorer__result';
 
 FileExplorerResult.propTypes = {
-  files: PropTypes.objectOf(PropTypes.shape({
+  files: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
     size: PropTypes.number.isRequired,
   })).isRequired,

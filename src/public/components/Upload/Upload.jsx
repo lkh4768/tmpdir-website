@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Button } from 'reactstrap';
-import BodyRow from '../Body/BodyRow';
 import { post } from 'axios';
+import BodyRow from '../Body/BodyRow';
 
 class Upload extends React.Component {
   constructor(props) {
@@ -11,13 +12,13 @@ class Upload extends React.Component {
   uploadFiles() {
     const url = 'files';
     const formData = new FormData();
-    formData.append('file', this.props.files)
+    formData.append('file', this.props.files);
     const config = {
       headers: {
-        'content-type': 'multipart/form-data'
-      }
-    }
-    post(url, formData,config).then((response) => {
+        'content-type': 'multipart/form-data',
+      },
+    };
+    post(url, formData, config).then((response) => {
       console.log(response);
       return null;
     });
@@ -33,5 +34,12 @@ class Upload extends React.Component {
     return node;
   }
 }
+
+Upload.propTypes = {
+  files: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    size: PropTypes.number.isRequired,
+  })).isRequired,
+};
 
 export default Upload;
