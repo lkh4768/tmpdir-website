@@ -10,18 +10,15 @@ class Upload extends React.Component {
     this.uploadFiles = this.uploadFiles.bind(this);
   }
   uploadFiles() {
-    const url = 'files';
+    const url = '/files';
     const formData = new FormData();
-    formData.append('file', this.props.files);
+    formData.append('file', this.props.files[0]);
     const config = {
       headers: {
         'content-type': 'multipart/form-data',
       },
     };
-    post(url, formData, config).then((response) => {
-      console.log(response);
-      return null;
-    });
+    post(url, formData, config).then(response => console.log(response));
   }
   render() {
     const node = (
