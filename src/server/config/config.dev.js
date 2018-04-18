@@ -5,10 +5,12 @@ const Config = {
   tmpdir: {
     service: {
       upload: {
-        url: 'http://localhost:6000/',
+        hostname: 'localhost',
+        port: 6000,
       },
       download: {
-        url: 'http://localhost:6001/',
+        hostname: 'localhost',
+        port: 6001,
       },
     },
     file: {
