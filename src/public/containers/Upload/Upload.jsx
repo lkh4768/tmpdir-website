@@ -1,15 +1,12 @@
 import { connect } from 'react-redux';
+import actions from '../../data/actions';
 import Upload from '../../components/Upload/Upload';
 
-const mapStateToProps = state => ({
-  files: state.files,
-});
-
 const mapDispatchToProps = dispatch => ({
-  uploadFile: () => dispatch(actions.uploadFile()),
+  uploadFiles: () => dispatch(actions.uploadFiles()),
 });
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps,
 )(Upload);
