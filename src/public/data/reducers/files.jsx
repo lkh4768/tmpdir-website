@@ -1,3 +1,5 @@
+import { post } from 'axios';
+
 import C from '../../utils/constants';
 
 const initState = [];
@@ -10,6 +12,24 @@ const uniqArray = (arr, prop) => {
     }
     return has;
   });
+};
+
+const uploadFiles = (files) => {
+  files.forEach((file) => {
+    uploadFile(file);
+  });
+};
+
+const uploadFile = (file) => {
+  const url = '/files';
+    const formData = new FormData();
+    formData.append('file', this.props.files[0]);
+    const config = {
+      headers: {
+        'content-type': 'multipart/form-data',
+      },
+    };
+    post(url, formData, config).then(response => console.log(response));
 };
 
 const files = (state = initState, action) => {
@@ -28,6 +48,10 @@ const files = (state = initState, action) => {
     }
     case C.ACTION_TYPES.DEL_ALL_FILE: {
       return initState;
+    }
+    case C.ACTION_TYPES.UPLOAD_FILE: {
+      uploadFiles(state);
+      return state;
     }
     default:
       return state;
