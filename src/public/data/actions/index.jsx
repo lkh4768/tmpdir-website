@@ -14,6 +14,10 @@ const delAllFile = () => ({
   type: C.ACTION_TYPES.DEL_ALL_FILE,
 });
 
+const uploadFile = () => ({
+  type: C.ACTION_TYPES.UPLOAD_FILE,
+});
+
 export default {
   addFile,
   delFile,

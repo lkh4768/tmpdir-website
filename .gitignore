@@ -7,3 +7,6 @@
 ### NODEJS ###
 node_modules
 /build/
+
+## GOORM IDE ##
+goorm.manifest

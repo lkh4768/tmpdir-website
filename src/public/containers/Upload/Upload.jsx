@@ -5,7 +5,11 @@ const mapStateToProps = state => ({
   files: state.files,
 });
 
+const mapDispatchToProps = dispatch => ({
+  uploadFile: () => dispatch(actions.uploadFile()),
+});
+
 export default connect(
   mapStateToProps,
-  null,
+  mapDispatchToProps,
 )(Upload);
