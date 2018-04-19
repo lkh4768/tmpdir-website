@@ -60,7 +60,7 @@ const C = {
     ADD_FILES: 'ADD_FILES',
     DEL_FILE: 'DEL_FILE',
     DEL_ALL_FILE: 'DEL_ALL_FILE',
-    UPLOAD_ALL_FILE: 'UPLOAD_FILE',
+    UPLOAD_FILES: 'UPLOAD_FILES',
   },
   GUIDE_TEXT: '파일을 드랍하거나 클릭하세요',
 };
