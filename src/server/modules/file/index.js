@@ -1,5 +1,6 @@
 import fs from 'fs';
 import Multiparty from 'multiparty';
+import request from 'request';
 
 const uploadFiles = (req, callback) => {
   const form = new Multiparty.Form();
@@ -11,16 +12,8 @@ const uploadFiles = (req, callback) => {
       const { filename } = part;
       const filepath = ['/tmp/', filename].join('');
       const writeStream = fs.createWriteStream(filepath);
-      console.log(`Write Streaming file(${filepath})`);
 
-      writeStream.filename = filename;
-      part.pipe(writeStream);
-      part.on('data', chunk => console.log(`${filename} read ${chunk.length} bytes`));
-
-      part.on('end', () => {
-        console.log(`${filename} Part read complete`);
-        writeStream.end();
-      });
+      part.pipe(request.post('http://localhost:6001/file'));
     }
   });
 
