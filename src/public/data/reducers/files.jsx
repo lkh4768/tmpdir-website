@@ -14,22 +14,18 @@ const uniqArray = (arr, prop) => {
   });
 };
 
-const uploadFile = (file) => {
+const uploadFiles = (files) => {
   const url = '/files';
   const formData = new FormData();
-  formData.append('file', file);
+  files.forEach((file, i) => formData.append(['file', i].join(''), file));
   const config = {
     headers: {
       'content-type': 'multipart/form-data',
     },
   };
-  post(url, formData, config).then(response => console.log(response));
-};
-
-const uploadFiles = (files) => {
-  files.forEach((file) => {
-    uploadFile(file);
-  });
+  post(url, formData, config)
+    .then(response => console.log(response))
+    .catch(err => console.log(err));
 };
 
 const files = (state = initState, action) => {
