@@ -7,13 +7,11 @@ const router = express.Router();
 
 router.get('/', (req, res) => res.end(render.render()));
 router.post('/files', (req, res) => {
-  File.uploadFiles(req, (error) => {
-    if (error) {
-      console.log(error);
-      return res.end('failed');
+  File.uploadFiles(req, (err, data) => {
+    if (err) {
+      return res.status(err.response.data.status).end(err.response.data.error);
     }
-
-    return res.end('success');
+    return res.status(data.code).json(data.data).end();
   });
 });
 
