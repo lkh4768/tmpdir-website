@@ -14,9 +14,11 @@ import {
 } from 'react-share';
 import ShareEntity from '../../entities/Share';
 
+const CLASS_NAME = {
+  button: 'share-button',
+};
 class ShareButton extends React.Component {
   render() {
-    const className = 'share-button';
     const components = new Map([
       [
         ShareEntity.VENDER.facebook,
@@ -58,7 +60,7 @@ class ShareButton extends React.Component {
     const IconComponent = components.get(this.props.share.vender).icon;
     const ele = (
       <ButtonComponent
-        className={className}
+        className={CLASS_NAME.button}
         quote={this.props.share.title}
         url={this.props.share.url}
       >

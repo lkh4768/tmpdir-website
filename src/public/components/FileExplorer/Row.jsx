@@ -3,32 +3,7 @@ import React from 'react';
 
 import FaClose from '../../../../node_modules/react-icons/lib/fa/close';
 
-class Row extends React.Component {
-  render() {
-    const ele = (
-      <li className={Row.CLASS_NAME.row}>
-        <div className={Row.CLASS_NAME.leftItem}>
-          <div className={Row.CLASS_NAME.name}>{this.props.leftItemText}</div>
-        </div>
-        <div className={Row.CLASS_NAME.rightItem}>
-          <div className={Row.CLASS_NAME.size}>{this.props.rightItemText}</div>
-          <div
-            role="button"
-            tabIndex="0"
-            className={Row.CLASS_NAME.delete}
-            onClick={this.props.xClickHandler}
-            onKeyPress={this.props.xKeyPressHandler}
-          >
-            <FaClose />
-          </div>
-        </div>
-      </li>
-    );
-    return ele;
-  }
-}
-
-Row.CLASS_NAME = {
+const CLASS_NAME = {
   row: 'file-explorer__row',
   rightItem: 'file-explorer__row__right-item',
   leftItem: 'file-explorer__row__left-item',
@@ -36,6 +11,33 @@ Row.CLASS_NAME = {
   size: 'file-explorer__row__right-item__text',
   delete: 'file-explorer__row__right-item__delete',
 };
+
+function Row({
+  xClickHandler,
+  xKeyPressHandler,
+  leftItemText,
+  rightItemText,
+}) {
+  return (
+    <li className={CLASS_NAME.row}>
+      <div className={CLASS_NAME.leftItem}>
+        <div className={CLASS_NAME.name}>{leftItemText}</div>
+      </div>
+      <div className={CLASS_NAME.rightItem}>
+        <div className={CLASS_NAME.size}>{rightItemText}</div>
+        <div
+          role="button"
+          tabIndex="0"
+          className={CLASS_NAME.delete}
+          onClick={xClickHandler}
+          onKeyPress={xKeyPressHandler}
+        >
+          <FaClose />
+        </div>
+      </div>
+    </li>
+  );
+}
 
 Row.propTypes = {
   leftItemText: PropTypes.oneOfType([

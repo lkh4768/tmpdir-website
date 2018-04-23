@@ -1,15 +1,16 @@
 import React from 'react';
 import C from '../../utils/constants';
 
-class Name extends React.Component {
-  render() {
-    const node = (
-      <div className="title__name" href="/">
-        {C.APP_INFO.name}
-      </div>
-    );
-    return node;
-  }
+const CLASS_NAME = {
+  name: 'title__name',
+};
+
+function Name() {
+  return (
+    <div className={CLASS_NAME.name} href={C.APP_INFO.url}>
+      {C.APP_INFO.name}
+    </div>
+  );
 }
 
 export default Name;

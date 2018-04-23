@@ -4,6 +4,12 @@ import File from '../../containers/FileExplorer/File';
 import UploadGuide from './UploadGuide';
 import F from '../../utils/func';
 
+const CLASS_NAME = {
+  wrapper: 'file-explorer__list-wrapper',
+  list: 'file-explorer__list-wrapper__contents',
+  inputFile: 'file-explorer__list-wrapper__input-file',
+};
+
 class FileExplorerList extends React.Component {
   constructor(props) {
     super(props);
@@ -36,12 +42,11 @@ class FileExplorerList extends React.Component {
     }
   }
   render() {
-    const files = this.makeFiles();
-    const ele = (
+    return (
       <div
         role="button"
         tabIndex="0"
-        className={FileExplorerList.CLASS_NAME.wrapper}
+        className={CLASS_NAME.wrapper}
         onClick={this.showLocalFileExplorer}
         onDragEnter={F.removeEvent}
         onDragOver={F.removeEvent}
@@ -49,11 +54,11 @@ class FileExplorerList extends React.Component {
         onDrop={this.dropHandler}
         onKeyPress={F.emptyFunc}
       >
-        <ul className={FileExplorerList.CLASS_NAME.list}>
-          { files }
+        <ul className={CLASS_NAME.list}>
+          { this.makeFiles() }
         </ul>
         <input
-          className={FileExplorerList.CLASS_NAME.inputFile}
+          className={CLASS_NAME.inputFile}
           ref={(component) => { this.inputFileElement = component; }}
           type="file"
           onChange={this.inputChangeHandler}
@@ -61,15 +66,9 @@ class FileExplorerList extends React.Component {
         />
       </div>
     );
-    return ele;
   }
 }
 
-FileExplorerList.CLASS_NAME = {
-  wrapper: 'file-explorer__list-wrapper',
-  list: 'file-explorer__list-wrapper__contents',
-  inputFile: 'file-explorer__list-wrapper__input-file',
-};
 
 FileExplorerList.propTypes = {
   files: PropTypes.arrayOf(PropTypes.shape({

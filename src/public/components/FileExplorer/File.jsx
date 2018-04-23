@@ -4,7 +4,7 @@ import Row from './Row';
 
 class File extends React.Component {
   render() {
-    const ele = (
+    return (
       <Row
         leftItemText={this.props.name}
         rightItemText={this.props.size}
@@ -16,7 +16,6 @@ class File extends React.Component {
         }
       />
     );
-    return ele;
   }
 }
 

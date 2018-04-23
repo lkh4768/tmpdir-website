@@ -1,25 +1,24 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-class Label extends React.Component {
-  render() {
-    const ele = (
-      <span className={Label.CLASS_NAME}>
-        {this.props.icon}
-        <span>
-          {this.props.text}
-        </span>
+const CLASS_NAME = {
+  label: 'footer__label',
+};
+
+function Label({ icon, text }) {
+  return (
+    <span className={CLASS_NAME.label}>
+      {icon}
+      <span>
+        {text}
       </span>
-    );
-    return ele;
-  }
+    </span>
+  );
 }
 
-Label.CLASS_NAME = 'footer__label';
-
 Label.propTypes = {
-  text: PropTypes.string.isRequired,
   icon: PropTypes.element.isRequired,
+  text: PropTypes.string.isRequired,
 };
 
 export default Label;

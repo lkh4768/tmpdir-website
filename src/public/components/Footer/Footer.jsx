@@ -6,31 +6,23 @@ import C from '../../utils/constants';
 const makeLinks = () => C.LINKS.map(link => (
   <FooterLink
     key={link.title}
-    title={link.title}
-    url={link.url}
-    text={link.text}
+    {...link}
   />
 ));
 const makeLabels = () => C.LABELS.map(label => (
   <FooterLabel
     key={label.text}
-    icon={label.icon}
-    text={label.text}
+    {...label}
   />
 ));
 
-class Footer extends React.Component {
-  render() {
-    const links = makeLinks();
-    const labels = makeLabels();
-    const ele = (
-      <div className="footer">
-        {labels}
-        {links}
-      </div>
-    );
-    return ele;
-  }
+function Footer() {
+  return (
+    <div className="footer">
+      {makeLinks()}
+      {makeLabels()}
+    </div>
+  );
 }
 
 export default Footer;

@@ -3,24 +3,23 @@ import BodyRow from '../Body/BodyRow';
 import FileExplorerList from '../../containers/FileExplorer/FileExplorerList';
 import FileExplorerResult from '../../containers/FileExplorer/FileExplorerResult';
 
-class FileExplorer extends React.Component {
-  render() {
-    const ele = (
-      <BodyRow>
-        <ul className={FileExplorer.className}>
-          <li>
-            <FileExplorerList />
-          </li>
-          <li>
-            <FileExplorerResult />
-          </li>
-        </ul>
-      </BodyRow>
-    );
-    return ele;
-  }
-}
+const CLASS_NAME = {
+  fileExplorer: 'file-explorer',
+};
 
-FileExplorer.className = 'file-explorer';
+function FileExplorer() {
+  return (
+    <BodyRow>
+      <ul className={CLASS_NAME.fileExplorer}>
+        <li>
+          <FileExplorerList />
+        </li>
+        <li>
+          <FileExplorerResult />
+        </li>
+      </ul>
+    </BodyRow>
+  );
+}
 
 export default FileExplorer;

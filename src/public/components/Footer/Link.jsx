@@ -1,20 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class Link extends React.Component {
-  render() {
-    const ele = (
-      <span>
-        {this.props.title}
-        <a href={this.props.url} target="__blank">
-          {this.props.text}
-        </a>
-        {' '}
-      </span>
-    );
-
-    return ele;
-  }
+function Link({ title, url, text }) {
+  return (
+    <span>
+      {title}
+      <a href={url} target="__blank">
+        {text}
+      </a>
+      {' '}
+    </span>
+  );
 }
 
 Link.propTypes = {
