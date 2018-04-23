@@ -2,6 +2,9 @@ import Multiparty from 'multiparty';
 import { post } from 'axios';
 import FormData from 'form-data';
 
+import Config from '../../modules/config';
+import Utils from '../../modules/utils';
+
 const uploadFiles = (req, callback) => {
   const form = new Multiparty.Form();
   const formData = new FormData();
@@ -25,13 +28,14 @@ const uploadFiles = (req, callback) => {
   });
 
   form.on('close', () => {
+    const uploadUrl = Utils.getUrl(Config.tmpdir.service.upload.hostname, Config.tmpdir.service.upload.protocol, Config.tmpdir.service.upload.port);
     const config = {
       headers: {
         accept: 'application/json',
         'Content-Type': `multipart/form-data; boundary=${formData.getBoundary()}`,
       },
     };
-    post('http://localhost:6000/', formData, config)
+    post(uploadUrl, formData, config)
       .then(res => callback(null, { code: res.status, data: res.data }))
       .catch(err => callback(err));
   });
