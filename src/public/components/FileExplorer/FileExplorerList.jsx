@@ -10,6 +10,14 @@ const CLASS_NAME = {
   inputFile: 'file-explorer__list-wrapper__input-file',
 };
 
+const propTypes = {
+  files: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    size: PropTypes.number.isRequired,
+  })).isRequired,
+  addFile: PropTypes.func.isRequired,
+};
+
 class FileExplorerList extends React.Component {
   constructor(props) {
     super(props);
@@ -70,12 +78,6 @@ class FileExplorerList extends React.Component {
 }
 
 
-FileExplorerList.propTypes = {
-  files: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    size: PropTypes.number.isRequired,
-  })).isRequired,
-  addFile: PropTypes.func.isRequired,
-};
+FileExplorerList.propTypes = propTypes;
 
 export default FileExplorerList;

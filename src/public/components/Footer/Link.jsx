@@ -1,6 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+const propTypes = {
+  title: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+};
+
 function Link({ title, url, text }) {
   return (
     <span>
@@ -13,10 +19,6 @@ function Link({ title, url, text }) {
   );
 }
 
-Link.propTypes = {
-  title: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
-};
+Link.propTypes = propTypes;
 
 export default Link;

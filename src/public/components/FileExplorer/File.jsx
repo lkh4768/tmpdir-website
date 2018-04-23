@@ -2,6 +2,12 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Row from './Row';
 
+const propTypes = {
+  name: PropTypes.string.isRequired,
+  size: PropTypes.number.isRequired,
+  delFile: PropTypes.func.isRequired,
+};
+
 class File extends React.Component {
   render() {
     return (
@@ -19,10 +25,6 @@ class File extends React.Component {
   }
 }
 
-File.propTypes = {
-  name: PropTypes.string.isRequired,
-  size: PropTypes.number.isRequired,
-  delFile: PropTypes.func.isRequired,
-};
+File.propTypes = propTypes;
 
 export default File;

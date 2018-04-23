@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 import { Button } from 'reactstrap';
 import BodyRow from '../Body/BodyRow';
 
+const propTypes = {
+  uploadFiles: PropTypes.func.isRequired,
+};
+
 class Upload extends React.Component {
   render() {
     const node = (
@@ -16,8 +20,6 @@ class Upload extends React.Component {
   }
 }
 
-Upload.propTypes = {
-  uploadFiles: PropTypes.func.isRequired,
-};
+Upload.propTypes = propTypes;
 
 export default Upload;

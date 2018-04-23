@@ -17,6 +17,23 @@ import ShareEntity from '../../entities/Share';
 const CLASS_NAME = {
   button: 'share-button',
 };
+const propTypes = {
+  share: PropTypes.shape({
+    vender: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+    icon: PropTypes.shape({
+      vender: PropTypes.number.isRequired,
+      size: PropTypes.number,
+      isRound: PropTypes.bool,
+    }).isRequired,
+  }),
+};
+
+const defaultProps = {
+  share: null,
+};
+
 class ShareButton extends React.Component {
   render() {
     const components = new Map([
@@ -74,21 +91,7 @@ class ShareButton extends React.Component {
   }
 }
 
-ShareButton.propTypes = {
-  share: PropTypes.shape({
-    vender: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    url: PropTypes.string.isRequired,
-    icon: PropTypes.shape({
-      vender: PropTypes.number.isRequired,
-      size: PropTypes.number,
-      isRound: PropTypes.bool,
-    }).isRequired,
-  }),
-};
-
-ShareButton.defaultProps = {
-  share: null,
-};
+ShareButton.propTypes = propTypes;
+ShareButton.defaultProps = defaultProps;
 
 export default ShareButton;
