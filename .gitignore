@@ -3,6 +3,7 @@
 
 ## LINUX ##
 **/*.swp
+.tags_result
 
 ### NODEJS ###
 node_modules
