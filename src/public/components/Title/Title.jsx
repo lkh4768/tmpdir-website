@@ -5,23 +5,22 @@ import Name from './Name';
 import Version from './Version';
 import C from '../../utils/constants';
 
-class Title extends React.Component {
-  render() {
-    const ele = (
-      <BodyRow align={BodyRow.ALIGN.center} className={Title.CLASS_NAME}>
-        <a href={C.APP_INFO.url}>
-          <Logo />
-        </a>
-        <a href={C.APP_INFO.url}>
-          <Name />
-        </a>
-        <Version />
-      </BodyRow>
-    );
-    return ele;
-  }
-}
+const CLASS_NAME = {
+  title: 'title',
+};
 
-Title.CLASS_NAME = 'title';
+function Title() {
+  return (
+    <BodyRow align={BodyRow.ALIGN.center} className={CLASS_NAME.title}>
+      <a href={C.APP_INFO.url}>
+        <Logo />
+      </a>
+      <a href={C.APP_INFO.url}>
+        <Name />
+      </a>
+      <Version />
+    </BodyRow>
+  );
+}
 
 export default Title;

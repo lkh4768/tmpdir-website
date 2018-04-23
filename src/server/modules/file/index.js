@@ -28,7 +28,8 @@ const uploadFiles = (req, callback) => {
   });
 
   form.on('close', () => {
-    const uploadUrl = Utils.getUrl(Config.tmpdir.service.upload.hostname, Config.tmpdir.service.upload.protocol, Config.tmpdir.service.upload.port);
+    const uploadConfig = Config.tmpdir.service.upload;
+    const uploadUrl = Utils.getUrl(uploadConfig.hostname, uploadConfig.protocol, uploadConfig.port);
     const config = {
       headers: {
         accept: 'application/json',

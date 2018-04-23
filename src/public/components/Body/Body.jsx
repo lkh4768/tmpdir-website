@@ -5,20 +5,21 @@ import Sns from '../Sns/Sns';
 import FileExplorer from '../FileExplorer/FileExplorer';
 import Upload from '../../containers/Upload/Upload';
 
-class Body extends React.Component {
-  render() {
-    const ele = (
-      <div className="body">
-        <Container fluid>
-          <Title />
-          <Sns />
-          <FileExplorer />
-          <Upload />
-        </Container>
-      </div>
-    );
-    return ele;
-  }
+const CLASS_NAME = {
+  body: 'body',
+};
+
+function Body() {
+  return (
+    <div className={CLASS_NAME.body}>
+      <Container fluid>
+        <Title />
+        <Sns />
+        <FileExplorer />
+        <Upload />
+      </Container>
+    </div>
+  );
 }
 
 export default Body;

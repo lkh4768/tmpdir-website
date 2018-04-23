@@ -4,7 +4,7 @@ import Row from './Row';
 
 class Result extends React.Component {
   render() {
-    const ele = (
+    return (
       <Row
         leftItemText={this.props.fileCount}
         rightItemText={this.props.totalSize}
@@ -16,7 +16,6 @@ class Result extends React.Component {
         }
       />
     );
-    return ele;
   }
 }
 

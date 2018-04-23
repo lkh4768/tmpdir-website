@@ -4,20 +4,17 @@ import { Row, Col } from 'reactstrap';
 
 class BodyRow extends React.Component {
   getClassName() {
-    return [this.props.className, this.props.align].join(' ');
+    return `${this.props.className} ${this.props.align}`;
   }
 
   render() {
-    const className = this.getClassName();
-    const ele = (
+    return (
       <Row>
-        <Col xs="12" md={{ size: 8, offset: 2 }} className={className}>
+        <Col xs="12" md={{ size: 8, offset: 2 }} className={this.getClassName()}>
           {this.props.children}
         </Col>
       </Row>
     );
-
-    return ele;
   }
 }
 

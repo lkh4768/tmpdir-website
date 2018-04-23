@@ -1,16 +1,18 @@
 import React from 'react';
 import C from '../../utils/constants';
 
-class Logo extends React.Component {
-  render() {
-    const alt = 'logo';
-    const node = (
-      <div className="title__logo">
-        <img src={C.APP_INFO.logo} alt={alt} />
-      </div>
-    );
-    return node;
-  }
+const CLASS_NAME = {
+  logo: 'title__logo',
+};
+
+const LOGO_ALT = 'logo';
+
+function Logo() {
+  return (
+    <div className={CLASS_NAME.logo}>
+      <img src={C.APP_INFO.logo} alt={LOGO_ALT} />
+    </div>
+  );
 }
 
 export default Logo;

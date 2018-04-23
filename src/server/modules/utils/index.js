@@ -5,4 +5,5 @@ const getUrl = (hostname, protocol = 'http', port = '') => `${protocol}://${host
 export default {
   makeJsNode,
   makeCssNode,
+  getUrl,
 };
