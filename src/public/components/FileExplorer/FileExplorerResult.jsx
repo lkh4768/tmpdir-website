@@ -6,6 +6,13 @@ const CLASS_NAME = {
   result: 'file-explorer__result',
 };
 
+const propTypes = {
+  files: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    size: PropTypes.number.isRequired,
+  })).isRequired,
+};
+
 class FileExplorerResult extends React.Component {
   getFileTotalSize() {
     return this.props.files.reduce((sum, file) => sum + file.size);
@@ -19,11 +26,6 @@ class FileExplorerResult extends React.Component {
   }
 }
 
-FileExplorerResult.propTypes = {
-  files: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    size: PropTypes.number.isRequired,
-  })).isRequired,
-};
+FileExplorerResult.propTypes = propTypes;
 
 export default FileExplorerResult;

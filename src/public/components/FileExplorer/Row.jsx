@@ -12,6 +12,24 @@ const CLASS_NAME = {
   delete: 'file-explorer__row__right-item__delete',
 };
 
+const propTypes = {
+  leftItemText: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]).isRequired,
+  rightItemText: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]).isRequired,
+  xClickHandler: PropTypes.func,
+  xKeyPressHandler: PropTypes.func,
+};
+
+const defaultProps = {
+  xClickHandler: f => f,
+  xKeyPressHandler: f => f,
+};
+
 function Row({
   xClickHandler,
   xKeyPressHandler,
@@ -39,22 +57,7 @@ function Row({
   );
 }
 
-Row.propTypes = {
-  leftItemText: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.string,
-  ]).isRequired,
-  rightItemText: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.string,
-  ]).isRequired,
-  xClickHandler: PropTypes.func,
-  xKeyPressHandler: PropTypes.func,
-};
-
-Row.defaultProps = {
-  xClickHandler: f => f,
-  xKeyPressHandler: f => f,
-};
+Row.propTypes = propTypes;
+Row.defaultProps = defaultProps;
 
 export default Row;

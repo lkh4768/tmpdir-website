@@ -2,6 +2,12 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Row from './Row';
 
+const propTypes = {
+  fileCount: PropTypes.number.isRequired,
+  totalSize: PropTypes.number.isRequired,
+  delAllFile: PropTypes.func.isRequired,
+};
+
 class Result extends React.Component {
   render() {
     return (
@@ -19,10 +25,6 @@ class Result extends React.Component {
   }
 }
 
-Result.propTypes = {
-  fileCount: PropTypes.number.isRequired,
-  totalSize: PropTypes.number.isRequired,
-  delAllFile: PropTypes.func.isRequired,
-};
+Result.propTypes = propTypes;
 
 export default Result;
