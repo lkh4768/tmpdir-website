@@ -15,7 +15,10 @@ const propTypes = {
 
 class FileExplorerResult extends React.Component {
   getFileTotalSize() {
-    return this.props.files.reduce((sum, file) => sum + file.size);
+    if (this.props.files && this.props.files.length > 0) {
+      return this.props.files.reduce((sum, file) => sum + file.size, 0);
+    }
+    return 0;
   }
   render() {
     return (

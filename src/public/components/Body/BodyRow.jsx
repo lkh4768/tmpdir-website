@@ -14,7 +14,7 @@ const propTypes = {
   className: PropTypes.string,
   align: PropTypes.string,
 };
-  
+
 const defaultProps = {
   className: '',
   align: align.left,
@@ -38,6 +38,6 @@ class BodyRow extends React.Component {
 
 BodyRow.ALIGN = align;
 BodyRow.propTypes = propTypes;
-BodyRow.defaultProps defaultProps;
+BodyRow.defaultProps = defaultProps;
 
 export default BodyRow;
