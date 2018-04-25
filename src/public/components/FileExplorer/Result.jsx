@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+
 import Row from './Row';
+import F from '../../utils/func';
 
 const propTypes = {
   fileCount: PropTypes.number.isRequired,
@@ -13,7 +15,7 @@ class Result extends React.Component {
     return (
       <Row
         leftItemText={this.props.fileCount}
-        rightItemText={this.props.totalSize}
+        rightItemText={F.convertFileSize(this.props.totalSize)}
         xClickHandler={
           (event) => {
             event.stopPropagation();
