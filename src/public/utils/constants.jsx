@@ -63,6 +63,12 @@ const C = {
     UPLOAD_FILES: 'UPLOAD_FILES',
   },
   GUIDE_TEXT: '파일을 드랍하거나 클릭하세요',
+  FILE: {
+    SIZE: {
+      WARTERMARK: 1000,
+      UNITS: ['B', 'KB', 'MB', 'GB'],
+    },
+  },
 };
 
 export default C;

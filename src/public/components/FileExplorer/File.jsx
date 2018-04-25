@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+
 import Row from './Row';
+import F from '../../utils/func';
 
 const propTypes = {
   name: PropTypes.string.isRequired,
@@ -13,7 +15,7 @@ class File extends React.Component {
     return (
       <Row
         leftItemText={this.props.name}
-        rightItemText={this.props.size}
+        rightItemText={F.convertFileSize(this.props.size)}
         xClickHandler={
           (event) => {
             event.stopPropagation();
