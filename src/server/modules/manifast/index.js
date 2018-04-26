@@ -1,8 +1,7 @@
 import manifest from '../../../../build/manifest.json';
 
-console.log(manifest);
-const getJsUrls = () => Object.values(manifest).filter(filename => /\.js$/.exec(filename));
-const getCssUrls = () => Object.values(manifest).filter(filename => /\.css$/.exec(filename));
+const getJsUrls = () => Object.keys(manifest).filter(key => /\.js$/.exec(manifest[key]));
+const getCssUrls = () => Object.keys(manifest).filter(key => /\.css$/.exec(manifest[key]));
 
 export default {
   getJsUrls,
