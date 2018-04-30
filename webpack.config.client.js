@@ -3,8 +3,10 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const StatsPlugin = require('stats-webpack-plugin');
 const autoprefixer = require('autoprefixer');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const config = {
+  mode: 'production',
   name: 'client',
   devtool: 'eval-source-map',
   entry: [
@@ -31,14 +33,9 @@ const config = {
         exclude: /node_modules/,
         loader: 'eslint-loader',
         options: {
+          emitWarning: true,
           configFile: './.eslintrc-jsx.js',
         },
-      },
-      {
-        enforce: 'pre',
-        test: /\.(sass|scss)$/,
-        exclude: /node_modules/,
-        loader: 'sasslint-loader',
       },
       {
         test: /\.jsx?$/,
@@ -46,7 +43,7 @@ const config = {
         loader: 'babel-loader',
       },
       {
-        test: /\.(sass|scss)$/,
+        test: /\.scss$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [
@@ -74,13 +71,21 @@ const config = {
       },
     ],
   },
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
+        uglifyOptions: {
+          compress: false,
+          ecma: 6,
+          mangle: true
+        },
+        sourceMap: true
+      })
+    ]
+  },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      compressor: {
-        warnings: false,
-        screw_ie8: true,
-      },
-    }),
     new ManifestPlugin(),
     new ExtractTextPlugin({
       filename: '[name]-[hash].min.css',
