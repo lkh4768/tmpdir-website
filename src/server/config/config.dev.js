@@ -17,7 +17,7 @@ const Config = {
     },
     file: {
       expireTermDay: 1,
-      maxSizeGB: 1,
+      maxSize: 1000 * 1000 * 1000,
     },
   },
   log: {

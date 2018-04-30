@@ -5,6 +5,7 @@ const ManifestPlugin = require('webpack-manifest-plugin');
 const autoprefixer = require('autoprefixer');
 
 const config = {
+  mode: 'development',
   name: 'client',
   devtool: 'eval-source-map',
   entry: [
@@ -29,25 +30,27 @@ const config = {
       {
         enforce: 'pre',
         test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
+        exclude: /(node_modules|bower_components)/,
         loader: 'eslint-loader',
         options: {
+          emitWarning: true,
           configFile: './.eslintrc-jsx.js',
         },
       },
       {
-        enforce: 'pre',
-        test: /\.(sass|scss)$/,
-        exclude: /node_modules/,
-        loader: 'sasslint-loader',
-      },
-      {
         test: /\.jsx?$/,
-        exclude: /node_modules/,
+        exclude: /(node_modules|bower_components)/,
         loader: 'babel-loader',
+        query: {
+          presets: [
+            'es2015',
+            'react',
+          ]
+        },
       },
       {
         test: /\.(sass|scss)$/,
+        exclude: /(node_modules|bower_components)/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [
@@ -79,12 +82,6 @@ const config = {
     ],
   },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      compressor: {
-        warnings: false,
-        screw_ie8: true,
-      },
-    }),
     new ManifestPlugin(),
     new ExtractTextPlugin({
       filename: '[name].min.css',

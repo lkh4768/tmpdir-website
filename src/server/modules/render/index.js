@@ -2,6 +2,7 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
+import Config from '../config';
 import App from '../../../public/components/App/App';
 import reducer from '../../../public/data/reducers/index';
 import Utils from '../utils';
@@ -47,6 +48,7 @@ class Render {
       '</div>',
       '<script>',
       `window.INITIAL_STATE = ${JSON.stringify(this.store.getState()).replace(/</g, '\\x3c')}`,
+      `window.CONST = ${JSON.stringify(Config.tmpdir.file).replace(/</g, '\\x3c')}`,
       '</script>',
       this.jsNodes,
       '</body>',

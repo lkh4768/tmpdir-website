@@ -20,7 +20,7 @@ const owner = {
   blog: 'http://sw-warehouse.xyz',
 };
 
-const C = {
+const clientConst = {
   APP_INFO: new AppInfoEntity(tmpdir.name, tmpdir.url, tmpdir.logo, tmpdir.version),
   SHARE_LIST: [
     new ShareEntity(
@@ -69,6 +69,13 @@ const C = {
       UNITS: ['B', 'KB', 'MB', 'GB'],
     },
   },
+};
+
+let serverConst = null;
+
+const C = (_serverConst) => {
+  serverConst = _serverConst ? _serverConst : serverConst;
+  return { ...clientConst, ...serverConst };
 };
 
 export default C;
