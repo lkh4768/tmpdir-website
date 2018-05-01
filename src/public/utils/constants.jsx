@@ -61,10 +61,12 @@ const C = {
     DEL_FILE: 'DEL_FILE',
     DEL_ALL_FILE: 'DEL_ALL_FILE',
     UPLOAD_FILES: 'UPLOAD_FILES',
+    EMPTY_ERROR: 'EMPTY_ERROR',
   },
   GUIDE_TEXT: '파일을 드랍하거나 클릭하세요',
   FILE: {
     SIZE: {
+      MAX: 1000 * 1000 * 1000,
       WARTERMARK: 1000,
       UNITS: ['B', 'KB', 'MB', 'GB'],
     },

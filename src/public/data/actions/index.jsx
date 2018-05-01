@@ -18,9 +18,14 @@ const uploadFiles = () => ({
   type: C.ACTION_TYPES.UPLOAD_FILES,
 });
 
+const emptyError = () => ({
+  type: C.ACTION_TYPES.EMPTY_ERROR,
+});
+
 export default {
   addFile,
   delFile,
   delAllFile,
   uploadFiles,
+  emptyError,
 };

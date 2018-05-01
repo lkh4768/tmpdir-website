@@ -2,7 +2,10 @@ import { post } from 'axios';
 
 import C from '../../utils/constants';
 
-const initState = [];
+const initState = {
+  list: [],
+  error: '',
+};
 const uniqArray = (arr, prop) => {
   const uniqKeySet = new Set([...arr].map(elem => elem[prop]));
   return arr.filter((elem) => {
@@ -28,26 +31,35 @@ const uploadFiles = (files) => {
     .catch(err => console.log(err));
 };
 
+const getTotalFileSize = files => files.reduce((sum, file) => sum + file.size, 0);
+
 const files = (state = initState, action) => {
   switch (action.type) {
     case C.ACTION_TYPES.ADD_FILES: {
-      return uniqArray(
+      const newFiles = uniqArray(
         [
-          ...state,
+          ...state.list,
           ...action.files,
         ],
         'name',
       );
+      if (C.FILE.SIZE.MAX >= getTotalFileSize(newFiles)) {
+        return { ...state, list: newFiles };
+      }
+      return { ...state, error: '파일 용량 초과' };
     }
     case C.ACTION_TYPES.DEL_FILE: {
-      return state.filter(file => file.name !== action.filename);
+      return state.list.filter(file => file.name !== action.filename);
     }
     case C.ACTION_TYPES.DEL_ALL_FILE: {
       return initState;
     }
     case C.ACTION_TYPES.UPLOAD_FILES: {
-      uploadFiles(state);
-      return [...state];
+      uploadFiles(state.list);
+      return state;
+    }
+    case C.ACTION_TYPES.EMPTY_ERROR: {
+      return { ...state, error: '' };
     }
     default:
       return state;
