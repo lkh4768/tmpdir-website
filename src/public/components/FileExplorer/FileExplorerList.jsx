@@ -16,6 +16,8 @@ const propTypes = {
     size: PropTypes.number.isRequired,
   })).isRequired,
   addFile: PropTypes.func.isRequired,
+  error: PropTypes.string.isRequired,
+  emptyError: PropTypes.func.isRequired,
 };
 
 class FileExplorerList extends React.Component {
@@ -38,15 +40,23 @@ class FileExplorerList extends React.Component {
       this.inputFileElement.click();
     }
   }
-  dropHandler(e) {
+  async dropHandler(e) {
     F.removeEvent(e);
     if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
-      this.props.addFile(e.dataTransfer.files);
+      await this.props.addFile(e.dataTransfer.files);
+      if (this.props.error !== '') {
+        alert(this.props.error);
+        this.props.emptyError();
+      }
     }
   }
-  inputChangeHandler(e) {
+  async inputChangeHandler(e) {
     if (e.target.files && e.target.files.length > 0) {
-      this.props.addFile(e.target.files);
+      await this.props.addFile(e.target.files);
+      if (this.props.error !== '') {
+        alert(this.props.error);
+        this.props.emptyError();
+      }
     }
   }
   render() {
