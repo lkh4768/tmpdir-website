@@ -84,7 +84,7 @@ const config = {
   plugins: [
     new ManifestPlugin(),
     new ExtractTextPlugin({
-      filename: '[name].min.css',
+      filename: '[name]-[hash].min.css',
       allChunks: true,
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),

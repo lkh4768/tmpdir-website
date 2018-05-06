@@ -1,10 +1,14 @@
 module.exports = {
   'parser': 'babel-eslint',
+  'parserOptions': {
+    'ecmaVersion': 2017
+  },
   'env': {
     'browser': true
   },
   'extends': [
-    'airbnb'
+    'eslint:recommended',
+    'airbnb',
   ],
   'rules': {
     'react/require-default-props': [
@@ -30,6 +34,6 @@ module.exports = {
     ]
   },
   'plugins': [
-    'react'
+    'react',
   ]
 };

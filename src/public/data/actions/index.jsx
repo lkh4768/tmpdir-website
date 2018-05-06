@@ -1,3 +1,5 @@
+import { post } from 'axios';
+
 import C from '../../utils/constants';
 
 const addFile = _files => ({
@@ -14,13 +16,38 @@ const delAllFile = () => ({
   type: C.ACTION_TYPES.DEL_ALL_FILE,
 });
 
-const uploadFiles = () => ({
+const uploadFiles = (uploading = true, data = '', error = '') => ({
   type: C.ACTION_TYPES.UPLOAD_FILES,
+  data,
+  error,
+  uploading,
 });
 
 const emptyError = () => ({
   type: C.ACTION_TYPES.EMPTY_ERROR,
 });
+
+async function reqUploadFilesImpl(files) {
+  const url = '/files';
+  const formData = new FormData();
+  files.forEach((file, i) => formData.append(['file', i].join(''), file));
+  const config = {
+    headers: {
+      'content-type': 'multipart/form-data',
+    },
+  };
+  try {
+    return { error: '', res: await post(url, formData, config) };
+  } catch (error) {
+    return { error, res: null };
+  }
+}
+
+const reqUploadFiles = files => (dispatch) => {
+  dispatch(uploadFiles());
+  const res = reqUploadFilesImpl(files);
+  return dispatch(uploadFiles(false, res.data, res.error));
+};
 
 export default {
   addFile,
@@ -28,4 +55,5 @@ export default {
   delAllFile,
   uploadFiles,
   emptyError,
+  reqUploadFiles,
 };

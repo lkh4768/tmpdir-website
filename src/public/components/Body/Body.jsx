@@ -3,7 +3,7 @@ import { Container } from 'reactstrap';
 import Title from '../Title/Title';
 import Sns from '../Sns/Sns';
 import FileExplorer from '../FileExplorer/FileExplorer';
-import Upload from '../../containers/Upload/Upload';
+import UploadContainer from '../../containers/Upload/UploadContainer';
 
 const CLASS_NAME = {
   body: 'body',
@@ -16,7 +16,7 @@ function Body() {
         <Title />
         <Sns />
         <FileExplorer />
-        <Upload />
+        <UploadContainer />
       </Container>
     </div>
   );

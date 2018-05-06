@@ -15,6 +15,16 @@ const F = {
     }
     return [remainSize.toFixed(2), C.FILE.SIZE.UNITS[cnt]].join(' ');
   },
+  uniqArray: (arr, prop) => {
+    const uniqKeySet = new Set([...arr].map(elem => elem[prop]));
+    return arr.filter((elem) => {
+      const has = uniqKeySet.has(elem[prop]);
+      if (has) {
+        uniqKeySet.delete(elem[prop]);
+      }
+      return has;
+    });
+  },
 };
 
 export default F;

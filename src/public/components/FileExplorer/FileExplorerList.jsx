@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import File from '../../containers/FileExplorer/File';
+import FileContainer from '../../containers/FileExplorer/FileContainer';
 import UploadGuide from './UploadGuide';
 import F from '../../utils/func';
 
@@ -31,7 +31,7 @@ class FileExplorerList extends React.Component {
   makeFiles() {
     if (this.props.files && this.props.files.length > 0) {
       return this.props.files.map(file =>
-        <File key={file.name} name={file.name} size={file.size} />);
+        <FileContainer key={file.name} name={file.name} size={file.size} />);
     }
     return [<UploadGuide key="uploadGuide" />];
   }
