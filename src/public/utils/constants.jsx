@@ -62,14 +62,21 @@ const C = {
     DEL_ALL_FILE: 'DEL_ALL_FILE',
     UPLOAD_FILES: 'UPLOAD_FILES',
     EMPTY_ERROR: 'EMPTY_ERROR',
+    TOGGLE_MODAL: 'TOGGLE_MODAL',
   },
-  GUIDE_TEXT: '파일을 드랍하거나 클릭하세요',
   FILE: {
     SIZE: {
       MAX: 1000 * 1000 * 1000,
       WARTERMARK: 1000,
       UNITS: ['B', 'KB', 'MB', 'GB'],
     },
+  },
+  TEXT: {
+    GUIDE: '파일을 드랍하거나 클릭하세요',
+    ALL_DEL_HEAD: '파일 모두 삭제',
+    ALL_DEL_BODY: '정말로 모두 삭제하시겠습니까?',
+    YES: '예',
+    NO: '아니오',
   },
 };
 

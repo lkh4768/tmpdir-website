@@ -8,7 +8,7 @@ const CLASS_NAME = {
 function UploadGuide() {
   return (
     <li className={CLASS_NAME.uploadGuide}>
-      {C.GUIDE_TEXT}
+      {C.TEXT.GUIDE}
     </li>
   );
 }

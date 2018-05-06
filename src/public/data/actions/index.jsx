@@ -27,6 +27,10 @@ const emptyError = () => ({
   type: C.ACTION_TYPES.EMPTY_ERROR,
 });
 
+const toggleModal = () => ({
+  type: C.ACTION_TYPES.TOGGLE_MODAL,
+});
+
 async function reqUploadFilesImpl(files) {
   const url = '/files';
   const formData = new FormData();
@@ -56,4 +60,5 @@ export default {
   uploadFiles,
   emptyError,
   reqUploadFiles,
+  toggleModal,
 };
