@@ -1,7 +1,7 @@
 import React from 'react';
 import BodyRow from '../Body/BodyRow';
-import FileExplorerList from '../../containers/FileExplorer/FileExplorerList';
-import FileExplorerResult from '../../containers/FileExplorer/FileExplorerResult';
+import FileExplorerListContainer from '../../containers/FileExplorer/FileExplorerListContainer';
+import FileExplorerResultContainer from '../../containers/FileExplorer/FileExplorerResultContainer';
 
 const CLASS_NAME = {
   fileExplorer: 'file-explorer',
@@ -12,10 +12,10 @@ function FileExplorer() {
     <BodyRow>
       <ul className={CLASS_NAME.fileExplorer}>
         <li>
-          <FileExplorerList />
+          <FileExplorerListContainer />
         </li>
         <li>
-          <FileExplorerResult />
+          <FileExplorerResultContainer />
         </li>
       </ul>
     </BodyRow>

@@ -1,8 +1,4 @@
-import React from 'react';
-import { renderToString } from 'react-dom/server';
 import { createStore } from 'redux';
-import { Provider } from 'react-redux';
-import App from '../../../public/components/App/App';
 import reducer from '../../../public/data/reducers/index';
 import Utils from '../utils';
 import manifest from '../manifast';
@@ -15,9 +11,6 @@ import logo192h from '../../../public/static/images/logo_192h.png';
 class Render {
   constructor() {
     this.store = createStore(reducer);
-  }
-  renderJsx() {
-    return renderToString(<Provider store={this.store}><App /></Provider>);
   }
   render() {
     return [

@@ -1,34 +1,11 @@
-import { post } from 'axios';
-
 import C from '../../utils/constants';
+import F from '../../utils/func';
 
 const initState = {
   list: [],
+  regiId: '',
+  uploading: false,
   error: '',
-};
-const uniqArray = (arr, prop) => {
-  const uniqKeySet = new Set([...arr].map(elem => elem[prop]));
-  return arr.filter((elem) => {
-    const has = uniqKeySet.has(elem[prop]);
-    if (has) {
-      uniqKeySet.delete(elem[prop]);
-    }
-    return has;
-  });
-};
-
-const uploadFiles = (files) => {
-  const url = '/files';
-  const formData = new FormData();
-  files.forEach((file, i) => formData.append(['file', i].join(''), file));
-  const config = {
-    headers: {
-      'content-type': 'multipart/form-data',
-    },
-  };
-  post(url, formData, config)
-    .then(response => console.log(response))
-    .catch(err => console.log(err));
 };
 
 const getTotalFileSize = files => files.reduce((sum, file) => sum + file.size, 0);
@@ -36,7 +13,7 @@ const getTotalFileSize = files => files.reduce((sum, file) => sum + file.size, 0
 const files = (state = initState, action) => {
   switch (action.type) {
     case C.ACTION_TYPES.ADD_FILES: {
-      const newFiles = uniqArray(
+      const newFiles = F.uniqArray(
         [
           ...state.list,
           ...action.files,
@@ -49,14 +26,21 @@ const files = (state = initState, action) => {
       return { ...state, error: '파일 용량 초과' };
     }
     case C.ACTION_TYPES.DEL_FILE: {
-      return state.list.filter(file => file.name !== action.filename);
+      return {
+        ...state,
+        list: state.list.filter(file => file.name !== action.filename),
+      };
     }
     case C.ACTION_TYPES.DEL_ALL_FILE: {
       return initState;
     }
     case C.ACTION_TYPES.UPLOAD_FILES: {
-      uploadFiles(state.list);
-      return state;
+      return {
+        list: [],
+        regiId: action.data,
+        error: action.error,
+        uploading: action.uploading,
+      };
     }
     case C.ACTION_TYPES.EMPTY_ERROR: {
       return { ...state, error: '' };
