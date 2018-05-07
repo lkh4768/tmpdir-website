@@ -1,6 +1,6 @@
 import { post } from 'axios';
 
-import C from '../../utils/constants';
+import C from '_utils/constants';
 
 const addFile = _files => ({
   type: C.ACTION_TYPES.ADD_FILES,

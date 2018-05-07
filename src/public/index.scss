@@ -1,12 +1,22 @@
-@import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+@import '~bootstrap/dist/css/bootstrap.min.css';
 
-@import './utils/constants';
-@import './utils/mixin';
+@import '~_utils/constants.scss';
+@import '~_utils/mixin.scss';
 
-@import './base/common';
+@import './base/common.scss';
 
-@import './components/Body/Body';
-@import './components/Footer/Footer';
-@import './components/Title/Title';
-@import './components/Sns/Sns';
-@import './components/FileExplorer/FileExplorer';
+@import '~_components/Body/style.scss';
+@import '~_components/BodyRow/style.scss';
+@import '~_components/Title/style.scss';
+@import '~_components/Name/style.scss';
+@import '~_components/Version/style.scss';
+@import '~_components/ShareButton/style.scss';
+@import '~_components/FileExplorerRow/style.scss';
+@import '~_components/File/style.scss';
+@import '~_components/FileExplorer/style.scss';
+@import '~_components/FileExplorerList/style.scss';
+@import '~_components/FileExplorerResult/style.scss';
+@import '~_components/UploadGuide/style.scss';
+
+@import '~_components/Footer/style.scss';
+@import '~_components/Label/style.scss';

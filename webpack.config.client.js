@@ -10,6 +10,7 @@ const config = {
   name: 'client',
   devtool: 'eval-source-map',
   entry: [
+    'babel-polyfill',
     './src/public/index.js',
     './src/public/index.scss',
   ],
@@ -24,6 +25,15 @@ const config = {
       '.js',
       '.jsx',
     ],
+    alias: {
+      '@components': path.resolve(__dirname, './src/public/components'),
+      '@containers': path.resolve(__dirname, './src/public/containers'),
+      '@utils': path.resolve(__dirname, './src/public/utils'),
+      '@static': path.resolve(__dirname, './src/public/static'),
+      '@node_modules': path.resolve(__dirname, './node_modules'),
+      '@entities': path.resolve(__dirname, './src/public/entities'),
+      '@data': path.resolve(__dirname, './src/public/data'),
+    },
   },
   module: {
     rules: [
