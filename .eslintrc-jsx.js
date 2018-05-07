@@ -13,27 +13,26 @@ module.exports = {
   'rules': {
     'react/require-default-props': [
       'error',
-      {
-        'forbidDefaultForRequired': true
-      }
+      { 'forbidDefaultForRequired': true }
     ],
     'react/jsx-filename-extension': [
       'error',
-      {
-        'extensions': [
-          '.js',
-          '.jsx'
-        ]
-      }
+      { 'extensions': ['.js', '.jsx'] }
     ],
     'import/no-extraneous-dependencies': [
-      'error',
-      {
-        'devDependencies': true
-      }
+      'error', 
+      { 'devDependencies': true }
     ]
   },
   'plugins': [
     'react',
-  ]
+    'import',
+  ],
+  'settings': { 
+    'import/resolver': {
+      'webpack': {
+        'config': 'webpack.config.dev.js'
+      },
+    }
+  },
 };

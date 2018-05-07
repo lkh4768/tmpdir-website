@@ -1,4 +1,4 @@
-import C from '../../utils/constants';
+import C from '_utils/constants';
 
 const initState = {
   isOpen: false,

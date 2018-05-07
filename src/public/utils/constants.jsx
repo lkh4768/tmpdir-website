@@ -1,12 +1,10 @@
 import React from 'react';
-import FooterLabelEntity from '../entities/Label';
-import FooterLinkEntity from '../entities/Link';
-import ShareEntity from '../entities/Share';
-import AppInfoEntity from '../entities/AppInfo';
-
-import LogoImg from '../static/images/logo_72w.png';
-
-import FaCopyright from '../../../node_modules/react-icons/lib/fa/copyright';
+import FaCopyright from 'react-icons/lib/fa/copyright';
+import FooterLabelEntity from '_entities/Label';
+import FooterLinkEntity from '_entities/Link';
+import ShareEntity from '_entities/Share';
+import AppInfoEntity from '_entities/AppInfo';
+import LogoImg from '_static/images/logo_72w.png';
 
 const tmpdir = {
   name: 'tmpdir',

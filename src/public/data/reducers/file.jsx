@@ -1,5 +1,5 @@
-import C from '../../utils/constants';
-import F from '../../utils/func';
+import C from '_utils/constants';
+import F from '_utils/func';
 
 const initState = {
   list: [],

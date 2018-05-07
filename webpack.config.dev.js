@@ -4,11 +4,12 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const autoprefixer = require('autoprefixer');
 
-const config = {
+module.exports = {
   mode: 'development',
   name: 'client',
   devtool: 'eval-source-map',
   entry: [
+    'babel-polyfill',
     'webpack-hot-middleware/client',
     './src/public/index.js',
     './src/public/index.scss',
@@ -20,10 +21,18 @@ const config = {
   },
   target: 'web',
   resolve: {
-    extensions: [
-      '.js',
-      '.jsx',
+    extensions: ['.js', '.jsx'],
+    modules: [
+      path.resolve(__dirname, 'node_modules'),
     ],
+    alias: {
+      _components: path.resolve(__dirname, 'src/public/components/'),
+      _containers: path.resolve(__dirname, 'src/public/containers/'),
+      _utils: path.resolve(__dirname, 'src/public/utils/'),
+      _static: path.resolve(__dirname, 'src/public/static/'),
+      _entities: path.resolve(__dirname, 'src/public/entities/'),
+      _data: path.resolve(__dirname, 'src/public/data/'),
+    },
   },
   module: {
     rules: [
@@ -57,6 +66,7 @@ const config = {
             {
               loader: 'css-loader',
               options: {
+                sourceMap: true,
                 importLoaders: 1,
                 minimize: true,
               },
@@ -64,10 +74,27 @@ const config = {
             {
               loader: 'postcss-loader',
               options: {
-                plugins: () => [autoprefixer()],
+                sourceMap: true,
+                plugins: () => [autoprefixer({
+                  browsers: [
+                    '>1%',
+                    'last 4 versions',
+                    'Firefox ESR',
+                    'not ie < 9',
+                  ],
+                  flexbox: 'no-2009',
+                })],
               },
             },
-            'sass-loader',
+            {
+              loader: 'sass-loader',
+              options: {
+                sourceMap: true,
+                includePaths: [
+                  './src/public',
+                ],
+              },
+            },
           ],
         }),
       },
@@ -92,5 +119,3 @@ const config = {
     new webpack.NoEmitOnErrorsPlugin(),
   ],
 };
-
-module.exports = config;
