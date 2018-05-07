@@ -21,32 +21,21 @@ const config = {
   },
   target: 'web',
   resolve: {
-    extensions: [
-      '.js',
-      '.jsx',
+    extensions: ['.js', '.jsx'],
+    modules: [
+      path.resolve(__dirname, 'node_modules'),
     ],
     alias: {
-      '@components': path.resolve(__dirname, './src/public/components'),
-      '@containers': path.resolve(__dirname, './src/public/containers'),
-      '@utils': path.resolve(__dirname, './src/public/utils'),
-      '@static': path.resolve(__dirname, './src/public/static'),
-      '@node_modules': path.resolve(__dirname, './node_modules'),
-      '@entities': path.resolve(__dirname, './src/public/entities'),
-      '@data': path.resolve(__dirname, './src/public/data'),
+      _components: path.resolve(__dirname, 'src/public/components/'),
+      _containers: path.resolve(__dirname, 'src/public/containers/'),
+      _utils: path.resolve(__dirname, 'src/public/utils/'),
+      _static: path.resolve(__dirname, 'src/public/static/'),
+      _entities: path.resolve(__dirname, 'src/public/entities/'),
+      _data: path.resolve(__dirname, 'src/public/data/'),
     },
   },
   module: {
     rules: [
-      {
-        enforce: 'pre',
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        loader: 'eslint-loader',
-        options: {
-          emitWarning: true,
-          configFile: './.eslintrc-jsx.js',
-        },
-      },
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
