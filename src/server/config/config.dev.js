@@ -22,7 +22,9 @@ const Config = {
   },
   log: {
     path: 'logs',
-    file: 'tmpdir-website.log',
+    filename: 'tmpdir-website',
+    level: 'debug',
+    dateFormat:'yyyyMMdd',
   },
 };
 
