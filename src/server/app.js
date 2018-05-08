@@ -3,12 +3,13 @@ import path from 'path';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import webpack from 'webpack';
+import routes from '_routes';
+import getConfig from '_modules/config';
+import { expressLogger, expressErrorLogger } from '_modules/logger';
 import webpackServerConfig from '../../webpack.config.server';
 import webpackDevConfig from '../../webpack.config.dev';
 
-import routes from './routes';
-import Config from './modules/config';
-
+const Config = getConfig();
 const app = express();
 
 if (process.env.NODE_ENV !== 'prd') {
@@ -25,6 +26,8 @@ if (process.env.NODE_ENV !== 'prd') {
   app.use(webpackHotMiddleware(multiCompiler.compilers.find(compiler => compiler.name === 'client')));
 }
 app.use('/', express.static(path.resolve(__dirname, '../../build')));
+expressLogger(app);
 app.use('/', routes);
+expressErrorLogger(app);
 
-app.listen(Config().server.port);
+app.listen(Config.server.port);

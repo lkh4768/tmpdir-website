@@ -20,7 +20,7 @@ module.exports = {
       { 'extensions': ['.js', '.jsx'] }
     ],
     'import/no-extraneous-dependencies': [
-      'error', 
+      'error',
       { 'devDependencies': true }
     ]
   },
@@ -28,7 +28,7 @@ module.exports = {
     'react',
     'import',
   ],
-  'settings': { 
+  'settings': {
     'import/resolver': {
       'webpack': {
         'config': 'webpack.config.dev.js'

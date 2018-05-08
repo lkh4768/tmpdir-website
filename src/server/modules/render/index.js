@@ -1,7 +1,7 @@
 import { createStore } from 'redux';
-import reducer from '../../../public/data/reducers/index';
-import Utils from '../utils';
-import manifest from '../manifast';
+import reducer from '_data/reducers/index';
+import Utils from '_modules/utils';
+import manifest from '_modules/manifast';
 
 class Render {
   constructor() {

@@ -1,3 +1,5 @@
+import path from 'path';
+
 const Config = {
   server: {
     port: 3001,
@@ -21,10 +23,10 @@ const Config = {
     },
   },
   log: {
-    path: 'logs',
+    path: path.resolve(__dirname, '../../../logs'),
     filename: 'tmpdir-website',
     level: 'debug',
-    dateFormat:'yyyyMMdd',
+    dateFormat: 'YYYYMMDDHH',
   },
 };
 

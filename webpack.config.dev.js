@@ -32,6 +32,7 @@ module.exports = {
       _static: path.resolve(__dirname, 'src/public/static/'),
       _entities: path.resolve(__dirname, 'src/public/entities/'),
       _data: path.resolve(__dirname, 'src/public/data/'),
+      _modules: path.resolve(__dirname, 'src/server/modules/'),
     },
   },
   module: {

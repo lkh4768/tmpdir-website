@@ -21,8 +21,10 @@ const Config = {
     },
   },
   log: {
-    path: 'logs',
-    file: 'tmpdir-website.log',
+    path: 'applogs',
+    filename: 'tmpdir-website',
+    level: 'info',
+    dateFormat: 'YYYYMMDDHH',
   },
 };
 
