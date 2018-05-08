@@ -1,5 +1,5 @@
-import devConfig from '../../config/config.dev';
-import prdConfig from '../../config/config.prd';
+import devConfig from '_config/config.dev';
+import prdConfig from '_config/config.prd';
 
 const Config = () => {
   switch (process.env.NODE_ENV) {

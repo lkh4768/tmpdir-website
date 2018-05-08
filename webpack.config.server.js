@@ -32,6 +32,9 @@ const config = {
       _static: path.resolve(__dirname, 'src/public/static/'),
       _entities: path.resolve(__dirname, 'src/public/entities/'),
       _data: path.resolve(__dirname, 'src/public/data/'),
+      _modules: path.resolve(__dirname, 'src/server/modules/'),
+      _routes: path.resolve(__dirname, 'src/server/routes/'),
+      _config: path.resolve(__dirname, 'src/server/config/'),
     },
   },
   module: {
