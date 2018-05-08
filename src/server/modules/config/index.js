@@ -1,7 +1,7 @@
 import devConfig from '_config/config.dev';
 import prdConfig from '_config/config.prd';
 
-const Config = () => {
+const getConfig = () => {
   switch (process.env.NODE_ENV) {
     case 'prd':
       return prdConfig;
@@ -10,4 +10,4 @@ const Config = () => {
   }
 };
 
-export default Config;
+export default getConfig;

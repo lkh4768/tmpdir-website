@@ -2,8 +2,10 @@ import Multiparty from 'multiparty';
 import { post } from 'axios';
 import FormData from 'form-data';
 
-import Config from '_modules/config';
+import getConfig from '_modules/config';
 import Utils from '_modules/utils';
+
+const Config = getConfig();
 
 const uploadFiles = (req, callback) => {
   const form = new Multiparty.Form();
