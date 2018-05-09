@@ -40,10 +40,10 @@ class FileExplorerList extends React.Component {
       this.inputFileElement.click();
     }
   }
-  async dropHandler(e) {
+  dropHandler(e) {
     F.removeEvent(e);
     if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
-      await this.props.addFile(e.dataTransfer.files);
+      this.props.addFile(e.dataTransfer.files);
       if (this.props.error !== '') {
         alert(this.props.error);
         this.props.emptyError();

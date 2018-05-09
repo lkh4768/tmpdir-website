@@ -31,7 +31,7 @@ const toggleModal = () => ({
   type: C.ACTION_TYPES.TOGGLE_MODAL,
 });
 
-async function reqUploadFilesImpl(files) {
+const reqUploadFilesImpl = (files) => {
   const url = '/files';
   const formData = new FormData();
   files.forEach((file, i) => formData.append(['file', i].join(''), file));
@@ -40,17 +40,17 @@ async function reqUploadFilesImpl(files) {
       'content-type': 'multipart/form-data',
     },
   };
-  try {
-    return { error: '', res: await post(url, formData, config) };
-  } catch (error) {
-    return { error, res: null };
-  }
-}
+  return post(url, formData, config);
+};
 
-const reqUploadFiles = files => (dispatch) => {
+const reqUploadFiles = files => async (dispatch) => {
   dispatch(uploadFiles());
-  const res = reqUploadFilesImpl(files);
-  return dispatch(uploadFiles(false, res.data, res.error));
+  try {
+    const res = await reqUploadFilesImpl(files);
+    return dispatch(uploadFiles(false, res.data, ''));
+  } catch (error) {
+    return dispatch(uploadFiles(false, null, error.status));
+  }
 };
 
 export default {
