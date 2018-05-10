@@ -6,16 +6,8 @@ const propTypes = {
   regiId: PropTypes.string.isRequired,
 };
 
-class UploadedPanel extends React.Component {
-  componentDidMount() {
-    console.log('componentDidMount');
-  }
-  componentDidUpdate() {
-    console.log('componentDidUpdata');
-  }
-  render() {
-    return this.props.regiId ? <BackDrop /> : <span />;
-  }
+function UploadedPanel({ regiId }) {
+  return regiId ? <BackDrop /> : <span />;
 }
 
 UploadedPanel.propTypes = propTypes;
