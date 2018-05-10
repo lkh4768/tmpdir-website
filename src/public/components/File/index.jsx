@@ -8,12 +8,19 @@ const propTypes = {
   name: PropTypes.string.isRequired,
   size: PropTypes.number.isRequired,
   delFile: PropTypes.func.isRequired,
+  error: PropTypes.string.isRequired,
 };
 
 class File extends React.Component {
   render() {
+    let className = '';
+    if (this.props.error && this.props.error !== '') {
+      className = 'color-red';
+    }
+
     return (
       <FileExplorerRow
+        className={className}
         leftItemText={this.props.name}
         rightItemText={F.convertFileSize(this.props.size)}
         xClickHandler={
