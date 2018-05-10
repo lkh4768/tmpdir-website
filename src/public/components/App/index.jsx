@@ -2,6 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import Body from '_components/Body';
 import Footer from '_components/Footer';
+import UploadedPanelContainer from '_containers/UploadedPanel';
 import C from '_utils/constants';
 import logoIco from '_static/images/favicon.ico';
 import logo152h from '_static/images/logo_152h.png';
@@ -31,6 +32,7 @@ function App() {
       </Helmet>
       <Body shareList={C.SHARE_LIST} />
       <Footer labels={C.LABELS} links={C.LINKS} />
+      <UploadedPanelContainer />
     </React.Fragment>
   );
 }

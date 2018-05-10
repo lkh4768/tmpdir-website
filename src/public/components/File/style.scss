@@ -9,16 +9,16 @@
     align-items: center;
   }
 
-  .file-explorer__file__left-item__name {
+  &__left-item__name {
     @include ellipsis(240)
   }
 
-  .file-explorer__file__right-item {
+  &__right-item {
     .file-explorer__file__right-item__size {
       margin-right: 8px;
     }
 
-    .file-explorer__file__right-item__delete {
+    &__delete {
       display: flex;
       align-items: center;
     }
