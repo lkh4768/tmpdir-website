@@ -10,8 +10,7 @@ import F from '_utils/func';
 
 const propTypes = {
   regiId: PropTypes.string,
-  isOpen: PropTypes.bool.isRequired,
-  toggle: PropTypes.func.isRequired,
+  emptyRegiId: PropTypes.func.isRequired,
 };
 
 const defaultProps = {
@@ -33,6 +32,10 @@ const CLASS_NAME = {
 };
 
 class UploadedPanel extends React.Component {
+  constructor(props) {
+    super(props);
+    this.toggle = this.toggle.bind(this);
+  }
   getDownloadUrl() {
     return F.getDownloadUrl(this.props.regiId);
   }
@@ -42,17 +45,20 @@ class UploadedPanel extends React.Component {
     }
     return null;
   }
+  async toggle() {
+    this.props.emptyRegiId();
+  }
   render() {
-    if (!(this.props.regiId && !this.props.isOpen)) {
+    console.log('!this.props.regiId: ', !this.props.regiId);
+    if (!this.props.regiId) {
       return <span />;
     }
-
     const shareList = this.getShareList();
     return (
       <div
         role="button"
         tabIndex="0"
-        onClick={this.props.toggle}
+        onClick={this.toggle}
         onKeyPress={F.emptyFunc}
       >
         <Backdrop />

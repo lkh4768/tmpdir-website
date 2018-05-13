@@ -4,11 +4,10 @@ import UploadedPanel from '_components/UploadedPanel';
 
 const mapStateToProps = state => ({
   regiId: state.file.regiId,
-  isOpen: state.uploadedPanel.isOpen,
 });
 
 const mapDispatchToProps = dispatch => ({
-  toggle: () => dispatch(actions.toggleUploadedPanel()),
+  emptyRegiId: () => dispatch(actions.emptyRegiId()),
 });
 
 export default connect(

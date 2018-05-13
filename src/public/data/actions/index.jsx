@@ -27,6 +27,10 @@ const emptyError = () => ({
   type: C.ACTION_TYPES.EMPTY_ERROR,
 });
 
+const emptyRegiId = () => ({
+  type: C.ACTION_TYPES.EMPTY_REGI_ID,
+});
+
 const toggleModal = () => ({
   type: C.ACTION_TYPES.TOGGLE_MODAL,
 });
@@ -64,6 +68,7 @@ export default {
   delAllFile,
   uploadFiles,
   emptyError,
+  emptyRegiId,
   reqUploadFiles,
   toggleModal,
   toggleUploadedPanel,

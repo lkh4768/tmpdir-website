@@ -21,10 +21,17 @@ class Upload extends React.Component {
     this.props.reqUploadFiles(this.props.files);
   }
   render() {
+    const opt = {};
+    if (this.props.files.length > 0) {
+      opt.color = 'primary';
+    } else {
+      opt.disabled = true;
+    }
+
     const node = (
       <BodyRow align={BodyRow.ALIGN.between}>
         <span>최대 용량: 1GB, 보관기간: 1일</span>
-        <Button color="primary" size="lg" onClick={this.onButtonClickHandler} disable={this.props.uploading.toString()}>Upload</Button>
+        <Button {...opt} size="lg" onClick={this.onButtonClickHandler} disable={this.props.uploading.toString()}>Upload</Button>
       </BodyRow>
     );
 
