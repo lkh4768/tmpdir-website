@@ -8,8 +8,10 @@ import Utils from '_modules/utils';
 const Config = getConfig();
 
 const uploadFiles = (req, callback) => {
-  const form = new Multiparty.Form();
+  console.log('Config.tmpdir.file.maxSize: ', Config.tmpdir.file.maxSize);
+  const form = new Multiparty.Form({ maxFilesSize: Config.tmpdir.file.maxSize });
   const formData = new FormData();
+  formData.maxDataSize = Infinity;
   let count = 0;
 
   form.on('part', (part) => {
@@ -44,7 +46,7 @@ const uploadFiles = (req, callback) => {
   });
   form.on('error', err => callback(err));
   form.on('progress', (byteRead, byteExpected) => {
-    console.log(`Reading total ${byteRead}/${byteExpected}`);
+    console.log(`progress ${byteRead}/${byteExpected}`);
   });
   form.parse(req);
 };

@@ -4,6 +4,7 @@ import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import webpack from 'webpack';
 import pageRoutes from '_routes/page';
+import onServerSocket from '_routes/socket';
 import fileApiRoutes from '_routes/api/v1/file';
 import getConfig from '_modules/config';
 import { expressLogger, expressErrorLogger } from '_modules/logger';
@@ -32,4 +33,5 @@ app.use('/', pageRoutes);
 app.use('/api/v1/file', fileApiRoutes);
 expressErrorLogger(app);
 
-app.listen(Config.server.port);
+const server = app.listen(Config.server.port);
+onServerSocket(server);

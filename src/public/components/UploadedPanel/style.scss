@@ -9,11 +9,16 @@
     @include absolute-fill();
 
     & > * {
-      margin-bottom: 20px;
+      margin-bottom: 10px;
     }
 
     &__regi-id-input {
       width: 70%;
+    }
+
+    &__expire-time {
+      color: white;
+      font-size: 20px;
     }
 
     &__share-list {

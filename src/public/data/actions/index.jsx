@@ -1,6 +1,7 @@
 import { post } from 'axios';
 
 import C from '_utils/constants';
+import F from '_utils/func';
 
 const addFile = _files => ({
   type: C.ACTION_TYPES.ADD_FILES,
@@ -16,11 +17,20 @@ const delAllFile = () => ({
   type: C.ACTION_TYPES.DEL_ALL_FILE,
 });
 
-const uploadFiles = (uploading = true, data = '', error = '') => ({
-  type: C.ACTION_TYPES.UPLOAD_FILES,
-  data,
+const uploadFilesSuccess = payload => ({
+  type: C.ACTION_TYPES.UPLOAD_FILES_SUCCESS,
+  payload,
+});
+
+const uploadFilesFailure = error => ({
+  type: C.ACTION_TYPES.UPLOAD_FILES_FAILURE,
   error,
-  uploading,
+});
+
+const uploadFilesPending = (totalSize, uploadedSize = 0) => ({
+  type: C.ACTION_TYPES.UPLOAD_FILES_PENDING,
+  totalSize,
+  uploadedSize,
 });
 
 const emptyError = () => ({
@@ -52,12 +62,16 @@ const reqUploadFilesImpl = (files) => {
 };
 
 const reqUploadFiles = files => async (dispatch) => {
-  dispatch(uploadFiles());
+  dispatch(uploadFilesPending(F.getTotalFileSize(files)));
   try {
+    C.SOCKET.on('fileUploadPending', payload => dispatch(uploadFilesPending(payload.totalSize, payload.uploadedSize)));
     const res = await reqUploadFilesImpl(files);
-    return dispatch(uploadFiles(false, res.data.id, ''));
+    return dispatch(uploadFilesSuccess({
+      regiId: res.data.id,
+      expireTime: res.data.expireTime,
+    }));
   } catch (error) {
-    return dispatch(uploadFiles(false, null, error.status));
+    return dispatch(uploadFilesFailure(error.status));
   }
 };
 
@@ -65,7 +79,6 @@ export default {
   addFile,
   delFile,
   delAllFile,
-  uploadFiles,
   emptyError,
   emptyRegiId,
   reqUploadFiles,
