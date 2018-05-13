@@ -13,7 +13,6 @@ const getTotalFileSize = files => files.reduce((sum, file) => sum + file.size, 0
 const files = (state = initState, action) => {
   switch (action.type) {
     case C.ACTION_TYPES.ADD_FILES: {
-      console.log('state.list: ', state.list, ', actions.files', action.files);
       const newFiles = F.uniqArray(
         [
           ...state.list,
@@ -45,6 +44,9 @@ const files = (state = initState, action) => {
     }
     case C.ACTION_TYPES.EMPTY_ERROR: {
       return { ...state, error: '' };
+    }
+    case C.ACTION_TYPES.EMPTY_REGI_ID: {
+      return { ...state, regiId: '' };
     }
     default:
       return state;
