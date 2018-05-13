@@ -18,11 +18,16 @@ class Upload extends React.Component {
     this.onButtonClickHandler = this.onButtonClickHandler.bind(this);
   }
   onButtonClickHandler() {
-    this.props.reqUploadFiles(this.props.files);
+    if (this.hasFile()) {
+      this.props.reqUploadFiles(this.props.files);
+    }
+  }
+  hasFile() {
+    return this.props.files.length > 0;
   }
   render() {
     const opt = {};
-    if (this.props.files.length > 0) {
+    if (this.hasFile()) {
       opt.color = 'primary';
     } else {
       opt.disabled = true;

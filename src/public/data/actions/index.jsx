@@ -57,7 +57,6 @@ const reqUploadFiles = files => async (dispatch) => {
     const res = await reqUploadFilesImpl(files);
     return dispatch(uploadFiles(false, res.data.id, ''));
   } catch (error) {
-    console.log('error', error);
     return dispatch(uploadFiles(false, null, error.status));
   }
 };
