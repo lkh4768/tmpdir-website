@@ -1,13 +1,11 @@
 import express from 'express';
 
 import logger from '_modules/logger';
-import render from '_modules/render';
 import File from '_modules/file';
 
 const router = express.Router();
 
-router.get('/', (req, res) => res.end(render.render()));
-router.post('/files', (req, res) => {
+router.post('/', (req, res) => {
   File.uploadFiles(req, (err, data) => {
     if (err) {
       console.log('err.response: ', err.response);

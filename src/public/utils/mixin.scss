@@ -24,3 +24,11 @@
   white-space: nowrap;
   overflow: hidden;
 }
+
+@mixin absolute-fill() {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+}

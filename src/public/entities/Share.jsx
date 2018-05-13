@@ -7,11 +7,11 @@ class Icon {
 }
 
 class Share {
-  constructor(vender, url, title) {
+  constructor(vender, url, title, size = 32) {
     this.vender = vender;
     this.url = url;
     this.title = title;
-    this.icon = new Icon(this.vender);
+    this.icon = new Icon(this.vender, size);
   }
 }
 
