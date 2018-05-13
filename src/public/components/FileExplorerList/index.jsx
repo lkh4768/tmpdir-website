@@ -26,6 +26,11 @@ class FileExplorerList extends React.Component {
     this.dropHandler = this.dropHandler.bind(this);
     this.inputChangeHandler = this.inputChangeHandler.bind(this);
   }
+  componentDidUpdate() {
+    if (this.props.files.length === 0 && this.inputFileElement) {
+      this.inputFileElement.value = null;
+    }
+  }
   makeFiles() {
     if (this.props.files && this.props.files.length > 0) {
       return this.props.files.map(file =>
@@ -44,9 +49,9 @@ class FileExplorerList extends React.Component {
       this.props.addFile(e.dataTransfer.files);
     }
   }
-  async inputChangeHandler(e) {
+  inputChangeHandler(e) {
     if (e.target.files && e.target.files.length > 0) {
-      await this.props.addFile(e.target.files);
+      this.props.addFile(e.target.files);
     }
   }
   render() {
@@ -76,7 +81,6 @@ class FileExplorerList extends React.Component {
     );
   }
 }
-
 
 FileExplorerList.propTypes = propTypes;
 

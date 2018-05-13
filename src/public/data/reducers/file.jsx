@@ -13,6 +13,7 @@ const getTotalFileSize = files => files.reduce((sum, file) => sum + file.size, 0
 const files = (state = initState, action) => {
   switch (action.type) {
     case C.ACTION_TYPES.ADD_FILES: {
+      console.log('state.list: ', state.list, ', actions.files', action.files);
       const newFiles = F.uniqArray(
         [
           ...state.list,
