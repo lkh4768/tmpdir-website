@@ -1,5 +1,6 @@
 import React from 'react';
 import FaCopyright from 'react-icons/lib/fa/copyright';
+import socketIOClient from 'socket.io-client';
 import FooterLabelEntity from '_entities/Label';
 import FooterLinkEntity from '_entities/Link';
 import ShareEntity from '_entities/Share';
@@ -59,7 +60,9 @@ const C = {
     ADD_FILES: 'ADD_FILES',
     DEL_FILE: 'DEL_FILE',
     DEL_ALL_FILE: 'DEL_ALL_FILE',
-    UPLOAD_FILES: 'UPLOAD_FILES',
+    UPLOAD_FILES_PENDING: 'UPLOAD_FILES_PENDING',
+    UPLOAD_FILES_FAILURE: 'UPLOAD_FILES_FAILURE',
+    UPLOAD_FILES_SUCCESS: 'UPLOAD_FILES_SUCCESS',
     EMPTY_ERROR: 'EMPTY_ERROR',
     EMPTY_REGI_ID: 'EMPTY_REGI_ID',
     TOGGLE_MODAL: 'TOGGLE_MODAL',
@@ -78,10 +81,12 @@ const C = {
     ALL_DEL_BODY: '정말로 모두 삭제하시겠습니까?',
     YES: '예',
     NO: '아니오',
+    EXPIRE: '에 만료됩니다.',
   },
   UPLOADED_FILE: {
     SHARE_ICON_SIZE: 50,
   },
+  SOCKET: socketIOClient(),
 };
 
 export default C;

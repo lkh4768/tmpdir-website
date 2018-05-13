@@ -4,11 +4,12 @@ import F from '_utils/func';
 const initState = {
   list: [],
   regiId: '',
+  expireTime: 0,
   uploading: false,
+  totalSize: 0,
+  upladedSize: 0,
   error: '',
 };
-
-const getTotalFileSize = files => files.reduce((sum, file) => sum + file.size, 0);
 
 const files = (state = initState, action) => {
   switch (action.type) {
@@ -20,7 +21,7 @@ const files = (state = initState, action) => {
         ],
         'name',
       );
-      if (C.FILE.SIZE.MAX >= getTotalFileSize(newFiles)) {
+      if (C.FILE.SIZE.MAX >= F.getTotalFileSize(newFiles)) {
         return { ...state, list: newFiles };
       }
       return { ...state, error: '파일 용량 초과' };
@@ -34,12 +35,29 @@ const files = (state = initState, action) => {
     case C.ACTION_TYPES.DEL_ALL_FILE: {
       return initState;
     }
-    case C.ACTION_TYPES.UPLOAD_FILES: {
+    case C.ACTION_TYPES.UPLOAD_FILES_SUCCESS: {
       return {
+        ...state,
         list: [],
-        regiId: action.data,
+        regiId: action.payload.regiId,
+        expireTime: action.payload.expireTime,
+        uploading: false,
+      };
+    }
+    case C.ACTION_TYPES.UPLOAD_FILES_FAILURE: {
+      return {
+        ...state,
+        list: [],
         error: action.error,
-        uploading: action.uploading,
+        uploading: false,
+      };
+    }
+    case C.ACTION_TYPES.UPLOAD_FILES_PENDING: {
+      return {
+        ...state,
+        uploading: true,
+        totalSize: action.totalSize,
+        uploadedSize: action.uploadedSize,
       };
     }
     case C.ACTION_TYPES.EMPTY_ERROR: {

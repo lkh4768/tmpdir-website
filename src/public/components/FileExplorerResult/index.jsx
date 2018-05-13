@@ -40,9 +40,9 @@ class FileExplorerResult extends React.Component {
   onModalNoClickHandler() {
     this.props.toggleModal();
   }
-  getFileTotalSize() {
+  getTotalFileSize() {
     if (this.props.files && this.props.files.length > 0) {
-      return this.props.files.reduce((sum, file) => sum + file.size, 0);
+      return F.getTotalFileSize(this.props.files);
     }
     return 0;
   }
@@ -51,7 +51,7 @@ class FileExplorerResult extends React.Component {
       <ul className={CLASS_NAME.result}>
         <FileExplorerRow
           leftItemText={this.props.files.length}
-          rightItemText={F.convertFileSize(this.getFileTotalSize())}
+          rightItemText={F.convertFileSize(this.getTotalFileSize())}
           xClickHandler={this.onXClickHandler}
         />
         <Modal

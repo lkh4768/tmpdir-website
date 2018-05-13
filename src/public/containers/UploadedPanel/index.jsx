@@ -4,6 +4,8 @@ import UploadedPanel from '_components/UploadedPanel';
 
 const mapStateToProps = state => ({
   regiId: state.file.regiId,
+  expireTime: state.file.expireTime,
+  uploading: state.file.uploading,
 });
 
 const mapDispatchToProps = dispatch => ({
