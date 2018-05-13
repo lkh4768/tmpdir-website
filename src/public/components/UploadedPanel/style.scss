@@ -1,0 +1,25 @@
+.uploaded-panel {
+  &__contents {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+
+    @include absolute-fill();
+
+    & > * {
+      margin-bottom: 20px;
+    }
+
+    &__regi-id-input {
+      width: 70%;
+    }
+
+    &__share-list {
+      & > * {
+        @include margin-between(8)
+      }
+    }
+  }
+}

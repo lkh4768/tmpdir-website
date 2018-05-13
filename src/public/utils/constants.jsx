@@ -19,6 +19,7 @@ const owner = {
 };
 
 const C = {
+  TMPDIR_URL: tmpdir.url,
   APP_INFO: new AppInfoEntity(tmpdir.name, tmpdir.url, tmpdir.logo, tmpdir.version),
   SHARE_LIST: [
     new ShareEntity(
@@ -75,6 +76,9 @@ const C = {
     ALL_DEL_BODY: '정말로 모두 삭제하시겠습니까?',
     YES: '예',
     NO: '아니오',
+  },
+  UPLOADED_FILE: {
+    SHARE_ICON_SIZE: 50,
   },
 };
 

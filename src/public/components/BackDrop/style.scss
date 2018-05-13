@@ -1,11 +1,8 @@
 .back-drop {
-  position: absolute;
-  top: 0px;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
   z-index: 1;
   color: white;
   background-color: black;
   opacity: 0.6;
+
+  @include absolute-fill();
 }

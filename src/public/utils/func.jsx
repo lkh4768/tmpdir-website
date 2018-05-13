@@ -25,6 +25,12 @@ const F = {
       return has;
     });
   },
+  getDownloadUrl: (regiId) => {
+    if (regiId) {
+      return [C.TMPDIR_URL, '/download/', regiId].join('');
+    }
+    return C.TMPDIR_URL;
+  },
 };
 
 export default F;

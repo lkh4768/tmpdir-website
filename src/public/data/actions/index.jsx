@@ -32,7 +32,7 @@ const toggleModal = () => ({
 });
 
 const reqUploadFilesImpl = (files) => {
-  const url = '/files';
+  const url = '/api/v1/file';
   const formData = new FormData();
   files.forEach((file, i) => formData.append(['file', i].join(''), file));
   const config = {
