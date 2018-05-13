@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import BackDrop from '_components/BackDrop';
+
 import CopyInput from '_components/CopyInput';
+import Backdrop from '_components/Backdrop';
 import ShareButton from '_components/ShareButton';
 import ShareEntity from '_entities/Share';
 import C from '_utils/constants';
@@ -9,6 +10,8 @@ import F from '_utils/func';
 
 const propTypes = {
   regiId: PropTypes.string,
+  isOpen: PropTypes.bool.isRequired,
+  toggle: PropTypes.func.isRequired,
 };
 
 const defaultProps = {
@@ -39,25 +42,41 @@ class UploadedPanel extends React.Component {
     }
     return null;
   }
-
   render() {
-    if (!this.props.regiId) {
+    if (!(this.props.regiId && !this.props.isOpen)) {
       return <span />;
     }
 
     const shareList = this.getShareList();
     return (
-      <React.Fragment>
-        <BackDrop />
-        <div className={CLASS_NAME.contents}>
-          <div className={CLASS_NAME.regiIdInput}>
+      <div
+        role="button"
+        tabIndex="0"
+        onClick={this.props.toggle}
+        onKeyPress={F.emptyFunc}
+      >
+        <Backdrop />
+        <div className={CLASS_NAME.contents} >
+          <div
+            role="button"
+            tabIndex="0"
+            onClick={e => e.stopPropagation()}
+            onKeyPress={F.emptyFunc}
+            className={CLASS_NAME.regiIdInput}
+          >
             <CopyInput className={CLASS_NAME.regiIdInput} value={this.getDownloadUrl()} size="lg" />
           </div>
-          <div className={CLASS_NAME.shareList}>
+          <div
+            role="button"
+            tabIndex="0"
+            onClick={e => e.stopPropagation()}
+            onKeyPress={F.emptyFunc}
+            className={CLASS_NAME.shareList}
+          >
             {shareList.map(share => <ShareButton key={share.vender} share={share} />)}
           </div>
         </div>
-      </React.Fragment>
+      </div>
     );
   }
 }
