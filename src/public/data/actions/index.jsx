@@ -49,7 +49,7 @@ const toggleUploadedPanel = () => ({
   type: C.ACTION_TYPES.TOGGLE_UPLOADED_PANEL,
 });
 
-const reqUploadFilesImpl = (files) => {
+const reqUploadFilesImpl = (files, onUploadProgress = F.emptyFunc) => {
   const url = '/api/v1/file';
   const formData = new FormData();
   files.forEach((file, i) => formData.append(['file', i].join(''), file));
@@ -57,6 +57,7 @@ const reqUploadFilesImpl = (files) => {
     headers: {
       'content-type': 'multipart/form-data',
     },
+    onUploadProgress,
   };
   return post(url, formData, config);
 };
@@ -64,8 +65,10 @@ const reqUploadFilesImpl = (files) => {
 const reqUploadFiles = files => async (dispatch) => {
   dispatch(uploadFilesPending(F.getTotalFileSize(files)));
   try {
-    C.SOCKET.on('fileUploadPending', payload => dispatch(uploadFilesPending(payload.totalSize, payload.uploadedSize)));
-    const res = await reqUploadFilesImpl(files);
+    const res = await reqUploadFilesImpl(
+      files,
+      progressEvent => dispatch(uploadFilesPending(progressEvent.total, progressEvent.loaded)),
+    );
     return dispatch(uploadFilesSuccess({
       regiId: res.data.id,
       expireTime: res.data.expireTime,

@@ -7,7 +7,7 @@ const initState = {
   expireTime: 0,
   uploading: false,
   totalSize: 0,
-  upladedSize: 0,
+  uploadedSize: 0,
   error: '',
 };
 
