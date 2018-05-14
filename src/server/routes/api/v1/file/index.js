@@ -8,8 +8,6 @@ const router = express.Router();
 router.post('/', (req, res) => {
   File.uploadFiles(req, (err, data) => {
     if (err) {
-      console.log('err.response: ', err.response);
-
       if (!err.response) {
         logger.error('500 internal error');
         return res.status(500).end();

@@ -1,6 +1,5 @@
 import React from 'react';
 import FaCopyright from 'react-icons/lib/fa/copyright';
-import socketIOClient from 'socket.io-client';
 import FooterLabelEntity from '_entities/Label';
 import FooterLinkEntity from '_entities/Link';
 import ShareEntity from '_entities/Share';
@@ -86,7 +85,6 @@ const C = {
   UPLOADED_FILE: {
     SHARE_ICON_SIZE: 50,
   },
-  SOCKET: socketIOClient(),
 };
 
 export default C;
