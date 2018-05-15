@@ -66,6 +66,7 @@ const C = {
     EMPTY_REGI_ID: 'EMPTY_REGI_ID',
     TOGGLE_MODAL: 'TOGGLE_MODAL',
     TOGGLE_UPLOADED_PANEL: 'TOGGLE_UPLOADED_PANEL',
+    TOGGLE_TOOLTIP: 'TOGGLE_TOOLTIP',
   },
   FILE: {
     SIZE: {
@@ -81,6 +82,7 @@ const C = {
     YES: '예',
     NO: '아니오',
     EXPIRE: '에 만료됩니다.',
+    COPIED: '복사되었습니다.',
   },
   UPLOADED_FILE: {
     SHARE_ICON_SIZE: 50,

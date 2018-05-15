@@ -49,6 +49,10 @@ const toggleUploadedPanel = () => ({
   type: C.ACTION_TYPES.TOGGLE_UPLOADED_PANEL,
 });
 
+const toggleTooltip = () => ({
+  type: C.ACTION_TYPES.TOGGLE_TOOLTIP,
+});
+
 const reqUploadFilesImpl = (files, onUploadProgress = F.emptyFunc) => {
   const url = '/api/v1/file';
   const formData = new FormData();
@@ -87,4 +91,5 @@ export default {
   reqUploadFiles,
   toggleModal,
   toggleUploadedPanel,
+  toggleTooltip,
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import CopyInput from '_components/CopyInput';
+import CopyInputContainer from '_containers/CopyInput';
 import Backdrop from '_components/Backdrop';
 import ProgressBackdrop from '_containers/ProgressBackdrop';
 import ShareButton from '_components/ShareButton';
@@ -82,7 +82,7 @@ class UploadedPanel extends React.Component {
             onKeyPress={F.emptyFunc}
             className={CLASS_NAME.regiIdInput}
           >
-            <CopyInput className={CLASS_NAME.regiIdInput} value={this.getDownloadUrl()} size="lg" />
+            <CopyInputContainer className={CLASS_NAME.regiIdInput} value={this.getDownloadUrl()} size="lg" />
           </div>
           <div className={CLASS_NAME.expireTime}>{[F.secToLocalTime(this.props.expireTime), C.TEXT.EXPIRE].join(' ')}</div>
           <div
