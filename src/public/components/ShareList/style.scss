@@ -1,0 +1,5 @@
+.share-list {
+  & > * {
+    @include margin-between(8)
+  }
+}

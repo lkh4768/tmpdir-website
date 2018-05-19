@@ -1,13 +1,12 @@
 import { createStore, applyMiddleware } from 'redux';
 import ReduxThunk from 'redux-thunk';
 import { logger } from 'redux-logger';
-import reducer from '_data/reducers';
 
 const middlewares = [
   ReduxThunk,
 ];
 
-const configureStore = (initState) => {
+const configureStore = (reducer, initState) => {
   if (process.env.NODE_ENV === 'development') {
     middlewares.push(logger);
   }

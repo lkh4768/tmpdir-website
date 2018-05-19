@@ -31,12 +31,6 @@ const F = {
       return has;
     });
   },
-  getDownloadUrl: (regiId) => {
-    if (regiId) {
-      return [C.TMPDIR_URL, '/download/', regiId].join('');
-    }
-    return C.TMPDIR_URL;
-  },
   secToLocalTime: (sec) => {
     const parseYYYYMMDDHHmm = date => [
       date.substring(6, 10),
