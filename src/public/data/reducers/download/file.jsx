@@ -6,6 +6,9 @@ const initState = {
     loading: false,
     error: '',
   },
+  download: {
+    error: '',
+  },
 };
 
 const files = (state = initState, action) => {
@@ -33,6 +36,14 @@ const files = (state = initState, action) => {
         expireTime: {
           error: action.error,
           loading: false,
+        },
+      };
+    }
+    case C.ACTION_TYPES.DOWNLOAD_FILE_FAILURE: {
+      return {
+        ...state,
+        download: {
+          error: action.error,
         },
       };
     }

@@ -67,6 +67,11 @@ const getFileInfoFailure = error => ({
   error,
 });
 
+const downloadFileFailure = error => ({
+  type: C.ACTION_TYPES.DOWNLOAD_FILE_FAILURE,
+  error,
+});
+
 const reqUploadFilesImpl = (files, onUploadProgress = F.emptyFunc) => {
   const url = '/api/v1/file';
   const formData = new FormData();
@@ -111,6 +116,20 @@ const reqFileInfo = regiId => async (dispatch) => {
   }
 };
 
+const reqDownloadFileImpl = (regiId) => {
+  const url = ['/api/v1/file/', regiId].join('');
+  return get(url);
+};
+
+const reqDownloadFile = regiId => async (dispatch) => {
+  console.log('reqDownloadFile, regiId: ', regiId);
+  try {
+    return await reqDownloadFileImpl(regiId);
+  } catch (error) {
+    return dispatch(downloadFileFailure(error.status));
+  }
+};
+
 export default {
   addFile,
   delFile,
@@ -122,4 +141,5 @@ export default {
   toggleUploadedPanel,
   toggleTooltip,
   reqFileInfo,
+  reqDownloadFile,
 };

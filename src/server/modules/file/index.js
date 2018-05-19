@@ -47,17 +47,23 @@ const uploadFiles = (req, callback) => {
   form.parse(req);
 };
 
-const getFileInfo = (fileId) => {
+const getDownloadUrl = () => {
   const downloadConfig = Config.tmpdir.service.download;
-  const downloadUrl = Utils.getUrl(
+  return Utils.getUrl(
     downloadConfig.hostname,
     downloadConfig.protocol,
     downloadConfig.port,
   );
-  return get(`${downloadUrl}/file-info/${fileId}`);
+};
+
+const getFileInfo = fileId => get(`${getDownloadUrl()}/file-info/${fileId}`);
+const getFile = (fileId) => {
+  console.log(`${getDownloadUrl()}/file/${fileId}`);
+  return get(`${getDownloadUrl()}/file/${fileId}`);
 };
 
 export default {
   uploadFiles,
   getFileInfo,
+  getFile,
 };
