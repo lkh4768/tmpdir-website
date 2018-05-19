@@ -21,4 +21,13 @@ router.post('/', (req, res) => {
   });
 });
 
+router.post('/info/:fileId', async (req, res) => {
+  try {
+    const fileInfo = await File.getFileInfo(req.params.fileId);
+    res.json(fileInfo.data);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 export default router;

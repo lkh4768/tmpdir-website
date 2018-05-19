@@ -8,12 +8,20 @@ module.exports = {
   mode: 'development',
   name: 'client',
   devtool: 'eval-source-map',
-  entry: [
-    'babel-polyfill',
-    'webpack-hot-middleware/client',
-    './src/public/index.js',
-    './src/public/index.scss',
-  ],
+  entry: {
+    uploadApp: [
+      'babel-polyfill',
+      'webpack-hot-middleware/client?path=http://localhost:3001/__webpack_hmr',
+      './src/public/app/Upload/index.js',
+      './src/public/app/Upload/index.scss',
+    ],
+    downloadApp: [
+      'babel-polyfill',
+      'webpack-hot-middleware/client?path=http://localhost:3001/__webpack_hmr',
+      './src/public/app/Download/index.js',
+      './src/public/app/Download/index.scss',
+    ],
+  },
   output: {
     path: path.resolve(__dirname, 'build/'),
     filename: '[name].min.js',
@@ -33,6 +41,7 @@ module.exports = {
       _entities: path.resolve(__dirname, 'src/public/entities/'),
       _data: path.resolve(__dirname, 'src/public/data/'),
       _modules: path.resolve(__dirname, 'src/server/modules/'),
+      _app: path.resolve(__dirname, 'src/public/app/'),
     },
   },
   module: {

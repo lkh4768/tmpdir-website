@@ -1,5 +1,5 @@
 import Multiparty from 'multiparty';
-import { post } from 'axios';
+import { post, get } from 'axios';
 import FormData from 'form-data';
 
 import getConfig from '_modules/config';
@@ -47,6 +47,17 @@ const uploadFiles = (req, callback) => {
   form.parse(req);
 };
 
+const getFileInfo = (fileId) => {
+  const downloadConfig = Config.tmpdir.service.download;
+  const downloadUrl = Utils.getUrl(
+    downloadConfig.hostname,
+    downloadConfig.protocol,
+    downloadConfig.port,
+  );
+  return get(`${downloadUrl}/file-info/${fileId}`);
+};
+
 export default {
   uploadFiles,
+  getFileInfo,
 };
