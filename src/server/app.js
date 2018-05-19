@@ -4,7 +4,7 @@ import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import webpack from 'webpack';
 import pageRoutes from '_routes/page';
-import fileApiRoutes from '_routes/api/v1/file';
+import apiRoutes from '_routes/api';
 import getConfig from '_modules/config';
 import { expressLogger, expressErrorLogger } from '_modules/logger';
 import webpackServerConfig from '../../webpack.config.server';
@@ -29,7 +29,7 @@ if (process.env.NODE_ENV !== 'production') {
 app.use('/', express.static(path.resolve(__dirname, '../../build')));
 expressLogger(app);
 app.use('/', pageRoutes);
-app.use('/api/v1/file', fileApiRoutes);
+app.use('/api', apiRoutes);
 expressErrorLogger(app);
 
 app.listen(Config.server.port);

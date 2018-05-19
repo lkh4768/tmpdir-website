@@ -1,4 +1,4 @@
-import { post } from 'axios';
+import { post, get } from 'axios';
 
 import C from '_utils/constants';
 import F from '_utils/func';
@@ -53,6 +53,20 @@ const toggleTooltip = () => ({
   type: C.ACTION_TYPES.TOGGLE_TOOLTIP,
 });
 
+const getFileInfoPending = () => ({
+  type: C.ACTION_TYPES.GET_FILE_INFO_PENDING,
+});
+
+const getFileInfoSuccess = payload => ({
+  type: C.ACTION_TYPES.GET_FILE_INFO_SUCCESS,
+  payload,
+});
+
+const getFileInfoFailure = error => ({
+  type: C.ACTION_TYPES.GET_FILE_INFO_FAILURE,
+  error,
+});
+
 const reqUploadFilesImpl = (files, onUploadProgress = F.emptyFunc) => {
   const url = '/api/v1/file';
   const formData = new FormData();
@@ -82,6 +96,21 @@ const reqUploadFiles = files => async (dispatch) => {
   }
 };
 
+const reqFileInfoImpl = (regiId) => {
+  const url = ['/api/v1/file/info/', regiId].join('');
+  return get(url);
+};
+
+const reqFileInfo = regiId => async (dispatch) => {
+  dispatch(getFileInfoPending());
+  try {
+    const res = await reqFileInfoImpl(regiId);
+    return dispatch(getFileInfoSuccess(res.data.expireTime));
+  } catch (error) {
+    return dispatch(getFileInfoFailure(error.status));
+  }
+};
+
 export default {
   addFile,
   delFile,
@@ -92,4 +121,5 @@ export default {
   toggleModal,
   toggleUploadedPanel,
   toggleTooltip,
+  reqFileInfo,
 };

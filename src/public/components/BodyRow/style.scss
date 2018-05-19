@@ -1,3 +1,5 @@
+@import '~_utils/mixin.scss';
+
 @mixin body__row__col() {
   display: flex;
   align-items: center;

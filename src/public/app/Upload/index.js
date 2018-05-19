@@ -2,10 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import configureStore from '_data/store';
+import reducer from '_data/reducers/upload';
 import App from './App';
 
 const initState = window.INITIAL_STATE;
-const store = configureStore(initState);
+const store = configureStore(reducer, initState);
 
 ReactDOM.render(
   <Provider store={store}>

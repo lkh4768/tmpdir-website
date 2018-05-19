@@ -12,9 +12,9 @@ const config = {
   entry: [
     'babel-polyfill',
     './src/public/app/Upload/index.js',
-    './src/public/app/Upload/index.scss',
+    './src/public/app/Upload/style.scss',
     './src/public/app/Download/index.js',
-    './src/public/app/Download/index.scss',
+    './src/public/app/Download/style.scss',
   ],
   output: {
     path: path.join(__dirname, 'build/'),
@@ -36,6 +36,7 @@ const config = {
       _data: path.resolve(__dirname, 'src/public/data/'),
       _modules: path.resolve(__dirname, 'src/server/modules/'),
       _app: path.resolve(__dirname, 'src/public/app/'),
+      _pages: path.resolve(__dirname, 'src/public/pages/'),
     },
   },
   module: {

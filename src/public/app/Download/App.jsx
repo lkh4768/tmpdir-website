@@ -5,6 +5,7 @@ import logo152h from '_static/images/logo_152h.png';
 import logo167h from '_static/images/logo_167h.png';
 import logo180h from '_static/images/logo_180h.png';
 import logo192h from '_static/images/logo_192h.png';
+import DownloadPage from '_pages/Download';
 
 function Download() {
   return (
@@ -26,7 +27,7 @@ function Download() {
         <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" />
       </Helmet>
-      <div>Download App</div>
+      <DownloadPage />
     </React.Fragment>
   );
 }

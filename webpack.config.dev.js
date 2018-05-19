@@ -13,13 +13,13 @@ module.exports = {
       'babel-polyfill',
       'webpack-hot-middleware/client?path=http://localhost:3001/__webpack_hmr',
       './src/public/app/Upload/index.js',
-      './src/public/app/Upload/index.scss',
+      './src/public/app/Upload/style.scss',
     ],
     downloadApp: [
       'babel-polyfill',
       'webpack-hot-middleware/client?path=http://localhost:3001/__webpack_hmr',
       './src/public/app/Download/index.js',
-      './src/public/app/Download/index.scss',
+      './src/public/app/Download/style.scss',
     ],
   },
   output: {
@@ -42,6 +42,7 @@ module.exports = {
       _data: path.resolve(__dirname, 'src/public/data/'),
       _modules: path.resolve(__dirname, 'src/server/modules/'),
       _app: path.resolve(__dirname, 'src/public/app/'),
+      _pages: path.resolve(__dirname, 'src/public/pages/'),
     },
   },
   module: {

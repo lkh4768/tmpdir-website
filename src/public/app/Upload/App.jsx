@@ -1,9 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import C from '_utils/constants';
-import Body from '_components/Body';
-import Footer from '_components/Footer';
-import UploadedPanelContainer from '_containers/UploadedPanel';
+import UploadPage from '_pages/Upload';
 import logoIco from '_static/images/favicon.ico';
 import logo152h from '_static/images/logo_152h.png';
 import logo167h from '_static/images/logo_167h.png';
@@ -30,9 +27,7 @@ function Upload() {
         <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" />
       </Helmet>
-      <Body shareList={C.SHARE_LIST} />
-      <Footer labels={C.LABELS} links={C.LINKS} />
-      <UploadedPanelContainer />
+      <UploadPage />
     </React.Fragment>
   );
 }

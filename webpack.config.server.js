@@ -21,10 +21,7 @@ const config = {
   },
   externals: [nodeExternals()],
   resolve: {
-    extensions: [
-      '.js',
-      '.jsx',
-    ],
+    extensions: ['.js', '.jsx'],
     alias: {
       _components: path.resolve(__dirname, 'src/public/components/'),
       _containers: path.resolve(__dirname, 'src/public/containers/'),
@@ -36,6 +33,7 @@ const config = {
       _routes: path.resolve(__dirname, 'src/server/routes/'),
       _config: path.resolve(__dirname, 'src/server/config/'),
       _app: path.resolve(__dirname, 'src/public/app/'),
+      _pages: path.resolve(__dirname, 'src/public/pages/'),
     },
   },
   module: {
