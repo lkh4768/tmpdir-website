@@ -5,13 +5,16 @@ import F from '_utils/func';
 import C from '_utils/constants';
 
 const propTypes = {
-  expireTime: PropTypes.number,
-  loading: PropTypes.bool.isRequired,
+  expireTime: PropTypes.shape({
+    data: PropTypes.number,
+    loading: PropTypes.bool.isRequired,
+    error: PropTypes.string.isRequired,
+  }).isRequired,
+  download: PropTypes.shape({
+    error: PropTypes.string.isRequired,
+  }).isRequired,
   reqFileInfo: PropTypes.func.isRequired,
-};
-
-const defaultProps = {
-  expireTime: 0,
+  reqDownloadFile: PropTypes.func.isRequired,
 };
 
 const CLASS_NAME = {
@@ -23,21 +26,23 @@ const getRegiIdInUri = () => window.location.pathname.replace('/', '');
 class ExpireTime extends React.Component {
   componentDidMount() {
     this.props.reqFileInfo(getRegiIdInUri());
+    this.props.reqDownloadFile(getRegiIdInUri());
   }
   render() {
-    if (this.props.loading) {
+    if (this.props.expireTime.loading) {
       return <div />;
     }
-
+    if (this.props.expireTime.error || this.props.download.error) {
+      return <div>error</div>;
+    }
     return (
       <BodyRow align={BodyRow.ALIGN.center}>
-        <h1 className={CLASS_NAME.text}>{[F.secToLocalTime(this.props.expireTime), C.TEXT.EXPIRE].join(' ')}</h1>
+        <h1 className={CLASS_NAME.text}>{[F.secToLocalTime(this.props.expireTime.data), C.TEXT.EXPIRE].join(' ')}</h1>
       </BodyRow>
     );
   }
 }
 
 ExpireTime.propTypes = propTypes;
-ExpireTime.defaultProps = defaultProps;
 
 export default ExpireTime;

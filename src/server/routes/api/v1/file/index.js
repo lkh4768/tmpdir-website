@@ -30,4 +30,14 @@ router.get('/info/:fileId', async (req, res) => {
   }
 });
 
+router.get('/:fileId', async (req, res) => {
+  console.log('in /:fileId');
+  console.log(req.parmas);
+  try {
+    res.send(await File.getFile(req.parmas.fileId));
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 export default router;
