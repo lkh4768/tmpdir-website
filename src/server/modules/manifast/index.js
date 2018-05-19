@@ -1,12 +1,22 @@
 import logger from '_modules/logger';
 import manifest from '../../../../build/manifest.json';
 
-const getJsUrls = () => {
-  const jsUrls = Object.keys(manifest).filter(key => /\.js$/.exec(manifest[key])).map(key => manifest[key]);
+const getJsUrls = (name) => {
+  let jsUrls = '';
+  if (name) {
+    jsUrls = manifest[[name, '.js'].join('')];
+  }
   logger.info(jsUrls);
   return jsUrls;
 };
-const getCssUrls = () => Object.keys(manifest).filter(key => /\.css$/.exec(manifest[key])).map(key => manifest[key]);
+const getCssUrls = (name) => {
+  let cssUrls = '';
+  if (name) {
+    cssUrls = manifest[[name, '.css'].join('')];
+  }
+  logger.info(cssUrls);
+  return cssUrls;
+};
 
 export default {
   getJsUrls,

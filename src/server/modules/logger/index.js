@@ -14,13 +14,11 @@ const timestamp = () => (new Date()).toLocaleTimeString();
 const transports = [
   new winston.transports.Console({
     timestamp,
-    json: true,
     colorize: true,
     level: Config.log.level,
     format: winston.format.combine(
       winston.format.timestamp(),
       winston.format.colorize(),
-      winston.format.json(),
       winston.format.simple(),
     ),
   }),
@@ -31,11 +29,9 @@ const transports = [
     timestamp,
     datePattern: Config.log.dateFormat,
     prepend: true,
-    json: true,
     format: winston.format.combine(
       winston.format.timestamp(),
       winston.format.colorize(),
-      winston.format.json(),
       winston.format.simple(),
     ),
   }),

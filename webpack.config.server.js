@@ -35,6 +35,7 @@ const config = {
       _modules: path.resolve(__dirname, 'src/server/modules/'),
       _routes: path.resolve(__dirname, 'src/server/routes/'),
       _config: path.resolve(__dirname, 'src/server/config/'),
+      _app: path.resolve(__dirname, 'src/public/app/'),
     },
   },
   module: {

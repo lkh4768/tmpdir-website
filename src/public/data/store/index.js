@@ -7,11 +7,11 @@ const middlewares = [
   ReduxThunk,
 ];
 
-const customCreateStore = (initState) => {
+const configureStore = (initState) => {
   if (process.env.NODE_ENV === 'development') {
     middlewares.push(logger);
   }
   return createStore(reducer, initState, applyMiddleware(...middlewares));
 };
 
-export default customCreateStore;
+export default configureStore;

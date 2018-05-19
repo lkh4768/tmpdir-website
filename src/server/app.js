@@ -13,7 +13,7 @@ import webpackDevConfig from '../../webpack.config.dev';
 const Config = getConfig();
 const app = express();
 
-if (process.env.NODE_ENV !== 'prd') {
+if (process.env.NODE_ENV !== 'production') {
   const multiCompiler = webpack([
     webpackServerConfig,
     webpackDevConfig,

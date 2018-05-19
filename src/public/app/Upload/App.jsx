@@ -1,16 +1,16 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
+import C from '_utils/constants';
 import Body from '_components/Body';
 import Footer from '_components/Footer';
 import UploadedPanelContainer from '_containers/UploadedPanel';
-import C from '_utils/constants';
 import logoIco from '_static/images/favicon.ico';
 import logo152h from '_static/images/logo_152h.png';
 import logo167h from '_static/images/logo_167h.png';
 import logo180h from '_static/images/logo_180h.png';
 import logo192h from '_static/images/logo_192h.png';
 
-function App() {
+function Upload() {
   return (
     <React.Fragment>
       <Helmet>
@@ -37,4 +37,4 @@ function App() {
   );
 }
 
-export default App;
+export default Upload;

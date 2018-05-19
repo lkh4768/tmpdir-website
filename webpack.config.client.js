@@ -11,8 +11,10 @@ const config = {
   devtool: 'eval-source-map',
   entry: [
     'babel-polyfill',
-    './src/public/index.js',
-    './src/public/index.scss',
+    './src/public/app/Upload/index.js',
+    './src/public/app/Upload/index.scss',
+    './src/public/app/Download/index.js',
+    './src/public/app/Download/index.scss',
   ],
   output: {
     path: path.join(__dirname, 'build/'),
@@ -32,6 +34,8 @@ const config = {
       _static: path.resolve(__dirname, 'src/public/static/'),
       _entities: path.resolve(__dirname, 'src/public/entities/'),
       _data: path.resolve(__dirname, 'src/public/data/'),
+      _modules: path.resolve(__dirname, 'src/server/modules/'),
+      _app: path.resolve(__dirname, 'src/public/app/'),
     },
   },
   module: {

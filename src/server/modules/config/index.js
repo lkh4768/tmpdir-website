@@ -3,7 +3,7 @@ import prdConfig from '_config/config.prd';
 
 const getConfig = () => {
   switch (process.env.NODE_ENV) {
-    case 'prd':
+    case 'production':
       return prdConfig;
     default:
       return devConfig;
