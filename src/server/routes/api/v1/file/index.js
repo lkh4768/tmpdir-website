@@ -6,18 +6,18 @@ import File from '_modules/file';
 const router = express.Router();
 
 router.post('/', (req, res) => {
-  File.uploadFiles(req, (err, data) => {
+  File.upload(req, (err, data) => {
     if (err) {
       if (!err.response) {
         logger.error('500 internal error');
-        return res.status(500).end();
+        res.status(500).end();
       }
 
       logger.error(`${err.response.data.status} ${err.response.data.error}`);
-      return res.status(err.response.data.status).end(err.response.data.error);
+      res.status(err.response.data.status).end(err.response.data.error);
     }
     logger.info('Client -> Server, Req Success code(data.code)');
-    return res.status(data.code).json(data.data).end();
+    res.status(data.code).json(data.data).end();
   });
 });
 
@@ -26,17 +26,19 @@ router.get('/info/:fileId', async (req, res) => {
     const fileInfo = await File.getFileInfo(req.params.fileId);
     res.json(fileInfo.data);
   } catch (err) {
-    console.log(err);
+    logger.error(`${err.response.data.status} ${err.response.data.error}`);
+    res.status(err.response.data.status).end(err.response.data.error);
   }
 });
 
 router.get('/:fileId', async (req, res) => {
-  console.log('in /:fileId');
-  console.log(req.parmas);
   try {
-    res.send(await File.getFile(req.parmas.fileId));
+    const downloadRes = await File.download(req.params.fileId);
+    res.set(downloadRes.headers);
+    res.end(downloadRes.data);
   } catch (err) {
-    console.log(err);
+    logger.error(`${err.response.data.status} ${err.response.data.error}`);
+    res.status(err.response.data.status).end(err.response.data.error);
   }
 });
 

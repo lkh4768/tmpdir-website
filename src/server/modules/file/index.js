@@ -7,7 +7,7 @@ import Utils from '_modules/utils';
 
 const Config = getConfig();
 
-const uploadFiles = (req, callback) => {
+const upload = (req, callback) => {
   const form = new Multiparty.Form({ maxFilesSize: Config.tmpdir.file.maxSize });
   const formData = new FormData();
   formData.maxDataSize = Infinity;
@@ -57,13 +57,10 @@ const getDownloadUrl = () => {
 };
 
 const getFileInfo = fileId => get(`${getDownloadUrl()}/file-info/${fileId}`);
-const getFile = (fileId) => {
-  console.log(`${getDownloadUrl()}/file/${fileId}`);
-  return get(`${getDownloadUrl()}/file/${fileId}`);
-};
+const download = fileId => get(`${getDownloadUrl()}/file/${fileId}`, { responseType: 'arraybuffer' });
 
 export default {
-  uploadFiles,
+  upload,
   getFileInfo,
-  getFile,
+  download,
 };

@@ -8,7 +8,7 @@ const propTypes = {
   expireTime: PropTypes.shape({
     data: PropTypes.number,
     loading: PropTypes.bool.isRequired,
-    error: PropTypes.string.isRequired,
+    error: PropTypes.string,
   }).isRequired,
   download: PropTypes.shape({
     error: PropTypes.string.isRequired,
