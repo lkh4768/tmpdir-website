@@ -101,10 +101,7 @@ const reqUploadFiles = files => async (dispatch) => {
   }
 };
 
-const reqFileInfoImpl = (regiId) => {
-  const url = ['/api/v1/file/info/', regiId].join('');
-  return get(url);
-};
+const reqFileInfoImpl = regiId => get(['/api/v1/file/info/', regiId].join(''));
 
 const reqFileInfo = regiId => async (dispatch) => {
   dispatch(getFileInfoPending());
@@ -116,15 +113,19 @@ const reqFileInfo = regiId => async (dispatch) => {
   }
 };
 
-const reqDownloadFileImpl = (regiId) => {
-  const url = ['/api/v1/file/', regiId].join('');
-  return get(url);
-};
+const reqDownloadFileImpl = regiId => get(['/api/v1/file/', regiId].join(''), { responseType: 'blob' });
 
 const reqDownloadFile = regiId => async (dispatch) => {
-  console.log('reqDownloadFile, regiId: ', regiId);
   try {
-    return await reqDownloadFileImpl(regiId);
+    const res = await reqDownloadFileImpl(regiId);
+    const filename = decodeURI(res.headers['content-disposition'].match(/filename="(.*)"/)[1]);
+    const url = window.URL.createObjectURL(new Blob([res.data]));
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', filename);
+    document.body.appendChild(link);
+    link.click();
+    return null;
   } catch (error) {
     return dispatch(downloadFileFailure(error.status));
   }
