@@ -2,6 +2,7 @@ import Multiparty from 'multiparty';
 import { post, get } from 'axios';
 import FormData from 'form-data';
 
+import logger from '_modules/logger';
 import getConfig from '_modules/config';
 import Utils from '_modules/utils';
 
@@ -27,6 +28,8 @@ const upload = (req, callback) => {
       );
       count += 1;
       part.resume();
+      logger.info({ filename: part.filename, byteCount: part.byteCount, headers: part.headers }, 'Rev file on Multiparty formData');
+      logger.debug(part, 'Rev file on Multiparty formData detail');
     }
   });
 
@@ -38,12 +41,16 @@ const upload = (req, callback) => {
         accept: 'application/json',
         'Content-Type': `multipart/form-data; boundary=${formData.getBoundary()}`,
       },
+      maxContentLength: Config.tmpdir.file.maxSize,
     };
     post(uploadUrl, formData, config)
       .then(res => callback(null, { code: res.status, data: res.data }))
-      .catch(err => callback(err));
+      .catch(err => logger.error(err, 'Axios post error'));
   });
-  form.on('error', err => callback(err));
+  form.on('error', (err) => {
+    logger.error(err, 'Multiparty form error');
+    return callback(err);
+  });
   form.parse(req);
 };
 

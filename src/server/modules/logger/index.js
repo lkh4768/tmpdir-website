@@ -7,7 +7,7 @@ import getConfig from '_modules/config';
 
 const Config = getConfig();
 const stream = new RotatingFileStream({
-  path: [path.join(Config.log.path, Config.log.filename), '_%Y%m%dT%H%M%S.log'].join(''),
+  path: [path.join(Config.log.path, Config.log.filename), '_', Config.log.fileDateFormat, '.log'].join(''),
   period: '1h',
   gzip: true,
 });
