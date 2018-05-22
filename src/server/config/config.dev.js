@@ -26,8 +26,8 @@ const Config = {
   log: {
     path: path.resolve(__dirname, '../../../logs'),
     filename: 'tmpdir-website',
-    level: 'debug',
-    dateFormat: 'YYYYMMDDHH',
+    level: 'info',
+    fileDateFormat: '%Y%m%d%H',
   },
 };
 
