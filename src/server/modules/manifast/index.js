@@ -6,7 +6,7 @@ const getJsUrls = (name) => {
   if (name) {
     jsUrls = manifest[[name, '.js'].join('')];
   }
-  logger.info(jsUrls);
+  logger.info(`JS file of ${name} is ${jsUrls}`);
   return jsUrls;
 };
 const getCssUrls = (name) => {
@@ -14,7 +14,7 @@ const getCssUrls = (name) => {
   if (name) {
     cssUrls = manifest[[name, '.css'].join('')];
   }
-  logger.info(cssUrls);
+  logger.info(`CSS file of ${name} is ${cssUrls}`);
   return cssUrls;
 };
 
