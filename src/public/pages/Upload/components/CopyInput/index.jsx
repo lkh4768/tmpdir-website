@@ -7,7 +7,7 @@ import {
   Button,
   Tooltip,
 } from 'reactstrap';
-import FaCopy from 'react-icons/lib/fa/copy';
+import { FaCopy } from 'react-icons/lib/fa';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import C from '_utils/constants';

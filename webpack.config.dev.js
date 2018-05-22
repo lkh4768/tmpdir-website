@@ -10,13 +10,11 @@ module.exports = {
   devtool: 'eval-source-map',
   entry: {
     uploadApp: [
-      'babel-polyfill',
       'webpack-hot-middleware/client?path=http://localhost:3001/__webpack_hmr',
       './src/public/app/Upload/index.js',
       './src/public/app/Upload/style.scss',
     ],
     downloadApp: [
-      'babel-polyfill',
       'webpack-hot-middleware/client?path=http://localhost:3001/__webpack_hmr',
       './src/public/app/Download/index.js',
       './src/public/app/Download/style.scss',
@@ -118,6 +116,19 @@ module.exports = {
         },
       },
     ],
+  },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /node_modules/,
+          chunks: 'initial',
+          name: 'vendor',
+          enforce: true,
+        },
+      },
+    },
+    runtimeChunk: true,
   },
   plugins: [
     new ManifestPlugin(),
