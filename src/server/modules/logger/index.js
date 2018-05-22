@@ -1,62 +1,33 @@
-import winston from 'winston';
-import WinstonDailyRotateFile from 'winston-daily-rotate-file';
-import expressWinston from 'express-winston';
+import bunyan from 'bunyan';
+import RotatingFileStream from 'bunyan-rotating-file-stream';
+import expressBunyanLogger from 'express-bunyan-logger';
+import path from 'path';
 import fs from 'fs';
 import getConfig from '_modules/config';
 
 const Config = getConfig();
+const stream = new RotatingFileStream({
+  path: [path.join(Config.log.path, Config.log.filename), '_%Y%m%dT%H%M%S.log'].join(''),
+  period: '1h',
+  gzip: true,
+});
 
 if (!fs.existsSync(Config.log.path)) {
   fs.mkdirSync(Config.log.path);
 }
 
-const timestamp = () => (new Date()).toLocaleTimeString();
-const transports = [
-  new winston.transports.Console({
-    timestamp,
-    colorize: true,
-    level: Config.log.level,
-    format: winston.format.combine(
-      winston.format.timestamp(),
-      winston.format.colorize(),
-      winston.format.simple(),
-    ),
-  }),
-  new WinstonDailyRotateFile({
-    level: Config.log.level,
-    dirname: Config.log.path,
-    filename: `${Config.log.filename}-%DATE%.log`,
-    timestamp,
-    datePattern: Config.log.dateFormat,
-    prepend: true,
-    format: winston.format.combine(
-      winston.format.timestamp(),
-      winston.format.colorize(),
-      winston.format.simple(),
-    ),
-  }),
-];
-
-const logger = winston.createLogger({
-  transports,
+const logger = bunyan.createLogger({
+  name: Config.name,
+  level: Config.log.level,
+  src: true,
+  streams: [{
+    stream,
+  }],
 });
 
 export const expressLogger = (app) => {
-  app.use(expressWinston.logger({
-    winstonInstance: logger,
-    meta: true,
-    msg: 'HTTP {{res.statusCode}} {{req.method}} {{res.responseTime}}ms {{req.url}}',
-    expressFormat: true,
-    colorize: false,
-    ignoreRoute: () => false,
-  }));
-};
-
-export const expressErrorLogger = (app) => {
-  app.use(expressWinston.errorLogger({
-    winstonInstance: logger,
-    msg: 'HTTP {{res.statusCode}} {{req.method}} {{res.responseTime}}ms {{req.url}}',
-    colorize: false,
+  app.use(expressBunyanLogger({
+    stream,
   }));
 };
 

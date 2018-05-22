@@ -1,6 +1,7 @@
 import path from 'path';
 
 const Config = {
+  name: 'tmpdir-dev',
   server: {
     port: 3001,
   },

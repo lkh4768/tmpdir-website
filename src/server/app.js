@@ -6,7 +6,7 @@ import webpack from 'webpack';
 import pageRoutes from '_routes/page';
 import apiRoutes from '_routes/api';
 import getConfig from '_modules/config';
-import { expressLogger, expressErrorLogger } from '_modules/logger';
+import { expressLogger } from '_modules/logger';
 import webpackServerConfig from '../../webpack.config.server';
 import webpackDevConfig from '../../webpack.config.dev';
 
@@ -30,6 +30,5 @@ app.use('/', express.static(path.resolve(__dirname, '../../build')));
 expressLogger(app);
 app.use('/', pageRoutes);
 app.use('/api', apiRoutes);
-expressErrorLogger(app);
 
 app.listen(Config.server.port);
