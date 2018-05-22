@@ -3,6 +3,7 @@ import uploadReducer from '_data/reducers/upload';
 import downloadReducer from '_data/reducers/download';
 import Utils from '_modules/utils';
 import manifast from '_modules/manifast';
+import logger from '_modules/logger';
 
 const getStore = (id) => {
   switch (id) {
@@ -15,7 +16,7 @@ const getStore = (id) => {
 
 const render = (type) => {
   const store = getStore(type.id);
-  return [
+  const html = [
     '<!doctype html>',
     '<html>',
     '<head>',
@@ -31,6 +32,8 @@ const render = (type) => {
     '</body>',
     '</html>',
   ].join('');
+  logger.info({ type, html }, 'render html of type');
+  return html;
 };
 
 export default render;
