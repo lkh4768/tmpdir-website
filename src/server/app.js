@@ -6,13 +6,14 @@ import webpack from 'webpack';
 import pageRoutes from '_routes/page';
 import apiRoutes from '_routes/api';
 import getConfig from '_modules/config';
-import { expressLogger } from '_modules/logger';
+import logger, { expressLogger } from '_modules/logger';
 import webpackServerConfig from '../../webpack.config.server';
 import webpackDevConfig from '../../webpack.config.dev';
 
 const Config = getConfig();
 const app = express();
 
+logger.info(Config, 'config');
 if (process.env.NODE_ENV !== 'production') {
   const multiCompiler = webpack([
     webpackServerConfig,
