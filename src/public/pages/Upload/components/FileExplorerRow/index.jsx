@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import FaClose from 'react-icons/lib/fa/close';
+import { FaClose } from 'react-icons/lib/fa';
 import F from '_utils/func';
 
 const CLASS_NAME = {

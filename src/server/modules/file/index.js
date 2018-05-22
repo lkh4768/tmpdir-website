@@ -4,7 +4,7 @@ import FormData from 'form-data';
 
 import logger from '_modules/logger';
 import getConfig from '_modules/config';
-import Utils from '_modules/utils';
+import Utils from '_modules/common/utils';
 
 const Config = getConfig();
 
