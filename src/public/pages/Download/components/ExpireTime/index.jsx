@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 import BodyRow from '_components/BodyRow';
 import F from '_utils/func';
-import C from '_utils/constants';
 
 const propTypes = {
   expireTime: PropTypes.shape({
@@ -37,7 +37,12 @@ class ExpireTime extends React.Component {
     }
     return (
       <BodyRow align={BodyRow.ALIGN.center}>
-        <h1 className={CLASS_NAME.text}>{[F.secToLocalTime(this.props.expireTime.data), C.TEXT.EXPIRE].join(' ')}</h1>
+        <h1 className={CLASS_NAME.text}>
+          <FormattedMessage
+            id="expiresOn"
+            values={{ expireTime: F.secToLocalTime(this.props.expireTime) }}
+          />
+        </h1>
       </BodyRow>
     );
   }

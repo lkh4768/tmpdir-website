@@ -1,11 +1,19 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
+import { IntlProvider, addLocaleData } from 'react-intl';
+import en from 'react-intl/locale-data/en';
+import ko from 'react-intl/locale-data/ko';
+import ja from 'react-intl/locale-data/ja';
 import UploadPage from '_pages/Upload';
 import logoIco from '_static/images/favicon.ico';
 import logo152h from '_static/images/logo_152h.png';
 import logo167h from '_static/images/logo_167h.png';
 import logo180h from '_static/images/logo_180h.png';
 import logo192h from '_static/images/logo_192h.png';
+import locale from './locale';
+
+const defaultLang = localStorage.getItem('lang') || 'en';
+addLocaleData([...en, ...ko, ...ja]);
 
 function Upload() {
   return (
@@ -27,7 +35,9 @@ function Upload() {
         <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" />
       </Helmet>
-      <UploadPage />
+      <IntlProvider locale={defaultLang} message={locale[defaultLang]}>
+        <UploadPage />
+      </IntlProvider>
     </React.Fragment>
   );
 }

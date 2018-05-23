@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import C from '_utils/constants';
+import { FormattedMessage } from 'react-intl';
 import F from '_utils/func';
 import FileExplorerRow from '../FileExplorerRow';
 
@@ -58,15 +58,19 @@ class FileExplorerResult extends React.Component {
           toggle={this.props.toggleModal}
           centered={Boolean(true)}
         >
-          <ModalHeader toggle={this.onModalNoClickHandler}>{C.TEXT.ALL_DEL_HEAD}</ModalHeader>
-          <ModalBody>{C.TEXT.ALL_DEL_BODY}</ModalBody>
+          <ModalHeader toggle={this.onModalNoClickHandler}>
+            <FormattedMessage id="deleteAllFiles" />
+          </ModalHeader>
+          <ModalBody>
+            <FormattedMessage id="confirmDeleteAllFiles" />
+          </ModalBody>
           <ModalFooter>
             <Button color="primary" onClick={this.onModalYesClickHandler} >
-              {C.TEXT.YES}
+              <FormattedMessage id="yes" />
             </Button>
             {' '}
             <Button color="secondary" onClick={this.onModalNoClickHandler} >
-              {C.TEXT.NO}
+              <FormattedMessage id="no" />
             </Button>
           </ModalFooter>
         </Modal>
