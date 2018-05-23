@@ -1,7 +1,7 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
+import { FormattedMessage } from 'react-intl';
 import ShareList from '_components/ShareList';
-import C from '_utils/constants';
 import F from '_utils/func';
 import CopyInputContainer from '../../containers/CopyInput';
 import Backdrop from '../Backdrop';
@@ -61,7 +61,12 @@ class UploadedPanel extends React.Component {
           >
             <CopyInputContainer className={CLASS_NAME.regiIdInput} value={this.getDownloadUrl()} size="lg" />
           </div>
-          <div className={CLASS_NAME.expireTime}>{[F.secToLocalTime(this.props.expireTime), C.TEXT.EXPIRE].join(' ')}</div>
+          <div className={CLASS_NAME.expireTime}>
+            <FormattedMessage
+              id="expiresOn"
+              values={{ expireTime: F.secToLocalTime(this.props.expireTime) }}
+            />
+          </div>
           <ShareList sharedUrl={this.getDownloadUrl()} />
         </div>
       </div>

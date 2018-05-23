@@ -9,8 +9,7 @@ import {
 } from 'reactstrap';
 import { FaCopy } from 'react-icons/lib/fa';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-
-import C from '_utils/constants';
+import { FormattedMessage } from 'react-intl';
 
 const propTypes = {
   value: PropTypes.string.isRequired,
@@ -52,7 +51,7 @@ class CopyInput extends React.Component {
           </InputGroupAddon>
         </InputGroup>
         <Tooltip placement="top" isOpen={this.props.tooltipOpen} target={ID.copyButton}>
-          {C.TEXT.COPIED}
+          <FormattedMessage id="copied" />
         </Tooltip>
       </React.Fragment>
     );

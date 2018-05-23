@@ -1,5 +1,5 @@
 import React from 'react';
-import C from '_utils/constants';
+import { FormattedMessage } from 'react-intl';
 
 const CLASS_NAME = {
   uploadGuide: 'file-explorer__upload-guide',
@@ -8,7 +8,7 @@ const CLASS_NAME = {
 function UploadGuide() {
   return (
     <li className={CLASS_NAME.uploadGuide}>
-      {C.TEXT.GUIDE}
+      <FormattedMessage id="uploadGuide" />
     </li>
   );
 }
