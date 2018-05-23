@@ -122,13 +122,11 @@ module.exports = {
       cacheGroups: {
         vendor: {
           test: /node_modules/,
-          chunks: 'initial',
+          chunks: 'all',
           name: 'vendor',
-          enforce: true,
         },
       },
     },
-    runtimeChunk: true,
   },
   plugins: [
     new ManifestPlugin(),

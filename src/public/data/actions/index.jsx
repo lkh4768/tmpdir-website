@@ -131,6 +131,14 @@ const reqDownloadFile = regiId => async (dispatch) => {
   }
 };
 
+const getHref = () => ({
+  type: C.ACTION_TYPES.GET_HREF,
+});
+
+const getOrigin = () => ({
+  type: C.ACTION_TYPES.GET_ORIGIN,
+});
+
 export default {
   addFile,
   delFile,
@@ -143,4 +151,6 @@ export default {
   toggleTooltip,
   reqFileInfo,
   reqDownloadFile,
+  getHref,
+  getOrigin,
 };
