@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
+import { injectIntl, intlShape, FormattedMessage } from 'react-intl';
 import ShareList from '_components/ShareList';
 import F from '_utils/func';
 import CopyInputContainer from '../../containers/CopyInput';
@@ -12,6 +12,7 @@ const propTypes = {
   expireTime: PropTypes.number.isRequired,
   emptyRegiId: PropTypes.func.isRequired,
   uploading: PropTypes.bool.isRequired,
+  intl: intlShape.isRequired,
 };
 
 const CLASS_NAME = {
@@ -64,7 +65,11 @@ class UploadedPanel extends React.Component {
           <div className={CLASS_NAME.expireTime}>
             <FormattedMessage
               id="expiresOn"
-              values={{ expireTime: F.secToLocalTime(this.props.expireTime) }}
+              values={{
+                expireDate: this.props.intl.formatDate(new Date(this.props.expireTime)),
+                expireTime: this.props.intl.formatTime(new Date(this.props.expireTime)),
+              }}
+              defaultMessage="Expires on {expireDate}, {expireTime}"
             />
           </div>
           <ShareList sharedUrl={this.getDownloadUrl()} />
@@ -76,4 +81,4 @@ class UploadedPanel extends React.Component {
 
 UploadedPanel.propTypes = propTypes;
 
-export default UploadedPanel;
+export default injectIntl(UploadedPanel);

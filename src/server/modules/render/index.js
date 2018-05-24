@@ -2,6 +2,7 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
+import { IntlProvider } from 'react-intl';
 import uploadReducer from '_data/reducers/upload';
 import downloadReducer from '_data/reducers/download';
 import UploadApp from '_app/Upload/App';
@@ -20,7 +21,7 @@ const getStore = (id) => {
   }
 };
 
-const getApp = (id, store) => {
+const getApp = (id, store, lang) => {
   let app;
   switch (id) {
     case Const.appType.upload.id:
@@ -32,12 +33,14 @@ const getApp = (id, store) => {
   }
   return (
     <Provider store={store}>
-      {app}
+      <IntlProvider locale={lang}>
+        {app}
+      </IntlProvider>
     </Provider>
   );
 };
 
-const render = (type) => {
+const render = (type, lang) => {
   const store = getStore(type.id);
   const html = `
     <!doctype html>
@@ -47,17 +50,18 @@ const render = (type) => {
       </head>
       <body>
         <div id="root">
-          ${renderToString(getApp(type.id, store))}
+          ${renderToString(getApp(type.id, store, lang))}
         </div>
       <script>
         window.INITIAL_STATE = ${JSON.stringify(store.getState()).replace(/</g, '\\x3c')}
+        window.INITIAL_LANG = "${lang}"
       </script>
         ${Utils.makeJsNode(manifast.getJsUrls(Const.vendor))}
         ${Utils.makeJsNode(manifast.getJsUrls(type.name))}
       </body>
     </html>
   `;
-  logger.info({ type, html }, 'render html of type');
+  logger.info({ type, lang, html }, 'render html of type');
   return html;
 };
 

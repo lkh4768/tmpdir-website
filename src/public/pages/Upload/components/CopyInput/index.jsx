@@ -51,7 +51,10 @@ class CopyInput extends React.Component {
           </InputGroupAddon>
         </InputGroup>
         <Tooltip placement="top" isOpen={this.props.tooltipOpen} target={ID.copyButton}>
-          <FormattedMessage id="copied" />
+          <FormattedMessage
+            id="copied"
+            defaultMessage="Copied"
+          />
         </Tooltip>
       </React.Fragment>
     );

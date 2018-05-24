@@ -80,6 +80,7 @@ const C = {
       WARTERMARK: 1000,
       UNITS: ['B', 'KB', 'MB', 'GB'],
     },
+    KEEPING_PERIOD: 1,
   },
   UPLOADED_FILE: {
     SHARE_ICON_SIZE: 50,
