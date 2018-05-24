@@ -1,8 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
+import { injectIntl, intlShape, FormattedMessage } from 'react-intl';
 import BodyRow from '_components/BodyRow';
-import F from '_utils/func';
 
 const propTypes = {
   expireTime: PropTypes.shape({
@@ -15,6 +14,7 @@ const propTypes = {
   }).isRequired,
   reqFileInfo: PropTypes.func.isRequired,
   reqDownloadFile: PropTypes.func.isRequired,
+  intl: intlShape.isRequired,
 };
 
 const CLASS_NAME = {
@@ -40,7 +40,11 @@ class ExpireTime extends React.Component {
         <h1 className={CLASS_NAME.text}>
           <FormattedMessage
             id="expiresOn"
-            values={{ expireTime: F.secToLocalTime(this.props.expireTime) }}
+            values={{
+              expireDate: this.props.intl.formatDate(new Date(this.props.expireTime.data)),
+              expireTime: this.props.intl.formatTime(new Date(this.props.expireTime.data)),
+            }}
+            defaultMessage="Expires on {expireDate}, {expireTime}"
           />
         </h1>
       </BodyRow>
@@ -50,4 +54,4 @@ class ExpireTime extends React.Component {
 
 ExpireTime.propTypes = propTypes;
 
-export default ExpireTime;
+export default injectIntl(ExpireTime);

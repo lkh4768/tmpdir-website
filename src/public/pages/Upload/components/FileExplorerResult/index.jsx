@@ -59,18 +59,30 @@ class FileExplorerResult extends React.Component {
           centered={Boolean(true)}
         >
           <ModalHeader toggle={this.onModalNoClickHandler}>
-            <FormattedMessage id="deleteAllFiles" />
+            <FormattedMessage
+              id="deleteAllFiles"
+              defaultMessage="Delete all files"
+            />
           </ModalHeader>
           <ModalBody>
-            <FormattedMessage id="confirmDeleteAllFiles" />
+            <FormattedMessage
+              id="confirmDeleteAllFiles"
+              defaultMessage="Are you sure you want to delete all?"
+            />
           </ModalBody>
           <ModalFooter>
             <Button color="primary" onClick={this.onModalYesClickHandler} >
-              <FormattedMessage id="yes" />
+              <FormattedMessage
+                id="yes"
+                defaultMessage="Yes"
+              />
             </Button>
             {' '}
             <Button color="secondary" onClick={this.onModalNoClickHandler} >
-              <FormattedMessage id="no" />
+              <FormattedMessage
+                id="no"
+                defaultMessage="No"
+              />
             </Button>
           </ModalFooter>
         </Modal>
