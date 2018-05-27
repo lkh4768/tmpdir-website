@@ -7,7 +7,25 @@
     "start": "NODE_ENV=production node build/app.js",
     "clean": "rm -rf build",
     "start:dev": "webpack --config webpack.config.dev.js --progress --profile --colors && NODE_ENV=development webpack --config webpack.config.server.js --progress --profile --colors && NODE_ENV=development node ./build/app.js",
-    "start:prd": "webpack --config webpack.config.client.js --progress --profile --colors && webpack --config webpack.config.server.js --progress --profile --colors && NODE_ENV=production node ./build/app.js"
+    "start:prd": "webpack --config webpack.config.client.js --progress --profile --colors && webpack --config webpack.config.server.js --progress --profile --colors && NODE_ENV=production node ./build/app.js",
+    "test": "NODE_ENV=test jest",
+    "test:watch": "npm run test -- --watch"
+  },
+  "jest": {
+    "verbose": true,
+    "transform": {
+      "^.+\\.(js|jsx)$": "babel-jest",
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/script/staticTransformer.js"
+    },
+    "moduleFileExtensions": [
+      "js",
+      "jsx"
+    ],
+    "moduleNameMapper": {
+      "^_mocks(.*)$": "<rootDir>/src/mocks/$1",
+      "^_(.*)$": "<rootDir>/src/public/$1",
+      "\\.(css|scss)$": "identity-obj-proxy"
+    }
   },
   "repository": {
     "type": "git",
@@ -17,9 +35,11 @@
   "license": "",
   "devDependencies": {
     "autoprefixer": "^8.0.0",
+    "axios-mock-adapter": "^1.15.0",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.1",
+    "babel-jest": "^23.0.0",
     "babel-loader": "^7.1.2",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
@@ -36,10 +56,13 @@
     "eslint-plugin-react": "^7.6.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "html-webpack-plugin": "^3.2.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^23.0.0",
     "node-sass": "^4.9.0",
     "postcss-loader": "^2.1.0",
     "prop-types": "^15.6.0",
     "react-popper": "^0.8.2",
+    "redux-mock-store": "^1.5.1",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.20.2",
     "webpack-cli": "^2.1.3",
@@ -56,7 +79,7 @@
     "file-loader": "^1.1.6",
     "form-data": "^2.3.2",
     "multiparty": "^4.1.3",
-    "npm": "^6.0.1",
+    "npm": "^6.1.0",
     "react": "^16.3.2",
     "react-copy-to-clipboard": "^5.0.1",
     "react-dom": "^16.2.0",

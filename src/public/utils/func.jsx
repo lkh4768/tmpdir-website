@@ -31,30 +31,6 @@ const F = {
       return has;
     });
   },
-  secToLocalTime: (sec) => {
-    const parseYYYYMMDDHHmm = date => [
-      date.substring(6, 10),
-      '.',
-      date.substring(0, 2),
-      '.',
-      date.substring(3, 5),
-      ' ',
-      date.substring(12),
-    ].join('');
-    const curDate = new Date(null);
-    curDate.setTime(sec);
-    return parseYYYYMMDDHHmm(curDate.toLocaleString(
-      [],
-      {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-        hour: 'numeric',
-        minute: '2-digit',
-        hour12: false,
-      },
-    ));
-  },
 };
 
 export default F;
