@@ -85,6 +85,10 @@ const C = {
   UPLOADED_FILE: {
     SHARE_ICON_SIZE: 50,
   },
+  API_URL: {
+    FILE: '/api/v1/file/',
+    FILE_INFO: '/api/v1/file/info/',
+  },
 };
 
 export default C;

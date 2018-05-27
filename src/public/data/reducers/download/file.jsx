@@ -1,6 +1,6 @@
 import C from '_utils/constants';
 
-const initState = {
+export const initState = {
   expireTime: {
     data: 0,
     loading: false,
@@ -11,12 +11,13 @@ const initState = {
   },
 };
 
-const files = (state = initState, action) => {
+const file = (state = initState, action) => {
   switch (action.type) {
     case C.ACTION_TYPES.GET_FILE_INFO_SUCCESS: {
       return {
         ...state,
         expireTime: {
+          ...initState.expireTime,
           data: action.payload,
           loading: false,
         },
@@ -26,6 +27,7 @@ const files = (state = initState, action) => {
       return {
         ...state,
         expireTime: {
+          ...initState.expireTime,
           loading: true,
         },
       };
@@ -34,6 +36,7 @@ const files = (state = initState, action) => {
       return {
         ...state,
         expireTime: {
+          ...initState.expireTime,
           error: action.error,
           loading: false,
         },
@@ -43,6 +46,7 @@ const files = (state = initState, action) => {
       return {
         ...state,
         download: {
+          ...initState.expireTime,
           error: action.error,
         },
       };
@@ -52,4 +56,4 @@ const files = (state = initState, action) => {
   }
 };
 
-export default files;
+export default file;

@@ -73,7 +73,7 @@ const downloadFileFailure = error => ({
 });
 
 const reqUploadFilesImpl = (files, onUploadProgress = F.emptyFunc) => {
-  const url = '/api/v1/file';
+  const url = C.API_URL.FILE;
   const formData = new FormData();
   files.forEach((file, i) => formData.append(['file', i].join(''), file));
   const config = {
@@ -101,7 +101,7 @@ const reqUploadFiles = files => async (dispatch) => {
   }
 };
 
-const reqFileInfoImpl = regiId => get(['/api/v1/file/info/', regiId].join(''));
+const reqFileInfoImpl = regiId => get([C.API_URL.FILE_INFO, regiId].join(''));
 
 const reqFileInfo = regiId => async (dispatch) => {
   dispatch(getFileInfoPending());
@@ -113,7 +113,7 @@ const reqFileInfo = regiId => async (dispatch) => {
   }
 };
 
-const reqDownloadFileImpl = regiId => get(['/api/v1/file/', regiId].join(''), { responseType: 'blob' });
+const reqDownloadFileImpl = regiId => get([C.API_URL.FILE, regiId].join(''), { responseType: 'blob' });
 
 const reqDownloadFile = regiId => async (dispatch) => {
   try {

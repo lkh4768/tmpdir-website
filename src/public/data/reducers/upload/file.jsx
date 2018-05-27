@@ -1,7 +1,7 @@
 import C from '_utils/constants';
 import F from '_utils/func';
 
-const initState = {
+export const initState = {
   list: [],
   regiId: '',
   expireTime: 0,
@@ -11,7 +11,7 @@ const initState = {
   error: '',
 };
 
-const files = (state = initState, action) => {
+const file = (state = initState, action) => {
   switch (action.type) {
     case C.ACTION_TYPES.ADD_FILES: {
       const newFiles = F.uniqArray(
@@ -29,11 +29,14 @@ const files = (state = initState, action) => {
     case C.ACTION_TYPES.DEL_FILE: {
       return {
         ...state,
-        list: state.list.filter(file => file.name !== action.filename),
+        list: state.list.filter(f => f.name !== action.filename),
       };
     }
     case C.ACTION_TYPES.DEL_ALL_FILE: {
-      return initState;
+      return {
+        ...state,
+        list: [],
+      };
     }
     case C.ACTION_TYPES.UPLOAD_FILES_SUCCESS: {
       return {
@@ -71,4 +74,4 @@ const files = (state = initState, action) => {
   }
 };
 
-export default files;
+export default file;
