@@ -1,3 +1,4 @@
+import deepFreeze from 'deep-freeze';
 import C from '_utils/constants';
 import Mocks from '_mocks'
 import file, { initState } from '_data/reducers/upload/file';
@@ -18,6 +19,8 @@ describe('file reducer', () => {
       type: C.ACTION_TYPES.ADD_FILES,
       files: newFiles,
     };
+    deepFreeze(state);
+    deepFreeze(action);
     const result = file(state, action);
     expect(result).toEqual({
       ...state,
@@ -30,6 +33,8 @@ describe('file reducer', () => {
       type: C.ACTION_TYPES.DEL_FILE,
       filename: state.list[0].name,
     };
+    deepFreeze(state);
+    deepFreeze(action);
     const result = file(state, action);
     expect(result).toEqual({
       ...state,
@@ -41,6 +46,8 @@ describe('file reducer', () => {
     const action = {
       type: C.ACTION_TYPES.DEL_ALL_FILE,
     };
+    deepFreeze(state);
+    deepFreeze(action);
     const result = file(state, action);
     expect(result).toEqual({
       ...state,
@@ -56,6 +63,8 @@ describe('file reducer', () => {
       type: C.ACTION_TYPES.UPLOAD_FILES_SUCCESS,
       payload,
     };
+    deepFreeze(state);
+    deepFreeze(action);
     const result = file(state, action);
     expect(result).toEqual({
       ...state,
@@ -71,6 +80,8 @@ describe('file reducer', () => {
       type: C.ACTION_TYPES.UPLOAD_FILES_FAILURE,
       error,
     };
+    deepFreeze(state);
+    deepFreeze(action);
     const result = file(state, action);
     expect(result).toEqual({
       ...state,
@@ -87,6 +98,8 @@ describe('file reducer', () => {
       totalSize,
       uploadedSize,
     };
+    deepFreeze(state);
+    deepFreeze(action);
     const result = file(state, action);
     expect(result).toEqual({
       ...state,
@@ -99,6 +112,8 @@ describe('file reducer', () => {
     const action = {
       type: C.ACTION_TYPES.EMPTY_ERROR,
     };
+    deepFreeze(state);
+    deepFreeze(action);
     const result = file(state, action);
     expect(result).toEqual({
       ...state,
@@ -109,6 +124,8 @@ describe('file reducer', () => {
     const action = {
       type: C.ACTION_TYPES.EMPTY_REGI_ID,
     };
+    deepFreeze(state);
+    deepFreeze(action);
     const result = file(state, action);
     expect(result).toEqual({
       ...state,

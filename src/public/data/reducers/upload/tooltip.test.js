@@ -1,3 +1,4 @@
+import deepFreeze from 'deep-freeze';
 import C from '_utils/constants';
 import tooltip, { initState } from '_data/reducers/upload/tooltip';
 
@@ -14,6 +15,8 @@ describe('tootip reducer', () => {
     const action = {
       type: C.ACTION_TYPES.TOGGLE_TOOLTIP,
     };
+    deepFreeze(state);
+    deepFreeze(action);
     const result = tooltip(state, action);
     expect(result.isOpen).toEqual(!state.isOpen);
   });
