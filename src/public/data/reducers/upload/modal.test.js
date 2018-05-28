@@ -6,7 +6,11 @@ const state = {
 }
 
 describe('modal reducer', () => {
-  it(`${C.ACTION_TYPES.TOGGLE_MODAL} Success`, () => {
+  it(`[modal] initState Success`, () => {
+    const result = modal(undefined, {});
+    expect(result).toEqual(initState);
+  });
+  it(`[modal] ${C.ACTION_TYPES.TOGGLE_MODAL} Success`, () => {
     const action = {
       type: C.ACTION_TYPES.TOGGLE_MODAL
     };

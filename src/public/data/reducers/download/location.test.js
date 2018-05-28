@@ -6,7 +6,11 @@ const state = {
 };
 
 describe('location reducer', () => {
-  it(`${C.ACTION_TYPES.GET_FILE_INFO_SUCCESS} Success`, () => {
+  it(`[location] initState Success`, () => {
+    const result = location(undefined, {});
+    expect(result).toEqual(state);
+  });
+  it(`[location] ${C.ACTION_TYPES.GET_FILE_INFO_SUCCESS} Success`, () => {
     const payload = 'payload';
     const action = {
       type: C.ACTION_TYPES.GET_HREF,
@@ -17,7 +21,7 @@ describe('location reducer', () => {
       href: window.location.href,
     });
   });
-  it(`${C.ACTION_TYPES.GET_ORIGIN} Success`, () => {
+  it(`[location] ${C.ACTION_TYPES.GET_ORIGIN} Success`, () => {
     const action = {
       type: C.ACTION_TYPES.GET_ORIGIN,
     };

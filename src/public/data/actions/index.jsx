@@ -97,7 +97,7 @@ const reqUploadFiles = files => async (dispatch) => {
       expireTime: res.data.expireTime,
     }));
   } catch (error) {
-    return dispatch(uploadFilesFailure(error.status));
+    return dispatch(uploadFilesFailure(error.response.status));
   }
 };
 
@@ -109,7 +109,7 @@ const reqFileInfo = regiId => async (dispatch) => {
     const res = await reqFileInfoImpl(regiId);
     return dispatch(getFileInfoSuccess(res.data.expireTime));
   } catch (error) {
-    return dispatch(getFileInfoFailure(error.status));
+    return dispatch(getFileInfoFailure(error.response.status));
   }
 };
 
@@ -127,7 +127,7 @@ const reqDownloadFile = regiId => async (dispatch) => {
     link.click();
     return null;
   } catch (error) {
-    return dispatch(downloadFileFailure(error.status));
+    return dispatch(downloadFileFailure(error.response.status));
   }
 };
 

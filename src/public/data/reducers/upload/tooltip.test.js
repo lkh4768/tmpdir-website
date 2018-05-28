@@ -6,7 +6,11 @@ const state = {
 }
 
 describe('tootip reducer', () => {
-  it(`${C.ACTION_TYPES.TOGGLE_TOOLTIP} Success`, () => {
+  it(`[tooltip] initState Success`, () => {
+    const result = tooltip(undefined, {});
+    expect(result).toEqual(initState);
+  });
+  it(`[tooltip] ${C.ACTION_TYPES.TOGGLE_TOOLTIP} Success`, () => {
     const action = {
       type: C.ACTION_TYPES.TOGGLE_TOOLTIP,
     };

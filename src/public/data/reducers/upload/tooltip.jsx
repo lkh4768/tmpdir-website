@@ -1,6 +1,6 @@
 import C from '_utils/constants';
 
-const initState = {
+export const initState = {
   isOpen: false,
 };
 

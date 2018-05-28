@@ -8,7 +8,11 @@ const state = {
 }
 
 describe('file reducer', () => {
-  it(`${C.ACTION_TYPES.ADD_FILES} Success`, () => {
+  it(`[file] initState Success`, () => {
+    const result = file(undefined, {});
+    expect(result).toEqual(initState);
+  });
+  it(`[file] ${C.ACTION_TYPES.ADD_FILES} Success`, () => {
     const newFiles = Mocks.newFiles(10);
     const action = {
       type: C.ACTION_TYPES.ADD_FILES,
@@ -20,7 +24,7 @@ describe('file reducer', () => {
       list: [...Mocks.files, ...newFiles]
     });
   });
-  it(`${C.ACTION_TYPES.DEL_FILE} Success`, () => {
+  it(`[file] ${C.ACTION_TYPES.DEL_FILE} Success`, () => {
     const newFiles = Mocks.newFiles(10);
     const action = {
       type: C.ACTION_TYPES.DEL_FILE,
@@ -32,7 +36,7 @@ describe('file reducer', () => {
       list: Mocks.files.slice(1, Mocks.files.length)
     });
   });
-  it(`${C.ACTION_TYPES.DEL_ALL_FILE} Success`, () => {
+  it(`[file] ${C.ACTION_TYPES.DEL_ALL_FILE} Success`, () => {
     const newFiles = Mocks.newFiles(10);
     const action = {
       type: C.ACTION_TYPES.DEL_ALL_FILE,
@@ -43,7 +47,7 @@ describe('file reducer', () => {
       list: [],
     });
   });
-  it(`${C.ACTION_TYPES.UPLOAD_FILES_SUCCESS} Success`, () => {
+  it(`[file] ${C.ACTION_TYPES.UPLOAD_FILES_SUCCESS} Success`, () => {
     const payload = {
       regiId: 'regiId',
       expireTime: 0,
@@ -61,7 +65,7 @@ describe('file reducer', () => {
       uploading: false,
     });
   });
-  it(`${C.ACTION_TYPES.UPLOAD_FILES_FAILURE} Success`, () => {
+  it(`[file] ${C.ACTION_TYPES.UPLOAD_FILES_FAILURE} Success`, () => {
     const error = 'error';
     const action = {
       type: C.ACTION_TYPES.UPLOAD_FILES_FAILURE,
@@ -75,7 +79,7 @@ describe('file reducer', () => {
       uploading: false,
     });
   });
-  it(`${C.ACTION_TYPES.UPLOAD_FILES_PENDING} Success`, () => {
+  it(`[file] ${C.ACTION_TYPES.UPLOAD_FILES_PENDING} Success`, () => {
     const totalSize = 0;
     const uploadedSize = 0;
     const action = {
@@ -91,7 +95,7 @@ describe('file reducer', () => {
       uploadedSize,
     });
   });
-  it(`${C.ACTION_TYPES.EMPTY_ERROR} Success`, () => {
+  it(`[file] ${C.ACTION_TYPES.EMPTY_ERROR} Success`, () => {
     const action = {
       type: C.ACTION_TYPES.EMPTY_ERROR,
     };
@@ -101,7 +105,7 @@ describe('file reducer', () => {
       error: '',
     });
   });
-  it(`${C.ACTION_TYPES.EMPTY_REGI_ID} Success`, () => {
+  it(`[file] ${C.ACTION_TYPES.EMPTY_REGI_ID} Success`, () => {
     const action = {
       type: C.ACTION_TYPES.EMPTY_REGI_ID,
     };
