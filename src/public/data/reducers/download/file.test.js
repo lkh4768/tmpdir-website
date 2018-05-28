@@ -6,7 +6,11 @@ const state = {
 };
 
 describe('file reducer', () => {
-  it(`${C.ACTION_TYPES.GET_FILE_INFO_SUCCESS} Success`, () => {
+  it(`[file], initState Success`, () => {
+    const result = file(undefined, {});
+    expect(result).toEqual(state);
+  });
+  it(`[file] ${C.ACTION_TYPES.GET_FILE_INFO_SUCCESS} Success`, () => {
     const payload = 'payload';
     const action = {
       type: C.ACTION_TYPES.GET_FILE_INFO_SUCCESS,
@@ -22,7 +26,7 @@ describe('file reducer', () => {
       },
     });
   });
-  it(`${C.ACTION_TYPES.GET_FILE_INFO_PENDING} Success`, () => {
+  it(`[file] ${C.ACTION_TYPES.GET_FILE_INFO_PENDING} Success`, () => {
     const action = {
       type: C.ACTION_TYPES.GET_FILE_INFO_PENDING,
     };
@@ -35,7 +39,7 @@ describe('file reducer', () => {
       },
     });
   });
-  it(`${C.ACTION_TYPES.GET_FILE_INFO_FAILURE} Success`, () => {
+  it(`[file] ${C.ACTION_TYPES.GET_FILE_INFO_FAILURE} Success`, () => {
     const error = 'error';
     const action = {
       type: C.ACTION_TYPES.GET_FILE_INFO_FAILURE,
@@ -51,7 +55,7 @@ describe('file reducer', () => {
       },
     });
   });
-  it(`${C.ACTION_TYPES.DOWNLOAD_FILE_FAILURE} Success`, () => {
+  it(`[file] ${C.ACTION_TYPES.DOWNLOAD_FILE_FAILURE} Success`, () => {
     const error = 'error';
     const action = {
       type: C.ACTION_TYPES.DOWNLOAD_FILE_FAILURE,
