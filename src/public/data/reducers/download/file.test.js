@@ -1,3 +1,4 @@
+import deepFreeze from 'deep-freeze';
 import C from '_utils/constants';
 import file, { initState } from '_data/reducers/download/file';
 
@@ -16,6 +17,8 @@ describe('file reducer', () => {
       type: C.ACTION_TYPES.GET_FILE_INFO_SUCCESS,
       payload,
     };
+    deepFreeze(state);
+    deepFreeze(action);
     const result = file(state, action);
     expect(result).toEqual({
       ...state,
@@ -30,6 +33,8 @@ describe('file reducer', () => {
     const action = {
       type: C.ACTION_TYPES.GET_FILE_INFO_PENDING,
     };
+    deepFreeze(state);
+    deepFreeze(action);
     const result = file(state, action);
     expect(result).toEqual({
       ...state,
@@ -45,6 +50,8 @@ describe('file reducer', () => {
       type: C.ACTION_TYPES.GET_FILE_INFO_FAILURE,
       error,
     };
+    deepFreeze(state);
+    deepFreeze(action);
     const result = file(state, action);
     expect(result).toEqual({
       ...state,
@@ -61,6 +68,8 @@ describe('file reducer', () => {
       type: C.ACTION_TYPES.DOWNLOAD_FILE_FAILURE,
       error,
     };
+    deepFreeze(state);
+    deepFreeze(action);
     const result = file(state, action);
     expect(result).toEqual({
       ...state,
