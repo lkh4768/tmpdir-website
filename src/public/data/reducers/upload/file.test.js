@@ -1,11 +1,10 @@
 import deepFreeze from 'deep-freeze';
 import C from '_utils/constants';
-import Mocks from '_mocks'
 import file, { initState } from '_data/reducers/upload/file';
 
 const state = {
   ...initState,
-  list: Mocks.files,
+  list: T_FILES,
 }
 
 describe('file reducer', () => {
@@ -14,7 +13,7 @@ describe('file reducer', () => {
     expect(result).toEqual(initState);
   });
   it(`[file] ${C.ACTION_TYPES.ADD_FILES} Success`, () => {
-    const newFiles = Mocks.newFiles(10);
+    const newFiles = T_NEW_FILES(10);
     const action = {
       type: C.ACTION_TYPES.ADD_FILES,
       files: newFiles,
@@ -24,11 +23,11 @@ describe('file reducer', () => {
     const result = file(state, action);
     expect(result).toEqual({
       ...state,
-      list: [...Mocks.files, ...newFiles]
+      list: [...T_FILES, ...newFiles]
     });
   });
   it(`[file] ${C.ACTION_TYPES.DEL_FILE} Success`, () => {
-    const newFiles = Mocks.newFiles(10);
+    const newFiles = T_NEW_FILES(10);
     const action = {
       type: C.ACTION_TYPES.DEL_FILE,
       filename: state.list[0].name,
@@ -38,11 +37,11 @@ describe('file reducer', () => {
     const result = file(state, action);
     expect(result).toEqual({
       ...state,
-      list: Mocks.files.slice(1, Mocks.files.length)
+      list: T_FILES.slice(1, T_FILES.length)
     });
   });
   it(`[file] ${C.ACTION_TYPES.DEL_ALL_FILE} Success`, () => {
-    const newFiles = Mocks.newFiles(10);
+    const newFiles = T_NEW_FILES(10);
     const action = {
       type: C.ACTION_TYPES.DEL_ALL_FILE,
     };

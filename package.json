@@ -21,8 +21,10 @@
       "js",
       "jsx"
     ],
+    "setupFiles": ["./src/tests/global.js"],
+    "modulePathIgnorePatterns": ["global.js"],
     "moduleNameMapper": {
-      "^_mocks(.*)$": "<rootDir>/src/mocks/$1",
+      "^_tests(.*)$": "<rootDir>/src/tests/$1",
       "^_(.*)$": "<rootDir>/src/public/$1",
       "\\.(css|scss)$": "identity-obj-proxy"
     }
