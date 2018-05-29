@@ -4,7 +4,6 @@ import axios from 'axios';
 import axiosMockAdapter from 'axios-mock-adapter';
 import C from '_utils/constants';
 import { initState } from '_data/reducers/upload/file';
-import Mock from '_mocks';
 import actions from './index';
 
 const middlewares = [thunk];
@@ -23,7 +22,7 @@ describe('async actions', () => {
       { type: C.ACTION_TYPES.UPLOAD_FILES_SUCCESS, payload: { regiId: '1', expireTime: 1 } }
     ];
     const store = mockStore(initState);
-    return store.dispatch(actions.reqUploadFiles(Mock.files)).then(() => {
+    return store.dispatch(actions.reqUploadFiles(T_FILES)).then(() => {
       expect(store.getActions()).toEqual(expectedActions)
     })
   });
@@ -35,7 +34,7 @@ describe('async actions', () => {
       { type: C.ACTION_TYPES.UPLOAD_FILES_FAILURE, error: 500 }
     ];
     const store = mockStore(initState);
-    return store.dispatch(actions.reqUploadFiles(Mock.files)).then(() => {
+    return store.dispatch(actions.reqUploadFiles(T_FILES)).then(() => {
       expect(store.getActions()).toEqual(expectedActions)
     })
   });
