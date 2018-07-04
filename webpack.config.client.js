@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const StatsPlugin = require('stats-webpack-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
 const autoprefixer = require('autoprefixer');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
@@ -9,15 +9,18 @@ const config = {
   mode: 'production',
   name: 'client',
   devtool: 'eval-source-map',
-  entry: [
-    'babel-polyfill',
-    './src/public/app/Upload/index.js',
-    './src/public/app/Upload/style.scss',
-    './src/public/app/Download/index.js',
-    './src/public/app/Download/style.scss',
-  ],
+  entry: {
+    uploadApp: [
+      './src/public/app/Upload/index.js',
+      './src/public/app/Upload/style.scss',
+    ],
+    downloadApp: [
+      './src/public/app/Download/index.js',
+      './src/public/app/Download/style.scss',
+    ],
+  },
   output: {
-    path: path.join(__dirname, 'build/'),
+    path: path.resolve(__dirname, 'build/'),
     filename: '[name]-[hash].min.js',
     publicPath: '/',
   },
@@ -48,20 +51,42 @@ const config = {
       },
       {
         test: /\.scss$/,
+        exclude: /(node_modules|bower_components)/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [
             {
               loader: 'css-loader',
-              options: { importLoaders: 1 },
+              options: {
+                sourceMap: true,
+                importLoaders: 1,
+                minimize: true,
+              },
             },
             {
               loader: 'postcss-loader',
               options: {
-                plugins: () => [autoprefixer()],
+                sourceMap: true,
+                plugins: () => [autoprefixer({
+                  browsers: [
+                    '>1%',
+                    'last 4 versions',
+                    'Firefox ESR',
+                    'not ie < 9',
+                  ],
+                  flexbox: 'no-2009',
+                })],
               },
             },
-            'sass-loader',
+            {
+              loader: 'sass-loader',
+              options: {
+                sourceMap: true,
+                includePaths: [
+                  './src/public',
+                ],
+              },
+            },
           ],
         }),
       },
@@ -69,13 +94,22 @@ const config = {
         test: /\.(png|ico)$/,
         loader: 'file-loader',
         options: {
+          name: '[name]-[hash].[ext]',
           outputPath: 'images/',
-          name: '[name].[ext]?[hash]',
         },
       },
     ],
   },
   optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /node_modules/,
+          chunks: 'all',
+          name: 'vendor',
+        },
+      },
+    },
     minimizer: [
       new UglifyJsPlugin({
         cache: true,
