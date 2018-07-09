@@ -22,7 +22,7 @@ const config = {
     ],
   },
   output: {
-    path: path.join(__dirname, 'build/'),
+    path: path.resolve(__dirname, 'build/'),
     filename: '[name]-[hash].min.js',
     publicPath: '/',
   },
@@ -53,12 +53,14 @@ const config = {
       },
       {
         test: /\.scss$/,
+        exclude: /(node_modules|bower_components)/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [
             {
               loader: 'css-loader',
               options: {
+                sourceMap: true,
                 importLoaders: 1,
                 minimize: true,
               },
@@ -66,13 +68,26 @@ const config = {
             {
               loader: 'postcss-loader',
               options: {
-                plugins: () => [autoprefixer()],
                 sourceMap: true,
+                plugins: () => [autoprefixer({
+                  browsers: [
+                    '>1%',
+                    'last 4 versions',
+                    'Firefox ESR',
+                    'not ie < 9',
+                  ],
+                  flexbox: 'no-2009',
+                })],
               },
             },
             {
               loader: 'sass-loader',
-              options: { sourceMap: true },
+              options: {
+                sourceMap: true,
+                includePaths: [
+                  './src/public',
+                ],
+              },
             },
           ],
         }),
@@ -81,14 +96,14 @@ const config = {
         test: /\.(png|ico)$/,
         loader: 'file-loader',
         options: {
+          name: '[name]-[hash].[ext]',
           outputPath: 'images/',
-          name: '[name].[ext]?[hash]',
         },
       },
     ],
   },
   optimization: {
-		splitChunks: {
+    splitChunks: {
       cacheGroups: {
         vendor: {
           test: /node_modules/,
