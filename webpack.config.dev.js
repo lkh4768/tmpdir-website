@@ -131,7 +131,7 @@ module.exports = {
   plugins: [
     new ManifestPlugin(),
     new ExtractTextPlugin({
-      filename: '[name]-[hash].min.css',
+      filename: '[name].min.css',
       allChunks: true,
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
