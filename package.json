@@ -7,7 +7,8 @@
     "start": "NODE_ENV=production node build/app.js",
     "clean": "rm -rf build",
     "start:dev": "webpack --config webpack.config.dev.js --progress --profile --colors && NODE_ENV=development webpack --config webpack.config.server.js --progress --profile --colors && NODE_ENV=development node ./build/app.js",
-    "start:prd": "webpack --config webpack.config.client.js --progress --profile --colors && webpack --config webpack.config.server.js --progress --profile --colors && NODE_ENV=production node ./build/app.js",
+		"build:prd": "webpack --config webpack.config.client.js --progress --profile --colors && webpack --config webpack.config.server.js --progress --profile --colors",
+    "start:prd": "npm run build:prd && NODE_ENV=production node ./build/app.js",
     "test": "NODE_ENV=test jest",
     "test:watch": "npm run test -- --watch"
   },
@@ -21,8 +22,12 @@
       "js",
       "jsx"
     ],
-    "setupFiles": ["./src/tests/global.js"],
-    "modulePathIgnorePatterns": ["global.js"],
+    "setupFiles": [
+      "./src/tests/global.js"
+    ],
+    "modulePathIgnorePatterns": [
+      "global.js"
+    ],
     "moduleNameMapper": {
       "^_tests(.*)$": "<rootDir>/src/tests/$1",
       "^_(.*)$": "<rootDir>/src/public/$1",
@@ -63,7 +68,7 @@
     "html-webpack-plugin": "^3.2.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^23.0.0",
-    "node-sass": "^4.9.0",
+    "node-sass": "^4.9.2",
     "postcss-loader": "^2.1.0",
     "prop-types": "^15.6.0",
     "react-addons-test-utils": "^15.6.2",

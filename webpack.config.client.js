@@ -1,21 +1,26 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const StatsPlugin = require('stats-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
 
 const config = {
   mode: 'production',
   name: 'client',
   devtool: 'eval-source-map',
-  entry: [
-    'babel-polyfill',
-    './src/public/app/Upload/index.js',
-    './src/public/app/Upload/style.scss',
-    './src/public/app/Download/index.js',
-    './src/public/app/Download/style.scss',
-  ],
+  entry: {
+    uploadApp: [
+			'babel-polyfill',
+      './src/public/app/Upload/index.js',
+      './src/public/app/Upload/style.scss',
+    ],
+    downloadApp: [
+			'babel-polyfill',
+      './src/public/app/Download/index.js',
+      './src/public/app/Download/style.scss',
+    ],
+  },
   output: {
     path: path.join(__dirname, 'build/'),
     filename: '[name]-[hash].min.js',
@@ -53,15 +58,22 @@ const config = {
           use: [
             {
               loader: 'css-loader',
-              options: { importLoaders: 1 },
+              options: {
+                importLoaders: 1,
+                minimize: true,
+              },
             },
             {
               loader: 'postcss-loader',
               options: {
                 plugins: () => [autoprefixer()],
+                sourceMap: true,
               },
             },
-            'sass-loader',
+            {
+              loader: 'sass-loader',
+              options: { sourceMap: true },
+            },
           ],
         }),
       },
@@ -76,18 +88,27 @@ const config = {
     ],
   },
   optimization: {
+		splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /node_modules/,
+          chunks: 'all',
+          name: 'vendor',
+        },
+      },
+    },
     minimizer: [
       new UglifyJsPlugin({
         cache: true,
         parallel: true,
         uglifyOptions: {
-          compress: false,
+          compress: true,
           ecma: 6,
           mangle: true
         },
         sourceMap: true
       })
-    ]
+    ],
   },
   plugins: [
     new ManifestPlugin(),
@@ -95,6 +116,8 @@ const config = {
       filename: '[name]-[hash].min.css',
       allChunks: true,
     }),
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
   ],
 };
 
