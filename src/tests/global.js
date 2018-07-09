@@ -51,3 +51,19 @@ global.T_SHALLOW_WITH_INTL = (node, locale = 'en', messages = {}, { context, ...
     }
   });
 };
+
+global.T_MOUNT_WITH_INTL = (node, locale = 'en', messages = {}, { context, childContextTypes, ...options } = {}) => {
+  const intlProv = makeIntlProvider(locale, messages);
+  const intl = getIntl(intlProv);
+  return Enzyme.mount(nodeWithIntlProp(node, intl), {
+    ...options,
+    context: {
+      ...context,
+      intl
+    },
+    childContextTypes: {
+      intl: intlShape,
+      ...childContextTypes
+    }
+  });
+};
