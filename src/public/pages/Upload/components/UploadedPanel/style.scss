@@ -6,7 +6,7 @@
     justify-content: center;
     z-index: 2;
 
-    @include absolute-fill();
+    @include absolute-fill;
 
     & > * {
       margin-bottom: 10px;

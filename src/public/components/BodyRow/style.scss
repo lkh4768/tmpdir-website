@@ -1,6 +1,6 @@
 @import '~_utils/mixin.scss';
 
-@mixin body__row__col() {
+@mixin body__row__col {
   display: flex;
   align-items: center;
   margin-bottom: 8px;
@@ -10,25 +10,25 @@
   }
 
   a {
-    @include not-deco-link();
+    @include not-deco-link;
   }
 }
 
 .body__row__col {
-  @include body__row__col();
+  @include body__row__col;
 }
 
 .body__row__col--center {
-  @include body__row__col();
+  @include body__row__col;
   justify-content: center;
 }
 
 .body__row__col--right {
-  @include body__row__col();
+  @include body__row__col;
   justify-content: flex-end;
 }
 
 .body__row__col--between {
-  @include body__row__col();
+  @include body__row__col;
   justify-content: space-between;
 }

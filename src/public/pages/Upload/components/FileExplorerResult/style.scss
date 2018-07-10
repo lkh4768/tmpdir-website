@@ -1,6 +1,6 @@
 .file-explorer__result {
   background-color: hsl(48, 89%, 50%);
-  @include default-ul();
+  @include default-ul;
 
   & > .file-explorer__row {
     border-bottom: 0;
