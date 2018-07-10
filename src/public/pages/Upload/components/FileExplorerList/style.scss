@@ -7,7 +7,7 @@
     background-color: hsl(192, 15%, 94%);
     overflow-y: auto;
 
-    @include default-ul();
+    @include default-ul;
   }
   .file-explorer__list-wrapper__input-file {
     display: none;

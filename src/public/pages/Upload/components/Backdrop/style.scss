@@ -12,5 +12,5 @@
   background-color: black;
   opacity: 0.8;
 
-  @include absolute-fill();
+  @include absolute-fill;
 }
