@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: center;
 
-  & > * {
+  & > span {
     @include margin-between(8);
   }
 }

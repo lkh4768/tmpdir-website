@@ -5,7 +5,7 @@ export const initState = {
   origin: '',
 };
 
-const location = (state = initState, action) => {
+const location = (state = initState, action = { type: C.ACTION_TYPES.NONE }) => {
   switch (action.type) {
     case C.ACTION_TYPES.GET_HREF: {
       return {

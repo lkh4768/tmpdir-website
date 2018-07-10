@@ -56,6 +56,7 @@ const C = {
     new FooterLinkEntity('Blog: ', owner.blog, owner.blog),
   ],
   ACTION_TYPES: {
+    NONE: 'NONE',
     ADD_FILES: 'ADD_FILES',
     DEL_FILE: 'DEL_FILE',
     DEL_ALL_FILE: 'DEL_ALL_FILE',
