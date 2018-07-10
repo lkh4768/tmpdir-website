@@ -4,7 +4,7 @@ export const initState = {
   isOpen: false,
 };
 
-const modal = (state = initState, action) => {
+const modal = (state = initState, action = { type: C.ACTION_TYPES.NONE }) => {
   switch (action.type) {
     case C.ACTION_TYPES.TOGGLE_MODAL: {
       return { isOpen: !state.isOpen };

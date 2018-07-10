@@ -11,7 +11,7 @@ export const initState = {
   error: '',
 };
 
-const file = (state = initState, action) => {
+const file = (state = initState, action = { type: C.ACTION_TYPES.NONE }) => {
   switch (action.type) {
     case C.ACTION_TYPES.ADD_FILES: {
       const newFiles = F.uniqArray(

@@ -34,61 +34,58 @@ const defaultProps = {
   share: null,
 };
 
-class ShareButton extends React.Component {
-  render() {
-    const components = new Map([
-      [
-        ShareEntity.VENDER.facebook,
-        {
-          button: FacebookShareButton,
-          icon: FacebookIcon,
-        },
-      ],
-      [
-        ShareEntity.VENDER.twitter,
-        {
-          button: TwitterShareButton,
-          icon: TwitterIcon,
-        },
-      ],
-      [
-        ShareEntity.VENDER.googleplus,
-        {
-          button: GooglePlusShareButton,
-          icon: GooglePlusIcon,
-        },
-      ],
-      [
-        ShareEntity.VENDER.whatsapp,
-        {
-          button: WhatsappShareButton,
-          icon: WhatsappIcon,
-        },
-      ],
-      [
-        ShareEntity.VENDER.reddit,
-        {
-          button: RedditShareButton,
-          icon: RedditIcon,
-        },
-      ],
-    ]);
-    const ButtonComponent = components.get(this.props.share.vender).button;
-    const IconComponent = components.get(this.props.share.vender).icon;
-    const ele = (
-      <ButtonComponent
-        className={CLASS_NAME.button}
-        quote={this.props.share.title}
-        url={this.props.share.url}
-      >
-        <IconComponent
-          size={this.props.share.icon.size}
-          round={this.props.share.icon.isRound}
-        />
-      </ButtonComponent>
-    );
-    return ele;
-  }
+function ShareButton({ share }) {
+  const components = new Map([
+    [
+      ShareEntity.VENDER.facebook,
+      {
+        button: FacebookShareButton,
+        icon: FacebookIcon,
+      },
+    ],
+    [
+      ShareEntity.VENDER.twitter,
+      {
+        button: TwitterShareButton,
+        icon: TwitterIcon,
+      },
+    ],
+    [
+      ShareEntity.VENDER.googleplus,
+      {
+        button: GooglePlusShareButton,
+        icon: GooglePlusIcon,
+      },
+    ],
+    [
+      ShareEntity.VENDER.whatsapp,
+      {
+        button: WhatsappShareButton,
+        icon: WhatsappIcon,
+      },
+    ],
+    [
+      ShareEntity.VENDER.reddit,
+      {
+        button: RedditShareButton,
+        icon: RedditIcon,
+      },
+    ],
+  ]);
+  const ButtonComponent = components.get(share.vender).button;
+  const IconComponent = components.get(share.vender).icon;
+  return (
+    <ButtonComponent
+      className={CLASS_NAME.button}
+      quote={share.title}
+      url={share.url}
+    >
+      <IconComponent
+        size={share.icon.size}
+        round={share.icon.isRound}
+      />
+    </ButtonComponent>
+  );
 }
 
 ShareButton.propTypes = propTypes;

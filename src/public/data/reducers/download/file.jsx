@@ -11,7 +11,7 @@ export const initState = {
   },
 };
 
-const file = (state = initState, action) => {
+const file = (state = initState, action = { type: C.ACTION_TYPES.NONE }) => {
   switch (action.type) {
     case C.ACTION_TYPES.GET_FILE_INFO_SUCCESS: {
       return {
