@@ -36,7 +36,7 @@ class Upload extends React.Component {
       opt.disabled = true;
     }
 
-    const node = (
+    return (
       <BodyRow align={BodyRow.ALIGN.between}>
         <span>
           <FormattedMessage
@@ -62,8 +62,6 @@ class Upload extends React.Component {
         </Button>
       </BodyRow>
     );
-
-    return node;
   }
 }
 
