@@ -1,16 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { FaClose } from 'react-icons/lib/fa';
+
 import Utils from '_common/Utils';
 
-const CLASS_NAME = {
-  row: 'file-explorer__row',
-  rightItem: 'file-explorer__row__right-item',
-  leftItem: 'file-explorer__row__left-item',
-  name: 'file-explorer__row__left-item__text',
-  size: 'file-explorer__row__right-item__text',
-  delete: 'file-explorer__row__right-item__delete',
-};
+import styles from './style.scss';
 
 const propTypes = {
   leftItemText: PropTypes.oneOfType([
@@ -37,16 +31,16 @@ function Row({
   rightItemText,
 }) {
   return (
-    <li className={CLASS_NAME.row}>
-      <div className={CLASS_NAME.leftItem}>
-        <div className={CLASS_NAME.name}>{leftItemText}</div>
+    <li className={styles.file_explorer_row}>
+      <div>
+        <div className={styles.file_explorer_row__left_item__text}>{leftItemText}</div>
       </div>
-      <div className={CLASS_NAME.rightItem}>
-        <div className={CLASS_NAME.size}>{rightItemText}</div>
+      <div>
+        <div className={styles.file_explorer_row__right_item__text}>{rightItemText}</div>
         <div
           role="button"
           tabIndex="0"
-          className={CLASS_NAME.delete}
+          className={styles.file_explorer_row__right_item__delete}
           onClick={xClickHandler}
           onKeyPress={xKeyPressHandler}
         >

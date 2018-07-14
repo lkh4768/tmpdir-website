@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'reactstrap';
 import { FormattedMessage } from 'react-intl';
+
 import BodyRow from '_components/BodyRow';
 import Utils from '_common/Utils';
 import Const from '_common/Const';

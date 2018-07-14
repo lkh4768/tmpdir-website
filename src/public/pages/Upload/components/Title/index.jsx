@@ -1,17 +1,16 @@
 import React from 'react';
+
 import BodyRow from '_components/BodyRow';
 import Const from '_common/Const';
+
 import Logo from '../Logo';
 import Name from '../Name';
 import Version from '../Version';
-
-const CLASS_NAME = {
-  title: 'title',
-};
+import styles from './style.scss';
 
 function Title() {
   return (
-    <BodyRow align={BodyRow.ALIGN.center} className={CLASS_NAME.title}>
+    <BodyRow align={BodyRow.ALIGN.center} className={styles.title}>
       <a href={Const.APP_INFO.url}>
         <Logo />
       </a>

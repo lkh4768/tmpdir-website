@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import styles from './style.scss';
+
 const propTypes = {
   text: PropTypes.string,
   width: PropTypes.number,
@@ -11,15 +13,11 @@ const defaultProps = {
   width: 100,
 };
 
-const className = {
-  backdrop: 'backdrop',
-};
-
 function Backdrop({ text, width }) {
   const rightPosition = 100 - width;
   return (
     <div
-      className={className.backdrop}
+      className={styles.backdrop}
       style={{ right: [rightPosition, '%'].join('') }}
     >
       {text}

@@ -1,16 +1,15 @@
 import React from 'react';
+
 import BodyRow from '_components/BodyRow';
+
 import FileExplorerListContainer from '../../containers/FileExplorerList';
 import FileExplorerResultContainer from '../../containers/FileExplorerResult';
-
-const CLASS_NAME = {
-  fileExplorer: 'file-explorer',
-};
+import styles from './style.scss';
 
 function FileExplorer() {
   return (
     <BodyRow>
-      <ul className={CLASS_NAME.fileExplorer}>
+      <ul className={styles.file_explorer}>
         <li>
           <FileExplorerListContainer />
         </li>

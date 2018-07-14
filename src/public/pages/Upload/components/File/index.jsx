@@ -10,27 +10,30 @@ const propTypes = {
   error: PropTypes.string.isRequired,
 };
 
-class File extends React.Component {
-  render() {
-    let className = '';
-    if (this.props.error && this.props.error !== '') {
-      className = 'color-red';
-    }
-
-    return (
-      <FileExplorerRow
-        className={className}
-        leftItemText={this.props.name}
-        rightItemText={Utils.convertFileSize(this.props.size)}
-        xClickHandler={
-          (event) => {
-            event.stopPropagation();
-            return this.props.delFile(this.props.name);
-          }
-        }
-      />
-    );
+function File({
+  error,
+  name,
+  size,
+  delFile,
+}) {
+  let className = '';
+  if (error && error !== '') {
+    className = 'color-red';
   }
+
+  return (
+    <FileExplorerRow
+      className={className}
+      leftItemText={name}
+      rightItemText={Utils.convertFileSize(size)}
+      xClickHandler={
+        (event) => {
+          event.stopPropagation();
+          return delFile(name);
+        }
+      }
+    />
+  );
 }
 
 File.propTypes = propTypes;

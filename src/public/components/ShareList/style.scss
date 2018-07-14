@@ -1,4 +1,5 @@
-.share-list {
+@import '~_common/mixin.scss';
+.share_list {
   & > div {
     @include margin-between(8)
   }

@@ -2,12 +2,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { FormattedMessage } from 'react-intl';
-import Utils from '_common/Utils';
-import FileExplorerRow from '../FileExplorerRow';
 
-const CLASS_NAME = {
-  result: 'file-explorer__result',
-};
+import Utils from '_common/Utils';
+
+import FileExplorerRow from '../FileExplorerRow';
+import styles from './style.scss';
 
 const propTypes = {
   files: PropTypes.arrayOf(PropTypes.shape({
@@ -47,8 +46,9 @@ class FileExplorerResult extends React.Component {
   }
   render() {
     return (
-      <ul className={CLASS_NAME.result}>
+      <ul className={styles.file_explorer_result}>
         <FileExplorerRow
+          className={styles.file_explorer_result__file_explorer_row}
           leftItemText={this.props.files.length}
           rightItemText={Utils.convertFileSize(this.getTotalFileSize())}
           xClickHandler={this.onXClickHandler}

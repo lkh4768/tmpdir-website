@@ -2,9 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Container } from 'reactstrap';
 
-const CLASS_NAME = {
-  body: 'body',
-};
+import styles from './style.scss';
 
 const propTypes = {
   children: PropTypes.arrayOf(PropTypes.node).isRequired,
@@ -12,7 +10,7 @@ const propTypes = {
 
 function Body({ children }) {
   return (
-    <div className={CLASS_NAME.body}>
+    <div className={styles.body}>
       <Container fluid>
         {children}
       </Container>

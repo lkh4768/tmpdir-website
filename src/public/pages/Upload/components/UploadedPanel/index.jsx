@@ -8,6 +8,7 @@ import Utils from '_common/Utils';
 import CopyInputContainer from '../../containers/CopyInput';
 import Backdrop from '../Backdrop';
 import ProgressBackdrop from '../../containers/ProgressBackdrop';
+import styles from './style.scss';
 
 const propTypes = {
   regiId: PropTypes.string.isRequired,
@@ -15,12 +16,6 @@ const propTypes = {
   emptyRegiId: PropTypes.func.isRequired,
   uploading: PropTypes.bool.isRequired,
   intl: intlShape.isRequired,
-};
-
-const CLASS_NAME = {
-  contents: 'uploaded_panel__contents',
-  regiIdInput: 'uploaded_panel__contents__regi_id_input',
-  expireTime: 'uploaded_panel__contents__expire_time',
 };
 
 class UploadedPanel extends React.Component {
@@ -38,7 +33,7 @@ class UploadedPanel extends React.Component {
     if (!this.props.regiId) {
       if (this.props.uploading) {
         return (
-          <div className={CLASS_NAME.contents} >
+          <div className={styles.uploaded_panel__contents} >
             <ProgressBackdrop text="25" width={25} />;
           </div>
         );
@@ -54,17 +49,17 @@ class UploadedPanel extends React.Component {
         onKeyPress={Utils.emptyFunc}
       >
         <Backdrop />
-        <div className={CLASS_NAME.contents} >
+        <div className={styles.uploaded_panel__contents} >
           <div
             role="button"
             tabIndex="0"
             onClick={e => e.stopPropagation()}
             onKeyPress={Utils.emptyFunc}
-            className={CLASS_NAME.regiIdInput}
+            className={styles.uploaded_panel__contents__regi_id_input}
           >
-            <CopyInputContainer className={CLASS_NAME.regiIdInput} value={this.getDownloadUrl()} size="lg" />
+            <CopyInputContainer className={styles.uploaded_panel__contents__regi_id_input} value={this.getDownloadUrl()} size="lg" />
           </div>
-          <div className={CLASS_NAME.expireTime}>
+          <div className={styles.uploaded_panel__contents__expire_time}>
             <FormattedMessage
               id="expiresOn"
               values={{

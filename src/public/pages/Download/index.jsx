@@ -1,13 +1,16 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
+
 import Body from '_components/Body';
 import Footer from '_components/Footer';
 import ShareList from '_components/ShareList';
 import Const from '_common/Const';
 import actions from '_data/actions';
+
 import LogoContainer from './containers/Logo';
 import ExpireTimeContainer from './containers/ExpireTime';
+import '../style.scss';
 
 const propTypes = {
   href: PropTypes.string.isRequired,

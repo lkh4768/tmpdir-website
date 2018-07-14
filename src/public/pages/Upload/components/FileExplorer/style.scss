@@ -1,4 +1,5 @@
-.file-explorer {
+@import '_common/mixin.scss';
+.file_explorer {
   @include default-ul;
   width: 100%;
 }
