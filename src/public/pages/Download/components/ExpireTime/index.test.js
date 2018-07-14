@@ -47,7 +47,6 @@ describe('<ExpireTime /> component', () => {
     expect(wrapper.text()).toContain(wrapper.prop('intl').formatTime(curDate));
   });
   it('[componentDidMount] call reqFileInfo Success', () => {
-    const curDate = new Date();
     const wrapper = T_MOUNT_WITH_INTL(
       <ExpireTime
         expireTime={{ data: 0, loading: true, error: '' }}
@@ -61,7 +60,6 @@ describe('<ExpireTime /> component', () => {
     expect(wrapper.prop('reqFileInfo')).toHaveBeenCalled();
   });
   it('[componentDidMount] call reqDownloadFile Success', () => {
-    const curDate = new Date();
     const wrapper = T_MOUNT_WITH_INTL(
       <ExpireTime
         expireTime={{ data: 0, loading: true, error: '' }}
