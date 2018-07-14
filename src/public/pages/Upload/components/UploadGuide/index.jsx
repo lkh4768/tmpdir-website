@@ -1,13 +1,11 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-const CLASS_NAME = {
-  uploadGuide: 'file-explorer__upload-guide',
-};
+import styles from './style.scss';
 
 function UploadGuide() {
   return (
-    <li className={CLASS_NAME.uploadGuide}>
+    <li className={styles.upload_guide}>
       <FormattedMessage
         id="uploadGuide"
         defaultMessage="Drop files here or click to upload"

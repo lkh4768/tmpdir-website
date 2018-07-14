@@ -12,11 +12,11 @@ import {
   RedditShareButton,
   RedditIcon,
 } from 'react-share';
+
 import ShareEntity from '_entities/Share';
 
-const CLASS_NAME = {
-  button: 'share-button',
-};
+import styles from './style.scss';
+
 const propTypes = {
   share: PropTypes.shape({
     vender: PropTypes.number.isRequired,
@@ -76,7 +76,7 @@ function ShareButton({ share }) {
   const IconComponent = components.get(share.vender).icon;
   return (
     <ButtonComponent
-      className={CLASS_NAME.button}
+      className={styles.share_button}
       quote={share.title}
       url={share.url}
     >

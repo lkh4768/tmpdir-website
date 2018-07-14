@@ -1,4 +1,5 @@
-.file-explorer__row {
+@import '_common/mixin.scss';
+.file_explorer_row {
   display: flex;
   padding: 10px;
   justify-content: space-between;
@@ -9,16 +10,16 @@
     align-items: center;
   }
 
-  .file-explorer__row__left-item__text {
-    @include ellipsis(240)
+  &__left_item__text {
+    @include ellipsis(240);
   }
 
-  .file-explorer__row__right-item {
-    .file-explorer__row__right-item__text {
+  &__right_item {
+    &__text {
       margin-right: 8px;
     }
 
-    .file-explorer__row__right-item__delete {
+    &__delete {
       display: flex;
       align-items: center;
       cursor: pointer;

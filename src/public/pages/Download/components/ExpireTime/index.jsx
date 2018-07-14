@@ -1,7 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { injectIntl, intlShape, FormattedMessage } from 'react-intl';
+
 import BodyRow from '_components/BodyRow';
+
+import styles from './style.scss';
 
 const propTypes = {
   expireTime: PropTypes.shape({
@@ -15,10 +18,6 @@ const propTypes = {
   reqFileInfo: PropTypes.func.isRequired,
   reqDownloadFile: PropTypes.func.isRequired,
   intl: intlShape.isRequired,
-};
-
-const CLASS_NAME = {
-  text: 'time__text',
 };
 
 const getRegiIdInUri = () => window.location.pathname.replace('/', '');
@@ -36,8 +35,8 @@ class ExpireTime extends React.Component {
       return <div>error</div>;
     }
     return (
-      <BodyRow align={BodyRow.ALIGN.center}>
-        <h1 className={CLASS_NAME.text}>
+      <BodyRow align={BodyRow.ALIGN_CENTER}>
+        <h1 className={styles.expire_time__text}>
           <FormattedMessage
             id="expiresOn"
             values={{

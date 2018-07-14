@@ -1,13 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const CLASS_NAME = {
-  label: 'footer__label',
-};
+import styles from './style.scss';
 
 function Label({ icon, text }) {
   return (
-    <span className={CLASS_NAME.label}>
+    <span className={styles.label}>
       {icon}
       <span>
         {text}

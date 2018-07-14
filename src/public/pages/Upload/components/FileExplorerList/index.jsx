@@ -1,14 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import Utils from '_common/Utils';
+
 import FileContainer from '../../containers/File';
 import UploadGuide from '../UploadGuide';
-
-const CLASS_NAME = {
-  wrapper: 'file_explorer__list_wrapper',
-  list: 'file_explorer__list_wrapper__contents',
-  inputFile: 'file_explorer__list_wrapper__input_file',
-};
+import styles from './style.scss';
 
 const propTypes = {
   files: PropTypes.arrayOf(PropTypes.shape({
@@ -59,7 +56,7 @@ class FileExplorerList extends React.Component {
       <div
         role="button"
         tabIndex="0"
-        className={CLASS_NAME.wrapper}
+        className={styles.file_explorer__list_wrapper}
         onClick={this.showLocalFileExplorer}
         onDragEnter={Utils.removeEvent}
         onDragOver={Utils.removeEvent}
@@ -67,11 +64,11 @@ class FileExplorerList extends React.Component {
         onDrop={this.dropHandler}
         onKeyPress={Utils.emptyFunc}
       >
-        <ul className={CLASS_NAME.list}>
+        <ul className={styles.file_explorer__list_wrapper__contents}>
           { this.makeFiles() }
         </ul>
         <input
-          className={CLASS_NAME.inputFile}
+          className={styles.file_explorer__list_wrapper__input_file}
           ref={(component) => { this.inputFileElement = component; }}
           type="file"
           onChange={this.inputChangeHandler}

@@ -2,41 +2,41 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Row, Col } from 'reactstrap';
 
-const align = {
-  left: 'body__row__col',
-  right: 'body__row__col--right',
-  center: 'body__row__col--center',
-  between: 'body__row__col--between',
+import styles from './style.scss';
+
+const ALIGN = {
+  LEFT: 'left',
+  RIGHT: 'right',
+  CENTER: 'center',
+  BETWEEN: 'between',
 };
 
 const propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
-  align: PropTypes.string,
+  align: PropTypes.oneOf([...Object.keys(ALIGN).map(key => ALIGN[key])]),
 };
 
 const defaultProps = {
   className: '',
-  align: align.left,
+  align: 'left',
 };
 
-class BodyRow extends React.Component {
-  getClassName() {
-    return `${this.props.className} ${this.props.align}`;
-  }
-
-  render() {
-    return (
-      <Row>
-        <Col xs="12" md={{ size: 8, offset: 2 }} className={this.getClassName()}>
-          {this.props.children}
-        </Col>
-      </Row>
-    );
-  }
+function BodyRow({ children, className, align }) {
+  return (
+    <Row>
+      <Col
+        xs="12"
+        md={{ size: 8, offset: 2 }}
+        className={`${styles.body_row__col} ${styles[`body_row__col--${align}`]} ${className}`}
+      >
+        {children}
+      </Col>
+    </Row>
+  );
 }
 
-BodyRow.ALIGN = align;
+BodyRow.ALIGN = ALIGN;
 BodyRow.propTypes = propTypes;
 BodyRow.defaultProps = defaultProps;
 
