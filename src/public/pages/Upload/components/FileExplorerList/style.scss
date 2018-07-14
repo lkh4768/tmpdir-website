@@ -1,15 +1,14 @@
-.file-explorer__list-wrapper {
+.file_explorer__list_wrapper {
   &:focus {
     outline: none;
   }
-  .file-explorer__list-wrapper__contents {
+  &__contents {
+    @include default-ul;
     height: 350px;
     background-color: hsl(192, 15%, 94%);
     overflow-y: auto;
-
-    @include default-ul;
   }
-  .file-explorer__list-wrapper__input-file {
+  &__input_file {
     display: none;
   }
 }

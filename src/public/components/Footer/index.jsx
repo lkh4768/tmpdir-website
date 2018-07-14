@@ -1,15 +1,15 @@
 import React from 'react';
 import FooterLabel from '_components/Label';
 import FooterLink from '_components/Link';
-import C from '_utils/constants';
+import Const from '_common/Const';
 
-const makeLinks = () => C.LINKS.map(link => (
+const makeLinks = () => Const.LINKS.map(link => (
   <FooterLink
     key={link.title}
     {...link}
   />
 ));
-const makeLabels = () => C.LABELS.map(label => (
+const makeLabels = () => Const.LABELS.map(label => (
   <FooterLabel
     key={label.text}
     {...label}

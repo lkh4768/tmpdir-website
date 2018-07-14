@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { FormattedMessage } from 'react-intl';
-import F from '_utils/func';
+import Utils from '_common/Utils';
 import FileExplorerRow from '../FileExplorerRow';
 
 const CLASS_NAME = {
@@ -41,7 +41,7 @@ class FileExplorerResult extends React.Component {
   }
   getTotalFileSize() {
     if (this.props.files && this.props.files.length > 0) {
-      return F.getTotalFileSize(this.props.files);
+      return Utils.getTotalFileSize(this.props.files);
     }
     return 0;
   }
@@ -50,7 +50,7 @@ class FileExplorerResult extends React.Component {
       <ul className={CLASS_NAME.result}>
         <FileExplorerRow
           leftItemText={this.props.files.length}
-          rightItemText={F.convertFileSize(this.getTotalFileSize())}
+          rightItemText={Utils.convertFileSize(this.getTotalFileSize())}
           xClickHandler={this.onXClickHandler}
         />
         <Modal

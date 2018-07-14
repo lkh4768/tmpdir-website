@@ -1,12 +1,12 @@
-import C from '_utils/constants';
+import Const from '_common/Const';
 
 export const initState = {
   isOpen: false,
 };
 
-const modal = (state = initState, action = { type: C.ACTION_TYPES.NONE }) => {
+const modal = (state = initState, action = { type: Const.ACTION_TYPES.NONE }) => {
   switch (action.type) {
-    case C.ACTION_TYPES.TOGGLE_MODAL: {
+    case Const.ACTION_TYPES.TOGGLE_MODAL: {
       return { isOpen: !state.isOpen };
     }
     default:

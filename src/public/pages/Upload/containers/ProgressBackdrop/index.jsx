@@ -1,13 +1,13 @@
 import { connect } from 'react-redux';
-import F from '_utils/func';
+import Utils from '_common/Utils';
 import Backdrop from '../../components/Backdrop';
 
 const progressText = (totalSize, uploadedSize) => [
   Math.round((uploadedSize * 100) / totalSize),
   '% (',
-  F.convertFileSize(uploadedSize),
+  Utils.convertFileSize(uploadedSize),
   '/',
-  F.convertFileSize(totalSize),
+  Utils.convertFileSize(totalSize),
   ')',
 ].join('');
 

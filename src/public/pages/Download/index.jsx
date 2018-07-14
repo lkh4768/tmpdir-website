@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Body from '_components/Body';
 import Footer from '_components/Footer';
 import ShareList from '_components/ShareList';
-import C from '_utils/constants';
+import Const from '_common/Const';
 import actions from '_data/actions';
 import LogoContainer from './containers/Logo';
 import ExpireTimeContainer from './containers/ExpireTime';
@@ -26,7 +26,7 @@ class Download extends React.Component {
           <ExpireTimeContainer />
           <ShareList sharedUrl={this.props.href} />
         </Body>
-        <Footer labels={C.LABELS} links={C.LINKS} />
+        <Footer labels={Const.LABELS} links={Const.LINKS} />
       </React.Fragment>
     );
   }

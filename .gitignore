@@ -17,4 +17,4 @@ goorm.manifest
 /logs
 
 ## SONARQUBE ##
-scannerwork/
+.scannerwork/

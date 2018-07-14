@@ -1,6 +1,6 @@
-@import '~_utils/mixin.scss';
+@import '~_common/mixin.scss';
 
-@mixin body__row__col {
+@mixin body-row-col {
   display: flex;
   align-items: center;
   margin-bottom: 8px;
@@ -15,20 +15,17 @@
 }
 
 .body__row__col {
-  @include body__row__col;
-}
-
-.body__row__col--center {
-  @include body__row__col;
-  justify-content: center;
-}
-
-.body__row__col--right {
-  @include body__row__col;
-  justify-content: flex-end;
-}
-
-.body__row__col--between {
-  @include body__row__col;
-  justify-content: space-between;
+  @include body-row-col;
+  &--between {
+    @include body-row-col;
+    justify-content: space-between;
+  }
+  &--right {
+    @include body-row-col;
+    justify-content: flex-end;
+  }
+  &--center {
+    @include body-row-col;
+    justify-content: center;
+  }
 }

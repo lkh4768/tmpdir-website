@@ -18,7 +18,7 @@ const owner = {
   blog: 'http://sw-warehouse.xyz',
 };
 
-const C = {
+const Const = {
   TMPDIR_URL: tmpdir.url,
   APP_INFO: new AppInfoEntity(tmpdir.name, tmpdir.url, tmpdir.logo, tmpdir.version),
   SHARE_LIST: [
@@ -92,4 +92,4 @@ const C = {
   },
 };
 
-export default C;
+export default Const;

@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { injectIntl, intlShape, FormattedMessage } from 'react-intl';
+
 import ShareList from '_components/ShareList';
-import F from '_utils/func';
+import Utils from '_common/Utils';
+
 import CopyInputContainer from '../../containers/CopyInput';
 import Backdrop from '../Backdrop';
 import ProgressBackdrop from '../../containers/ProgressBackdrop';
@@ -16,9 +18,9 @@ const propTypes = {
 };
 
 const CLASS_NAME = {
-  contents: 'uploaded-panel__contents',
-  regiIdInput: 'uploaded-panel__contents__regi-id-input',
-  expireTime: 'uploaded-panel__contents__expire-time',
+  contents: 'uploaded_panel__contents',
+  regiIdInput: 'uploaded_panel__contents__regi_id_input',
+  expireTime: 'uploaded_panel__contents__expire_time',
 };
 
 class UploadedPanel extends React.Component {
@@ -49,7 +51,7 @@ class UploadedPanel extends React.Component {
         role="button"
         tabIndex="0"
         onClick={this.toggle}
-        onKeyPress={F.emptyFunc}
+        onKeyPress={Utils.emptyFunc}
       >
         <Backdrop />
         <div className={CLASS_NAME.contents} >
@@ -57,7 +59,7 @@ class UploadedPanel extends React.Component {
             role="button"
             tabIndex="0"
             onClick={e => e.stopPropagation()}
-            onKeyPress={F.emptyFunc}
+            onKeyPress={Utils.emptyFunc}
             className={CLASS_NAME.regiIdInput}
           >
             <CopyInputContainer className={CLASS_NAME.regiIdInput} value={this.getDownloadUrl()} size="lg" />

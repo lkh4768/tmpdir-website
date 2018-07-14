@@ -1,19 +1,19 @@
-import C from '_utils/constants';
+import Const from '_common/Const';
 
 export const initState = {
   href: '',
   origin: '',
 };
 
-const location = (state = initState, action = { type: C.ACTION_TYPES.NONE }) => {
+const location = (state = initState, action = { type: Const.ACTION_TYPES.NONE }) => {
   switch (action.type) {
-    case C.ACTION_TYPES.GET_HREF: {
+    case Const.ACTION_TYPES.GET_HREF: {
       return {
         ...state,
         href: window.location.href,
       };
     }
-    case C.ACTION_TYPES.GET_ORIGIN: {
+    case Const.ACTION_TYPES.GET_ORIGIN: {
       return {
         ...state,
         origin: window.location.origin,

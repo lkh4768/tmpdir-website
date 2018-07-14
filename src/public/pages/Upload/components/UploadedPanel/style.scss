@@ -1,27 +1,26 @@
-.uploaded-panel {
+.uploaded_panel {
   &__contents {
+    @include absolute-fill;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     z-index: 2;
 
-    @include absolute-fill;
-
     & > * {
       margin-bottom: 10px;
     }
 
-    &__regi-id-input {
+    &__regi_id_input {
       width: 70%;
     }
 
-    &__expire-time {
+    &__expire_time {
       color: white;
       font-size: 20px;
     }
 
-    &__share-list {
+    &__share_list {
       & > * {
         @include margin-between(8)
       }

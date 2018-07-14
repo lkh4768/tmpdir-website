@@ -1,5 +1,5 @@
 import deepFreeze from 'deep-freeze';
-import C from '_utils/constants';
+import Const from '_common/Const';
 import file, { initState } from '_data/reducers/download/file';
 
 const state = {
@@ -11,10 +11,10 @@ describe('file reducer', () => {
     const result = file(undefined, {});
     expect(result).toEqual(state);
   });
-  it(`[file] ${C.ACTION_TYPES.GET_FILE_INFO_SUCCESS} Success`, () => {
+  it(`[file] ${Const.ACTION_TYPES.GET_FILE_INFO_SUCCESS} Success`, () => {
     const payload = 'payload';
     const action = {
-      type: C.ACTION_TYPES.GET_FILE_INFO_SUCCESS,
+      type: Const.ACTION_TYPES.GET_FILE_INFO_SUCCESS,
       payload,
     };
     deepFreeze(state);
@@ -29,9 +29,9 @@ describe('file reducer', () => {
       },
     });
   });
-  it(`[file] ${C.ACTION_TYPES.GET_FILE_INFO_PENDING} Success`, () => {
+  it(`[file] ${Const.ACTION_TYPES.GET_FILE_INFO_PENDING} Success`, () => {
     const action = {
-      type: C.ACTION_TYPES.GET_FILE_INFO_PENDING,
+      type: Const.ACTION_TYPES.GET_FILE_INFO_PENDING,
     };
     deepFreeze(state);
     deepFreeze(action);
@@ -44,10 +44,10 @@ describe('file reducer', () => {
       },
     });
   });
-  it(`[file] ${C.ACTION_TYPES.GET_FILE_INFO_FAILURE} Success`, () => {
+  it(`[file] ${Const.ACTION_TYPES.GET_FILE_INFO_FAILURE} Success`, () => {
     const error = 'error';
     const action = {
-      type: C.ACTION_TYPES.GET_FILE_INFO_FAILURE,
+      type: Const.ACTION_TYPES.GET_FILE_INFO_FAILURE,
       error,
     };
     deepFreeze(state);
@@ -62,10 +62,10 @@ describe('file reducer', () => {
       },
     });
   });
-  it(`[file] ${C.ACTION_TYPES.DOWNLOAD_FILE_FAILURE} Success`, () => {
+  it(`[file] ${Const.ACTION_TYPES.DOWNLOAD_FILE_FAILURE} Success`, () => {
     const error = 'error';
     const action = {
-      type: C.ACTION_TYPES.DOWNLOAD_FILE_FAILURE,
+      type: Const.ACTION_TYPES.DOWNLOAD_FILE_FAILURE,
       error,
     };
     deepFreeze(state);

@@ -1,12 +1,12 @@
 import React from 'react';
 import BodyRow from '_components/BodyRow';
 import ShareButton from '_components/ShareButton';
-import C from '_utils/constants';
+import Const from '_common/Const';
 
 function Sns() {
   return (
     <BodyRow align={BodyRow.ALIGN.right}>
-      {C.SHARE_LIST.map(share => <ShareButton key={share.vender} share={share} />)}
+      {Const.SHARE_LIST.map(share => <ShareButton key={share.vender} share={share} />)}
     </BodyRow>
   );
 }

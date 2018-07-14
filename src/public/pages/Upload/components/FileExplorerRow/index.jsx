@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { FaClose } from 'react-icons/lib/fa';
-import F from '_utils/func';
+import Utils from '_common/Utils';
 
 const CLASS_NAME = {
   row: 'file-explorer__row',
@@ -26,8 +26,8 @@ const propTypes = {
 };
 
 const defaultProps = {
-  xClickHandler: F.emptyFunc,
-  xKeyPressHandler: F.emptyFunc,
+  xClickHandler: Utils.emptyFunc,
+  xKeyPressHandler: Utils.emptyFunc,
 };
 
 function Row({
