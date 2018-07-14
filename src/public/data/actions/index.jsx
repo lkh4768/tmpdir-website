@@ -1,79 +1,79 @@
 import { post, get } from 'axios';
 
-import C from '_utils/constants';
-import F from '_utils/func';
+import Const from '_common/Const';
+import Utils from '_common/Utils';
 
 const addFile = _files => ({
-  type: C.ACTION_TYPES.ADD_FILES,
+  type: Const.ACTION_TYPES.ADD_FILES,
   files: _files,
 });
 
 const delFile = _filename => ({
-  type: C.ACTION_TYPES.DEL_FILE,
+  type: Const.ACTION_TYPES.DEL_FILE,
   filename: _filename,
 });
 
 const delAllFile = () => ({
-  type: C.ACTION_TYPES.DEL_ALL_FILE,
+  type: Const.ACTION_TYPES.DEL_ALL_FILE,
 });
 
 const uploadFilesSuccess = payload => ({
-  type: C.ACTION_TYPES.UPLOAD_FILES_SUCCESS,
+  type: Const.ACTION_TYPES.UPLOAD_FILES_SUCCESS,
   payload,
 });
 
 const uploadFilesFailure = error => ({
-  type: C.ACTION_TYPES.UPLOAD_FILES_FAILURE,
+  type: Const.ACTION_TYPES.UPLOAD_FILES_FAILURE,
   error,
 });
 
 const uploadFilesPending = (totalSize, uploadedSize = 0) => ({
-  type: C.ACTION_TYPES.UPLOAD_FILES_PENDING,
+  type: Const.ACTION_TYPES.UPLOAD_FILES_PENDING,
   totalSize,
   uploadedSize,
 });
 
 const emptyError = () => ({
-  type: C.ACTION_TYPES.EMPTY_ERROR,
+  type: Const.ACTION_TYPES.EMPTY_ERROR,
 });
 
 const emptyRegiId = () => ({
-  type: C.ACTION_TYPES.EMPTY_REGI_ID,
+  type: Const.ACTION_TYPES.EMPTY_REGI_ID,
 });
 
 const toggleModal = () => ({
-  type: C.ACTION_TYPES.TOGGLE_MODAL,
+  type: Const.ACTION_TYPES.TOGGLE_MODAL,
 });
 
 const toggleUploadedPanel = () => ({
-  type: C.ACTION_TYPES.TOGGLE_UPLOADED_PANEL,
+  type: Const.ACTION_TYPES.TOGGLE_UPLOADED_PANEL,
 });
 
 const toggleTooltip = () => ({
-  type: C.ACTION_TYPES.TOGGLE_TOOLTIP,
+  type: Const.ACTION_TYPES.TOGGLE_TOOLTIP,
 });
 
 const getFileInfoPending = () => ({
-  type: C.ACTION_TYPES.GET_FILE_INFO_PENDING,
+  type: Const.ACTION_TYPES.GET_FILE_INFO_PENDING,
 });
 
 const getFileInfoSuccess = payload => ({
-  type: C.ACTION_TYPES.GET_FILE_INFO_SUCCESS,
+  type: Const.ACTION_TYPES.GET_FILE_INFO_SUCCESS,
   payload,
 });
 
 const getFileInfoFailure = error => ({
-  type: C.ACTION_TYPES.GET_FILE_INFO_FAILURE,
+  type: Const.ACTION_TYPES.GET_FILE_INFO_FAILURE,
   error,
 });
 
 const downloadFileFailure = error => ({
-  type: C.ACTION_TYPES.DOWNLOAD_FILE_FAILURE,
+  type: Const.ACTION_TYPES.DOWNLOAD_FILE_FAILURE,
   error,
 });
 
-const reqUploadFilesImpl = (files, onUploadProgress = F.emptyFunc) => {
-  const url = C.API_URL.FILE;
+const reqUploadFilesImpl = (files, onUploadProgress = Utils.emptyFunc) => {
+  const url = Const.API_URL.FILE;
   const formData = new FormData();
   files.forEach((file, i) => formData.append(['file', i].join(''), file));
   const config = {
@@ -86,7 +86,7 @@ const reqUploadFilesImpl = (files, onUploadProgress = F.emptyFunc) => {
 };
 
 const reqUploadFiles = files => async (dispatch) => {
-  dispatch(uploadFilesPending(F.getTotalFileSize(files)));
+  dispatch(uploadFilesPending(Utils.getTotalFileSize(files)));
   try {
     const res = await reqUploadFilesImpl(
       files,
@@ -101,7 +101,7 @@ const reqUploadFiles = files => async (dispatch) => {
   }
 };
 
-const reqFileInfoImpl = regiId => get([C.API_URL.FILE_INFO, regiId].join(''));
+const reqFileInfoImpl = regiId => get([Const.API_URL.FILE_INFO, regiId].join(''));
 
 const reqFileInfo = regiId => async (dispatch) => {
   dispatch(getFileInfoPending());
@@ -113,7 +113,7 @@ const reqFileInfo = regiId => async (dispatch) => {
   }
 };
 
-const reqDownloadFileImpl = regiId => get([C.API_URL.FILE, regiId].join(''), { responseType: 'blob' });
+const reqDownloadFileImpl = regiId => get([Const.API_URL.FILE, regiId].join(''), { responseType: 'blob' });
 
 const reqDownloadFile = regiId => async (dispatch) => {
   try {
@@ -132,11 +132,11 @@ const reqDownloadFile = regiId => async (dispatch) => {
 };
 
 const getHref = () => ({
-  type: C.ACTION_TYPES.GET_HREF,
+  type: Const.ACTION_TYPES.GET_HREF,
 });
 
 const getOrigin = () => ({
-  type: C.ACTION_TYPES.GET_ORIGIN,
+  type: Const.ACTION_TYPES.GET_ORIGIN,
 });
 
 export default {

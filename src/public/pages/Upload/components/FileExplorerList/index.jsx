@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import F from '_utils/func';
+import Utils from '_common/Utils';
 import FileContainer from '../../containers/File';
 import UploadGuide from '../UploadGuide';
 
 const CLASS_NAME = {
-  wrapper: 'file-explorer__list-wrapper',
-  list: 'file-explorer__list-wrapper__contents',
-  inputFile: 'file-explorer__list-wrapper__input-file',
+  wrapper: 'file_explorer__list_wrapper',
+  list: 'file_explorer__list_wrapper__contents',
+  inputFile: 'file_explorer__list_wrapper__input_file',
 };
 
 const propTypes = {
@@ -44,7 +44,7 @@ class FileExplorerList extends React.Component {
     }
   }
   dropHandler(e) {
-    F.removeEvent(e);
+    Utils.removeEvent(e);
     if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
       this.props.addFile(e.dataTransfer.files);
     }
@@ -61,11 +61,11 @@ class FileExplorerList extends React.Component {
         tabIndex="0"
         className={CLASS_NAME.wrapper}
         onClick={this.showLocalFileExplorer}
-        onDragEnter={F.removeEvent}
-        onDragOver={F.removeEvent}
-        onDragLeave={F.removeEvent}
+        onDragEnter={Utils.removeEvent}
+        onDragOver={Utils.removeEvent}
+        onDragLeave={Utils.removeEvent}
         onDrop={this.dropHandler}
-        onKeyPress={F.emptyFunc}
+        onKeyPress={Utils.emptyFunc}
       >
         <ul className={CLASS_NAME.list}>
           { this.makeFiles() }

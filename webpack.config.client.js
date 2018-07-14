@@ -35,7 +35,7 @@ const config = {
     alias: {
       _components: path.resolve(__dirname, 'src/public/components/'),
       _containers: path.resolve(__dirname, 'src/public/containers/'),
-      _utils: path.resolve(__dirname, 'src/public/utils/'),
+      _common: path.resolve(__dirname, 'src/public/common/'),
       _static: path.resolve(__dirname, 'src/public/static/'),
       _entities: path.resolve(__dirname, 'src/public/entities/'),
       _data: path.resolve(__dirname, 'src/public/data/'),

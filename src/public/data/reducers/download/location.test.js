@@ -1,5 +1,5 @@
 import deepFreeze from 'deep-freeze';
-import C from '_utils/constants';
+import Const from '_common/Const';
 import location, { initState } from '_data/reducers/download/location';
 
 const state = {
@@ -11,10 +11,9 @@ describe('location reducer', () => {
     const result = location(undefined, {});
     expect(result).toEqual(state);
   });
-  it(`[location] ${C.ACTION_TYPES.GET_FILE_INFO_SUCCESS} Success`, () => {
-    const payload = 'payload';
+  it(`[location] ${Const.ACTION_TYPES.GET_FILE_INFO_SUCCESS} Success`, () => {
     const action = {
-      type: C.ACTION_TYPES.GET_HREF,
+      type: Const.ACTION_TYPES.GET_HREF,
     };
     deepFreeze(state);
     deepFreeze(action);
@@ -24,9 +23,9 @@ describe('location reducer', () => {
       href: window.location.href,
     });
   });
-  it(`[location] ${C.ACTION_TYPES.GET_ORIGIN} Success`, () => {
+  it(`[location] ${Const.ACTION_TYPES.GET_ORIGIN} Success`, () => {
     const action = {
-      type: C.ACTION_TYPES.GET_ORIGIN,
+      type: Const.ACTION_TYPES.GET_ORIGIN,
     };
     deepFreeze(state);
     deepFreeze(action);

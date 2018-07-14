@@ -1,5 +1,5 @@
-import C from '_utils/constants';
-import F from '_utils/func';
+import Const from '_common/Const';
+import Utils from '_common/Utils';
 
 export const initState = {
   list: [],
@@ -11,34 +11,34 @@ export const initState = {
   error: '',
 };
 
-const file = (state = initState, action = { type: C.ACTION_TYPES.NONE }) => {
+const file = (state = initState, action = { type: Const.ACTION_TYPES.NONE }) => {
   switch (action.type) {
-    case C.ACTION_TYPES.ADD_FILES: {
-      const newFiles = F.uniqArray(
+    case Const.ACTION_TYPES.ADD_FILES: {
+      const newFiles = Utils.uniqArray(
         [
           ...state.list,
           ...action.files,
         ],
         'name',
       );
-      if (C.FILE.SIZE.MAX >= F.getTotalFileSize(newFiles)) {
+      if (Const.FILE.SIZE.MAX >= Utils.getTotalFileSize(newFiles)) {
         return { ...state, list: newFiles };
       }
       return { ...state, error: '파일 용량 초과' };
     }
-    case C.ACTION_TYPES.DEL_FILE: {
+    case Const.ACTION_TYPES.DEL_FILE: {
       return {
         ...state,
         list: state.list.filter(f => f.name !== action.filename),
       };
     }
-    case C.ACTION_TYPES.DEL_ALL_FILE: {
+    case Const.ACTION_TYPES.DEL_ALL_FILE: {
       return {
         ...state,
         list: [],
       };
     }
-    case C.ACTION_TYPES.UPLOAD_FILES_SUCCESS: {
+    case Const.ACTION_TYPES.UPLOAD_FILES_SUCCESS: {
       return {
         ...state,
         list: [],
@@ -47,7 +47,7 @@ const file = (state = initState, action = { type: C.ACTION_TYPES.NONE }) => {
         uploading: false,
       };
     }
-    case C.ACTION_TYPES.UPLOAD_FILES_FAILURE: {
+    case Const.ACTION_TYPES.UPLOAD_FILES_FAILURE: {
       return {
         ...state,
         list: [],
@@ -55,7 +55,7 @@ const file = (state = initState, action = { type: C.ACTION_TYPES.NONE }) => {
         uploading: false,
       };
     }
-    case C.ACTION_TYPES.UPLOAD_FILES_PENDING: {
+    case Const.ACTION_TYPES.UPLOAD_FILES_PENDING: {
       return {
         ...state,
         uploading: true,
@@ -63,10 +63,10 @@ const file = (state = initState, action = { type: C.ACTION_TYPES.NONE }) => {
         uploadedSize: action.uploadedSize,
       };
     }
-    case C.ACTION_TYPES.EMPTY_ERROR: {
+    case Const.ACTION_TYPES.EMPTY_ERROR: {
       return { ...state, error: '' };
     }
-    case C.ACTION_TYPES.EMPTY_REGI_ID: {
+    case Const.ACTION_TYPES.EMPTY_REGI_ID: {
       return { ...state, regiId: '' };
     }
     default:

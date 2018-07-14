@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { Button } from 'reactstrap';
 import { FormattedMessage } from 'react-intl';
 import BodyRow from '_components/BodyRow';
-import F from '_utils/func';
-import C from '_utils/constants';
+import Utils from '_common/Utils';
+import Const from '_common/Const';
 
 const propTypes = {
   files: PropTypes.arrayOf(PropTypes.shape({
@@ -43,12 +43,12 @@ class Upload extends React.Component {
             id="maxSize"
             defaultMessage="Max size"
           />
-          <span>: {F.convertFileSize(C.FILE.SIZE.MAX)}, </span>
+          <span>: {Utils.convertFileSize(Const.FILE.SIZE.MAX)}, </span>
           <FormattedMessage
             id="keepingPeriod"
             defaultMessage="Keeping Period"
           />
-          <span>: {C.FILE.KEEPING_PERIOD} </span>
+          <span>: {Const.FILE.KEEPING_PERIOD} </span>
           <FormattedMessage
             id="day"
             defaultMessage="day"

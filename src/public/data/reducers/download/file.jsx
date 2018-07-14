@@ -1,4 +1,4 @@
-import C from '_utils/constants';
+import Const from '_common/Const';
 
 export const initState = {
   expireTime: {
@@ -11,9 +11,9 @@ export const initState = {
   },
 };
 
-const file = (state = initState, action = { type: C.ACTION_TYPES.NONE }) => {
+const file = (state = initState, action = { type: Const.ACTION_TYPES.NONE }) => {
   switch (action.type) {
-    case C.ACTION_TYPES.GET_FILE_INFO_SUCCESS: {
+    case Const.ACTION_TYPES.GET_FILE_INFO_SUCCESS: {
       return {
         ...state,
         expireTime: {
@@ -23,7 +23,7 @@ const file = (state = initState, action = { type: C.ACTION_TYPES.NONE }) => {
         },
       };
     }
-    case C.ACTION_TYPES.GET_FILE_INFO_PENDING: {
+    case Const.ACTION_TYPES.GET_FILE_INFO_PENDING: {
       return {
         ...state,
         expireTime: {
@@ -32,7 +32,7 @@ const file = (state = initState, action = { type: C.ACTION_TYPES.NONE }) => {
         },
       };
     }
-    case C.ACTION_TYPES.GET_FILE_INFO_FAILURE: {
+    case Const.ACTION_TYPES.GET_FILE_INFO_FAILURE: {
       return {
         ...state,
         expireTime: {
@@ -42,7 +42,7 @@ const file = (state = initState, action = { type: C.ACTION_TYPES.NONE }) => {
         },
       };
     }
-    case C.ACTION_TYPES.DOWNLOAD_FILE_FAILURE: {
+    case Const.ACTION_TYPES.DOWNLOAD_FILE_FAILURE: {
       return {
         ...state,
         download: {

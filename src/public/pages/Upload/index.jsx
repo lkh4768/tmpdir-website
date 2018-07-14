@@ -1,5 +1,5 @@
 import React from 'react';
-import C from '_utils/constants';
+import Const from '_common/Const';
 import Body from '_components/Body';
 import Footer from '_components/Footer';
 import Title from './components/Title';
@@ -17,7 +17,7 @@ function Upload() {
         <FileExplorer />
         <UploadContainer />
       </Body>
-      <Footer labels={C.LABELS} links={C.LINKS} />
+      <Footer labels={Const.LABELS} links={Const.LINKS} />
       <UploadedPanelContainer />
     </React.Fragment>
   );

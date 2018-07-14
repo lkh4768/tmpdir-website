@@ -1,5 +1,5 @@
 import deepFreeze from 'deep-freeze';
-import C from '_utils/constants';
+import Const from '_common/Const';
 import modal, { initState } from '_data/reducers/upload/modal';
 
 const state = {
@@ -11,9 +11,9 @@ describe('modal reducer', () => {
     const result = modal(undefined, {});
     expect(result).toEqual(initState);
   });
-  it(`[modal] ${C.ACTION_TYPES.TOGGLE_MODAL} Success`, () => {
+  it(`[modal] ${Const.ACTION_TYPES.TOGGLE_MODAL} Success`, () => {
     const action = {
-      type: C.ACTION_TYPES.TOGGLE_MODAL
+      type: Const.ACTION_TYPES.TOGGLE_MODAL
     };
     deepFreeze(state);
     deepFreeze(action);

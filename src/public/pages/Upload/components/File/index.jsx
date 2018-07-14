@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import F from '_utils/func';
+import Utils from '_common/Utils';
 import FileExplorerRow from '../FileExplorerRow';
 
 const propTypes = {
@@ -21,7 +21,7 @@ class File extends React.Component {
       <FileExplorerRow
         className={className}
         leftItemText={this.props.name}
-        rightItemText={F.convertFileSize(this.props.size)}
+        rightItemText={Utils.convertFileSize(this.props.size)}
         xClickHandler={
           (event) => {
             event.stopPropagation();

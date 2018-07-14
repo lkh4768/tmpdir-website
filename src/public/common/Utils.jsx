@@ -1,6 +1,6 @@
-import C from './constants';
+import Const from './Const';
 
-const F = {
+const Utils = {
   removeEvent: (e) => {
     e.stopPropagation();
     e.preventDefault();
@@ -9,11 +9,11 @@ const F = {
   convertFileSize: (byte) => {
     let cnt = 0;
     let remainSize = byte;
-    while (Math.floor(remainSize / C.FILE.SIZE.WARTERMARK) > 0) {
-      remainSize /= C.FILE.SIZE.WARTERMARK;
+    while (Math.floor(remainSize / Const.FILE.SIZE.WARTERMARK) > 0) {
+      remainSize /= Const.FILE.SIZE.WARTERMARK;
       cnt += 1;
     }
-    return [remainSize.toFixed(2), C.FILE.SIZE.UNITS[cnt]].join(' ');
+    return [remainSize.toFixed(2), Const.FILE.SIZE.UNITS[cnt]].join(' ');
   },
   getTotalFileSize: (files = []) => {
     if (files && files.length > 0) {
@@ -33,4 +33,4 @@ const F = {
   },
 };
 
-export default F;
+export default Utils;
