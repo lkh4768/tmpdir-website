@@ -17,7 +17,7 @@ class Logo extends React.Component {
   }
   render() {
     return (
-      <BodyRow align={BodyRow.ALIGN.center}>
+      <BodyRow align={BodyRow.ALIGN.CENTER}>
         <a href={this.props.origin}>
           <img className={styles.logo__img} src={logo96w} alt="logo" />
         </a>
