@@ -58,11 +58,13 @@ const config = {
           fallback: 'style-loader',
           use: [
             {
-              loader: 'css-loader',
+              loader: require.resolve('css-loader'),
               options: {
                 sourceMap: true,
                 importLoaders: 1,
                 minimize: true,
+                modules: true,
+                localIdentName: '[sha1:hash:hex:4]'
               },
             },
             {

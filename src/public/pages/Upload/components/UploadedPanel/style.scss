@@ -1,4 +1,4 @@
-@import '_common/mixin.scss';
+@import '~_common/mixin.scss';
 .uploaded_panel {
   &__contents {
     @include absolute-fill;
