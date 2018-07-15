@@ -1,4 +1,9 @@
 @import '~_common/constants.scss';
+
+html, body, body > div {
+  height: 100%;
+}
+
 body {
   min-width: 394px;
   margin: 0;
