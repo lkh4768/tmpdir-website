@@ -3,6 +3,7 @@ import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import { IntlProvider } from 'react-intl';
+
 import uploadReducer from '_data/reducers/upload';
 import downloadReducer from '_data/reducers/download';
 import UploadApp from '_app/Upload/App';
@@ -11,6 +12,9 @@ import Utils from '_modules/common/utils';
 import Const from '_modules/common/const';
 import manifast from '_modules/manifast';
 import logger from '_modules/logger';
+import getConfig from '_modules/config';
+
+const Config = getConfig();
 
 const getStore = (id) => {
   switch (id) {
@@ -46,7 +50,7 @@ const render = (type, lang) => {
     <!doctype html>
     <html>
       <head>
-        ${Utils.makeCssNode(manifast.getCssUrls(type.name))}
+      ${Config.dependency.css.map(url => Utils.makeCssNode(url)).join('')}
       </head>
       <body>
         <div id="root">

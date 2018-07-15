@@ -29,6 +29,9 @@ const Config = {
     level: 'debug',
     fileDateFormat: '%Y%m%d%H',
   },
+  dependency: {
+    css: ['bootstrap/dist/css/bootstrap.min.css'],
+  },
 };
 
 export default Config;
