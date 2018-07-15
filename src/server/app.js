@@ -28,7 +28,8 @@ if (process.env.NODE_ENV !== 'production') {
   }));
   app.use(webpackHotMiddleware(multiCompiler.compilers.find(compiler => compiler.name === 'client')));
 }
-app.use('/', express.static(path.resolve(__dirname, '../../build')));
+app.use(express.static(path.resolve(__dirname, '../../build')));
+app.use(express.static(path.resolve(__dirname, '../../node_modules')));
 expressLogger(app);
 app.use('/', pageRoutes);
 app.use('/api', apiRoutes);
