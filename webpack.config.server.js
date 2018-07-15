@@ -1,5 +1,6 @@
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
+const autoprefixer = require('autoprefixer');
 
 const mode = process.env.NODE_ENV && process.env.NODE_ENV === 'development' ? 'development' : 'production';
 
@@ -56,6 +57,47 @@ const config = {
           cacheDirectory: true,
           presets: ['es2015', 'react'],
         },
+      },
+      {
+        test: /\.(sass|scss)$/,
+        exclude: /(node_modules|bower_components)/,
+        use: [
+          {
+            loader: require.resolve('css-loader'),
+            options: {
+              sourceMap: true,
+              importLoaders: 1,
+              minimize: true,
+              modules: true,
+              localIdentName: '[path][name]__[local]--[hash:base64:5]',
+            },
+          },
+          {
+            loader: require.resolve('postcss-loader'),
+            options: {
+              ident: 'postcss',
+              sourceMap: true,
+              plugins: () => [autoprefixer({
+                browsers: [
+                  '>1%',
+                  'last 4 versions',
+                  'Firefox ESR',
+                  'not ie < 9',
+                ],
+                flexbox: 'no-2009',
+              })],
+            },
+          },
+          {
+            loader: require.resolve('sass-loader'),
+            options: {
+              sourceMap: true,
+              includePaths: [
+                './src/public',
+              ],
+            },
+          },
+        ],
       },
       {
         test: /\.(png|ico)$/,

@@ -1,8 +1,8 @@
 const path = require('path');
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const autoprefixer = require('autoprefixer');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -12,12 +12,10 @@ module.exports = {
     uploadApp: [
       'webpack-hot-middleware/client?path=http://localhost:3001/__webpack_hmr',
       './src/public/app/Upload/index.js',
-      './src/public/app/Upload/style.scss',
     ],
     downloadApp: [
       'webpack-hot-middleware/client?path=http://localhost:3001/__webpack_hmr',
       './src/public/app/Download/index.js',
-      './src/public/app/Download/style.scss',
     ],
   },
   output: {
@@ -69,43 +67,44 @@ module.exports = {
       {
         test: /\.(sass|scss)$/,
         exclude: /(node_modules|bower_components)/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader',
-              options: {
-                sourceMap: true,
-                importLoaders: 1,
-                minimize: true,
-              },
+        use: [
+          require.resolve('style-loader'),
+          {
+            loader: require.resolve('css-loader'),
+            options: {
+              sourceMap: true,
+              importLoaders: 1,
+              minimize: true,
+              modules: true,
+              localIdentName: '[path][name]__[local]--[hash:base64:5]',
             },
-            {
-              loader: 'postcss-loader',
-              options: {
-                sourceMap: true,
-                plugins: () => [autoprefixer({
-                  browsers: [
-                    '>1%',
-                    'last 4 versions',
-                    'Firefox ESR',
-                    'not ie < 9',
-                  ],
-                  flexbox: 'no-2009',
-                })],
-              },
-            },
-            {
-              loader: 'sass-loader',
-              options: {
-                sourceMap: true,
-                includePaths: [
-                  './src/public',
+          },
+          {
+            loader: require.resolve('postcss-loader'),
+            options: {
+              ident: 'postcss',
+              sourceMap: true,
+              plugins: () => [autoprefixer({
+                browsers: [
+                  '>1%',
+                  'last 4 versions',
+                  'Firefox ESR',
+                  'not ie < 9',
                 ],
-              },
+                flexbox: 'no-2009',
+              })],
             },
-          ],
-        }),
+          },
+          {
+            loader: require.resolve('sass-loader'),
+            options: {
+              sourceMap: true,
+              includePaths: [
+                './src/public',
+              ],
+            },
+          },
+        ],
       },
       {
         test: /\.(png|ico)$/,
@@ -129,11 +128,11 @@ module.exports = {
     },
   },
   plugins: [
-    new ManifestPlugin(),
     new ExtractTextPlugin({
       filename: '[name].min.css',
       allChunks: true,
     }),
+    new ManifestPlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),

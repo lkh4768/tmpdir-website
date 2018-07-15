@@ -1,4 +1,4 @@
-@import '_common/maxin.scss';
+@import '~_common/mixin.scss';
 .backdrop {
   @include absolute-fill;
   display: flex;
