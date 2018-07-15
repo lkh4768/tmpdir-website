@@ -10,7 +10,7 @@ import styles from './style.scss';
 
 function Title() {
   return (
-    <BodyRow align={BodyRow.ALIGN.center} className={styles.title}>
+    <BodyRow align={BodyRow.ALIGN.CENTER} className={styles.title}>
       <a href={Const.APP_INFO.url}>
         <Logo />
       </a>

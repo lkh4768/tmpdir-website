@@ -38,7 +38,7 @@ class Upload extends React.Component {
     }
 
     return (
-      <BodyRow align={BodyRow.ALIGN.between}>
+      <BodyRow align={BodyRow.ALIGN.BETWEEN}>
         <span>
           <FormattedMessage
             id="maxSize"

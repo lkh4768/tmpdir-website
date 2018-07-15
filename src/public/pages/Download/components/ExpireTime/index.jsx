@@ -35,7 +35,7 @@ class ExpireTime extends React.Component {
       return <div>error</div>;
     }
     return (
-      <BodyRow align={BodyRow.ALIGN_CENTER}>
+      <BodyRow align={BodyRow.ALIGN.CENTER}>
         <h1 className={styles.expire_time__text}>
           <FormattedMessage
             id="expiresOn"

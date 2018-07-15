@@ -25,7 +25,7 @@ const getShareList = shaerdUrl => SHARE_VENDERS.map(vender => new ShareEntity(ve
 
 function ShareList({ sharedUrl }) {
   return (
-    <BodyRow align={BodyRow.ALIGN.center}>
+    <BodyRow align={BodyRow.ALIGN.CENTER}>
       <div
         role="button"
         tabIndex="0"
