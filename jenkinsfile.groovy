@@ -8,9 +8,9 @@ node {
       DEVELOP_BRANCH = "develop"
       MASTER_BRANCH = "master"
       sh "chmod +x gradlew"
-      PACKAGE_VERSION = sh script: "cat package.json | grep name | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g'", returnStdout: true 
+      PACKAGE_VERSION = sh script: "cat package.json | grep name | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g'", returnStdout: true
       PACKAGE_NAME_LOW = sh script: "cat package.json | grep name | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | sed -e 's/./\\L\\0/g'", returnStdout: true
-      PACKAGE_VERSION = sh script: "cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g'", returnStdout: true 
+      PACKAGE_VERSION = sh script: "cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g'", returnStdout: true
       IMAGE_NAME = "tmpdir-${PACKAGE_NAME_LOW}-${PACKAGE_VERSION}"
       REGISTRY_HOST = "dev.sw-warehouse.xyz:1450"
       REGISTRY_USER = "root"
@@ -19,30 +19,31 @@ node {
       else ENV_PHASE = "prd"
 
     if(env.BRANCH_NAME == DEVELOP_BRANCH){
-      stage "Publish image"
-        STAGE = "Publish image"
-        sh "./gradlew build"
-        withDockerRegistry([credentialsId: 'registry', url: 'https://dev.sw-warehouse.xyz:1450']) {
-          def image = docker.build("$REGISTRY_HOST/$IMAGE_NAME", "--build-arg PACKAGE_NAME=${PACKAGE_NAME} --build-arg PACKAGE_VERSION=${PACKAGE_VERSION} .")
-          image.push()
+			stage "Unit testing"
+				STAGE = "Unit testing"
+        withEnv(["JEST_JUNIT_OUTPUT=./jest-test-results.xml"]) {
+          sh 'npm test -- --ci --testResultsProcessor="jest-junit"'
         }
+				junit "build/test-results/test/TEST-*.xml"
 
-      stage "Deploy on stage"
-        STAGE = "Deploy on stage"
-        sh "sshpass -p '0)8*WESehzj' ssh -T -oStrictHostKeyChecking=no -p 22000 docker@dev.sw-warehouse.xyz \"docker rm -f ${IMAGE_NAME}-${ENV_PHASE} 2> /dev/null | echo ok && docker login -u ${REGISTRY_USER} -p ${REGISTRY_PASSWORD} ${REGISTRY_HOST} && docker pull ${REGISTRY_HOST}/${IMAGE_NAME} && docker run -d --network=tmpdir-${ENV_PHASE}-net -p 6443:443 -e ENV_PHASE='${ENV_PHASE}' -v /app/tmpdir-website-${ENV_PHASE}/config:/app/config -v /etc/letsencrypt:/app/certs -v /applog/tmpdir-website-${ENV_PHASE}:/applog -v /db/tmpdir-${ENV_PHASE}/storage:/storage --name ${IMAGE_NAME}-${ENV_PHASE} ${REGISTRY_HOST}/${IMAGE_NAME}\""
+      stage "Test coverage"
+				STAGE = "Unit testing"
+        sh 'npm run test:coverage'
 
-      stage "UI testing"
-        STAGE = "UI testing"
-
-      stage "Performance testing"
-        STAGE = "Performance testing"
+      stage "Sonarqube"
+				STAGE = "Sonarqube"
+				withSonarQubeEnv("sonarqube") {
+					sh "sonar-scanner"
+				}
+				sleep 30
+				timeout(time: 1, unit: "MINUTES") {
+					def qg = waitForQualityGate()
+						if (qg.status != "OK") {
+							error "Pipeline aborted due to quality gate failure: ${qg.status}"
+						}
+				}
     }
 
-    if(env.BRANCH_NAME == MASTER_BRANCH){
-      stage "Deploy on product"
-        STAGE = "Deploy on product"
-        sh "sshpass -p '0)8*WESehzj' ssh -T -oStrictHostKeyChecking=no -p 22000 docker@dev.sw-warehouse.xyz \"docker rm -f ${IMAGE_NAME}-${ENV_PHASE} 2> /dev/null | echo ok && docker login -u ${REGISTRY_USER} -p ${REGISTRY_PASSWORD} ${REGISTRY_HOST} && docker pull ${REGISTRY_HOST}/${IMAGE_NAME} && docker run -d --network=tmpdir-${ENV_PHASE}-net -p 443:443 -e ENV_PHASE='${ENV_PHASE}' -v /app/tmpdir-website-${ENV_PHASE}/config:/app/config -v /etc/letsencrypt:/app/certs -v /applog/tmpdir-website-${ENV_PHASE}:/applog -v /db/tmpdir-${ENV_PHASE}/storage:/storage --name ${IMAGE_NAME}-${ENV_PHASE} ${REGISTRY_HOST}/${IMAGE_NAME}\""
-    }
   } catch (e) {
     currentBuild.result = "FAILED"
       throw e
