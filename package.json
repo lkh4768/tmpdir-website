@@ -36,7 +36,10 @@
       "^_(.*)$": "<rootDir>/src/public/$1",
       "\\.(css|scss)$": "identity-obj-proxy"
     },
-    "coverageDirectory": "./reports/coverage"
+    "coverageDirectory": "./reports/coverage",
+    "reporters": [
+      "jest-junit"
+    ]
   },
   "repository": {
     "type": "git",
