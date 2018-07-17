@@ -14,6 +14,7 @@ node {
       REGISTRY_HOST = "dev.sw-warehouse.xyz:1450"
       REGISTRY_USER = "root"
       REGISTRY_PASSWORD = "10WESfpwltmxmfl"
+      sh 'npm install'
       if(env.BRANCH_NAME == DEVELOP_BRANCH) ENV_PHASE = "stage"
       else ENV_PHASE = "prd"
 
