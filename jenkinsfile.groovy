@@ -38,7 +38,7 @@ node {
       stage "Sonarqube"
 				STAGE = "Sonarqube"
 				withSonarQubeEnv("sonarqube") {
-					sh "${SONAR_SCANNER_HOME}"
+					sh "${SONAR_SCANNER_HOME}/bin/sonar-scanner"
 				}
 				sleep 30
 				timeout(time: 1, unit: "MINUTES") {
