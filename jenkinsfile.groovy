@@ -25,7 +25,7 @@ node {
 				STAGE = "Unit testing"
         withEnv(["JEST_JUNIT_OUTPUT=./jest-test-results.xml"]) {
           nodejs('nodejs10') {
-            sh 'npm test -- --ci --testResultsProcessor="jest-junit"'
+            sh 'npm test --ci --testResultsProcessor="jest-junit"'
           }
         }
 				junit "build/test-results/test/TEST-*.xml"
