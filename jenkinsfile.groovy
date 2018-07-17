@@ -14,6 +14,7 @@ node {
       REGISTRY_HOST = "dev.sw-warehouse.xyz:1450"
       REGISTRY_USER = "root"
       REGISTRY_PASSWORD = "10WESfpwltmxmfl"
+      SONAR_SCANNER_HOME = tool name: 'sonar-scanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
       nodejs('nodejs10') {
         sh 'npm install'
       }
@@ -37,7 +38,7 @@ node {
       stage "Sonarqube"
 				STAGE = "Sonarqube"
 				withSonarQubeEnv("sonarqube") {
-					sh "sonar-scanner"
+					sh "${SONAR_SCANNER_HOME}"
 				}
 				sleep 30
 				timeout(time: 1, unit: "MINUTES") {
