@@ -24,13 +24,16 @@ node {
 			stage "Unit testing"
 				STAGE = "Unit testing"
         withEnv(["JEST_JUNIT_OUTPUT=./jest-test-results.xml"]) {
+        nodejs('nodejs10') {
           sh 'npm test -- --ci --testResultsProcessor="jest-junit"'
         }
 				junit "build/test-results/test/TEST-*.xml"
 
       stage "Test coverage"
 				STAGE = "Unit testing"
-        sh 'npm run test:coverage'
+        nodejs('nodejs10') {
+          sh 'npm run test:coverage'
+        }
 
       stage "Sonarqube"
 				STAGE = "Sonarqube"
