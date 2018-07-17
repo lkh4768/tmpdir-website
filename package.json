@@ -17,6 +17,9 @@
   },
   "jest": {
     "verbose": true,
+    "globals": {
+      "NODE_ENV": "test"
+    },
     "transform": {
       "^.+\\.(js|jsx)$": "babel-jest",
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/script/staticTransformer.js"
@@ -37,7 +40,11 @@
       "\\.(css|scss)$": "identity-obj-proxy"
     },
     "coverageDirectory": "./reports/coverage",
+    "reporters": [ "default", "jest-junit" ],
     "testResultsProcessor": "jest-junit"
+  },
+  "jest-junit": {
+    "output": "./reports/junit.xml"
   },
   "repository": {
     "type": "git",
