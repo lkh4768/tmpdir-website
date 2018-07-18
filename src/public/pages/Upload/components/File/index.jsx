@@ -17,7 +17,7 @@ function File({
   delFile,
 }) {
   let className = '';
-  if (error && error !== '') {
+  if (error !== '') {
     className = 'color-red';
   }
 
