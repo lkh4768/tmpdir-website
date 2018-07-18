@@ -4,7 +4,7 @@ import locale from '_app/Download/locale';
 describe('<ExpireTime /> component', () => {
   const lang = 'ko'
   const messages = locale[lang] || locale.en;
-  it('[render], loading Success', () => {
+  it('[render] loading Success', () => {
     const wrapper = T_MOUNT_WITH_INTL(
       <ExpireTime
         expireTime={{ data: 0, loading: true, error: '' }}

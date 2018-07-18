@@ -6,7 +6,7 @@ const state = {
   ...initState,
 }
 
-describe('modal reducer', () => {
+describe('modal', () => {
   it(`[modal] initState Success`, () => {
     const result = modal(undefined, {});
     expect(result).toEqual(initState);

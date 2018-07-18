@@ -15,6 +15,19 @@ global.T_FILES = [
   new File(['3'], 'file3'),
   new File(['4'], 'file4'),
 ];
+global.T_STR = 'test';
+global.T_URI = '/path/test';
+global.T_HOSTNAME = global.T_STR;
+global.T_PROTOCOL = 'ftp';
+global.T_PORT = 32;
+global.T_ACCEPT_LANG = {
+  SEP: ',',
+  TYPE: {
+    ES: 'es',
+    EN: 'en',
+    EN_US: 'en-US',
+  }
+};
 
 /* func */
 global.T_NEW_FILES = (count) => {
@@ -66,4 +79,12 @@ global.T_MOUNT_WITH_INTL = (node, locale = 'en', messages = {}, { context, child
       ...childContextTypes
     }
   });
+};
+
+global.T_MULTI_ACCEPT_LANGS = (LANGS) => {
+  let ret = '';
+  for(let lang in LANGS) {
+    ret = `${lang}${global.T_ACCEPT_LANG.SEP}`
+  }
+  return ret.substring(0, ret.length - 1);
 };
