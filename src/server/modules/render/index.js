@@ -10,7 +10,7 @@ import UploadApp from '_app/Upload/App';
 import DownloadApp from '_app/Download/App';
 import Utils from '_modules/common/utils';
 import Const from '_modules/common/const';
-import manifast from '_modules/manifast';
+import manifest from '_modules/manifest';
 import logger from '_modules/logger';
 import getConfig from '_modules/config';
 
@@ -60,8 +60,8 @@ const render = (type, lang) => {
         window.INITIAL_STATE = ${JSON.stringify(store.getState()).replace(/</g, '\\x3c')}
         window.INITIAL_LANG = "${lang}"
       </script>
-        ${Utils.makeJsNode(manifast.getJsUrls(Const.vendor))}
-        ${Utils.makeJsNode(manifast.getJsUrls(type.name))}
+        ${Utils.makeJsNode(manifest.getJsUri(Const.vendor))}
+        ${Utils.makeJsNode(manifest.getJsUri(type.name))}
       </body>
     </html>
   `;
