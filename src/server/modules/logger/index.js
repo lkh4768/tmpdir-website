@@ -6,29 +6,45 @@ import fs from 'fs';
 import getConfig from '_modules/config';
 
 const Config = getConfig();
-const stream = new RotatingFileStream({
-  path: [path.join(Config.log.path, Config.log.filename), '_', Config.log.fileDateFormat, '.log'].join(''),
-  period: '1h',
-  gzip: true,
-});
+let stream;
 
-if (!fs.existsSync(Config.log.path)) {
-  fs.mkdirSync(Config.log.path);
+if (Config.log.path && Config.log.filename && Config.log.fileDateFormat) {
+  if (!fs.existsSync(Config.log.path)) {
+    fs.mkdirSync(Config.log.path);
+  }
+
+  stream = new RotatingFileStream({
+    path: [path.join(Config.log.path, Config.log.filename), '_', Config.log.fileDateFormat, '.log'].join(''),
+    period: '1h',
+    gzip: true,
+  });
 }
 
-const logger = bunyan.createLogger({
-  name: Config.name,
-  level: Config.log.level,
-  src: true,
-  streams: [{
-    stream,
-  }],
-});
+const getConsoleLoggerConfig = () => {
+  const config = {
+    name: Config.name,
+    level: Config.log.level,
+    src: true,
+  };
+
+  if (stream) {
+    config.streams = [{ stream }];
+  }
+
+  return config;
+};
+
+const logger = bunyan.createLogger(getConsoleLoggerConfig());
+
+const getExpressLoggerConfig = () => {
+  if (stream) {
+    return { stream };
+  }
+  return null;
+};
 
 export const expressLogger = (app) => {
-  app.use(expressBunyanLogger({
-    stream,
-  }));
+  app.use(expressBunyanLogger(getExpressLoggerConfig()));
 };
 
 export default logger;

@@ -32,6 +32,7 @@ const Config = {
   dependency: {
     css: ['bootstrap/dist/css/bootstrap.min.css'],
   },
+  manifest: path.resolve(__dirname, '../../../build/manifest.json'),
 };
 
 export default Config;

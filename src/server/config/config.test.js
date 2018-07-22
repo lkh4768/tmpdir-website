@@ -1,7 +1,7 @@
 import path from 'path';
 
 const Config = {
-  name: 'tmpdir-dev',
+  name: 'tmpdir-test',
   server: {
     port: 3001,
   },
@@ -24,15 +24,12 @@ const Config = {
     },
   },
   log: {
-    path: path.resolve(__dirname, '../../../logs'),
-    filename: 'tmpdir-website',
     level: 'debug',
-    fileDateFormat: '%Y%m%d%H',
   },
   dependency: {
     css: ['bootstrap/dist/css/bootstrap.min.css'],
   },
-  manifest: path.resolve(__dirname, '../../../build/manifest.json'),
+  manifest: path.resolve(__dirname, '../../tests/manifest.json'),
 };
 
 export default Config;
