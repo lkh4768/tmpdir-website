@@ -46,11 +46,11 @@ router.get('/:fileId', async (req, res) => {
       statusText: downloadRes.statusText,
       headers: downloadRes.headers,
       config: downloadRes.config,
-    }, 'Download fileInfo success');
+    }, 'Download file success');
     res.set(downloadRes.headers);
     res.end(downloadRes.data);
   } catch (err) {
-    logger.error(err, 'Download fileInfo error');
+    logger.error(err, 'Download file error');
     res.status(err.response.data.status).end(err.response.data.error);
   }
 });

@@ -8,6 +8,19 @@ import Utils from '_modules/common/utils';
 
 const Config = getConfig();
 
+const reqUploadService = async (formData) => {
+  const uploadConfig = Config.tmpdir.service.upload;
+  const uploadUrl = Utils.getUrl(uploadConfig.hostname, uploadConfig.protocol, uploadConfig.port);
+  const config = {
+    headers: {
+      accept: 'application/json',
+      'Content-Type': `multipart/form-data; boundary=${formData.getBoundary()}`,
+    },
+    maxContentLength: Config.tmpdir.file.maxSize,
+  };
+  return post(uploadUrl, formData, config);
+};
+
 const upload = (req, callback) => {
   const form = new Multiparty.Form({ maxFilesSize: Config.tmpdir.file.maxSize });
   const formData = new FormData();
@@ -33,19 +46,14 @@ const upload = (req, callback) => {
     }
   });
 
-  form.on('close', () => {
-    const uploadConfig = Config.tmpdir.service.upload;
-    const uploadUrl = Utils.getUrl(uploadConfig.hostname, uploadConfig.protocol, uploadConfig.port);
-    const config = {
-      headers: {
-        accept: 'application/json',
-        'Content-Type': `multipart/form-data; boundary=${formData.getBoundary()}`,
-      },
-      maxContentLength: Config.tmpdir.file.maxSize,
-    };
-    post(uploadUrl, formData, config)
-      .then(res => callback(null, { code: res.status, data: res.data }))
-      .catch(err => logger.error(err, 'Axios post error'));
+  form.on('close', async () => {
+    try {
+      const res = await reqUploadService(formData);
+      callback(null, { code: res.status, data: res.data });
+    } catch (err) {
+      logger.error(err, 'Axios post error');
+      callback(err);
+    }
   });
   form.on('error', (err) => {
     logger.error(err, 'Multiparty form error');
