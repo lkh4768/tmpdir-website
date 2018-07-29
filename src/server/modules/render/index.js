@@ -57,8 +57,8 @@ const render = (type, lang) => {
           ${renderToString(getApp(type.id, store, lang))}
         </div>
       <script>
-        window.INITIAL_STATE = ${JSON.stringify(store.getState()).replace(/</g, '\\x3c')}
-        window.INITIAL_LANG = "${lang}"
+        ${Const.windowInitialVar.state} = ${Utils.stringifyState(store.getState())}
+        ${Const.windowInitialVar.lang} = "${lang}"
       </script>
         ${Utils.makeJsNode(manifest.getJsUri(Const.vendor))}
         ${Utils.makeJsNode(manifest.getJsUri(type.name))}

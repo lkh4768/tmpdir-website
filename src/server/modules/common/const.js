@@ -10,7 +10,19 @@ const appType = {
   },
 };
 
+const defaultLoggerConfig = {
+  name: 'app',
+  level: 'info',
+};
+
+const windowInitialVar = {
+  state: 'window.INITIAL_STATE',
+  lang: 'window.INITIAL_LANG',
+};
+
 export default {
   vendor,
   appType,
+  defaultLoggerConfig,
+  windowInitialVar,
 };

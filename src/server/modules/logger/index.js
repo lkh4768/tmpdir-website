@@ -3,7 +3,9 @@ import RotatingFileStream from 'bunyan-rotating-file-stream';
 import expressBunyanLogger from 'express-bunyan-logger';
 import path from 'path';
 import fs from 'fs';
+
 import getConfig from '_modules/config';
+import Const from '_modules/common/const';
 
 const Config = getConfig();
 let stream;
@@ -22,8 +24,8 @@ if (Config.log.path && Config.log.filename && Config.log.fileDateFormat) {
 
 const getConsoleLoggerConfig = () => {
   const config = {
-    name: Config.name,
-    level: Config.log.level,
+    name: Config.name || Const.defaultLoggerConfig.name,
+    level: Config.log.level || Const.defaultLoggerConfig.level,
     src: true,
   };
 
