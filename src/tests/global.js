@@ -2,6 +2,10 @@ import React from 'react';
 import { IntlProvider, intlShape } from "react-intl";
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+import manifest from './manifest.json';
+import getConfig from '_modules/config';
+
+const Config = getConfig();
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -27,6 +31,16 @@ global.T_ACCEPT_LANG = {
     EN: 'en',
     EN_US: 'en-US',
   }
+};
+global.T_MANIFEST = manifest;
+global.T_APP_CONFIG = Config;
+global.T_OBJECT = {
+  name: 'tom',
+  age: 23
+};
+global.T_INCLUE_HTML_OBJECT = {
+  ...global.T_OBJECT,
+  img: '<img src="img.jpg" />'
 };
 
 /* func */

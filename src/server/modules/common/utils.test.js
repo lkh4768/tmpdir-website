@@ -61,4 +61,11 @@ describe('utils', () => {
     expect(Utils.getLangInAcceptLangHeader(T_ACCEPT_LANG.TYPE.EN_US))
       .not.toEqual(T_ACCEPT_LANG.TYPE.EN_US);
   });
+  it(`stringifyState, default Success`, () => {
+    expect(Utils.stringifyState(global.T_OBJECT)).toEqual(JSON.stringify(global.T_OBJECT));
+  });
+  it(`stringifyState, include "<" string Success`, () => {
+    expect(Utils.stringifyState(T_INCLUE_HTML_OBJECT)).toEqual(expect.not.stringMatching('/</g'));
+    expect(Utils.stringifyState(T_INCLUE_HTML_OBJECT)).toEqual(expect.stringContaining('\\x3c'));
+  });
 });
