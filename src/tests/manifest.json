@@ -1,4 +1,5 @@
 {
   "uploadApp.js": "/testUploadApp.min.js",
+  "downloadApp.js": "/testDownloadApp.min.js",
   "vendor.js": "/testVendor.min.js"
 }

@@ -8,6 +8,6 @@ describe('manifest', () => {
     expect(manifest.getJsUri('')).toEqual('');
   });
   it('getJsUri, invalid name Success', () => {
-    expect(manifest.getJsUri('downloadApp')).toBeUndefined();
+    expect(manifest.getJsUri('App')).toBeUndefined();
   });
 });

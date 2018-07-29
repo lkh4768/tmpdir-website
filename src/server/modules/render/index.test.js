@@ -1,28 +1,30 @@
-import { createStore } from 'redux';
 import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
 import { IntlProvider } from 'react-intl';
 
 import Utils from '_modules/common/utils';
 import Const from '_modules/common/const.js';
-import uploadReducer from '_data/reducers/upload';
-import UploadApp from '_app/Upload/App';
+import manifest from '_modules/manifest';
 
 import render from './index.js'
 
 describe('render', () => {
-  it('render, uploadApp Success', () => {
+  it('render, apptype = uploadApp Success', () => {
     const lang = T_ACCEPT_LANG.TYPE.EN;
-    const html = render(Const.appType.upload, lang);
-    const store = createStore(uploadReducer);
-    expect(html).toEqual(expect.stringContaining(T_MANIFEST['uploadApp.js']));
-    expect(html).toEqual(expect.stringContaining(T_MANIFEST['vendor.js']));
+    const appType = Const.appType.upload;
+    const html = render(appType, lang);
+    expect(html).toEqual(
+      expect.stringContaining(manifest.getJsUri(Const.appType.name))
+    );
+    expect(html).toEqual(
+      expect.stringContaining(manifest.getJsUri(Const.vendor))
+    );
     T_APP_CONFIG.dependency.css.map(css => {
       expect(html).toEqual(expect.stringContaining(css));
     });
     expect(html).toEqual(
       expect.stringContaining(
-        `${Const.windowInitialVar.state} = ${Utils.stringifyState(store.getState())}`
+        `${Const.windowInitialVar.state} = ${Utils.stringifyState(appType.store.getState())}`
     ));
     expect(html).toEqual(
       expect.stringContaining(
@@ -32,13 +34,18 @@ describe('render', () => {
       expect.stringContaining(
         `<div id="root">
           ${renderToString(
-            <Provider store={store}>
+            <Provider store={appType.store}>
               <IntlProvider locale={lang}>
-                <UploadApp />
+                {appType.component}
               </IntlProvider>
             </Provider>
           )}
         </div>`
     ));
+  });
+  it('render, appType=null  Success', () => {
+    const lang = T_ACCEPT_LANG.TYPE.EN;
+    const html = render(null, lang);
+    expect(html).toEqual('');
   });
 });
