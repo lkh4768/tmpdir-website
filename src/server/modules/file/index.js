@@ -1,5 +1,5 @@
-import Multiparty from 'multiparty';
 import { post, get } from 'axios';
+import fs from 'fs';
 import FormData from 'form-data';
 
 import logger from '_modules/logger';
@@ -21,45 +21,30 @@ const reqUploadService = async (formData) => {
   return post(uploadUrl, formData, config);
 };
 
-const upload = (req, callback) => {
-  const form = new Multiparty.Form({ maxFilesSize: Config.tmpdir.file.maxSize });
+const formDataAppendFiles = (files) => {
   const formData = new FormData();
-  formData.maxDataSize = Infinity;
-  let count = 0;
+  files.forEach((file) => {
+    formData.append(
+      file.fieldName,
+      fs.createReadStream(file.path),
+      { filename: file.name, contentType: file.type },
+    );
+  });
+  return formData;
+};
 
-  form.on('part', (part) => {
-    if (!part.filename) {
-      part.resume();
-    } else {
-      formData.append(
-        ['file', count].join(''),
-        part,
-        {
-          filename: part.filename,
-          contentType: part['content-type'],
-        },
-      );
-      count += 1;
-      part.resume();
-      logger.info({ filename: part.filename, byteCount: part.byteCount, headers: part.headers }, 'Rev file on Multiparty formData');
-      logger.debug(part, 'Rev file on Multiparty formData detail');
-    }
-  });
-
-  form.on('close', async () => {
-    try {
-      const res = await reqUploadService(formData);
-      callback(null, { code: res.status, data: res.data });
-    } catch (err) {
-      logger.error(err, 'Axios post error');
-      callback(err);
-    }
-  });
-  form.on('error', (err) => {
-    logger.error(err, 'Multiparty form error');
-    return callback(err);
-  });
-  form.parse(req);
+const upload = async (files) => {
+  logger.debug({ files }, 'Recv files');
+  logger.info(`Recv file count(${files.length})`);
+  const formData = formDataAppendFiles(files);
+  try {
+    const res = await reqUploadService(formData);
+    logger.info({ code: res.status, data: res.data }, 'reqUploadService success');
+    return { err: null, code: res.status, data: res.data };
+  } catch (err) {
+    logger.error(err, 'reqUploadService failed');
+    return { err };
+  }
 };
 
 const getDownloadUrl = () => {
