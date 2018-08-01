@@ -1,24 +1,26 @@
 import express from 'express';
+import multipart from 'connect-multiparty';
 
 import logger from '_modules/logger';
+import getConfig from '_modules/config';
 import File from '_modules/file';
 
 const router = express.Router();
+const Config = getConfig();
+const multipartMiddleware = multipart({ maxFilesSize: Config.tmpdir.file.maxSize });
 
-router.post('/', (req, res) => {
-  File.upload(req, (err, data) => {
-    if (err) {
-      if (!err.response) {
-        logger.error(err, 'Upload file error');
-        return res.status(500).end();
-      }
-
+router.post('/', multipartMiddleware, async (req, res) => {
+  const { err, code, data } = await File.upload(Object.keys(req.files).map(key => req.files[key]));
+  if (err) {
+    if (!err.response) {
       logger.error(err, 'Upload file error');
-      return res.status(err.response.data.status).end(err.response.data.error);
+      return res.status(500).end();
     }
-    logger.info(data, 'Upload file success');
-    return res.status(data.code).json(data.data).end();
-  });
+    logger.error(err, 'Upload file error');
+    return res.status(err.response.data.status).end(err.response.data.error);
+  }
+  logger.info({ code, data }, 'Upload file success');
+  return res.status(code).json(data).end();
 });
 
 router.get('/info/:fileId', async (req, res) => {
