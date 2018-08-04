@@ -40,7 +40,7 @@ const upload = async (files) => {
   try {
     const res = await reqUploadService(formData);
     logger.info({ code: res.status, data: res.data }, 'reqUploadService success');
-    return { err: null, code: res.status, data: res.data };
+    return { code: res.status, data: res.data };
   } catch (err) {
     logger.error(err, 'reqUploadService failed');
     return { err };
