@@ -102,3 +102,17 @@ global.T_MULTI_ACCEPT_LANGS = (LANGS) => {
   }
   return ret.substring(0, ret.length - 1);
 };
+
+global.T_GET_FILES = () => {
+  const dirPath = './files';
+  /*
+   {
+      "fieldName": "file0",
+      "originalFilename": "jmx_fileupload.png",
+      "path": "/tmp/84kG-0xF5ojiXnOMLdSqZrk3.png",
+      "size": 86310,
+      "name": "jmx_fileupload.png",
+      "type": "image/png"
+    }
+  */
+};
