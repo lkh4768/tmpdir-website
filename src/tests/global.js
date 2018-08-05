@@ -2,8 +2,13 @@ import React from 'react';
 import { IntlProvider, intlShape } from "react-intl";
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import manifest from './manifest.json';
+import fs from 'fs';
+import { execSync } from 'child_process';
+import path from 'path';
+
 import getConfig from '_modules/config';
+
+import manifest from './manifest.json';
 
 const Config = getConfig();
 
@@ -40,7 +45,11 @@ global.T_OBJECT = {
 };
 global.T_INCLUE_HTML_OBJECT = {
   ...global.T_OBJECT,
-  img: '<img src="img.jpg" />'
+  img: '<img src="img.jpg" />',
+};
+global.T_FILE_SIZE = {
+  TEN_MB: '10mb',
+  GB: 'gb',
 };
 
 /* func */
@@ -103,16 +112,36 @@ global.T_MULTI_ACCEPT_LANGS = (LANGS) => {
   return ret.substring(0, ret.length - 1);
 };
 
-global.T_GET_FILES = () => {
-  const dirPath = './files';
-  /*
-   {
-      "fieldName": "file0",
-      "originalFilename": "jmx_fileupload.png",
-      "path": "/tmp/84kG-0xF5ojiXnOMLdSqZrk3.png",
-      "size": 86310,
-      "name": "jmx_fileupload.png",
-      "type": "image/png"
-    }
-  */
+const makeTestFile = (size = global.T_FILE_SIZE.TEN_MB, count = 1) => {
+  let scriptPath = path.resolve(__dirname, '../../script/make10mbFile.js');
+  if (size === global.T_FILE_SIZE.GB) {
+    scriptPath = path.resolve(__dirname, '../../script/makeGbFile.js');
+  }
+  for (let i = 0; i < count; i++) {
+    execSync(`node ${scriptPath}`);
+  }
+};
+
+const getSubFileInfoList = srcPath => fs.readdirSync(srcPath).map(name => ({
+  name,
+  path: path.join(srcPath, name),
+  size: fs.statSync(path.join(srcPath, name)).size
+}));
+
+global.T_GET_FILES = ({ size = global.T_FILE_SIZE.TEN_MB, count = 1 } = {}) => {
+  const testDataPath = path.resolve(__dirname, '../../data/test');
+  let testFileInfos = getSubFileInfoList(testDataPath).filter(fileInfo => fileInfo.name.indexOf(size) !== -1);
+  if (testFileInfos.length <= 0) {
+    makeTestFile(size, count);
+  }
+  testFileInfos = getSubFileInfoList(testDataPath).filter(fileInfo => fileInfo.name.indexOf(size) !== -1);
+
+  return testFileInfos.map((file, i) => ({
+    fieldName: `file${i}`,
+    originalFilename: file.name,
+    path: file.path,
+    size: file.size,
+    name: file.name,
+    type: path.extname(file.name),
+  }));
 };
