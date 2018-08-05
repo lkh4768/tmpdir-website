@@ -1,5 +1,21 @@
-import file from './index.js'
 import fs from 'fs';
+import axios from 'axios';
+import MockAdapter from 'axios-mock-adapter';
+
+import Utils from '_modules/common/utils';
+import getConfig from '_modules/config';
+import file from './index.js';
+
+const Config = getConfig();
+const mock = new MockAdapter(axios);
+const uploadConfig = Config.tmpdir.service.upload;
+const uploadServiceUrl = Utils.getUrl(uploadConfig.hostname, uploadConfig.protocol, uploadConfig.port);
+
+mock.onPost(uploadServiceUrl).reply(200, {
+  id: '4b676578-9d17-416a-913d-3f9077d9d5cc',
+  submissionTime: 1533370329964,
+  expireTime: 1533456729964
+});
 
 describe('files', () => {
   const testFileInfos = T_GET_FILES();
