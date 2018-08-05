@@ -21,3 +21,7 @@ goorm.manifest
 
 ## REPORTS ##
 reports
+
+## TEST DATA ##
+/data/test/10mb*
+/data/test/gb*
