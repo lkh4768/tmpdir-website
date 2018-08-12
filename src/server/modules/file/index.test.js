@@ -11,10 +11,18 @@ const mock = new MockAdapter(axios);
 const uploadConfig = Config.tmpdir.service.upload;
 const uploadServiceUrl = Utils.getUrl(uploadConfig.hostname, uploadConfig.protocol, uploadConfig.port);
 
-mock.onPost(uploadServiceUrl).reply(200, {
-  id: '4b676578-9d17-416a-913d-3f9077d9d5cc',
-  submissionTime: 1533370329964,
-  expireTime: 1533456729964
+mock.onPost(uploadServiceUrl).reply((config) => {
+  if (config.data._streams.length <= 0) {
+    return [404, {}];
+  }
+  return [
+    200,
+    {
+      id: '4b676578-9d17-416a-913d-3f9077d9d5cc',
+      submissionTime: 1533370329964,
+      expireTime: 1533456729964
+    }
+  ];
 });
 
 describe('files', () => {
@@ -29,6 +37,13 @@ describe('files', () => {
       expireTime: 1533456729964
     });
   });
+
+  it('upload, empty files Failure', async () => {
+    const { err, code, data } = await file.upload([]);
+    expect(err).not.toBeNull();
+    expect(err.response.status).toEqual(404);
+  });
+
   afterAll(() => {
     testFileInfos.forEach((testFileInfo) => {
       fs.unlinkSync(testFileInfo.path);
