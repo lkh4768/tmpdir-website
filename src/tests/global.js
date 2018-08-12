@@ -131,8 +131,8 @@ const getSubFileInfoList = srcPath => fs.readdirSync(srcPath).map(name => ({
 global.T_GET_FILES = ({ size = global.T_FILE_SIZE.TEN_MB, count = 1 } = {}) => {
   const testDataPath = path.resolve(__dirname, '../../data/test');
   let testFileInfos = getSubFileInfoList(testDataPath).filter(fileInfo => fileInfo.name.indexOf(size) !== -1);
-  if (testFileInfos.length <= 0) {
-    makeTestFile(size, count);
+  if (testFileInfos.length < count) {
+    makeTestFile(size, count - testFileInfos.length);
   }
   testFileInfos = getSubFileInfoList(testDataPath).filter(fileInfo => fileInfo.name.indexOf(size) !== -1);
 
