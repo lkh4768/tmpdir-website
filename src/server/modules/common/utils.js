@@ -19,14 +19,11 @@ const getExternalServiceUrl = (serviceType) => {
       externalServiceConfig.port,
     );
   }
+  return '';
 };
-const getDownloadUrl = () => {
-  return getExternalServiceUrl('download');
-};
+const getDownloadUrl = () => getExternalServiceUrl('download');
 
-const getUploadUrl = () => {
-  return getExternalServiceUrl('upload');
-};
+const getUploadUrl = () => getExternalServiceUrl('upload');
 
 export default {
   makeJsNode,

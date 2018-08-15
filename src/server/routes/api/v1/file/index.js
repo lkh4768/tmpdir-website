@@ -38,7 +38,9 @@ router.get('/info/:fileId', async (req, res) => {
 });
 
 router.get('/:fileId', async (req, res) => {
-  const { err, code, data, headers } = await File.download(req.params.fileId);
+  const {
+    err, code, data, headers,
+  } = await File.download(req.params.fileId);
   if (err) {
     if (!err.response) {
       logger.error(err, 'Download file error');
