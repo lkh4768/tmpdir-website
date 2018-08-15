@@ -32,8 +32,8 @@ const formDataAppendFiles = (files) => {
 };
 
 const upload = async (files) => {
-  if(!files) {
-    const err = 'Files is null'
+  if (!files) {
+    const err = 'Files is null';
     logger.error(err, 'reqUploadService failed');
     return { err };
   }
@@ -50,7 +50,7 @@ const upload = async (files) => {
   }
 };
 
-const getFileInfo = async fileId => {
+const getFileInfo = async (fileId) => {
   try {
     const res = await get(`${Utils.getDownloadUrl()}/file-info/${fileId}`);
     logger.info({ code: res.status, data: res.data }, 'getfileInfo success');
@@ -61,9 +61,9 @@ const getFileInfo = async fileId => {
   }
 };
 
-const download = async fileId => {
+const download = async (fileId) => {
   try {
-    const res = await get(`${Utils.getDownloadUrl()}/file/${fileId}`, { responseType: 'arraybuffer' })
+    const res = await get(`${Utils.getDownloadUrl()}/file/${fileId}`, { responseType: 'arraybuffer' });
     logger.info({ code: res.status, headers: res.headers }, 'download success');
     return { code: res.status, data: res.data, headers: res.headers };
   } catch (err) {
@@ -72,8 +72,4 @@ const download = async fileId => {
   }
 };
 
-export default {
-  upload,
-  getFileInfo,
-  download,
-}  ;
+export default { upload, getFileInfo, download };
