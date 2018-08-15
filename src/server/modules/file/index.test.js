@@ -18,17 +18,14 @@ mock.onPost(uploadServiceUrl).reply((config) => {
   return [200, T_FILE_OBJ];
 });
 
-mock.onGet(`${Utils.getDownloadUrl()}/file-info/`).reply((config) => {
-  return [400, {}];
-});
-
+mock.onGet(`${Utils.getDownloadUrl()}/file-info/`).reply(400);
 mock.onGet(`${Utils.getDownloadUrl()}/file-info/${T_FILE_ID}`).reply(200, T_FILE_OBJ);
 
-mock.onGet(`${Utils.getDownloadUrl()}/file/`).reply((config) => {
-  return [400, {}];
+mock.onGet(`${Utils.getDownloadUrl()}/file/`).reply(400);
+mock.onGet(`${Utils.getDownloadUrl()}/file/${T_FILE_ID}`).reply(200, {}, {
+  'content-disposition': 'attachment; filename="file"',
+  'content-type': 'application/octet-stream',
 });
-
-mock.onGet(`${Utils.getDownloadUrl()}/file/${T_FILE_ID}`).reply(200, T_FILE_OBJ);
 
 describe('files', () => {
   const testFileInfos = T_GET_FILES();
@@ -64,7 +61,8 @@ describe('files', () => {
     const { err, code, data, headers } = await file.download(T_FILE_ID);
     expect(err).toBeUndefined();
     expect(code).toEqual(200);
-    expect(data.id).toEqual(T_FILE_ID);
+    expect(headers).not.toBeUndefined();
+    expect(headers).not.toBeNull();
   });
   
   it('download, invalid fileId Failed', async () => {
