@@ -24,37 +24,32 @@ router.post('/', multipartMiddleware, async (req, res) => {
 });
 
 router.get('/info/:fileId', async (req, res) => {
-  try {
-    const fileInfo = await File.getFileInfo(req.params.fileId);
-    logger.info({
-      status: fileInfo.status,
-      statusText: fileInfo.statusText,
-      headers: fileInfo.headers,
-      config: fileInfo.config,
-      data: fileInfo.data,
-    }, 'Get fileInfo success');
-    res.json(fileInfo.data);
-  } catch (err) {
-    logger.error(err, 'Get fileInfo error');
-    res.status(err.response.data.status).end(err.response.data.error);
+  const { err, code, data } = await File.getFileInfo(req.params.fileId);
+  if (err) {
+    if (!err.response) {
+      logger.error(err, 'Get file info error');
+      return res.status(500).end();
+    }
+    logger.error(err, 'Get file info error');
+    return res.status(err.response.data.status).end(err.response.data.error);
   }
+  logger.info({ code, data }, 'Get file info success');
+  return res.json(data).end();
 });
 
 router.get('/:fileId', async (req, res) => {
-  try {
-    const downloadRes = await File.download(req.params.fileId);
-    logger.info({
-      status: downloadRes.status,
-      statusText: downloadRes.statusText,
-      headers: downloadRes.headers,
-      config: downloadRes.config,
-    }, 'Download file success');
-    res.set(downloadRes.headers);
-    res.end(downloadRes.data);
-  } catch (err) {
+  const { err, code, data, headers } = await File.download(req.params.fileId);
+  if (err) {
+    if (!err.response) {
+      logger.error(err, 'Download file error');
+      return res.status(500).end();
+    }
     logger.error(err, 'Download file error');
-    res.status(err.response.data.status).end(err.response.data.error);
+    return res.status(err.response.data.status).end(err.response.data.error);
   }
+  logger.info({ code, headers }, 'Download file success');
+  res.set(headers);
+  return res.end(data);
 });
 
 export default router;

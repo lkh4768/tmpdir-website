@@ -1,3 +1,5 @@
+import getConfig from '_modules/config';
+
 const makeCssNode = url => `<link type="text/css" rel="stylesheet" href="${url}">`;
 const makeJsNode = url => `<script src="${url}"></script>`;
 const getUrl = (hostname, protocol = 'http', port = '') => `${protocol}://${hostname}${port ? `:${port}` : ''}`;
@@ -7,6 +9,24 @@ const getLangInAcceptLangHeader = (acceptLang) => {
   return language.toLowerCase().split(/[_-]+/)[0];
 };
 const stringifyState = state => JSON.stringify(state).replace(/</g, '\\x3c');
+const getExternalServiceUrl = (serviceType) => {
+  const Config = getConfig();
+  const externalServiceConfig = Config.tmpdir.service[serviceType];
+  if (externalServiceConfig) {
+    return getUrl(
+      externalServiceConfig.hostname,
+      externalServiceConfig.protocol,
+      externalServiceConfig.port,
+    );
+  }
+};
+const getDownloadUrl = () => {
+  return getExternalServiceUrl('download');
+};
+
+const getUploadUrl = () => {
+  return getExternalServiceUrl('upload');
+};
 
 export default {
   makeJsNode,
@@ -15,4 +35,6 @@ export default {
   emptyFunc,
   getLangInAcceptLangHeader,
   stringifyState,
+  getDownloadUrl,
+  getUploadUrl,
 };

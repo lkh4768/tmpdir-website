@@ -9,8 +9,6 @@ import Utils from '_modules/common/utils';
 const Config = getConfig();
 
 const reqUploadService = async (formData) => {
-  const uploadConfig = Config.tmpdir.service.upload;
-  const uploadUrl = Utils.getUrl(uploadConfig.hostname, uploadConfig.protocol, uploadConfig.port);
   const config = {
     headers: {
       accept: 'application/json',
@@ -18,7 +16,7 @@ const reqUploadService = async (formData) => {
     },
     maxContentLength: Config.tmpdir.file.maxSize,
   };
-  return post(uploadUrl, formData, config);
+  return post(Utils.getUploadUrl(), formData, config);
 };
 
 const formDataAppendFiles = (files) => {
@@ -34,6 +32,11 @@ const formDataAppendFiles = (files) => {
 };
 
 const upload = async (files) => {
+  if(!files) {
+    const err = 'Files is null'
+    logger.error(err, 'reqUploadService failed');
+    return { err };
+  }
   logger.debug({ files }, 'Recv files');
   logger.info(`Recv file count(${files.length})`);
   const formData = formDataAppendFiles(files);
@@ -47,20 +50,30 @@ const upload = async (files) => {
   }
 };
 
-const getDownloadUrl = () => {
-  const downloadConfig = Config.tmpdir.service.download;
-  return Utils.getUrl(
-    downloadConfig.hostname,
-    downloadConfig.protocol,
-    downloadConfig.port,
-  );
+const getFileInfo = async fileId => {
+  try {
+    const res = await get(`${Utils.getDownloadUrl()}/file-info/${fileId}`);
+    logger.info({ code: res.status, data: res.data }, 'getfileInfo success');
+    return { code: res.status, data: res.data };
+  } catch (err) {
+    logger.error(err, 'getFileInfo failed');
+    return { err };
+  }
 };
 
-const getFileInfo = fileId => get(`${getDownloadUrl()}/file-info/${fileId}`);
-const download = fileId => get(`${getDownloadUrl()}/file/${fileId}`, { responseType: 'arraybuffer' });
+const download = async fileId => {
+  try {
+    const res = await get(`${Utils.getDownloadUrl()}/file/${fileId}`, { responseType: 'arraybuffer' })
+    logger.info({ code: res.status, headers: res.headers }, 'download success');
+    return { code: res.status, data: res.data, headers: res.headers };
+  } catch (err) {
+    logger.error(err, 'download failed');
+    return { err };
+  }
+};
 
 export default {
   upload,
   getFileInfo,
   download,
-};
+}  ;

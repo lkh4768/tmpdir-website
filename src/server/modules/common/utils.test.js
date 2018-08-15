@@ -68,4 +68,12 @@ describe('utils', () => {
     expect(Utils.stringifyState(T_INCLUE_HTML_OBJECT)).toEqual(expect.not.stringMatching('/</g'));
     expect(Utils.stringifyState(T_INCLUE_HTML_OBJECT)).toEqual(expect.stringContaining('\\x3c'));
   });
+  it(`getDownloadUrl, default Success`, () => {
+    expect(Utils.getDownloadUrl()).not.toBeFalsy();
+    expect(typeof Utils.getDownloadUrl() === 'string').toEqual(true);
+  });
+  it(`getUploadUrl, default Success`, () => {
+    expect(Utils.getUploadUrl()).not.toBeFalsy();
+    expect(typeof Utils.getDownloadUrl() === 'string').toEqual(true);
+  });
 });

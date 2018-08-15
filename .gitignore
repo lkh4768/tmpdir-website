@@ -25,3 +25,8 @@ reports
 ## TEST DATA ##
 /data/test/10mb*
 /data/test/gb*
+
+## GRADLE ##
+.gradle
+.project
+.settings/
