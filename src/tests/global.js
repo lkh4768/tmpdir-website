@@ -51,6 +51,12 @@ global.T_FILE_SIZE = {
   TEN_MB: '10mb',
   GB: 'gb',
 };
+global.T_FILE_ID = '4b676578-9d17-416a-913d-3f9077d9d5cc';
+global.T_FILE_OBJ = {
+  id: global.T_FILE_ID,
+  submissionTime: 1533370329964,
+  expireTime: 1533456729964,
+};
 
 /* func */
 global.T_NEW_FILES = (count) => {

@@ -9,13 +9,13 @@ const Config = {
     service: {
       upload: {
         protocol: 'http',
-        hostname: 'localhost',
-        port: 6000,
+        hostname: 'dev-tmpdir-fileupload.run.goorm.io',
+        port: 80,
       },
       download: {
         protocol: 'http',
-        hostname: 'localhost',
-        port: 6001,
+        hostname: 'dev-tmpdir-filedownload.run.goorm.io',
+        port: 80,
       },
     },
     file: {
