@@ -36,8 +36,15 @@ describe('files', () => {
     expect(data).toEqual(T_FILE_OBJ);
   });
 
-  it('upload, invalid files Failure', async () => {
+  it('upload, empty files Failure', async () => {
     const { err, code, data } = await file.upload([]);
+    expect(err.response.status).toEqual(404);
+    expect(code).toBeUndefined();
+    expect(data).toBeUndefined();
+  });
+  
+  it('upload, null files Failure', async () => {
+    const { err, code, data } = await file.upload(null);
     expect(err.response.status).toEqual(404);
     expect(code).toBeUndefined();
     expect(data).toBeUndefined();
