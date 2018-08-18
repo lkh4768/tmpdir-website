@@ -32,12 +32,18 @@
       "./src/tests/global.js"
     ],
     "modulePathIgnorePatterns": [
-      "global.js",
-      "app.js"
+      "app.js",
+      "global.js"
     ],
     "testPathIgnorePatterns": [
       "<rootDir>/src/server/config",
-      "<rootDir>/src/server/routes"
+      "<rootDir>/src/server/routes",
+      "<rootDir>/src/tests"
+    ],
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/src/server/config",
+      "<rootDir>/src/server/routes",
+      "<rootDir>/src/tests"
     ],
     "moduleNameMapper": {
       "^_tests(.*)$": "<rootDir>/src/tests/$1",
