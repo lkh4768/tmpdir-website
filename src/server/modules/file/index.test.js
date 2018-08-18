@@ -45,7 +45,7 @@ describe('files', () => {
   
   it('upload, null files Failure', async () => {
     const { err, code, data } = await file.upload(null);
-    expect(err.response.status).toEqual(404);
+    expect(typeof err === 'string').toBeTruthy();
     expect(code).toBeUndefined();
     expect(data).toBeUndefined();
   });
