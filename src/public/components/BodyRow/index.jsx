@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Row, Col } from 'reactstrap';
+import Row from 'reactstrap/lib/Row';
+import Col from 'reactstrap/lib/Col';
 
 import styles from './style.scss';
 

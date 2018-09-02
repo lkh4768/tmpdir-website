@@ -21,6 +21,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'build/'),
     filename: '[name].min.js',
+    chunkFilename: '[name].[chunkhash].chunk.js',
     publicPath: '/',
   },
   target: 'web',
@@ -53,13 +54,14 @@ module.exports = {
   },
   optimization: {
     splitChunks: configUtils.optimizationSplitChunks,
+    concatenateModules: true,
   },
   plugins: [
+    new ManifestPlugin(),
     new ExtractTextPlugin({
       filename: '[name].min.css',
       allChunks: true,
     }),
-    new ManifestPlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),

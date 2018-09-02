@@ -1,12 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  InputGroup,
-  InputGroupAddon,
-  Input,
-  Button,
-  Tooltip,
-} from 'reactstrap';
+import InputGroup from 'reactstrap/lib/InputGroup';
+import InputGroupAddon from 'reactstrap/lib/InputGroupAddon';
+import Input from 'reactstrap/lib/Input';
+import Button from 'reactstrap/lib/Button';
+import Tooltip from 'reactstrap/lib/Tooltip';
 import FaCopy from 'react-icons/lib/fa/copy';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { FormattedMessage } from 'react-intl';

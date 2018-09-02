@@ -1,17 +1,15 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import {
-  FacebookShareButton,
-  FacebookIcon,
-  TwitterShareButton,
-  TwitterIcon,
-  GooglePlusShareButton,
-  GooglePlusIcon,
-  WhatsappShareButton,
-  WhatsappIcon,
-  RedditShareButton,
-  RedditIcon,
-} from 'react-share';
+import FacebookShareButton from 'react-share/lib/FacebookShareButton';
+import FacebookIcon from 'react-share/lib/FacebookIcon';
+import TwitterShareButton from 'react-share/lib/TwitterShareButton';
+import TwitterIcon from 'react-share/lib/TwitterIcon';
+import GooglePlusShareButton from 'react-share/lib/GooglePlusShareButton';
+import GooglePlusIcon from 'react-share/lib/GooglePlusIcon';
+import WhatsappShareButton from 'react-share/lib/WhatsappShareButton';
+import WhatsappIcon from 'react-share/lib/WhatsappIcon';
+import RedditShareButton from 'react-share/lib/RedditShareButton';
+import RedditIcon from 'react-share/lib/RedditIcon';
 
 import ShareEntity from '_entities/Share';
 
