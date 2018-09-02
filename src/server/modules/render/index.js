@@ -21,6 +21,7 @@ const render = (type, lang) => {
     <html>
       <head>
       ${Config.dependency.css.map(url => Utils.makeCssNode(url)).join('')}
+      ${Utils.makeCssNode(manifest.getCssUri(type.name))}
       </head>
       <body>
         <div id="root">

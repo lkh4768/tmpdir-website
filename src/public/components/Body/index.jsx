@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Container } from 'reactstrap';
+import Container from 'reactstrap/lib/Container';
 
 import styles from './style.scss';
 

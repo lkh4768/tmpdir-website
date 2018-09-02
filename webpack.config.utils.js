@@ -19,6 +19,8 @@ module.exports = {
       _modules: path.resolve(__dirname, 'src/server/modules/'),
       _routes: path.resolve(__dirname, 'src/server/routes/'),
       _config: path.resolve(__dirname, 'src/server/config/'),
+      react: 'preact-compat',
+      'react-dom': 'preact-compat',
     },
   },
   babelClient: {
@@ -76,11 +78,13 @@ module.exports = {
     },
   },
   optimizationSplitChunks: {
+    name: false,
     cacheGroups: {
-      vendor: {
-        test: /node_modules/,
-        chunks: 'all',
+      commons: {
+        test: /[\\/]node_modules[\\/]/,
         name: 'vendor',
+        chunks: 'initial',
+        enforce: true,
       },
     },
   },

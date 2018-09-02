@@ -23,6 +23,7 @@ const config = {
   output: {
     path: path.resolve(__dirname, 'build/'),
     filename: '[name]-[hash].min.js',
+    chunkFilename: '[name].[chunkhash].chunk.js',
     publicPath: '/',
   },
   target: 'web',
@@ -59,6 +60,7 @@ const config = {
         sourceMap: true
       })
     ],
+    concatenateModules: true,
   },
   plugins: [
     new ManifestPlugin(),

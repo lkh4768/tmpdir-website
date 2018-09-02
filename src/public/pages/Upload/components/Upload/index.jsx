@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button } from 'reactstrap';
+import Button from 'reactstrap/lib/Button';
 import { FormattedMessage } from 'react-intl';
 
 import BodyRow from '_components/BodyRow';

@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { IntlProvider, addLocaleData } from 'react-intl';
 import en from 'react-intl/locale-data/en';
@@ -47,7 +47,7 @@ const Utils = {
     const messages = locale[language] || locale.en;
     addLocaleData([...en, ...ko, ...ja]);
 
-    ReactDOM.render(
+    render(
       <Provider store={store}>
         <IntlProvider locale={language} messages={messages}>
           {app}

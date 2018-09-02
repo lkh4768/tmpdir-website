@@ -15,7 +15,9 @@ const getUriInManifest = (name, extension) => {
 };
 
 const getJsUri = name => getUriInManifest(name, 'js');
+const getCssUri = name => getUriInManifest(name, 'css');
 
 export default {
   getJsUri,
+  getCssUri,
 };
