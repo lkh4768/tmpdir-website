@@ -8,15 +8,14 @@ const mode = 'development';
 module.exports = {
   mode,
   name: 'client',
-  devtool: 'eval-source-map',
   entry: {
     uploadApp: [
       'webpack-hot-middleware/client?path=http://localhost:3001/__webpack_hmr',
-      './src/public/app/Upload/index.js',
+      path.resolve(__dirname, 'src/public/app/Upload/index.js'),
     ],
     downloadApp: [
       'webpack-hot-middleware/client?path=http://localhost:3001/__webpack_hmr',
-      './src/public/app/Download/index.js',
+      path.resolve(__dirname, 'src/public/app/Download/index.js'),
     ],
   },
   output: {

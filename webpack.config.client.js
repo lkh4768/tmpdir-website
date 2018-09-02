@@ -10,15 +10,14 @@ const mode = 'production';
 const config = {
   mode,
   name: 'client',
-  devtool: 'eval-source-map',
   entry: {
     uploadApp: [
 			'babel-polyfill',
-      './src/public/app/Upload/index.js',
+      path.resolve(__dirname, 'src/public/app/Upload/index.js'),
     ],
     downloadApp: [
 			'babel-polyfill',
-      './src/public/app/Download/index.js',
+      path.resolve(__dirname, 'src/public/app/Download/index.js'),
     ],
   },
   output: {

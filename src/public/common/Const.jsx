@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaCopyright } from 'react-icons/lib/fa';
+import FaCopyright from 'react-icons/lib/fa/copyright';
 import FooterLabelEntity from '_entities/Label';
 import FooterLinkEntity from '_entities/Link';
 import ShareEntity from '_entities/Share';

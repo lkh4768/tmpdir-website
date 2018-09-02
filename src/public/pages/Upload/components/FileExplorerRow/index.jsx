@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { FaClose } from 'react-icons/lib/fa';
+import FaClose from 'react-icons/lib/fa/close';
 
 import Utils from '_common/Utils';
 
