@@ -24,7 +24,7 @@ const formDataAppendFiles = (files) => {
     formData.append(
       file.fieldName,
       fs.createReadStream(file.path),
-      { filename: file.name, contentType: file.type },
+      { filename: file.originalname, contentType: file.mimetype },
     );
   });
   return formData;
