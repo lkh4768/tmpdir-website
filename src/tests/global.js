@@ -6,11 +6,9 @@ import fs from 'fs';
 import { execSync } from 'child_process';
 import path from 'path';
 
-import getConfig from '_modules/config';
+import Config from 'config';
 
 import manifest from './manifest.json';
-
-const Config = getConfig();
 
 Enzyme.configure({ adapter: new Adapter() });
 

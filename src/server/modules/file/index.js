@@ -1,12 +1,11 @@
 import { post, get } from 'axios';
 import fs from 'fs';
 import FormData from 'form-data';
+import Config from 'config';
 
-import logger from '_modules/logger';
-import getConfig from '_modules/config';
+import ConsoleLogger from '_modules/logger';
 import Utils from '_modules/common/utils';
 
-const Config = getConfig();
 
 const reqUploadService = async (formData) => {
   const config = {
@@ -14,9 +13,9 @@ const reqUploadService = async (formData) => {
       accept: 'application/json',
       'Content-Type': `multipart/form-data; boundary=${formData.getBoundary()}`,
     },
-    maxContentLength: Config.tmpdir.file.maxSize,
+    maxContentLength: Config.get('tmpdir.file.maxSize'),
   };
-  return post(Utils.getUploadUrl(), formData, config);
+  return post(`${Utils.getUploadUrl()}/api/v1/file`, formData, config);
 };
 
 const formDataAppendFiles = (files) => {
@@ -34,18 +33,18 @@ const formDataAppendFiles = (files) => {
 const upload = async (files) => {
   if (!files) {
     const err = 'Files is null';
-    logger.error(err, 'reqUploadService failed');
+    ConsoleLogger.error(err, 'reqUploadService failed');
     return { err };
   }
-  logger.debug({ files }, 'Recv files');
-  logger.info(`Recv file count(${files.length})`);
+  ConsoleLogger.debug({ files }, 'Recv files');
+  ConsoleLogger.info(`Recv file count(${files.length})`);
   const formData = formDataAppendFiles(files);
   try {
     const res = await reqUploadService(formData);
-    logger.info({ code: res.status, data: res.data }, 'reqUploadService success');
+    ConsoleLogger.info({ code: res.status, data: res.data }, 'reqUploadService success');
     return { code: res.status, data: res.data };
   } catch (err) {
-    logger.error(err, 'reqUploadService failed');
+    ConsoleLogger.error(err, 'reqUploadService failed');
     return { err };
   }
 };
@@ -53,10 +52,10 @@ const upload = async (files) => {
 const getFileInfo = async (fileId) => {
   try {
     const res = await get(`${Utils.getDownloadUrl()}/file-info/${fileId}`);
-    logger.info({ code: res.status, data: res.data }, 'getfileInfo success');
+    ConsoleLogger.info({ code: res.status, data: res.data }, 'getfileInfo success');
     return { code: res.status, data: res.data };
   } catch (err) {
-    logger.error(err, 'getFileInfo failed');
+    ConsoleLogger.error(err, 'getFileInfo failed');
     return { err };
   }
 };
@@ -64,10 +63,10 @@ const getFileInfo = async (fileId) => {
 const download = async (fileId) => {
   try {
     const res = await get(`${Utils.getDownloadUrl()}/file/${fileId}`, { responseType: 'arraybuffer' });
-    logger.info({ code: res.status, headers: res.headers }, 'download success');
+    ConsoleLogger.info({ code: res.status, headers: res.headers }, 'download success');
     return { code: res.status, data: res.data, headers: res.headers };
   } catch (err) {
-    logger.error(err, 'download failed');
+    ConsoleLogger.error(err, 'download failed');
     return { err };
   }
 };
