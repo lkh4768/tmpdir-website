@@ -5,16 +5,15 @@ import webpackHotMiddleware from 'webpack-hot-middleware';
 import webpack from 'webpack';
 import pageRoutes from '_routes/page';
 import apiRoutes from '_routes/api';
-import getConfig from '_modules/config';
-import logger, { expressLogger } from '_modules/logger';
+import Config from 'config';
+import ConsoleLogger, { ExpressLoggerMiddleware } from '_modules/logger';
 import webpackServerConfig from '../../webpack.config.server';
 import webpackDevConfig from '../../webpack.config.dev';
 
-const Config = getConfig();
 const app = express();
 
-logger.info(process.env.NODE_ENV, 'NODE_ENV');
-logger.info(Config, 'config');
+ConsoleLogger.info(process.env.NODE_ENV, 'NODE_ENV');
+ConsoleLogger.info(Config, 'config');
 if (process.env.NODE_ENV !== 'production') {
   const multiCompiler = webpack([
     webpackServerConfig,
@@ -30,8 +29,8 @@ if (process.env.NODE_ENV !== 'production') {
 }
 app.use(express.static(path.resolve(__dirname, '../../build')));
 app.use(express.static(path.resolve(__dirname, '../../node_modules')));
-expressLogger(app);
+ExpressLoggerMiddleware.use(app);
 app.use('/', pageRoutes);
 app.use('/api', apiRoutes);
 
-app.listen(Config.server.port);
+app.listen(Config.get('server.port'));
