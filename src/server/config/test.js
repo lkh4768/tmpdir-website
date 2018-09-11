@@ -21,6 +21,7 @@ module.exports = {
     file: {
       expireTermDay: 1,
       maxSize: 1000 * 1000 * 1000,
+      tempPath: '/tmp',
     },
   },
   log: {
