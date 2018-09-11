@@ -35,5 +35,5 @@ module.exports = {
   dependency: {
     css: ['bootstrap/dist/css/bootstrap.min.css'],
   },
-  manifest: path.resolve(__dirname, '../../tests/manifest.json'),
+  manifest: path.resolve(__dirname, '../../test/manifest.json'),
 };

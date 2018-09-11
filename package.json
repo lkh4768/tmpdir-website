@@ -11,62 +11,9 @@
     "build:prd": "webpack --config webpack.config.client.js --progress --profile --colors && webpack --config webpack.config.server.js --progress --profile --colors",
     "all:prd": "npm run clean && npm run build:prd && npm run start:prd",
     "all:dev": "npm run clean && npm run build:dev && npm run start:dev",
-    "test": "NODE_ENV=test NODE_CONFIG_DIR=./src/server/config jest",
-    "test:coverage": "NODE_ENV=test NODE_CONFIG_DIR=./src/server/config jest --coverage",
+    "test": "NODE_ENV=test NODE_CONFIG_DIR=./src/server/config jest --config=src/test/config.js",
+    "test:coverage": "NODE_ENV=test NODE_CONFIG_DIR=./src/server/config jest --config=src/test/config.js --coverage",
     "analyzer:prd": "npm run clean && npm run build:prd && rm -rf stats.json && webpack --config webpack.config.client.js --profile --json > stats.json && webpack-bundle-analyzer stats.json build -h 0.0.0.0"
-  },
-  "jest": {
-    "verbose": true,
-    "globals": {
-      "NODE_ENV": "test"
-    },
-    "transform": {
-      "^.+\\.(js|jsx)$": "babel-jest",
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga|ico)$": "<rootDir>/script/staticTransformer.js"
-    },
-    "moduleFileExtensions": [
-      "js",
-      "jsx"
-    ],
-    "setupFiles": [
-      "<rootDir>/src/tests/global.js"
-    ],
-    "modulePathIgnorePatterns": [
-      "app.js",
-      "global.js",
-      "config/test.js"
-    ],
-    "testPathIgnorePatterns": [
-      "<rootDir>/src/server/config",
-      "<rootDir>/src/server/routes",
-      "<rootDir>/src/tests"
-    ],
-    "coveragePathIgnorePatterns": [
-      "<rootDir>/src/server/config",
-      "<rootDir>/src/server/routes",
-      "<rootDir>/src/tests"
-    ],
-    "moduleNameMapper": {
-      "^_tests(.*)$": "<rootDir>/src/tests/$1",
-      "^_components/(.*)$": "<rootDir>/src/public/components/$1",
-      "^_containers/(.*)$": "<rootDir>/src/public/containers/$1",
-      "^_common/(.*)$": "<rootDir>/src/public/common/$1",
-      "^_static/(.*)$": "<rootDir>/src/public/static/$1",
-      "^_entities/(.*)$": "<rootDir>/src/public/entities/$1",
-      "^_data/(.*)$": "<rootDir>/src/public/data/$1",
-      "^_app/(.*)$": "<rootDir>/src/public/app/$1",
-      "^_pages/(.*)$": "<rootDir>/src/public/pages/$1",
-      "^_modules/(.*)$": "<rootDir>/src/server/modules/$1",
-      "^_routes/(.*)$": "<rootDir>/src/server/routes/$1",
-      "^_config/(.*)$": "<rootDir>/src/server/config/$1",
-      "\\.(css|scss)$": "identity-obj-proxy"
-    },
-    "coverageDirectory": "./reports/coverage",
-    "reporters": [
-      "default",
-      "jest-junit"
-    ],
-    "testResultsProcessor": "jest-junit"
   },
   "jest-junit": {
     "output": "./reports/junit.xml"
