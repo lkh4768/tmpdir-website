@@ -1,4 +1,4 @@
-import getConfig from '_modules/config';
+import Config from 'config';
 
 const makeCssNode = url => `<link type="text/css" rel="stylesheet" href="${url}">`;
 const makeJsNode = url => `<script src="${url}"></script>`;
@@ -10,8 +10,7 @@ const getLangInAcceptLangHeader = (acceptLang) => {
 };
 const stringifyState = state => JSON.stringify(state).replace(/</g, '\\x3c');
 const getExternalServiceUrl = (serviceType) => {
-  const Config = getConfig();
-  const externalServiceConfig = Config.tmpdir.service[serviceType];
+  const externalServiceConfig = Config.get(`tmpdir.service.${serviceType}`);
   if (externalServiceConfig) {
     return getUrl(
       externalServiceConfig.hostname,
