@@ -1,14 +1,15 @@
 import express from 'express';
-import multipart from 'connect-multiparty';
+import multer from 'multer';
 import Config from 'config';
 
 import ConsoleLogger from '_modules/logger';
 import File from '_modules/file';
 
 const router = express.Router();
-const multipartMiddleware = multipart({ maxFilesSize: Config.get('tmpdir.file.maxSize') });
+const upload = multer({ dest: Config.get('tmpdir.file.tempPath'), limits: { fileSize: Config.get('tmpdir.file.maxSize') } });
 
-router.post('/', multipartMiddleware, async (req, res) => {
+router.post('/', upload.any(), async (req, res) => {
+  console.log('req.files: ', req.files);
   const { err, code, data } = await File.upload(Object.keys(req.files).map(key => req.files[key]));
   if (err) {
     if (!err.response) {
