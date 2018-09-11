@@ -1,16 +1,15 @@
-import logger from '_modules/logger';
-import getConfig from '_modules/config';
 import fs from 'fs';
+import Config from 'config';
+import ConsoleLogger from '_modules/logger';
 
-const Config = getConfig();
-const manifest = JSON.parse(fs.readFileSync(Config.manifest));
+const manifest = JSON.parse(fs.readFileSync(Config.get('manifest')));
 
 const getUriInManifest = (name, extension) => {
   let uri = '';
   if (name) {
     uri = manifest[[name, `.${extension}`].join('')];
   }
-  logger.info(`${extension} file of ${name} is ${uri}`);
+  ConsoleLogger.info(`${extension} file of ${name} is ${uri}`);
   return uri;
 };
 

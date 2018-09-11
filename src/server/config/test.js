@@ -1,6 +1,6 @@
-import path from 'path';
+const path = require('path');
 
-const Config = {
+module.exports = {
   name: 'tmpdir-test',
   server: {
     port: 3001,
@@ -24,12 +24,16 @@ const Config = {
     },
   },
   log: {
-    level: 'debug',
+    path: path.resolve(__dirname, '../../../logs'),
+    filename: 'tmpdir-website-test',
+    level: {
+      console: 'debug',
+      express: 'info',
+    },
+    fileDateFormat: '%Y%m%d%H',
   },
   dependency: {
     css: ['bootstrap/dist/css/bootstrap.min.css'],
   },
   manifest: path.resolve(__dirname, '../../tests/manifest.json'),
 };
-
-export default Config;

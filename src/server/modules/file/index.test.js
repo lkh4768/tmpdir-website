@@ -1,17 +1,16 @@
 import fs from 'fs';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
+import Config from 'config';
 
 import Utils from '_modules/common/utils';
-import getConfig from '_modules/config';
 import file from './index.js';
 
-const Config = getConfig();
 const mock = new MockAdapter(axios);
-const uploadConfig = Config.tmpdir.service.upload;
+const uploadConfig = Config.get('tmpdir.service.upload');
 const uploadServiceUrl = Utils.getUrl(uploadConfig.hostname, uploadConfig.protocol, uploadConfig.port);
 
-mock.onPost(uploadServiceUrl).reply((config) => {
+mock.onPost(`${uploadServiceUrl}/api/v1/file`).reply((config) => {
   if (config.data._streams.length <= 0) {
     return [404, {}];
   }
