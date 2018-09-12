@@ -28,8 +28,8 @@ module.exports = {
     path: path.resolve(__dirname, '../../logs'),
     filename: 'tmpdir-website-dev',
     level: {
-      console: 'debug', 
-      express: 'info',
+      console: 'debug',
+      express: 'error',
     },
     fileDateFormat: '%Y%m%d%H',
   },
