@@ -8,8 +8,7 @@ import File from '_modules/file';
 const router = express.Router();
 const upload = multer({ dest: Config.get('tmpdir.file.tempPath'), limits: { fileSize: Config.get('tmpdir.file.maxSize') } });
 
-router.post('/', upload.any(), async (req, res) => {
-  console.log('req.files: ', req.files);
+router.post('/', upload.array('file'), async (req, res) => {
   const { err, code, data } = await File.upload(Object.keys(req.files).map(key => req.files[key]));
   if (err) {
     if (!err.response) {

@@ -75,7 +75,7 @@ const downloadFileFailure = error => ({
 const reqUploadFilesImpl = (files, onUploadProgress = Utils.emptyFunc) => {
   const url = Const.API_URL.FILE;
   const formData = new FormData();
-  files.forEach((file, i) => formData.append(['file', i].join(''), file));
+  files.forEach(file => formData.append('file', file));
   const config = {
     headers: {
       'content-type': 'multipart/form-data',
