@@ -22,7 +22,7 @@ const formDataAppendFiles = (files) => {
   const formData = new FormData();
   files.forEach((file) => {
     formData.append(
-      file.fieldName,
+      file.fieldname,
       fs.createReadStream(file.path),
       { filename: file.originalname, contentType: file.mimetype },
     );

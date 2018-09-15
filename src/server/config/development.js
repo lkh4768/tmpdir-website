@@ -9,8 +9,8 @@ module.exports = {
     service: {
       upload: {
         protocol: 'http',
-        hostname: 'dev-tmpdir-fileupload.run.goorm.io',
-        port: 80,
+        hostname: 'localhost',
+        port: 6000,
       },
       download: {
         protocol: 'http',
