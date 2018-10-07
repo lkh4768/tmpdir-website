@@ -3,13 +3,13 @@ const path = require('path');
 module.exports = {
   name: 'tmpdir-dev',
   server: {
-    port: 3001,
+    port: 443,
   },
   tmpdir: {
     service: {
       upload: {
         protocol: 'http',
-        hostname: 'localhost',
+        hostname: 'dev.sw-warehouse.xyz',
         port: 6000,
       },
       download: {
