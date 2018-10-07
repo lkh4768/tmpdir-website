@@ -4,6 +4,10 @@ module.exports = {
   name: 'tmpdir-dev',
   server: {
     port: 443,
+    ssl: {
+      key: path.resolve(__dirname, '../../certs/server.key'),
+      cert: path.resolve(__dirname, '../../certs/server.cert'),
+    },
   },
   tmpdir: {
     service: {
