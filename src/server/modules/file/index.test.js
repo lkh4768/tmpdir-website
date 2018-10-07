@@ -62,9 +62,9 @@ describe('files', () => {
     expect(code).toBeUndefined();
     expect(data).toBeUndefined();
   });
-  
+
   it('download, default Success', async () => {
-    const { err, code, data, headers } = await file.download(T_FILE_ID);
+    const { err, code, headers } = await file.download(T_FILE_ID);
     expect(err).toBeUndefined();
     expect(code).toEqual(200);
     expect(headers).not.toBeUndefined();
