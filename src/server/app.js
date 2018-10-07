@@ -35,7 +35,13 @@ ExpressLoggerMiddleware.use(app);
 app.use('/', pageRoutes);
 app.use('/api', apiRoutes);
 
-https.createServer({
+let ssl = {
   key: fs.readFileSync(Config.get('server.ssl.key')),
   cert: fs.readFileSync(Config.get('server.ssl.cert')),
-}, app).listen(Config.get('server.port'));
+};
+
+if (Config.get('server.ssl.ca')) {
+  ssl.ca = fs.readFileSync(Config.get('server.ssl.ca'));
+}
+
+https.createServer(ssl, app).listen(Config.get('server.port'));
