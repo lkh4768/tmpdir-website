@@ -35,12 +35,12 @@ ExpressLoggerMiddleware.use(app);
 app.use('/', pageRoutes);
 app.use('/api', apiRoutes);
 
-let ssl = {
+const ssl = {
   key: fs.readFileSync(Config.get('server.ssl.key')),
   cert: fs.readFileSync(Config.get('server.ssl.cert')),
 };
 
-if (Config.get('server.ssl.ca')) {
+if (Config.has('server.ssl.ca')) {
   ssl.ca = fs.readFileSync(Config.get('server.ssl.ca'));
 }
 
