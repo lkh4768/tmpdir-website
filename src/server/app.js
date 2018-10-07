@@ -1,11 +1,13 @@
 import express from 'express';
 import path from 'path';
+import fs from 'fs';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import webpack from 'webpack';
+import Config from 'config';
+import https from 'https';
 import pageRoutes from '_routes/page';
 import apiRoutes from '_routes/api';
-import Config from 'config';
 import ConsoleLogger, { ExpressLoggerMiddleware } from '_modules/logger';
 import webpackServerConfig from '../../webpack.config.server';
 import webpackDevConfig from '../../webpack.config.dev';
@@ -33,4 +35,7 @@ ExpressLoggerMiddleware.use(app);
 app.use('/', pageRoutes);
 app.use('/api', apiRoutes);
 
-app.listen(Config.get('server.port'));
+https.createServer({
+  key: fs.readFileSync(Config.get('server.ssl.key')),
+  cert: fs.readFileSync(Config.get('server.ssl.cert')),
+}, app).listen(Config.get('server.port'));
