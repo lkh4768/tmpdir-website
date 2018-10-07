@@ -4,6 +4,11 @@ module.exports = {
   name: 'tmpdir-website',
   server: {
     port: 443,
+    ssl: {
+      key: path.resolve(__dirname, '../../certs/dev.sw-warehouse.xyz/privkey.pem'),
+      cert: path.resolve(__dirname, '../../certs/dev.sw-warehouse.xyz/cert.pem'),
+      ca: path.resolve(__dirname, '../../certs/dev.sw-warehouse.xyz/chain.pem'),
+    },
   },
   tmpdir: {
     service: {
