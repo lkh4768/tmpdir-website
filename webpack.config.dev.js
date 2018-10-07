@@ -10,11 +10,11 @@ module.exports = {
   name: 'client',
   entry: {
     uploadApp: [
-      'webpack-hot-middleware/client?path=http://localhost:3001/__webpack_hmr',
+      'webpack-hot-middleware/client?path=https://localhost/__webpack_hmr',
       path.resolve(__dirname, 'src/public/app/Upload/index.js'),
     ],
     downloadApp: [
-      'webpack-hot-middleware/client?path=http://localhost:3001/__webpack_hmr',
+      'webpack-hot-middleware/client?path=https://localhost/__webpack_hmr',
       path.resolve(__dirname, 'src/public/app/Download/index.js'),
     ],
   },
