@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  name: 'tmpdir-dev',
+  name: 'tmpdir-website-stage',
   server: {
     port: 443,
   },
@@ -9,13 +9,13 @@ module.exports = {
     service: {
       upload: {
         protocol: 'http',
-        hostname: 'dev.sw-warehouse.xyz',
+        hostname: 'tmpdir-fileupload-1.0.0-stage',
         port: 6000,
       },
       download: {
         protocol: 'http',
-        hostname: 'dev-tmpdir-filedownload.run.goorm.io',
-        port: 80,
+        hostname: 'tmpdir-filedownload-0.0.1-stage',
+        port: 6001,
       },
     },
     file: {
@@ -24,11 +24,14 @@ module.exports = {
       tempPath: '/tmp',
     },
   },
+  db: {
+    url: 'mongodb://tmpdir:09WESdlatlwjwkdth@tmpdir-mongo-stage:27017/TMP_DIR',
+  },
   log: {
-    path: path.resolve(__dirname, '../../logs'),
-    filename: 'tmpdir-website-dev',
+    path: '/logs/',
+    filename: 'tmpdir-website-stage',
     level: {
-      console: 'debug',
+      console: 'error',
       express: 'error',
     },
     fileDateFormat: '%Y%m%d%H',

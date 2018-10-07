@@ -1,21 +1,21 @@
 const path = require('path');
 
 module.exports = {
-  name: 'tmpdir-prd',
+  name: 'tmpdir-website',
   server: {
-    port: 3000,
+    port: 443,
   },
   tmpdir: {
     service: {
       upload: {
         protocol: 'http',
-        hostname: 'tmpdir-fileupload-0.0.1-prd',
+        hostname: 'tmpdir-fileupload-1.0.0-prd',
         port: 6000,
       },
       download: {
         protocol: 'http',
         hostname: 'tmpdir-filedownload-0.0.1-prd',
-        port: 6000,
+        port: 6001,
       },
     },
     file: {
@@ -24,12 +24,15 @@ module.exports = {
       tempPath: '/tmp',
     },
   },
+  db: {
+    url: 'mongodb://tmpdir:09WESdlatlwjwkdth@tmpdir-mongo-prd:27017/TMP_DIR',
+  },
   log: {
-    path: path.resolve(__dirname, '../../logs'),
+    path: '/logs/',
     filename: 'tmpdir-website',
     level: {
-      console: 'info', 
-      express: 'info',
+      console: 'error',
+      express: 'error',
     },
     fileDateFormat: '%Y%m%d%H',
   },
