@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start:prd": "NODE_ENV=production NODE_CONFIG_DIR=./build/config node build/app.js",
+    "start:stage": "NODE_ENV=stage NODE_CONFIG_DIR=./build/config node build/app.js",
     "start:dev": "NODE_ENV=development NODE_CONFIG_DIR=./build/config node build/app.js",
     "clean": "rm -rf build",
     "build:dev": "webpack --config webpack.config.dev.js --progress --profile --colors && NODE_ENV=development webpack --config webpack.config.server.js --progress --profile --colors",

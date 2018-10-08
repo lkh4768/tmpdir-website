@@ -3,7 +3,7 @@ const nodeExternals = require('webpack-node-externals');
 const configUtils = require('./webpack.config.utils.js');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-const mode = process.env.NODE_ENV && process.env.NODE_ENV === 'development' ? 'development' : 'production';
+const mode = process.env.NODE_ENV ? process.env.NODE_ENV === 'development' ? 'development' : 'production';
 
 const config = {
   mode,
@@ -58,8 +58,8 @@ const config = {
   },
   plugins: [
     new CopyWebpackPlugin([{
-      from: path.resolve(__dirname, `src/server/config/${mode}.js`),
-      to: path.resolve(__dirname, `build/config/${mode}.js`),
+      from: path.resolve(__dirname, `src/server/config/${process.env.NODE_ENV}.js`),
+      to: path.resolve(__dirname, `build/config/${process.env.NODE_ENV}.js`),
       toType: 'file',
     },
     {
