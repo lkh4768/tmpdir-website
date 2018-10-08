@@ -5,7 +5,7 @@ COPY build/config /config
 COPY build /build
 COPY script/docker/docker-entrypoint.sh /docker-entrypoint.sh
 RUN mkdir -p /app/build/config /applog /storage \
-	&& mv -f /build /app/ \
+	&& mv /build/* /app/build/ \
   && mv /package.json /app/ \
   && chmod +x /docker-entrypoint.sh
 
