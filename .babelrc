@@ -15,11 +15,13 @@
       "presets": [
         "es2015",
         "react",
-        "env",
-        {
-          "useBuiltIns": true,
-          "targets": { "browsers": ["last 2 versions", "safari > 8", "not ie < 11"] }
-        }
+        [
+          "env",
+          {
+            "useBuiltIns": true,
+            "targets": { "browsers": ["last 2 versions", "safari > 8", "not ie < 11"] }
+          }
+        ]
       ],
       "plugins": ["transform-object-rest-spread"]
     }

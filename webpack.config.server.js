@@ -61,7 +61,7 @@ const config = {
       from: path.resolve(__dirname, 'src/server/config'),
       to: path.resolve(__dirname, 'build/config'),
       toType: 'dir',
-    },
+    }]),
   ],
 };
 
