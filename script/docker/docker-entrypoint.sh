@@ -35,11 +35,14 @@ then
 fi
 
 echo "Copy $CONFIG_NAME.js"
+if [ ! -f /app/build/config/common.js ]; then
+	cp -f /config/common.js /app/build/config/common.js
+fi
 if [ ! -f /app/build/config/$CONFIG_NAME.js ]; then
 	cp -f /config/$CONFIG_NAME.js /app/build/config/$CONFIG_NAME.js
 fi
 
 echo "NPM Install Production"
-cd /app/ && npm install --production
+cd /app/ && npm install
 
 exec "$@"

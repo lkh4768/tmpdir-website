@@ -4,6 +4,11 @@ module.exports = {
   name: 'tmpdir-website',
   server: {
     port: 443,
+    ssl: {
+      key: path.resolve(__dirname, '../../certs/tmpdir.sw-warehouse.xyz/privkey.pem'),
+      cert: path.resolve(__dirname, '../../certs/tmpdir.sw-warehouse.xyz/cert.pem'),
+      ca: path.resolve(__dirname, '../../certs/tmpdir.sw-warehouse.xyz/chain.pem'),
+    },
   },
   tmpdir: {
     service: {
@@ -36,8 +41,6 @@ module.exports = {
     },
     fileDateFormat: '%Y%m%d%H',
   },
-  dependency: {
-    css: ['bootstrap/dist/css/bootstrap.min.css'],
-  },
+  dependency: common.dependency,
   manifest: path.resolve(__dirname, '../../build/manifest.json'),
 };

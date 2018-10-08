@@ -1,15 +1,15 @@
 FROM node:10.10.0
 
 COPY package.json /package.json
-COPY build/config /build/config
-COPY build/* /build/*
+COPY build/config /config
+COPY build /build
 COPY script/docker/docker-entrypoint.sh /docker-entrypoint.sh
-RUN mkdir -p /app/build /applog /storage \
-	&& mv -rf /build /app/ \
+RUN mkdir -p /app/build/config /applog /storage \
+	&& mv /build/* /app/build/ \
   && mv /package.json /app/ \
   && chmod +x /docker-entrypoint.sh
 
-VOLUME ["/app/build/config", "/applog", "/storage"]
+VOLUME ["/app/build/config", "/app/certs", "/applog", "/storage"]
 EXPOSE 443
 
 ENTRYPOINT ["/docker-entrypoint.sh"]

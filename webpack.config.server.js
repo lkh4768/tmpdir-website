@@ -7,6 +7,9 @@ const mode = process.env.NODE_ENV && process.env.NODE_ENV === 'development' ? 'd
 
 const config = {
   mode,
+  stats: {
+    warnings: mode === 'production',
+  },
   name: 'server',
   entry: {
     app: path.resolve(__dirname, 'src/server/app.js'),
@@ -58,9 +61,9 @@ const config = {
   },
   plugins: [
     new CopyWebpackPlugin([{
-      from: path.resolve(__dirname, `src/server/config/${mode}.js`),
-      to: path.resolve(__dirname, `build/config/${mode}.js`),
-      toType: 'file',
+      from: path.resolve(__dirname, 'src/server/config'),
+      to: path.resolve(__dirname, 'build/config'),
+      toType: 'dir',
     }]),
   ],
 };

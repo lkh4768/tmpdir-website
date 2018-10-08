@@ -1,4 +1,5 @@
 const path = require('path');
+const common = require('./common.js');
 
 module.exports = {
   name: 'tmpdir-test',
@@ -18,11 +19,7 @@ module.exports = {
         port: 6001,
       },
     },
-    file: {
-      expireTermDay: 1,
-      maxSize: 1000 * 1000 * 1000,
-      tempPath: '/tmp',
-    },
+    file: common.file,
   },
   log: {
     path: path.resolve(__dirname, '../../../logs'),
@@ -33,8 +30,6 @@ module.exports = {
     },
     fileDateFormat: '%Y%m%d%H',
   },
-  dependency: {
-    css: ['bootstrap/dist/css/bootstrap.min.css'],
-  },
+  dependency: common.dependency,
   manifest: path.resolve(__dirname, '../../test/manifest.json'),
 };

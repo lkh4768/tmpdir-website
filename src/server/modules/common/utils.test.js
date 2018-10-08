@@ -55,7 +55,11 @@ describe('utils', () => {
     expect(Utils.getLangInAcceptLangHeader(T_ACCEPT_LANG.TYPE.EN_US))
       .not.toEqual(T_ACCEPT_LANG.TYPE.EN_US);
   });
-  it(`getLangInAcceptLangHeader, accept-languag: ${T_MULTI_ACCEPT_LANGS([T_ACCEPT_LANG.TYPE.EN_US, T_ACCEPT_LANG.TYPE.EN, T_ACCEPT_LANG.TYPE.ES])} Success`, () => {
+  it([
+    'getLangInAcceptLangHeader, accept-languag: ',
+    T_MULTI_ACCEPT_LANGS([T_ACCEPT_LANG.TYPE.EN_US, T_ACCEPT_LANG.TYPE.EN, T_ACCEPT_LANG.TYPE.ES]),
+    ' Success'
+  ].join(''), () => {
     expect(Utils.getLangInAcceptLangHeader(T_ACCEPT_LANG.TYPE.EN_US))
       .toEqual(T_ACCEPT_LANG.TYPE.EN);
     expect(Utils.getLangInAcceptLangHeader(T_ACCEPT_LANG.TYPE.EN_US))
