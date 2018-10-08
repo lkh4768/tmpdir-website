@@ -52,7 +52,7 @@ node {
       stage "Publish image"
         STAGE = "Publish image"
         nodejs('nodejs10') {
-          sh 'npm run build'
+          sh 'npm run build:prd'
         }
 				withDockerRegistry([credentialsId: 'registry', url: 'https://dev.sw-warehouse.xyz:1450']) {
 					def image = docker.build("$REGISTRY_HOST/$IMAGE_NAME")
