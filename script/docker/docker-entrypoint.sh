@@ -37,6 +37,7 @@ fi
 echo "Copy $CONFIG_NAME.js"
 if [ ! -f /app/build/config/$CONFIG_NAME.js ]; then
 	cp -f /config/$CONFIG_NAME.js /app/build/config/$CONFIG_NAME.js
+	cp -f /config/common.js /app/build/config/common.js
 fi
 
 ls -al /app/build/
