@@ -34,9 +34,6 @@ then
   CONFIG_NAME="stage"
 fi
 
-ls -al /config
-cat /config/stage.js
-
 echo "Copy $CONFIG_NAME.js"
 if [ ! -f /app/build/config/common.js ]; then
 	cp -f /config/common.js /app/build/config/common.js
