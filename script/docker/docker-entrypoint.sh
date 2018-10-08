@@ -43,6 +43,6 @@ if [ ! -f /app/build/config/$CONFIG_NAME.js ]; then
 fi
 
 echo "NPM Install Production"
-cd /app/ && npm install --production
+cd /app/ && npm install
 
 exec "$@"
