@@ -1,4 +1,5 @@
 const path = require('path');
+const common = require('./common.js');
 
 module.exports = {
   name: 'tmpdir-website',
