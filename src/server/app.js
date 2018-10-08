@@ -16,7 +16,7 @@ const app = express();
 
 ConsoleLogger.info(process.env.NODE_ENV, 'NODE_ENV');
 ConsoleLogger.info(Config, 'config');
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV === 'development') {
   const multiCompiler = webpack([
     webpackServerConfig,
     webpackDevConfig,
