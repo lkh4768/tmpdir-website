@@ -41,7 +41,7 @@ module.exports = {
       importLoaders: 1,
       minimize: true,
       modules: true,
-      localIdentName: mode === 'production' ? '[sha1:hash:hex:4]' : '[path][name]__[local]--[hash:base64:5]',
+      localIdentName: mode === 'production' || mode === 'stage' ? '[sha1:hash:hex:4]' : '[path][name]__[local]--[hash:base64:5]',
     },
   }),
   postCssLoader: {
