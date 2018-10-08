@@ -9,7 +9,7 @@ RUN mkdir -p /app/build/config /applog /storage \
   && mv /package.json /app/ \
   && chmod +x /docker-entrypoint.sh
 
-VOLUME ["/app/build/config", "/applog", "/storage"]
+VOLUME ["/app/build/config", "/app/certs", "/applog", "/storage"]
 EXPOSE 443
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
