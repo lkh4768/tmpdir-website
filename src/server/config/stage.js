@@ -1,4 +1,5 @@
 const path = require('path');
+const common = require('./common.js');
 
 module.exports = {
   name: 'tmpdir-website-stage',
@@ -23,11 +24,7 @@ module.exports = {
         port: 6001,
       },
     },
-    file: {
-      expireTermDay: 1,
-      maxSize: 1000 * 1000 * 1000,
-      tempPath: '/tmp',
-    },
+    file: common.file,
   },
   db: {
     url: 'mongodb://tmpdir:09WESdlatlwjwkdth@tmpdir-mongo-stage:27017/TMP_DIR',
@@ -41,8 +38,6 @@ module.exports = {
     },
     fileDateFormat: '%Y%m%d%H',
   },
-  dependency: {
-    css: ['bootstrap/dist/css/bootstrap.min.css'],
-  },
+  dependency: common.dependency,
   manifest: path.resolve(__dirname, '../../build/manifest.json'),
 };

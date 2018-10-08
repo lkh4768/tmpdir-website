@@ -41,21 +41,21 @@ describe('files', () => {
     expect(code).toBeUndefined();
     expect(data).toBeUndefined();
   });
-  
+
   it('upload, null files Failure', async () => {
     const { err, code, data } = await file.upload(null);
     expect(typeof err === 'string').toBeTruthy();
     expect(code).toBeUndefined();
     expect(data).toBeUndefined();
   });
-  
+
   it('getFileInfo, default Success', async () => {
     const { err, code, data } = await file.getFileInfo(T_FILE_ID);
     expect(err).toBeUndefined();
     expect(code).toEqual(200);
     expect(data.id).toEqual(T_FILE_ID);
   });
-  
+
   it('getFileInfo, invalid fileId Failed', async () => {
     const { err, code, data } = await file.getFileInfo('');
     expect(err.response.status).toEqual(400);
@@ -70,7 +70,7 @@ describe('files', () => {
     expect(headers).not.toBeUndefined();
     expect(headers).not.toBeNull();
   });
-  
+
   it('download, invalid fileId Failed', async () => {
     const { err, code, data } = await file.download('');
     expect(err.response.status).toEqual(400);
