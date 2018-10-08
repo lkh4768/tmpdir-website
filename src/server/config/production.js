@@ -1,13 +1,14 @@
 const path = require('path');
+const common = require('./common.js');
 
 module.exports = {
   name: 'tmpdir-website',
   server: {
     port: 443,
     ssl: {
-      key: path.resolve(__dirname, '../../certs/tmpdir.sw-warehouse.xyz/privkey.pem'),
-      cert: path.resolve(__dirname, '../../certs/tmpdir.sw-warehouse.xyz/cert.pem'),
-      ca: path.resolve(__dirname, '../../certs/tmpdir.sw-warehouse.xyz/chain.pem'),
+      key: path.resolve(__dirname, '../../certs/live/tmpdir.sw-warehouse.xyz/privkey.pem'),
+      cert: path.resolve(__dirname, '../../certs/live/tmpdir.sw-warehouse.xyz/cert.pem'),
+      ca: path.resolve(__dirname, '../../certs/live/tmpdir.sw-warehouse.xyz/chain.pem'),
     },
   },
   tmpdir: {
