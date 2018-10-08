@@ -8,6 +8,9 @@ const configUtils = require('./webpack.config.utils.js');
 const mode = 'production';
 const config = {
   mode,
+  stats: {
+    warnings: false,
+  },
   name: 'client',
   entry: {
     uploadApp: [
