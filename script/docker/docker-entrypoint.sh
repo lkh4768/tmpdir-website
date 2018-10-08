@@ -34,18 +34,15 @@ then
   CONFIG_NAME="stage"
 fi
 
-ls -al /
-ls -al /app
-ls -al /app/build/
-ls -al /app/build/config
-cat /app/build/config/stage.js
+ls -al /config
+cat /config/stage.js
 
 echo "Copy $CONFIG_NAME.js"
 if [ ! -f /app/build/config/common.js ]; then
-	cp -f /build/config/common.js /app/build/config/common.js
+	cp -f /config/common.js /app/build/config/common.js
 fi
 if [ ! -f /app/build/config/$CONFIG_NAME.js ]; then
-	cp -f /build/config/$CONFIG_NAME.js /app/build/config/$CONFIG_NAME.js
+	cp -f /config/$CONFIG_NAME.js /app/build/config/$CONFIG_NAME.js
 fi
 
 echo "NPM Install Production"
