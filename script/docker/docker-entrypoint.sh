@@ -39,6 +39,8 @@ if [ ! -f /app/build/config/$CONFIG_NAME.js ]; then
 	cp -f /config/$CONFIG_NAME.js /app/build/config/$CONFIG_NAME.js
 fi
 
+ls -al /app
+
 echo "NPM Install Production"
 cd /app/ && npm install --production
 
