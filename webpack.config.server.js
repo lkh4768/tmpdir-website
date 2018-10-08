@@ -7,6 +7,9 @@ const mode = process.env.NODE_ENV && process.env.NODE_ENV === 'development' ? 'd
 
 const config = {
   mode,
+  stats: {
+    warnings: mode === 'production',
+  },
   name: 'server',
   entry: {
     app: path.resolve(__dirname, 'src/server/app.js'),
