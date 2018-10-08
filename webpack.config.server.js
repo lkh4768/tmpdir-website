@@ -61,6 +61,11 @@ const config = {
       from: path.resolve(__dirname, `src/server/config/${mode}.js`),
       to: path.resolve(__dirname, `build/config/${mode}.js`),
       toType: 'file',
+    },
+    {
+      from: path.resolve(__dirname, 'src/server/config/common.js'),
+      to: path.resolve(__dirname, 'build/config/common.js'),
+      toType: 'file',
     }]),
   ],
 };
