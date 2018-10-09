@@ -34,7 +34,7 @@ module.exports = {
     url: 'mongodb://tmpdir:09WESdlatlwjwkdth@tmpdir-mongo-prd:27017/TMP_DIR',
   },
   log: {
-    path: '/logs/',
+    path: '/applog/',
     filename: 'tmpdir-website',
     level: {
       console: 'error',
