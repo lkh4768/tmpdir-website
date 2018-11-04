@@ -6,9 +6,9 @@ module.exports = {
   server: {
     port: 443,
     ssl: {
-      key: path.resolve(__dirname, '../../certs/live/dev.sw-warehouse.xyz/privkey.pem'),
-      cert: path.resolve(__dirname, '../../certs/live/dev.sw-warehouse.xyz/cert.pem'),
-      ca: path.resolve(__dirname, '../../certs/live/dev.sw-warehouse.xyz/chain.pem'),
+      key: path.resolve(__dirname, '../../certs/live/dev.sw2h.xyz/privkey.pem'),
+      cert: path.resolve(__dirname, '../../certs/live/dev.sw2h.xyz/cert.pem'),
+      ca: path.resolve(__dirname, '../../certs/live/dev.sw2h.xyz/chain.pem'),
     },
   },
   tmpdir: {

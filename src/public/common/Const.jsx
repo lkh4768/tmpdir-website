@@ -8,14 +8,14 @@ import LogoImg from '_static/images/logo_72w.png';
 
 const tmpdir = {
   name: 'tmpdir',
-  url: 'https://tmpdir.sw-warehouse.xyz',
+  url: 'https://tmpdir.sw2h.xyz',
   logo: LogoImg,
   version: 'Beta',
 };
 
 const owner = {
   email: 'lkh5510@gmail.com',
-  blog: 'http://sw-warehouse.xyz',
+  blog: 'http://sw2h.xyz',
 };
 
 const Const = {
