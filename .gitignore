@@ -30,3 +30,6 @@ reports
 .gradle
 .project
 .settings/
+
+## APP ##
+src/server/config/production.js
