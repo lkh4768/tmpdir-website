@@ -33,3 +33,4 @@ reports
 
 ## APP ##
 src/server/config/production.js
+src/server/config/stage.js

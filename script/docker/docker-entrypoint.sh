@@ -22,7 +22,6 @@ file_env() {
   export "$var"="$val"
   unset "$fileVar"
 }
-
 echo "NPM Install Production"
 cd /app/ && npm install
 
