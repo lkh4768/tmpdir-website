@@ -1,0 +1,165 @@
+.logo {
+  font-family: 'Russo One', sans-serif;
+  color: #000;
+}
+
+.logo:hover{
+  text-decoration: none;
+  color: #000;
+}
+
+.title {
+  font-size: 5em;
+  padding-left: 20px;
+  vertical-align: middle;
+}
+
+.version{
+  font-size: 2em;
+  vertical-align: bottom;
+}
+
+.social-btn, .social-btns {
+  display: inline-block;
+  float: right;
+  color: white;
+}
+
+.social-btns * {
+  vertical-align: middle;
+}
+
+.social-btn {
+  padding-left: 5px;
+}
+
+.upload-btn-col {
+  padding-bottom: 15px;
+}
+
+#upload-btn {
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.file-explorer-col {
+  padding-bottom: 10px;
+}
+
+.file-explorer {
+  border: 0px;
+}
+
+.file-explorer-body {
+  height: 250px;
+  border: 0px;
+  background-color: #ECF0F1;
+  padding: 0px;
+}
+
+.scrollable {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+.scrollable::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 4px;
+}
+
+.scrollable::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background-color: lightgray;
+  -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .75);
+}
+
+.file-explorer-item {
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  border-bottom: solid 1px #BDC3C7;
+  padding: 15px;
+  background-color: inherit;
+  color: black;
+  min-height: 40px;
+}
+
+.file-explorer-item:last-child{
+  margin-bottom: 50px;
+}
+
+.file-explorer-item *{
+  font-weight: normal;
+}
+
+.dz-message{
+  display: table;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+}
+
+.dz-message > span{
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.file-explorer-footer {
+  border: 0px;
+  background-color: #F1C40F;
+}
+
+.file-explorer-footer * {
+  border: 0px;
+  background-color: inherit;
+  color: black;
+  padding: 0px;
+  font-weight: 500;
+}
+
+.file-remove-btn, #reset-btn{
+  cursor: pointer;
+}
+
+.overlay {
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: none;
+  z-index: 600;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+}
+
+.result {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.result-item {
+  padding-bottom: 20px;
+}
+
+#download-url {
+  font-size: x-large;
+  font-weight: bold;
+}
+
+#copy-btn {
+  cursor: pointer;
+}
+
+.share-social-btns {
+  text-align: center;
+}
+
+.share-social-btns > a {
+  cursor: pointer;
+  padding-left: 20px;
+  color: #ecf0f1;
+}
+
+.share-social-btns > a:hover {
+  color: #95a5a6;
+}
