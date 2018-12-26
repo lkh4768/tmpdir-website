@@ -1,0 +1,16 @@
+@import '~_common/mixin.scss';
+.backdrop {
+  @include absolute-fill;
+  display: flex;
+  z-index: 1;
+
+  align-items: center;
+  justify-content: center;
+
+  color: white;
+  font-size: 25px;
+  font-weight: 600;
+
+  background-color: black;
+  opacity: .8;
+}

@@ -1,0 +1,36 @@
+@import './constants.scss';
+
+@mixin margin-between($n) {
+  margin-left: ($n * 1px);
+  margin-right: ($n * 1px);
+}
+
+@mixin not-deco-link {
+  text-decoration: none;
+  color: $default-color;
+  &:hover {
+    color: $default-color;
+  }
+}
+
+@mixin default-ul {
+  width: 100%;
+  padding: 0;
+  list-style-type: none;
+}
+
+@mixin ellipsis($width) {
+  text-align: left;
+  width: ($width * 1px);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@mixin absolute-fill {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}

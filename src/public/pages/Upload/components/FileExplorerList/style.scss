@@ -1,0 +1,15 @@
+@import '~_common/mixin.scss';
+.file_explorer__list_wrapper {
+  &:focus {
+    outline: none;
+  }
+  &__contents {
+    @include default-ul;
+    height: 350px;
+    background-color: hsl(192, 15%, 94%);
+    overflow-y: auto;
+  }
+  &__input_file {
+    display: none;
+  }
+}

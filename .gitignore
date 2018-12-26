@@ -1,0 +1,36 @@
+### VIM ###
+**/*tags
+
+## LINUX ##
+**/*.swp
+.tags_result
+
+### NODEJS ###
+node_modules
+/build/
+package-lock.json
+
+## GOORM IDE ##
+goorm.manifest
+
+## LOG ##
+/logs
+
+## SONARQUBE ##
+.scannerwork/
+
+## REPORTS ##
+reports
+
+## TEST DATA ##
+/data/test/10mb*
+/data/test/gb*
+
+## GRADLE ##
+.gradle
+.project
+.settings/
+
+## APP ##
+src/server/config/production.js
+src/server/config/stage.js

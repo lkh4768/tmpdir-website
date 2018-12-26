@@ -1,0 +1,9 @@
+@import '~_common/mixin.scss';
+.file_explorer_result {
+  @include default-ul;
+  background-color: hsl(48, 89%, 50%);
+
+  &__file_explorer_row {
+    border-bottom: 0;
+  }
+}
