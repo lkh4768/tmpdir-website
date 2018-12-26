@@ -1,0 +1,27 @@
+@import '~_common/mixin.scss';
+
+.body_row__col {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+
+  > * {
+    @include margin-between(8);
+  }
+
+  a {
+    @include not-deco-link;
+  }
+
+  &--between {
+    justify-content: space-between;
+  }
+
+  &--right {
+    justify-content: flex-end;
+  }
+
+  &--center {
+    justify-content: center;
+  }
+}

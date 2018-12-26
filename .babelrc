@@ -1,0 +1,29 @@
+{
+  "env": {
+    "test": {
+      "presets": ["es2015", "env", "react"],
+      "plugins": [
+        "transform-es2015-modules-commonjs",
+        "transform-object-rest-spread"
+      ]
+    },
+    "development" : {
+      "presets": ["es2015", "react"],
+      "plugins": ["transform-object-rest-spread"]
+    },
+    "production": {
+      "presets": [
+        "es2015",
+        "react",
+        [
+          "env",
+          {
+            "useBuiltIns": true,
+            "targets": { "browsers": ["last 2 versions", "safari > 8", "not ie < 11"] }
+          }
+        ]
+      ],
+      "plugins": ["transform-object-rest-spread"]
+    }
+  }
+}
